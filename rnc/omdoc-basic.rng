@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <!--
+    A RelaxNG schema for Open Mathematical documents (OMDoc 1.2: OMDoc Basic) 
+    $Id: omdoc-basic.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+    $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdoc-basic.rnc $
+    See the documentation and examples at http://www.omdoc.org
+    Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+  -->
+  <start>
+    <ref name="omdoc"/>
+  </start>
+  <include href="omdocattribs.rng"/>
+  <include href="omdocmobj.rng"/>
+  <include href="omdocdoc.rng"/>
+  <include href="omdocdc.rng"/>
+  <include href="omdoccc.rng"/>
+  <include href="omdocmtxt.rng"/>
+  <include href="omdocrt.rng"/>
+</grammar>

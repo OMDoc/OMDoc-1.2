@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary s_dist1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary s_dist1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD holds the definitions of the basic statistical functions
+    used on random variables. It is intended to be
+    `compatible' with the MathML elements representing statistical
+    functions.
+  </div></div>
+
+
+<div class="symbol" id="mean">
+<div class="titlebox">
+<span class="titleword">Concept</span>mean</div> 
+    This symbol represents a unary function denoting the mean of a 
+    distribution. The argument is a univariate function to describe the 
+    distribution. That is, if f is the function describing the 
+    distribution. The mean is the expression integrate(x*f(x)) w.r.t. x over the
+    range (-infinity,infinity).
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid133529"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id133531" xlink:href="sts.xml#mapsto"><mi id="MCRid133540">Distribution</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid133544">Object</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid133529" xlink:type="simple"><OMA xlink:href="MCRid133531" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid133533" xlink:type="simple"/><OMV name="Distribution" xlink:href="MCRid133540" xlink:type="simple"/><OMV name="Object" xlink:href="MCRid133544" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="mean-prop-1">
+<span class="titleword">Lemma</span>
+<p>
+    mean(f(X)) = int(x*f(x)) w.r.t. x over the range [-infinity,infinity]
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid132957"><semantics><mfenced id="id132968" open="(" close=")" separators=""><mover id="MCRid132968"><mi id="MCRid132977">f</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mean" xlink:type="simple" id="MCRid132970">¯</mo></mover></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid132962">=</mo><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id132982" xlink:href="calculus1.xml#defint"><msub xlink:href="calculus1.xml#defint"><mo id="id132984" xlink:href="calculus1.xml#defint">∫</mo><mfenced id="id132991" open="[" close="]" separators=""><mrow><mo xlink:href="arith1.xml#unary_minus" xlink:type="simple" id="MCRid133002">-</mo><mo xlink:href="nums1.xml#infinity" xlink:type="simple" id="MCRid133008">∞</mo></mrow><mo xlink:href="interval1.xml#interval" xlink:type="simple" id="MCRid132993">,</mo><mo xlink:href="nums1.xml#infinity" xlink:type="simple" id="MCRid133016">∞</mo></mfenced></msub><mrow id="id157192" xlink:href="calculus1.xml#defint"><mi id="MCRid157201">x</mi><mo id="MCRid157194">⁢</mo><mrow id="MCRid157205"><mi id="MCRid157207">f</mi><mrow><mo fence="true">(</mo><mrow><mi id="MCRid157214">x</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo xlink:href="calculus1.xml#defint">ⅆ</mo><mi id="MCRid157187">x</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid132957" xlink:type="simple"><OMA xlink:href="MCRid132960" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid132962" xlink:type="simple"/><OMA xlink:href="MCRid132968" xlink:type="simple"><OMS cd="s_dist1" name="mean" xlink:href="MCRid132970" xlink:type="simple"/><OMV name="f" xlink:href="MCRid132977" xlink:type="simple"/></OMA><OMA xlink:href="MCRid132982" xlink:type="simple"><OMS cd="calculus1" name="defint" xlink:href="MCRid132984" xlink:type="simple"/><OMA xlink:href="MCRid132991" xlink:type="simple"><OMS cd="interval1" name="interval" xlink:href="MCRid132993" xlink:type="simple"/><OMA xlink:href="MCRid132999" xlink:type="simple"><OMS cd="arith1" name="unary_minus" xlink:href="MCRid133002" xlink:type="simple"/><OMS cd="nums1" name="infinity" xlink:href="MCRid133008" xlink:type="simple"/></OMA><OMS cd="nums1" name="infinity" xlink:href="MCRid133016" xlink:type="simple"/></OMA><OMBIND xlink:href="MCRid133024" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid157178" xlink:type="simple"/><OMBVAR xlink:href="MCRid157185" xlink:type="simple"><OMV name="x" xlink:href="MCRid157187" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid157192" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid157194" xlink:type="simple"/><OMV name="x" xlink:href="MCRid157201" xlink:type="simple"/><OMA xlink:href="MCRid157205" xlink:type="simple"><OMV name="f" xlink:href="MCRid157207" xlink:type="simple"/><OMV name="x" xlink:href="MCRid157214" xlink:type="simple"/></OMA></OMA></OMBIND></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="sdev">
+<div class="titlebox">
+<span class="titleword">Concept</span>sdev</div> 
+    This symbol represents a unary function denoting the standard
+    deviation of a distribution. The argument is a univariate function
+    to describe the distribution. The standard deviation of a distribution
+    is the arithmetical mean of the squares of the deviation of the
+    distribution from the mean.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid157267"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id157270" xlink:href="sts.xml#mapsto"><mi id="MCRid157278">Distribution</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid157283">Object</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid157267" xlink:type="simple"><OMA xlink:href="MCRid157270" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid157272" xlink:type="simple"/><OMV name="Distribution" xlink:href="MCRid157278" xlink:type="simple"/><OMV name="Object" xlink:href="MCRid157283" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="sdev-prop-1">
+<span class="titleword">Lemma</span>
+<p> 
+    The standard deviation of a distribution is the arithmetical mean of
+    the squares of the deviation of the distribution from the mean. 
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid132433"><semantics><mrow id="MCRid132445"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sdev" xlink:type="simple" id="MCRid132447">σ</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid132453">f</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid132439">=</mo><mfenced id="id132458" open="(" close=")" separators=""><mover id="MCRid132458"><msup id="MCRid132467"><mfenced id="id132476" open="(" close=")" separators=""><mi id="MCRid132485">f</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="arith1.xml#minus" xlink:type="simple" id="MCRid132478">-</mo><mfenced id="id132489" open="(" close=")" separators=""><mover id="MCRid132489"><mi id="MCRid132498">f</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mean" xlink:type="simple" id="MCRid132491">¯</mo></mover></mfenced></mfenced><mn id="MCRid132504"> 2 </mn></msup><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mean" xlink:type="simple" id="MCRid132460">¯</mo></mover></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid132433" xlink:type="simple"><OMA xlink:href="MCRid132436" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid132439" xlink:type="simple"/><OMA xlink:href="MCRid132445" xlink:type="simple"><OMS cd="s_dist1" name="sdev" xlink:href="MCRid132447" xlink:type="simple"/><OMV name="f" xlink:href="MCRid132453" xlink:type="simple"/></OMA><OMA xlink:href="MCRid132458" xlink:type="simple"><OMS cd="s_dist1" name="mean" xlink:href="MCRid132460" xlink:type="simple"/><OMA xlink:href="MCRid132467" xlink:type="simple"><OMS cd="arith1" name="power" xlink:href="MCRid132469" xlink:type="simple"/><OMA xlink:href="MCRid132476" xlink:type="simple"><OMS cd="arith1" name="minus" xlink:href="MCRid132478" xlink:type="simple"/><OMV name="f" xlink:href="MCRid132485" xlink:type="simple"/><OMA xlink:href="MCRid132489" xlink:type="simple"><OMS cd="s_dist1" name="mean" xlink:href="MCRid132491" xlink:type="simple"/><OMV name="f" xlink:href="MCRid132498" xlink:type="simple"/></OMA></OMA><OMI xlink:type="simple" xlink:href="MCRid132504"> 2 </OMI></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="variance">
+<div class="titlebox">
+<span class="titleword">Concept</span>variance</div> 
+    This symbol represents a unary function denoting the variance of a
+    distribution. The argument is a function to describe the distribution.
+    That is if f is the function which describes the distribution.
+    The variance of a distribution is the square of the standard deviation
+    of the distribution.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid132554"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id132557" xlink:href="sts.xml#mapsto"><mi id="MCRid132566">Distribution</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid132570">Object</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid132554" xlink:type="simple"><OMA xlink:href="MCRid132557" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid132559" xlink:type="simple"/><OMV name="Distribution" xlink:href="MCRid132566" xlink:type="simple"/><OMV name="Object" xlink:href="MCRid132570" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="variance-prop-1">
+<span class="titleword">Lemma</span>
+<p>
+    The variance of a distribution is the square of the standard deviation
+    of the distribution.
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid132621"><semantics><msup xmlns:xlink="http://www.w3.org/1999/xlink" id="id132632" xlink:href="#variance"><mrow xlink:href="#variance"><mo xlink:href="#variance">σ</mo><mo xlink:href="#variance" fence="true">(</mo><mi id="MCRid132640">f</mi><mo xlink:href="#variance" fence="true">)</mo></mrow><mn xlink:href="#variance">2</mn></msup><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid132626">=</mo><msup id="MCRid132646"><mrow id="MCRid132654"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sdev" xlink:type="simple" id="MCRid132657">σ</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid132663">f</mi></mrow><mo fence="true">)</mo></mrow></mrow><mn id="MCRid132668"> 2 </mn></msup><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid132621" xlink:type="simple"><OMA xlink:href="MCRid132624" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid132626" xlink:type="simple"/><OMA xlink:href="MCRid132632" xlink:type="simple"><OMS cd="s_dist1" name="variance" xlink:href="MCRid132634" xlink:type="simple"/><OMV name="f" xlink:href="MCRid132640" xlink:type="simple"/></OMA><OMA xlink:href="MCRid132646" xlink:type="simple"><OMS cd="arith1" name="power" xlink:href="MCRid132648" xlink:type="simple"/><OMA xlink:href="MCRid132654" xlink:type="simple"><OMS cd="s_dist1" name="sdev" xlink:href="MCRid132657" xlink:type="simple"/><OMV name="f" xlink:href="MCRid132663" xlink:type="simple"/></OMA><OMI xlink:type="simple" xlink:href="MCRid132668"> 2 </OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="moment">
+<div class="titlebox">
+<span class="titleword">Concept</span>moment</div> 
+    This symbol represents a ternary function to denote the i'th moment of a
+    distribution. The first argument should be the degree of the moment
+    (that is, for the i'th moment the first argument should be i), the
+    second argument is the value about which the moment is to be taken and
+    the third argument is a univariate function to describe the distribution. That
+    is, if f is the function which describe the distribution. The i'th
+    moment of f about a is the integral of
+    <span class="legacy">(x-a)^i*f(x)</span> with respect to x,
+    over the interval (-infinity,infinity).
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid161555"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id161558" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid161566">ℤ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid161572">ℝ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid161578">Distribution</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid161582">Object</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid161555" xlink:type="simple"><OMA xlink:href="MCRid161558" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid161560" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid161566" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid161572" xlink:type="simple"/><OMV name="Distribution" xlink:href="MCRid161578" xlink:type="simple"/><OMV name="Object" xlink:href="MCRid161582" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="moment-prop-1">
+<span class="titleword">Lemma</span>
+<p>
+    the i'th moment of
+    <span class="legacy">f(X) about c = integral of (x-c)^i*f(x)</span>
+    with respect  to x, over the interval <span class="legacy">(-infinity,infinity)</span></p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid161644"><semantics><mrow id="MCRid161655"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#moment" xlink:type="simple" id="id161657">moment</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid161663">i</mi><mo separator="true">,</mo><mi id="MCRid161668">c</mi><mo separator="true">,</mo><mi id="MCRid161672">f</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid161649">=</mo><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id161677" xlink:href="calculus1.xml#defint"><msub xlink:href="calculus1.xml#defint"><mo id="id161679" xlink:href="calculus1.xml#defint">∫</mo><mfenced id="id161686" open="[" close="]" separators=""><mrow><mo xlink:href="arith1.xml#unary_minus" xlink:type="simple" id="MCRid161697">-</mo><mo xlink:href="nums1.xml#infinity" xlink:type="simple" id="MCRid161704">∞</mo></mrow><mo xlink:href="interval1.xml#interval" xlink:type="simple" id="MCRid161688">,</mo><mo xlink:href="nums1.xml#infinity" xlink:type="simple" id="MCRid161711">∞</mo></mfenced></msub><mrow id="id161735" xlink:href="calculus1.xml#defint"><msup id="MCRid161744"><mfenced id="id161753" open="(" close=")" separators=""><mi id="MCRid161762">x</mi><mo xlink:href="arith1.xml#minus" xlink:type="simple" id="MCRid161755">-</mo><mi id="MCRid161766">c</mi></mfenced><mi id="MCRid161771">i</mi></msup><mo id="MCRid161737">⁢</mo><mrow id="MCRid161776"><mi id="MCRid161778">f</mi><mrow><mo fence="true">(</mo><mrow><mi id="MCRid161782">x</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo xlink:href="calculus1.xml#defint">ⅆ</mo><mi id="MCRid161730">x</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid161644" xlink:type="simple"><OMA xlink:href="MCRid161647" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid161649" xlink:type="simple"/><OMA xlink:href="MCRid161655" xlink:type="simple"><OMS cd="s_dist1" name="moment" xlink:href="MCRid161657" xlink:type="simple"/><OMV name="i" xlink:href="MCRid161663" xlink:type="simple"/><OMV name="c" xlink:href="MCRid161668" xlink:type="simple"/><OMV name="f" xlink:href="MCRid161672" xlink:type="simple"/></OMA><OMA xlink:href="MCRid161677" xlink:type="simple"><OMS cd="calculus1" name="defint" xlink:href="MCRid161679" xlink:type="simple"/><OMA xlink:href="MCRid161686" xlink:type="simple"><OMS cd="interval1" name="interval" xlink:href="MCRid161688" xlink:type="simple"/><OMA xlink:href="MCRid161695" xlink:type="simple"><OMS cd="arith1" name="unary_minus" xlink:href="MCRid161697" xlink:type="simple"/><OMS cd="nums1" name="infinity" xlink:href="MCRid161704" xlink:type="simple"/></OMA><OMS cd="nums1" name="infinity" xlink:href="MCRid161711" xlink:type="simple"/></OMA><OMBIND xlink:href="MCRid161719" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid161721" xlink:type="simple"/><OMBVAR xlink:href="MCRid161728" xlink:type="simple"><OMV name="x" xlink:href="MCRid161730" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid161735" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid161737" xlink:type="simple"/><OMA xlink:href="MCRid161744" xlink:type="simple"><OMS cd="arith1" name="power" xlink:href="MCRid161746" xlink:type="simple"/><OMA xlink:href="MCRid161753" xlink:type="simple"><OMS cd="arith1" name="minus" xlink:href="MCRid161755" xlink:type="simple"/><OMV name="x" xlink:href="MCRid161762" xlink:type="simple"/><OMV name="c" xlink:href="MCRid161766" xlink:type="simple"/></OMA><OMV name="i" xlink:href="MCRid161771" xlink:type="simple"/></OMA><OMA xlink:href="MCRid161776" xlink:type="simple"><OMV name="f" xlink:href="MCRid161778" xlink:type="simple"/><OMV name="x" xlink:href="MCRid161782" xlink:type="simple"/></OMA></OMA></OMBIND></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+
+
+</body>
+</html>

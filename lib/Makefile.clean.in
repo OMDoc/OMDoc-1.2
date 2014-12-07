@@ -1,0 +1,21 @@
+########################################################################
+# This make library supplies cleaning  targets for the UNIX make-based 
+# transformation of OMDoc documents.
+# Copyright Michael Kohlhase (c) 2007 released under the Lesser Gnu Public License (LGPL)
+# $Id: Makefile.clean.in 6778 2007-09-01 07:41:55Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/lib/Makefile.clean.in $
+########################################################################
+
+clean:
+	rm -f *.log 
+	rm -f *.blg
+	rm -f *.idx *.ilg
+	rm -f *~  # backups
+	rm -f .\#* \#*\# *.out
+
+distclean: clean
+	rm -f *.dvi *.aux *.toc *.out
+	rm -f $(PS) $(PS2) $(PS4) $(PDF)
+	rm -f *.bbl
+	rm -f *.ind 
+

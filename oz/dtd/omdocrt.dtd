@@ -1,0 +1,58 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module DOC
+     SYSTEM http://www.mathweb.org/omdoc/dtd/omdocdoc.dtd
+     PUBLIC -//OMDoc//ELEMENTS OMDoc RT V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!-- qnames for omdoc text structure  elements -->
+<!ENTITY % omdocrt.li.qname "%omdoc.pfx;li">
+<!ENTITY % omdocrt.tr.qname "%omdoc.pfx;tr">
+<!ENTITY % omdocrt.td.qname "%omdoc.pfx;td">
+<!ENTITY % omdocrt.th.qname "%omdoc.pfx;th">
+
+<!ENTITY % omdocrt.common.attrib 
+           "%idi.attrib; %fori.attrib;
+            index NMTOKEN #IMPLIED">
+
+<!ELEMENT %omdocrt.li.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocrt.li.qname; %omdocrt.common.attrib;>
+
+<!ELEMENT %omdocrt.ul.qname; (%omdocrt.li.qname;)+>
+<!ATTLIST %omdocrt.ul.qname; %omdocrt.common.attrib; %omdoc.nsschema.attrib;>
+
+<!ELEMENT %omdocrt.ol.qname; (%omdocrt.li.qname;)+>
+<!ATTLIST %omdocrt.ol.qname; %omdocrt.common.attrib; %omdoc.nsschema.attrib;>
+
+<!ELEMENT %omdocrt.p.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocrt.p.qname; %omdocrt.common.attrib; %omdoc.nsschema.attrib;>
+
+<!ELEMENT %omdocrt.highlight.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocrt.highlight.qname; 
+          role NMTOKENS #IMPLIED
+          xref CDATA #IMPLIED
+          %omdocrt.common.attrib;>
+
+<!ELEMENT %omdocrt.note.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocrt.note.qname; 
+          type NMTOKEN 'footnote'
+          %omdocrt.common.attrib;>
+
+<!-- a simplified table -->
+<!ELEMENT %omdocrt.table.qname; (%omdocrt.tr.qname;)*>
+<!ATTLIST %omdocrt.table.qname; %omdocrt.common.attrib;>
+
+<!ELEMENT %omdocrt.tr.qname; (%omdocrt.td.qname;|%omdocrt.th.qname;)*>
+<!ATTLIST %omdocrt.tr.qname; %omdocrt.common.attrib;>
+
+<!ELEMENT %omdocrt.td.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocrt.td.qname; %omdocrt.common.attrib;>
+
+<!ELEMENT %omdocrt.th.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocrt.th.qname; %omdocrt.common.attrib;>
+
+<!ELEMENT %omdocrt.link.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocrt.link.qname; 
+          %omdocrt.common.attrib;
+          href CDATA #REQUIRED>

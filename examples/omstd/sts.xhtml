@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary sts.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary sts.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description"> 
+    Definitions of the symbols used by the OpenMath Small Type System.
+  </div></div>
+
+
+<div class="symbol" id="type">
+<div class="titlebox">
+<span class="titleword">Concept</span>type</div> 
+    A symbol to be used within an OpenMath attribute to specify the type of the object.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid87383"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#attribution" xlink:type="simple" id="id87385">attribution</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid87383" xlink:type="simple"><OMS cd="sts" name="attribution" xlink:href="MCRid87385" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="mapsto">
+<div class="titlebox">
+<span class="titleword">Concept</span>mapsto</div>
+    This symbol represents the construction of a function type.
+
+The first n-1 children denote the types of the arguments,
+the last denotes the return type.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid115903"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id115906" xlink:href="#mapsto"><mfenced id="id115914" open="(" close=")" separators=""><msup id="MCRid115914"><mi id="MCRid87951">AnyType</mi><mo xlink:href="#nary" xlink:type="simple" id="MCRid115916">*</mo></msup></mfenced><mo xlink:href="#mapsto">↦</mo><mi id="MCRid87956">FunctionType</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid115903" xlink:type="simple"><OMA xlink:href="MCRid115906" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid115908" xlink:type="simple"/><OMA xlink:href="MCRid115914" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid115916" xlink:type="simple"/><OMV name="AnyType" xlink:href="MCRid87951" xlink:type="simple"/></OMA><OMV name="FunctionType" xlink:href="MCRid87956" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="nary">
+<div class="titlebox">
+<span class="titleword">Concept</span>nary</div>
+    Constructs a child of mapsto which denotes an arbitrary number of
+    copies of the argument of nary.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid86866"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id86870" xlink:href="#mapsto"><mi id="MCRid86878">Type</mi><mo xlink:href="#mapsto">↦</mo><mi id="MCRid86882">Tuple</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid86866" xlink:type="simple"><OMA xlink:href="MCRid86870" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid86872" xlink:type="simple"/><OMV name="Type" xlink:href="MCRid86878" xlink:type="simple"/><OMV name="Tuple" xlink:href="MCRid86882" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="nary-ex-1">
+<span class="titleword">Example</span>
+<p>The signature for list, an n-ary function:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid87006"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id87009" xlink:href="#mapsto"><mfenced id="id87018" open="(" close=")" separators=""><msup id="MCRid87018"><mo xlink:href="#Object" xlink:type="simple" id="id87026">Object</mo><mo xlink:href="#nary" xlink:type="simple" id="MCRid87020">*</mo></msup></mfenced><mo xlink:href="#mapsto">↦</mo><mo xlink:href="#Object" xlink:type="simple" id="id87033">Object</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid87006" xlink:type="simple"><OMA xlink:href="MCRid87009" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid87011" xlink:type="simple"/><OMA xlink:href="MCRid87018" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid87020" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid87026" xlink:type="simple"/></OMA><OMS cd="sts" name="Object" xlink:href="MCRid87033" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="nassoc">
+<div class="titlebox">
+<span class="titleword">Concept</span>nassoc</div> 
+    Constructs a child of mapsto which denotes an arbitrary number of
+    copies of the argument of nassoc. The operator is associative on these
+    arguments which means that repeated uses may be flattened/unflattened.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid87083"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id87086" xlink:href="#mapsto"><mi id="MCRid87094">Type</mi><mo xlink:href="#mapsto">↦</mo><mi id="MCRid87098">Tuple</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid87083" xlink:type="simple"><OMA xlink:href="MCRid87086" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid87088" xlink:type="simple"/><OMV name="Type" xlink:href="MCRid87094" xlink:type="simple"/><OMV name="Tuple" xlink:href="MCRid87098" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="nassoc-ex-1">
+<span class="titleword">Example</span>
+<p>The signature for plus, an associative n-ary function:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116195"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116198" xlink:href="#mapsto"><mfenced id="id116206" open="(" close=")" separators=""><msup id="MCRid116206"><mi id="MCRid116214">AbelianSemiGroup</mi><mo xlink:href="#nassoc" xlink:type="simple" id="MCRid116208">*</mo></msup></mfenced><mo xlink:href="#mapsto">↦</mo><mi id="MCRid116219">AbelianSemiGroup</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116195" xlink:type="simple"><OMA xlink:href="MCRid116198" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116200" xlink:type="simple"/><OMA xlink:href="MCRid116206" xlink:type="simple"><OMS cd="sts" name="nassoc" xlink:href="MCRid116208" xlink:type="simple"/><OMV name="AbelianSemiGroup" xlink:href="MCRid116214" xlink:type="simple"/></OMA><OMV name="AbelianSemiGroup" xlink:href="MCRid116219" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="error">
+<div class="titlebox">
+<span class="titleword">Concept</span>error</div>
+    The error symbol is the 'return type' of error symbols in the error
+    signature file.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116267"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116270" xlink:href="#mapsto"><mi id="MCRid116278">String</mi><mo xlink:href="#mapsto">↦</mo><mi id="MCRid116282">Error</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116267" xlink:type="simple"><OMA xlink:href="MCRid116270" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116272" xlink:type="simple"/><OMV name="String" xlink:href="MCRid116278" xlink:type="simple"/><OMV name="Error" xlink:href="MCRid116282" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="error-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116306"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116309" xlink:href="#mapsto"><mi id="MCRid116317">OMSymbol</mi><mo xlink:href="#mapsto">↦</mo><mo xlink:href="#error" xlink:type="simple" id="id116321">error</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116306" xlink:type="simple"><OMA xlink:href="MCRid116309" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116311" xlink:type="simple"/><OMV name="OMSymbol" xlink:href="MCRid116317" xlink:type="simple"/><OMS cd="sts" name="error" xlink:href="MCRid116321" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="structure">
+<div class="titlebox">
+<span class="titleword">Concept</span>structure</div> 
+    The structure element is used to represent a structure of a particular
+    (algebraic) type.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116370"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116373" xlink:href="#mapsto"><mi id="MCRid116381">Category</mi><mo xlink:href="#mapsto">↦</mo><mi id="MCRid116385">Domain</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116370" xlink:type="simple"><OMA xlink:href="MCRid116373" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116375" xlink:type="simple"/><OMV name="Category" xlink:href="MCRid116381" xlink:type="simple"/><OMV name="Domain" xlink:href="MCRid116385" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="structure-ex-1">
+<span class="titleword">Example</span>
+<p>The signature of a function which given a set will return an element
+    of that set:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116450"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116453" xlink:href="#mapsto"><mrow id="MCRid116461"><mrow><mo fence="true">(</mo><mrow><mi id="MCRid116470">set</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="#mapsto">↦</mo><mi id="MCRid116475">set</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116450" xlink:type="simple"><OMA xlink:href="MCRid116453" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116455" xlink:type="simple"/><OMA xlink:href="MCRid116461" xlink:type="simple"><OMS cd="sts" name="structure" xlink:href="MCRid116463" xlink:type="simple"/><OMV name="set" xlink:href="MCRid116470" xlink:type="simple"/></OMA><OMV name="set" xlink:href="MCRid116475" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="binder">
+<div class="titlebox">
+<span class="titleword">Concept</span>binder</div>
+    An `OMBIND' object has three parts: a "binder" such as "lambda" or
+    "for all", a (list of) bound variables, and an expression.  The use of
+    `binder' in a signature indicates that we are describing something
+    which can only be used as the first child of an OMBIND construct.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116523"><semantics><mi id="MCRid116526">Symbol</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116523" xlink:type="simple"><OMV name="Symbol" xlink:href="MCRid116526" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="binder-ex-1">
+<span class="titleword">Example</span>
+<p>The signature of forall is:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116559"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#binder" xlink:type="simple" id="id116560">binder</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116559" xlink:type="simple"><OMS cd="sts" name="binder" xlink:href="MCRid116560" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="attribution">
+<div class="titlebox">
+<span class="titleword">Concept</span>attribution</div>
+    An `attribution' object consists of pairs of keys and values.  The use
+    of the symbol `attribution' in a signature indicates that the symbol
+    is to be used as a key.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116607"><semantics><mi id="MCRid116610">Symbol</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116607" xlink:type="simple"><OMV name="Symbol" xlink:href="MCRid116610" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="attribution-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116632"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#attribution" xlink:type="simple" id="id116634">attribution</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116632" xlink:type="simple"><OMS cd="sts" name="attribution" xlink:href="MCRid116634" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="Object">
+<div class="titlebox">
+<span class="titleword">Concept</span>Object</div>
+    Denotes any OpenMath object.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116680"><semantics><mi id="MCRid116682">Symbol</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116680" xlink:type="simple"><OMV name="Symbol" xlink:href="MCRid116682" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="Object-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The signature for list, to show that list has the signature:
+    Object* -&gt; Object</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116717"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116720" xlink:href="#mapsto"><mfenced id="id116728" open="(" close=")" separators=""><msup id="MCRid116728"><mo xlink:href="#Object" xlink:type="simple" id="id116736">Object</mo><mo xlink:href="#nary" xlink:type="simple" id="MCRid116730">*</mo></msup></mfenced><mo xlink:href="#mapsto">↦</mo><mo xlink:href="#Object" xlink:type="simple" id="id116743">Object</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116717" xlink:type="simple"><OMA xlink:href="MCRid116720" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116722" xlink:type="simple"/><OMA xlink:href="MCRid116728" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid116730" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid116736" xlink:type="simple"/></OMA><OMS cd="sts" name="Object" xlink:href="MCRid116743" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="NumericalValue">
+<div class="titlebox">
+<span class="titleword">Concept</span>NumericalValue</div>
+    Denotes an OpenMath object that is to be thought of as something that
+    represents a numerical value, or a numerical value.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116793"><semantics><mi id="MCRid116795">Symbol</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116793" xlink:type="simple"><OMV name="Symbol" xlink:href="MCRid116795" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="NumericalValue-ex-1">
+<span class="titleword">Example</span>
+<p>The generic signature for the function power:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116855"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116858" xlink:href="#mapsto"><mo xlink:href="#NumericalValue" xlink:type="simple" id="MCRid116866">Num</mo><mo xlink:href="#mapsto">,</mo><mo xlink:href="#NumericalValue" xlink:type="simple" id="MCRid116872">Num</mo><mo xlink:href="#mapsto">↦</mo><mo xlink:href="#NumericalValue" xlink:type="simple" id="MCRid116878">Num</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116855" xlink:type="simple"><OMA xlink:href="MCRid116858" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116860" xlink:type="simple"/><OMS cd="sts" name="NumericalValue" xlink:href="MCRid116866" xlink:type="simple"/><OMS cd="sts" name="NumericalValue" xlink:href="MCRid116872" xlink:type="simple"/><OMS cd="sts" name="NumericalValue" xlink:href="MCRid116878" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="example" id="type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable z is attributed with a type for complex numbers.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116958"><semantics><mfenced id="id116965" open="" close="" separators=""><msub id="MCRid116965"><mi id="MCRid116978">z</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#C" xlink:type="simple" id="MCRid116971">ℂ</mo></msub></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116958" xlink:type="simple"><OMATTR xlink:href="MCRid116961" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid116963"><OMS cd="sts" name="type" xlink:href="MCRid116965" xlink:type="simple"/><OMS cd="setname1" name="C" xlink:href="MCRid116971" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid116978" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="example" id="mapsto-ex-1">
+<span class="titleword">Example</span>
+<p>The signature of the power function: (Real , Integer) -&gt; Real</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid117013"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id117015" xlink:href="#mapsto"><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid117024">ℝ</mo><mo xlink:href="#mapsto">,</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid117030">ℤ</mo><mo xlink:href="#mapsto">↦</mo><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid117036">ℝ</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid117013" xlink:type="simple"><OMA xlink:href="MCRid117015" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid117017" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid117024" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid117030" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid117036" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

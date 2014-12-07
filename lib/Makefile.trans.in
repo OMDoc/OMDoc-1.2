@@ -1,0 +1,18 @@
+########################################################################
+# This make library supplies the targets for the UNIX make-based transformation
+# of OMDoc documents to various formats using XSLT processors
+# Copyright Michael Kohlhase (c) 2007 released under the Lesser Gnu Public License (LGPL)
+# $Id: Makefile.trans.in 7856 2008-07-14 15:19:21Z clange $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/lib/Makefile.trans.in $
+########################################################################
+
+
+i: 		$(DEPFILES:%.$(OMDocExt)=%-incl.xsl)
+4: 		$(DEPFILES:%.$(OMDocExt)=%-tmpl.xsl)
+
+$(IXSLFILES):	%-incl.xsl: %.$(OMDocExt) $(EXINCLDEP)
+		$(XSLT) -o $@ --stringparam self $(patsubst %-incl.xsl,%-tmpl.xsl,$@)  $(EXINCL) $(firstword $<) 
+
+$(4XSLFILES): %-tmpl.xsl: %.$(OMDocExt) $(EXPRESDEP)
+		$(XSLT) -o $@  $(EXPRES) $(firstword $<)
+

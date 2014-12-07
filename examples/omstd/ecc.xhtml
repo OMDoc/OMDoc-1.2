@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary ecc.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary ecc.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description"> Extended Calculus of Constructions Primitives </div></div>
+
+
+<div class="symbol" id="type">
+<div class="titlebox">
+<span class="titleword">Concept</span>type</div> Attribution tag to denote type-judgement
+</div>
+
+<div class="symbol" id="typecoerce">
+<div class="titlebox">
+<span class="titleword">Concept</span>typecoerce</div> Attribution tag to denote type-judgement with coercion
+</div>
+
+<div class="symbol" id="SigmaType">
+<div class="titlebox">
+<span class="titleword">Concept</span>SigmaType</div> The binder symbol used to construct the
+    type of Cartesian products.  The (either plain or attributed)
+    variables might occur in the body OM object.
+</div>
+
+<div class="symbol" id="Pair">
+<div class="titlebox">
+<span class="titleword">Concept</span>Pair</div> The pairing constructor. It takes two 
+    OpenMath objects as first element and second 
+    element of the pair, and a third optional 
+    OpenMath object that represents the type of 
+    the pair.  
+</div>
+
+<div class="example" id="Pair-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid87035"><semantics><mrow id="MCRid87038"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Pair" xlink:type="simple" id="id87040">Pair</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid87046">0</mn><mo separator="true">,</mo><mn id="MCRid87049">1</mn></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid87035" xlink:type="simple"><OMA xlink:href="MCRid87038" xlink:type="simple"><OMS cd="ecc" name="Pair" xlink:href="MCRid87040" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid87046">0</OMI><OMI xlink:type="simple" xlink:href="MCRid87049">1</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="PairProj1">
+<div class="titlebox">
+<span class="titleword">Concept</span>PairProj1</div> The first projection function that extracts the first
+    component of a Pair. It satisfies the sigma-reduction rule.
+</div>
+
+<div class="example" id="PairProj1-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid86464"><semantics><mrow id="MCRid86476"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#PairProj1" xlink:type="simple" id="id86478">PairProj1</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid86484"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Pair" xlink:type="simple" id="id86486">Pair</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid86492">0</mn><mo separator="true">,</mo><mn id="MCRid86495">1</mn></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid86469">=</mo><mn id="MCRid86501">0</mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid86464" xlink:type="simple"><OMA xlink:href="MCRid86467" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid86469" xlink:type="simple"/><OMA xlink:href="MCRid86476" xlink:type="simple"><OMS cd="ecc" name="PairProj1" xlink:href="MCRid86478" xlink:type="simple"/><OMA xlink:href="MCRid86484" xlink:type="simple"><OMS cd="ecc" name="Pair" xlink:href="MCRid86486" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid86492">0</OMI><OMI xlink:type="simple" xlink:href="MCRid86495">1</OMI></OMA></OMA><OMI xlink:type="simple" xlink:href="MCRid86501">0</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="PairProj2">
+<div class="titlebox">
+<span class="titleword">Concept</span>PairProj2</div> The second projection function that extracts the second
+    component of a Pair. It satisfies sigma-reduction rule.
+</div>
+
+<div class="example" id="PairProj2-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid110805"><semantics><mrow id="MCRid110816"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#PairProj2" xlink:type="simple" id="id110819">PairProj2</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid110825"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Pair" xlink:type="simple" id="id110827">Pair</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid110833">0</mn><mo separator="true">,</mo><mn id="MCRid110836">1</mn></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid110810">=</mo><mn id="MCRid110842">1</mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid110805" xlink:type="simple"><OMA xlink:href="MCRid110808" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid110810" xlink:type="simple"/><OMA xlink:href="MCRid110816" xlink:type="simple"><OMS cd="ecc" name="PairProj2" xlink:href="MCRid110819" xlink:type="simple"/><OMA xlink:href="MCRid110825" xlink:type="simple"><OMS cd="ecc" name="Pair" xlink:href="MCRid110827" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid110833">0</OMI><OMI xlink:type="simple" xlink:href="MCRid110836">1</OMI></OMA></OMA><OMI xlink:type="simple" xlink:href="MCRid110842">1</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="Tuple">
+<div class="titlebox">
+<span class="titleword">Concept</span>Tuple</div> The n-ary tupling constructor when n&gt;2.  The
+    arguments are the element of the tuple. Tuple objects can also
+    be constructed by successive nesting of Pair.
+</div>
+
+<div class="example" id="Tuple-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid110896"><semantics><mrow id="MCRid110907"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Pair" xlink:type="simple" id="id110909">Pair</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid110915">0</mn><mo separator="true">,</mo><mrow id="MCRid85900"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Pair" xlink:type="simple" id="id85902">Pair</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid85908">1</mn><mo separator="true">,</mo><mn id="MCRid85911">2</mn></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid110901">=</mo><mrow id="MCRid85916"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Tuple" xlink:type="simple" id="id85919">Tuple</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid85925">0</mn><mo separator="true">,</mo><mn id="MCRid85928">1</mn><mo separator="true">,</mo><mn id="MCRid85931">2</mn></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid110896" xlink:type="simple"><OMA xlink:href="MCRid110899" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid110901" xlink:type="simple"/><OMA xlink:href="MCRid110907" xlink:type="simple"><OMS cd="ecc" name="Pair" xlink:href="MCRid110909" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid110915">0</OMI><OMA xlink:href="MCRid85900" xlink:type="simple"><OMS cd="ecc" name="Pair" xlink:href="MCRid85902" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid85908">1</OMI><OMI xlink:type="simple" xlink:href="MCRid85911">2</OMI></OMA></OMA><OMA xlink:href="MCRid85916" xlink:type="simple"><OMS cd="ecc" name="Tuple" xlink:href="MCRid85919" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid85925">0</OMI><OMI xlink:type="simple" xlink:href="MCRid85928">1</OMI><OMI xlink:type="simple" xlink:href="MCRid85931">2</OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

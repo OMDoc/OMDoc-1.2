@@ -1,0 +1,10 @@
+# A RelaxNG for Open Mathematical documents (OMDoc 1.2: OMDoc Content Dictionaries) 
+# $Id: omdoc-cd.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdoc-cd.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+include "omdoc-basic.rnc"
+include "omdocpres.rnc"
+include "omdocst.rnc"
+

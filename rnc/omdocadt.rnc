@@ -1,0 +1,40 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module ADT 
+# $Id: omdocadt.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocadt.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+omdoc.class |= adt
+
+omdocadt.sym.attrib = id.attrib,omdocst.scope.attrib,attribute name {xsd:NCName}
+
+# adts are abstract data types, they are short forms for groups of symbols 
+# and their definitions, therefore, they have much the same attributes.
+
+adt = element adt {omdoc.toplevel.attribs, 
+                   attribute parameters {list {xsd:NCName*}}?, metadata?, sortdef+}
+
+adttype = "loose" | "generated" | "free"
+sortdef = (ss| element sortdef {omdocadt.sym.attrib,
+	                   attribute role {"sort"}?, 
+                           attribute type {adttype}?, 
+			   metadata?,(constructor | insort)*,recognizer?})  
+insort = (ss| element insort {attribute for {omdocref}})
+# for is a reference to a sort symbol element 
+
+constructor = (ss| element constructor {omdocadt.sym.attrib,
+                                   sym.role.attrib?, 
+				   metadata?,argument*})
+recognizer = (ss| element recognizer {omdocadt.sym.attrib,          
+                                 sym.role.attrib?, 
+				 metadata?})
+
+
+argument = (ss| element argument {type,selector?})
+# sort is a reference to a sort symbol element p
+
+selector = (ss| element selector {omdocadt.sym.attrib,
+                             sym.role.attrib?, 
+			     attribute total {"yes" | "no"}?,  
+			     metadata?})

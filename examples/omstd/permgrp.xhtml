@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary permgrp.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary permgrp.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description"> A CD of functions for permutation groups   </div></div>
+
+
+<div class="omtext" id="CDComment-10">
+<p>
+    Written by A. Solomon on 1998-11-19
+    Modified by David Carlisle 1999-04-28
+  </p>
+</div>
+
+<div class="symbol" id="orbit">
+<div class="titlebox">
+<span class="titleword">Concept</span>orbit</div>
+    The binary function whose value is the set of integers which 
+    are in the orbit of the second argument under the action of the first
+    argument which is a permutation group.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid113203"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id113206" xlink:href="sts.xml#mapsto"><mi id="MCRid113214">PermutationGroup</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid113218">PositiveInteger</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid113223">Set</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid113203" xlink:type="simple"><OMA xlink:href="MCRid113206" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid113208" xlink:type="simple"/><OMV name="PermutationGroup" xlink:href="MCRid113214" xlink:type="simple"/><OMV name="PositiveInteger" xlink:href="MCRid113218" xlink:type="simple"/><OMV name="Set" xlink:href="MCRid113223" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="stabilizer">
+<div class="titlebox">
+<span class="titleword">Concept</span>stabilizer</div>
+    The first argument is a permutation group, the second is 
+    some object (point or set) upon which the first argument acts.
+    The value is the subgroup of the first argument which 
+    stabilize the second argument.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid85313"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id85315" xlink:href="sts.xml#mapsto"><mrow id="MCRid85324"><mrow><mo fence="true">(</mo><mrow><mi id="MCRid85332">PermutationGroup</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid85337">PermutationGroup</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid85341">Set</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid85313" xlink:type="simple"><OMA xlink:href="MCRid85315" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid85317" xlink:type="simple"/><OMA xlink:href="MCRid85324" xlink:type="simple"><OMS cd="sts" name="structure" xlink:href="MCRid85326" xlink:type="simple"/><OMV name="PermutationGroup" xlink:href="MCRid85332" xlink:type="simple"/></OMA><OMV name="PermutationGroup" xlink:href="MCRid85337" xlink:type="simple"/><OMV name="Set" xlink:href="MCRid85341" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="is_transitive">
+<div class="titlebox">
+<span class="titleword">Concept</span>is_transitive</div>
+    The unary function whose value is true iff the permutation group argument acts
+    transitively.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84752"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id84754" xlink:href="sts.xml#mapsto"><mi id="MCRid84762">PermutationGroup</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid84767">Boolean</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84752" xlink:type="simple"><OMA xlink:href="MCRid84754" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid84756" xlink:type="simple"/><OMV name="PermutationGroup" xlink:href="MCRid84762" xlink:type="simple"/><OMV name="Boolean" xlink:href="MCRid84767" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="is_primitive">
+<div class="titlebox">
+<span class="titleword">Concept</span>is_primitive</div>
+    The unary function whose value is true iff its permutation group argument acts
+    primitively.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84813"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id109086" xlink:href="sts.xml#mapsto"><mi id="MCRid109094">PermutationGroup</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid109098">Boolean</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84813" xlink:type="simple"><OMA xlink:href="MCRid109086" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid109088" xlink:type="simple"/><OMV name="PermutationGroup" xlink:href="MCRid109094" xlink:type="simple"/><OMV name="Boolean" xlink:href="MCRid109098" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+
+
+</body>
+</html>

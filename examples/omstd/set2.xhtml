@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary set2.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary set2.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD defines more set functions; at present this only includes
+    the size of a set.
+  </div></div>
+
+
+<div class="symbol" id="size">
+<div class="titlebox">
+<span class="titleword">Concept</span>size</div> 
+    This symbol is used to denote the number of elements in a set. It is
+    either a non-negative integer, or an infinite cardinal number. The
+    symbol infinity may be used for an unspecified infinite cardinal.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136559"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id136561" xlink:href="sts.xml#mapsto"><mi id="MCRid108697">Set</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid108701">CardinalNumber</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136559" xlink:type="simple"><OMA xlink:href="MCRid136561" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid136564" xlink:type="simple"/><OMV name="Set" xlink:href="MCRid108697" xlink:type="simple"/><OMV name="CardinalNumber" xlink:href="MCRid108701" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="size-ex-1">
+<span class="titleword">Example</span>
+<p>The size of the set{3,6,9} = 3</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid108745"><semantics><mfenced id="id108756" open="|" close="|" separators=""><mfenced id="id108764" open="{" close="}" separators=""><mn id="MCRid108773"> 3 </mn><mn id="MCRid108144"> 6 </mn><mn id="MCRid108148"> 9 </mn></mfenced></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid108750">=</mo><mn id="MCRid108153"> 3 </mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid108745" xlink:type="simple"><OMA xlink:href="MCRid108748" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid108750" xlink:type="simple"/><OMA xlink:href="MCRid108756" xlink:type="simple"><OMS cd="set2" name="size" xlink:href="MCRid108758" xlink:type="simple"/><OMA xlink:href="MCRid108764" xlink:type="simple"><OMS cd="set1" name="set" xlink:href="MCRid108766" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid108773"> 3 </OMI><OMI xlink:type="simple" xlink:href="MCRid108144"> 6 </OMI><OMI xlink:type="simple" xlink:href="MCRid108148"> 9 </OMI></OMA></OMA><OMI xlink:type="simple" xlink:href="MCRid108153"> 3 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="example" id="size-ex-2">
+<span class="titleword">Example</span>
+<p>The size of the set of integers is infinite</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid108181"><semantics><mfenced id="id108192" open="|" close="|" separators=""><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid108201">ℤ</mo></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid108186">=</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="nums1.xml#infinity" xlink:type="simple" id="MCRid108208">∞</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid108181" xlink:type="simple"><OMA xlink:href="MCRid108184" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid108186" xlink:type="simple"/><OMA xlink:href="MCRid108192" xlink:type="simple"><OMS cd="set2" name="size" xlink:href="MCRid108194" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid108201" xlink:type="simple"/></OMA><OMS cd="nums1" name="infinity" xlink:href="MCRid108208" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

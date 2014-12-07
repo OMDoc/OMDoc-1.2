@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_ignore.omdoc">
+
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>                                                                     
+
+<theory xml:id="test_ignore">
+
+  <ignore type="foo" comment="bar">
+    <ignore/>
+    fjdgdjfh
+  </ignore>
+
+  <ignore type="todo" comment="rework">
+    <ignore type="todo-comment">
+      <CMP>This does not make sense yet, in particular, the equation 
+        <OMOBJ/> cannot be true, think of <OMOBJ/>
+      </CMP>
+    </ignore>
+    <assertion xml:id="heureka"> <CMP/> </assertion>
+  </ignore>
+
+  <ignore type="CMP-lang-error" 
+	  comment="multilingual CMPs are not translations of each other">
+    <assertion xml:id="ass1">
+      <CMP>The proof is trivial</CMP>
+      <CMP xml:lang="de">Der Beweis ist extrem schwer</CMP>
+    </assertion>
+  </ignore>
+
+</theory>
+</omdoc>
+

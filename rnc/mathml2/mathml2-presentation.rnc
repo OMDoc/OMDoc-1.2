@@ -1,0 +1,320 @@
+# A RelaxNG schema for MathML2 Presentation Elements
+# $Id: mathml2-presentation.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/mathml2/mathml2-presentation.rnc $
+# (c) 2005 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace m = "http://www.w3.org/1998/Math/MathML"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+# Simple sizes 
+simple-size= "small" | "normal" | "big"
+
+# Centering values 
+centering.values = "left" | "center" | "right"
+
+# The named spaces 
+# this is also used in the value of the "width" attribute on the "mpadded" element 
+named-space = "veryverythinmathspace" | 
+              "verythinmathspace" | 
+	      "thinmathspace" | 
+              "mediummathspace" | 
+              "thickmathspace" | 
+              "verythickmathspace" | 
+              "veryverythickmathspace"
+
+# Thickness 
+thickness = "thin" | "medium" | "thick"
+
+# number with units used to specified lengths 
+length-with-unit = 
+    xsd:string #{pattern="(-?([0-9]+|[0-9]*\.[0-9]+)*(em|ex|px|in|cm|mm|pt|pc|%))|0"}
+length-with-optional-unit = 
+   xsd:string #{pattern="-?([0-9]+|[0-9]*\.[0-9]+)*(em|ex|px|in|cm|mm|pt|pc|%)?"}
+
+# This is just "infinity" that can be used as a length 
+infinity = "infinity"
+
+# colors defined as RGB 
+RGB-color = xsd:string {pattern="#(([0-9]|[a-f]){3}|([0-9]|[a-f]){6})"}
+
+#  This schema module defines sets of attributes common to several elements
+#  of presentation MathML.
+
+# The mathematics style attributes. These attributes are valid on all
+#     presentation token elements except "mspace" and "mglyph", and on no
+#     other elements except "mstyle". 
+
+Token-style.attrib = attribute mathvariant
+		       {"normal" | "bold" | "italic" | "bold-italic" | "double-struck" | 
+                        "bold-fraktur" | "script" | "bold-script" | "fraktur" | 
+ 			"sans-serif" | "bold-sans-serif" | "sans-serif-italic" | 
+			"sans-serif-bold-italic" | "monospace"}?,
+                     attribute mathsize {simple-size | length-with-unit}?,
+# For both of the following attributes the types should be more restricted 
+                     attribute mathcolor {xsd:string}?,
+   		     attribute mathbackground {xsd:string}?
+
+# These operators are all related to operators. They are valid on "mo" and "mstyle". 
+
+Operator.attrib = 
+# this attribute value is normally inferred from the position of
+# the operator in its "<mrow"> 
+   attribute form {"prefix" | "infix" | "postfix"}?,
+   # set by dictionnary, else it is "thickmathspace" 
+   attribute lspace {length-with-unit | named-space}?,
+   # set by dictionary, else it is "thickmathspace" 
+   attribute rspace {length-with-unit | named-space}?,
+   # set by dictionnary, else it is "false" 
+   attribute fence {xsd:boolean}?,
+   # set by dictionnary, else it is "false" 
+   attribute separator {xsd:boolean}?,
+   # set by dictionnary, else it is "false" 
+   attribute stretchy {xsd:boolean}?,
+   # set by dictionnary, else it is "true" 
+   attribute symmetric {xsd:boolean}?,
+   # set by dictionnary, else it is "false" 
+   attribute movablelimits {xsd:boolean}?,
+   # set by dictionnary, else it is "false" 
+   attribute accent {xsd:boolean}?,
+   # set by dictionnary, else it is "false" 
+   attribute largeop {xsd:boolean}?,
+   attribute minsize {length-with-unit | named-space}?,
+   attribute maxsize {length-with-unit | named-space | infinity | xsd:float}?
+
+mglyph = element mglyph {attribute alt {xsd:string}?,
+                         attribute fontfamily {xsd:string}?,
+		         attribute index {xsd:positiveInteger}?}
+
+#  This is the XML schema module for the token elements of the 
+#  presentation part of MathML.
+
+Glyph-alignmark.class = malignmark|mglyph
+
+# "mi" is supposed to have a default value of its "mathvariant" attribute  set to "italic" 
+mi = element mi {Token-style.attrib, MathML.Common.attrib,(Glyph-alignmark.class|text)*}
+
+# "mo" 
+mo = element mo {Operator.attrib,Token-style.attrib,MathML.Common.attrib,
+                 (text|Glyph-alignmark.class)*}
+
+# "mn" 
+mn = element mn {Token-style.attrib, MathML.Common.attrib,(text|Glyph-alignmark.class)*}
+
+# "mtext" 
+mtext = element mtext {Token-style.attrib, MathML.Common.attrib,(text|Glyph-alignmark.class)*}
+
+# ms (the values of "lquote" or "rquote" are not restricted to be one character strings...) 
+ms = element ms {[a:default="&quot;"] attribute lquote {xsd:string}?,
+                 [a:default="&quot;"] attribute rquote {xsd:string}?,
+   		 Token-style.attrib,MathML.Common.attrib,
+		 (text|Glyph-alignmark.class)*}
+
+# And the group of any token 
+Presentation-token.class = mi | mo | mn | mtext | ms
+
+#  This is an XML Schema module for the presentation elements of MathML
+#  dealing with subscripts and superscripts.
+
+# "msub" 
+msub = element msub {attribute subscriptshift {length-with-unit}?, MathML.Common.attrib,
+                     Presentation-expr.class,(Presentation-expr.class)}
+
+# "msup" 
+msup = element msup {attribute supscriptshift {length-with-unit}?, MathML.Common.attrib,
+                     Presentation-expr.class,Presentation-expr.class}
+
+# "msubsup" 
+msubsup = element msubsup {MathML.Common.attrib,
+                     attribute subscriptshift {length-with-unit}?, 
+                     attribute supscriptshift {length-with-unit}?, 
+                     Presentation-expr.class,Presentation-expr.class}
+
+# "munder" 
+munder = element munder {MathML.Common.attrib,
+                         attribute accentunder {xsd:boolean}?, 
+                         Presentation-expr.class,Presentation-expr.class}
+
+# "mover" 
+mover = element mover {MathML.Common.attrib,
+                       attribute accent {xsd:boolean}?, 
+                       Presentation-expr.class,Presentation-expr.class}
+
+# "munderover" 
+munderover = element munderover {MathML.Common.attrib,
+                                 attribute accentunder {xsd:boolean}?, 
+                                 attribute accent {xsd:boolean}?, 
+                                 Presentation-expr.class,
+				 Presentation-expr.class,
+				 Presentation-expr.class}
+
+# "mmultiscripts", "mprescripts" and "none" 
+
+Presentation-expr-or-none.class = Presentation-expr.class | none
+
+mmultiscripts = element mmultiscripts{MathML.Common.attrib,
+	                              Presentation-expr.class, 
+				      (Presentation-expr-or-none.class,
+ 				       Presentation-expr-or-none.class)*,
+				      (mprescripts,
+				       (Presentation-expr-or-none.class,
+ 				       Presentation-expr-or-none.class)*)?}
+none = element none {empty}
+mprescripts = element mprescripts {empty}
+
+Presentation-script.class = msub|msup|msubsup|munder|mover|munderover|mmultiscripts
+
+mspace = element mspace {[a:defaultValue = "0em"]
+	           	 attribute width {length-with-unit | named-space}?,
+  		  	 [a:defaultValue = "0ex"]
+	           	 attribute height {length-with-unit}?,
+  		  	 [a:defaultValue = "0ex"]
+	           	 attribute depth {length-with-unit}?,
+  		  	 [a:defaultValue="auto"] 
+                   	 attribute linebreak {"auto" | "newline" | "indentingnewline" |
+	           	                      "nobreak" | "goodbreak" | "badbreak"}?,
+		         MathML.Common.attrib}
+
+#  This is the XML schema module for the layout elements of the 
+#  presentation part of MathML.
+
+# "mrow" 
+mrow = element mrow {MathML.Common.attrib,(Presentation-expr.class)*}
+
+# "mfrac" 
+
+mfrac = element mfrac {attribute bevelled {xsd:boolean}?,
+                       [a:defaultValue = "center"]
+                       attribute denomalign {centering.values}?,
+                       [a:defaultValue = "center"]
+		       attribute numalign {centering.values}?,
+                       [a:defaultValue="1"]
+		       attribute linethickness {length-with-optional-unit|thickness}?,
+                       MathML.Common.attrib,
+		       Presentation-expr.class,Presentation-expr.class}
+# "msqrt" 
+msqrt = element msqrt {MathML.Common.attrib,(Presentation-expr.class)*}
+
+# "mroot" 
+mroot = element mroot {MathML.Common.attrib,Presentation-expr.class,Presentation-expr.class}
+
+# "mpadded" 
+mpadded-space = xsd:string {pattern="(\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?)*(width|lspace|height|depth))|(em|ex|px|in|cm|mm|pt|pc))"}
+
+# MaxF: definition from spec seems wrong, 
+#       fixing to ([+|-] unsigned-number (%[pseudo-unit]|pseudo-unit|h-unit)) | namedspace | 0 
+
+mpadded-width-space = xsd:string {pattern="((\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?) *(width|lspace|height|depth)?)|(width|lspace|height|depth)|(em|ex|px|in|cm|mm|pt|pc)))|((veryverythin|verythin|thin|medium|thick|verythick|veryverythick)mathspace)|0"}
+mpadded = element mpadded {attribute width {mpadded-width-space},
+  	                   # should have default=0 below but '0' is not in value space 
+  			   # see bug #425 
+  			   attribute lspace {mpadded-space}?,
+  			   attribute height {mpadded-space}?,
+  			   attribute depth {mpadded-space}?,
+  			   MathML.Common.attrib,
+  			   (Presentation-expr.class)*}
+
+# "mphantom" 
+mphantom = element mphantom.attlist {MathML.Common.attrib,Presentation-expr.class*}
+
+# "mfenced" 
+mfenced = element mfenced {[a:defaultValue= "("] attribute open {xsd:string}?,
+  	                   [a:defaultValue = ")"] attribute close {xsd:string}?,
+  			   [a:defaultValue = ","] attribute separators {xsd:string}?,
+  			   MathML.Common.attrib,
+			   (Presentation-expr.class)*}
+
+# "menclose" 
+menclose = element menclose {[a:defaultValue="longdiv"]
+  	   	   	     attribute notation {"actuarial"|"longdiv"|"radical"| 
+			                         "box"|"roundedbox"|"circle"| 
+						 "left"|"right"|"top"|"bottom"|
+						 "updiagonalstrike"|"downdiagonalstrike"| 
+			     			 "verticalstrike"|"horizontalstrike"}?,
+  			     MathML.Common.attrib,
+			     (Presentation-expr.class)*}
+
+# And the group of everything 
+Presentation-layout.class = mrow|mfrac|msqrt|mroot|mpadded|mphantom|mfenced|menclose
+
+#  This is an XML Schema module for tables in MathML presentation.
+
+Table-alignment.attrib = [a:defaultValue = "baseline"]
+        attribute rowalign 
+ 	     {xsd:string {pattern="(top|bottom|center|baseline|axis)(top|bottom|center|baseline|axis)*"}}?,
+  	[a:defaultValue = "center"]
+	attribute columnalign 
+	     {xsd:string {pattern="(left|center|right)(left|center|right)*"}}?,
+        attribute groupalign {xsd:string}?
+
+mtr = element mtr {Table-alignment.attrib, MathML.Common.attrib,mtd+}
+
+mlabeledtr = element mlabeledtr {Table-alignment.attrib,MathML.Common.attrib,mtd*}
+
+# "mtd" 
+mtd = element mtd {Table-alignment.attrib,
+                   [a:defaultValue="1"] attribute columnspan {xsd:positiveInteger}?,
+  		   [a:defaultValue="1"] attribute rowspan {xsd:positiveInteger}?,
+  		   MathML.Common.attrib,
+		   Presentation-expr.class*}
+
+# "mtable" 
+mtable = element mtable {Table-alignment.attrib,
+                         [a:defaultValue="axis"] attribute align {xsd:string}?,
+                         [a:defaultValue="true"] 
+			 attribute alignmentscope {xsd:string {pattern="(true|false)( true| false)*"}}?,
+			 [a:defaultValue="auto"]  attribute columnwidth {xsd:string}?,
+  			 [a:defaultValue="auto"] attribute width {xsd:string}?,
+  			 [a:defaultValue="1.0ex"] attribute rowspacing {xsd:string}?,
+  			 [a:defaultValue="0.8em"] attribute columnspacing {xsd:string}?,
+  			 [a:defaultValue="none"] attribute rowlines {xsd:string}?,
+  			 [a:defaultValue="none"] attribute columnlines {xsd:string}?,
+  			 [a:defaultValue="none"] attribute frame {"none" | "solid" | "dashed"}?,
+  			 [a:defaultValue="0.4em 0.5ex"] attribute framespacing {xsd:string}?,
+  			 [a:defaultValue="false"] attribute equalrows {xsd:boolean}?,
+  			 [a:defaultValue="false"] attribute equalcolumns {xsd:boolean}?,
+  			 [a:defaultValue="false"] attribute displaystyle {xsd:boolean}?,
+  			 [a:defaultValue="right"] 
+			 attribute side {"left"|"right"|"leftoverlap"|"rightoverlap"}?,
+  			 [a:defaultValue="0.8em"] attribute minlabelspacing {length-with-unit}?,
+  			 MathML.Common.attrib,
+			 (mtr|mlabeledtr)*}
+
+# "maligngroup" 
+maligngroup = element maligngroup {
+     attribute groupalign {"left" | "center" | "right" | "decimalpoint"}?,
+     MathML.Common.attrib}
+
+# "malignmark" 
+
+malignmark = element malignmark {[a:defaultValue="left"] attribute edge {"left" | "right"}?,
+	                         MathML.Common.attrib}
+Presentation-table.class = mtable|maligngroup|malignmark
+
+# "mstyle" 
+mstyle = element mstyle {attribute scriptlevel {xsd:integer}?,
+                         attribute displaystyle {xsd:boolean}?,
+			 [a:defaultValue="0.71"] attribute scriptsizemultiplier {xsd:decimal}?,
+  			 [a:defaultValue="8pt"] attribute scriptminsize {length-with-unit}?,
+  			 attribute color {xsd:string}?,
+  			 [a:defaultValue="transparent"] attribute background {xsd:string}?,
+  			 [a:defaultValue="0.0555556em"] attribute veryverythinmathspace {length-with-unit}?,
+  			 [a:defaultValue="0.111111em"] attribute verythinmathspace {length-with-unit}?,
+			 [a:defaultValue="0.166667em"] attribute thinmathspace {length-with-unit}?,
+                         [a:defaultValue="0.222222em"] attribute mediummathspace {length-with-unit}?,
+                         [a:defaultValue="0.277778em"] attribute thickmathspace {length-with-unit}?,
+                         [a:defaultValue="0.333333em"] attribute verythickmathspace {length-with-unit}?,
+                         [a:defaultValue="0.388889em"] attribute veryverythickmathspace {length-with-unit}?,
+                         [a:defaultValue="1"] attribute linethickness {length-with-optional-unit|thickness}?,
+  			 Operator.attrib,Token-style.attrib,MathML.Common.attrib,
+			 Presentation-expr.class*}
+
+#  This is the XML Schema module for the MathML "merror" element.
+
+merror = element merror {MathML.Common.attrib,Presentation-expr.class*}
+
+#  This is the XML Schema module for the MathML "maction" element.
+
+maction = element maction {attribute actiontype {xsd:string}?,
+  	                   [a:defaultValue="1"] attribute selection {xsd:positiveInteger}?,
+  			   MathML.Common.attrib,
+			   Presentation-expr.class*}

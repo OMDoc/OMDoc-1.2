@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary setoid.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary setoid.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, Olga Caprotti</div>
+<div class="date"/>
+<div class="description"> 
+    The definition of a setoid as a set with an equivalence relations
+    defined on its elements.		
+  </div></div>
+
+
+<div class="symbol" id="Setoid">
+<div class="titlebox">
+<span class="titleword">Concept</span>Setoid</div> The contructor for the type of set 
+      with an equivalence relation on it.
+  </div>
+
+<div class="lemma" id="Setoid-prop-1">
+<span class="titleword">Lemma</span>
+<p> Is defined as  
+      Lambda {Carrier:&gt; symtype; Eq: 	(relation Carrier)}.
+      SigmaType{ Carrier:&gt; symtype; 	
+      Eq: 	(relation Carrier);	
+      (equivalence Carrier Eq) }
+    </p>
+</div>
+
+<div class="symbol" id="make_Setoid">
+<div class="titlebox">
+<span class="titleword">Concept</span>make_Setoid</div> The contructor for the tuples consisting of a set, 
+      an equivalence relation on the set, and a proof that the relation 
+      is actually an equivalence relation.
+  </div>
+
+<div class="lemma" id="make_Setoid-prop-1">
+<span class="titleword">Lemma</span>
+<p> Is defined as  
+      Lambda {Carrier:&gt; symtype; 
+      Eq: 	(relation Carrier)
+      proof: (equivalence Carrier Eq)}.
+      Tuple (Carrier,	Eq, proof)
+    </p>
+</div>
+
+
+
+</body>
+</html>

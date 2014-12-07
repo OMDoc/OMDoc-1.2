@@ -1,0 +1,338 @@
+# A RelaxNG schema for MathML2 Content Elements
+# $Id: mathml2-content.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/mathml2/mathml2-content.rnc $
+# (c) 2005 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace m = "http://www.w3.org/1998/Math/MathML"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+Definition.attrib = attribute encoding {xsd:string}?,
+                    attribute definitionURL {xsd:anyURI}?
+
+#  This is the XML schema module for the token elements of the content part of MathML.
+
+Content-token.content = text|Presentation-expr.class
+# the content of "cn" may have <sep> elements in it
+
+sep = element sep {empty}
+
+cn = element cn {######attribute base {xsd:positiveInteger [1,...,36]},
+                 attribute type {"e-notation"|"integer"|"rational"|"real" |
+                                 "complex-cartesian"|"complex-polar"|"constant" }?,
+  		 Definition.attrib,
+  		 MathML.Common.attrib,	
+		 (text|sep|Presentation-expr.class)*}
+# "ci" 
+ci = element ci {attribute type {xsd:string}?,
+                 Definition.attrib,	
+  		 MathML.Common.attrib,
+		 Content-token.content}
+# "csymbol" 
+
+csymbol = element csymbol {Definition.attrib, MathML.Common.attrib, Content-token.content}
+
+# And the group of everything 
+Content-tokens.class = cn|ci|csymbol
+
+#  This is an XML Schema module for the "arithmetic" operators of content  MathML.
+
+Arith.type = Definition.attrib, MathML.Common.attrib
+
+abs = element abs {Arith.type}
+conjugate = element conjugate {Arith.type}
+arg = element arg {Arith.type}
+real = element real {Arith.type}
+imaginary = element imaginary{Arith.type}
+
+floor = element floor {Arith.type}
+ceiling = element ceiling {Arith.type}
+
+power = element power {Arith.type}
+root = element root {Arith.type}
+
+minus = element minus {Arith.type}
+plus = element plus {Arith.type}
+sum = element sum {Arith.type}
+times = element times {Arith.type}
+product = element product {Arith.type}
+
+max = element max {Arith.type}
+min = element min {Arith.type}
+
+factorial = element factorial {Arith.type}
+quotient = element quotient {Arith.type}
+divide = element divide {Arith.type}
+rem = element rem {Arith.type}
+gcd = element gcd {Arith.type}
+lcm = element lcm {Arith.type}
+
+Content-arith.class = abs|conjugate|factorial|arg|real|imaginary|
+                      floor|ceiling|quotient|divide|rem|minus|
+                      plus|times|power|root|max|min|gcd|lcm|
+                      sum|product
+#  This is an XML Schema module for operators dealing with functions in content MathML.
+
+Functions.type = Definition.attrib, MathML.Common.attrib
+
+# "compose" 
+compose = element compose {Functions.type}
+
+# Domain, codomain and image 
+domain = element domain {Functions.type}
+codomain = element codomain {Functions.type}
+image = element image {Functions.type}
+
+# "domainofapplication" 
+domainofapplication = element domainofapplication{Definition.attrib,
+					          MathML.Common.attrib,
+						  Content-expr.class}
+# identity 
+ident = element ident {Functions.type}
+
+Content-functions.class = compose|domain|codomain|image|domainofapplication|ident
+
+#  This is an XML Schema module for the logic operators of content MathML.
+
+Logic.type = Definition.attrib,MathML.Common.attrib
+
+and  = element and {Logic.type}
+or = element or {Logic.type}
+xor = element xor {Logic.type}
+not = element not {Logic.type}
+exists = element exists {Logic.type}
+forall = element forall {Logic.type}
+implies = element implies {Logic.type}
+
+Content-logic.class = and|or|xor|not|exists|forall|implies
+
+#  This is an XML Schema module for the basic constructs of content MathML.
+
+apply = element apply {MathML.Common.attrib,Content-expr.class*}
+
+interval = element interval {MathML.Common.attrib,
+                             [a:defaultvalue = "closed"] 
+                             attribute closure {"closed"|"open"|"open-closed"|"closed-open"}?,
+                             (Content-expr.class),(Content-expr.class)}
+inverse = element inverse {Definition.attrib,MathML.Common.attrib}
+condition = element condition {Definition.attrib,Content-expr.class+}
+
+declare = element declare {attribute type {xsd:string}?,
+                           attribute scope {xsd:string}?,
+                           attribute nargs {xsd:nonNegativeInteger}?,
+                           attribute occurrence {"prefix"|"infix"|"function-model"}?,
+                           Definition.attrib,
+                           Content-expr.class+}
+
+lambda = element lambda {MathML.Common.attrib,Content-expr.class+}
+
+#"piecewise" and its inner elements
+otherwise = element otherwise {Content-expr.class,MathML.Common.attrib}
+piece = element piece {MathML.Common.attrib,Content-expr.class+}
+piecewise = element piecewise {MathML.Common.attrib,piece*,(otherwise,piece)*}
+bvar = element bvar {MathML.Common.attrib,Content-expr.class+}
+degree = element degree {MathML.Common.attrib,Content-expr.class+}
+
+
+Content-constructs.class = apply|interval|inverse|condition|declare|lambda|piecewise|bvar|degree
+
+#  This is the XML Schema module for the basic constants of MathML content.
+
+Constant.type = Definition.attrib, MathML.Common.attrib
+
+# Basic sets
+naturalnumbers= element naturalnumbers {Constant.type}
+primes= element primes{Constant.type}
+integers = element integers {Constant.type}
+rationals = element rationals{Constant.type}
+reals = element reals {Constant.type}
+complexes = element complexes {Constant.type}
+
+#Empty set
+emptyset = element emptyset {Constant.type}
+
+# Basic constants
+exponentiale = element exponentiale {Constant.type}
+imaginaryi = element imaginaryi {Constant.type}
+pi = element pi {Constant.type}
+eulergamma =  element eulergamma {Constant.type}
+
+# Boolean constants
+true = element true {Constant.type}
+false = element false {Constant.type}
+
+# Infinty 
+infinit = element infinity {Constant.type}
+
+# NotANumber
+notanumber = element notanumber {Constant.type}
+
+Content-constants.class = naturalnumbers|primes|integers|rationals|reals|
+			  complexes|emptyset|exponentiale|imaginaryi|pi|
+			  eulergamma|true|false|infinit|notanumber
+
+#  This is an XML Schema module for the elementary functions in content MathML.
+
+Elementary-functions.type = Definition.attrib,MathML.Common.attrib
+
+# Exp and logs 
+
+exp= element exp {Elementary-functions.type}
+ln = element ln {Elementary-functions.type}
+log = element log {Elementary-functions.type}
+
+# special element of the base of logarithms 
+
+logbase = element logbase {MathML.Common.attrib,Content-expr.class}
+
+# Trigonometric functions 
+
+sin = element sin {Elementary-functions.type}
+cos = element cos {Elementary-functions.type}
+tan = element tan {Elementary-functions.type}
+sec = element sec {Elementary-functions.type}
+csc = element csc {Elementary-functions.type}
+cot = element cot {Elementary-functions.type}
+
+arcsin = element arcsin {Elementary-functions.type}
+arccos = element arccos {Elementary-functions.type}
+arctan = element arctan {Elementary-functions.type}
+arccot = element arccot {Elementary-functions.type}
+arccsc = element arccsc {Elementary-functions.type}
+arcsec = element arcsec {Elementary-functions.type}
+
+# Hyperbolic trigonometric functions 
+
+sinh = element sinh {Elementary-functions.type}
+cosh = element cosh {Elementary-functions.type}
+tanh = element tanh {Elementary-functions.type}
+sech = element sech {Elementary-functions.type}
+csch = element csch {Elementary-functions.type}
+coth = element coth {Elementary-functions.type}
+arccosh = element arccosh {Elementary-functions.type}
+arccoth = element arccoth {Elementary-functions.type}
+arccsch = element arccsch {Elementary-functions.type}
+arcsech = element arcsech {Elementary-functions.type}
+arcsinh = element arcsinh {Elementary-functions.type}
+arctanh = element arctanh {Elementary-functions.type}
+
+# And the group of everything 
+
+Content-elementary-functions.class =
+    exp|ln|log|logbase|sin|cos|tan|sec|csc|cot|
+    arcsin|arccos|arctan|arcsec|arccsc|arccot|
+    sinh|cosh|tanh|sech|csch|coth|
+    arccosh|arccoth|arccsch|arcsech|arcsinh|arctanh
+
+#  This is an XML Schema module for the relational operators of content MathML.
+
+# a common type for all this 
+Relations.type = Definition.attrib, MathML.Common.attrib
+
+eq = element eq {Relations.type}
+neq = element neq {Relations.type}
+leq = element leq {Relations.type}
+lt = element lt {Relations.type}
+geq = element geq {Relations.type}
+gt = element gt {Relations.type}
+equivalent = element equivalent {Relations.type}
+approx = element approx {Relations.type}
+factorof = element factorof {Relations.type}
+
+# And the group of everything 
+Content-relations.class = eq|neq|leq|lt|geq|gt|equivalent|approx|factorof
+
+# "annotation" 
+annotation = element annotation {attribute encoding {xsd:string}?,MathML.Common.attrib,text}
+
+# "annotation-xml" 
+anyElement =  element * {(attribute * {text}|text| anyElement)*}
+annotation-xml = element annotation-xml {Definition.attrib,MathML.Common.attrib, anyElement}
+
+# "semantics" 
+semantics = element semantics {attribute encoding {xsd:string}?,
+   	                       attribute definitionURL {xsd:anyURI}?,
+   			       MathML.Common.attrib,
+			       Content-expr.class,
+			       (annotation|annotation-xml)*}
+
+#  This is an XML Schema module for the part of content MathML dealing with sets and lists.
+
+# "set" ("type" could be "multiset" or "normal" or anything else) 
+set = element set {attribute type {xsd:string}?,
+      	      	   MathML.Common.attrib, Content-expr.class*}
+
+# "list" 
+lst = element list {attribute order {"lexicographic"|"numeric"}?,
+       	       	     MathML.Common.attrib,
+		     Content-expr.class*}
+# "union" 
+union = element union {Definition.attrib, MathML.Common.attrib,Content-expr.class*}
+intersect = element intersect {Definition.attrib, MathML.Common.attrib,Content-expr.class*}
+in = element in {Definition.attrib, MathML.Common.attrib}
+notin = element notin {Definition.attrib, MathML.Common.attrib}
+subset = element subset {Definition.attrib, MathML.Common.attrib}
+prsubset = element prsubset {Definition.attrib, MathML.Common.attrib}
+notsubset = element notsubset {Definition.attrib, MathML.Common.attrib}
+notprsubset = element notprsubset {Definition.attrib, MathML.Common.attrib}
+setdiff = element setdiff {Definition.attrib, MathML.Common.attrib}
+card = element card {Definition.attrib, MathML.Common.attrib}
+cartesianproduct = element cartesianproduct {Definition.attrib, MathML.Common.attrib}
+
+# And the group of everything 
+
+Content-sets.class = set|lst|union|intersect|in|notin|subset|
+		     prsubset|notsubset|notprsubset|setdiff|card|cartesianproduct
+
+#  This is an XML Schema module for the linear algebra part of content MathML.
+
+# "vector" 
+
+vector = element vector {MathML.Common.attrib,Content-expr.class*}
+matrix = element matrix {MathML.Common.attrib,matrixrow+}
+matrixrow = element matrixrow {MathML.Common.attrib,Content-expr.class+}
+determinant = element determinant {Definition.attrib,MathML.Common.attrib}
+transpose = element transpose {Definition.attrib,MathML.Common.attrib}
+mselector = element selector {Definition.attrib,MathML.Common.attrib}
+vectorproduct = element vectorproduct {Definition.attrib,MathML.Common.attrib}
+scalarproduct = element scalarproduct {Definition.attrib,MathML.Common.attrib}
+outerproduct = element  outerproduct {Definition.attrib,MathML.Common.attrib}
+
+Content-linear-algebra.class = vector|matrix|determinant|transpose|mselector|
+			       vectorproduct|scalarproduct|outerproduct
+
+#  This is an XML Schema module for the calculus operators of content  MathML.
+
+calculus.type = Definition.attrib, MathML.Common.attrib
+
+int = element int {calculus.type}
+diff = element diff {calculus.type}
+partialdiff = element partialdiff {calculus.type}
+limit = element limit {calculus.type}
+lowlimit = element lowlimit {calculus.type,Content-expr.class+}
+uplimit = element uplimit {calculus.type,Content-expr.class+}
+tendsto = element tendsto {calculus.type,attribute type {xsd:string}?}
+
+Content-calculus.class = int|diff|partialdiff|limit|lowlimit|uplimit|tendsto
+
+#  This is an XML Schema module for the vector calculus operators of content MathML. 
+
+divergence = element divergence {Definition.attrib,MathML.Common.attrib}
+grad = element grad {Definition.attrib,MathML.Common.attrib}
+curl = element curl {Definition.attrib,MathML.Common.attrib}
+laplacian = element laplacian {Definition.attrib,MathML.Common.attrib}
+
+# And the group of everything 
+
+Content-vector-calculus.class = divergence|grad|curl|laplacian
+
+#  This is an XML Schema module for the statistical operators of content MathML.
+
+mean = element mean {Definition.attrib,MathML.Common.attrib}
+sdev = element sdev {Definition.attrib,MathML.Common.attrib}
+variance = element variance {Definition.attrib,MathML.Common.attrib}
+median = element median {Definition.attrib,MathML.Common.attrib}
+mode = element mode {Definition.attrib,MathML.Common.attrib}
+moment = element moment {Definition.attrib,MathML.Common.attrib}
+momentabout = element momentabout {Definition.attrib,MathML.Common.attrib,Content-expr.class+}
+
+Content-statistics.class = mean|sdev|variance|median|mode|moment|momentabout

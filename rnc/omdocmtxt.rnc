@@ -1,0 +1,67 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module MTXT 
+# $Id: omdocmtxt.rnc 8672 2010-08-22 13:12:47Z clange $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocmtxt.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+
+omdoc.class |= omtext
+
+#attribute for is a whitespace-separated list of  URIrefs
+for.attrib = attribute for {omdocrefs}
+fori.attrib = attribute for {omdocrefs}?
+from.attrib = attribute from {omdocref}
+verbalizes.attrib = attribute verbalizes {omdocrefs}
+parallel.attribs = verbalizes.attrib?,attribute index {xsd:NMTOKEN}?
+omdocmtxt.MC.content = metadata?,CMP* 
+omdocmtxt.MCF.content = omdocmtxt.MC.content,FMP*
+
+# what can go into a mathematical text (to be extended in other modules)
+omdoc.mtext.class = text | phrase | term | omdocmobj.class
+
+rsttype = "abstract" | "introduction" | "annote" | "transition" |
+          "conclusion" | "thesis" | "comment" | "antithesis" |
+          "elaboration" | "motivation" | "evidence" | "note" | "notation"
+
+statementtype = "axiom" | "definition" | "example" | "proof" |
+                "derive" | "hypothesis"
+
+assertiontype = "theorem" | "lemma" | "corollary" | "proposition" | 
+    		"conjecture" | "false-conjecture" | "obligation" |
+                "postulate" | "formula" | "assumption" | "rule" 
+omtext.type.attrib = attribute type {rsttype | statementtype | assertiontype | xsd:anyURI}
+omtext = element omtext {omdoc.toplevel.attribs,
+                         omtext.type.attrib? & 
+                        attribute for {omdocref}?,
+			 attribute from {omdocref}?,
+			 verbalizes.attrib?,
+                         metadata?,CMP+,FMP*}
+# attribute 'for' is a URIref, to omdocdoc.class's it is needed by the 'type' attribute
+
+CMP = (ss| element CMP {xml.lang.attrib, id.attrib, (omdoc.mtext.class)*})
+
+phrase = (ss| element phrase {id.attrib,parallel.attribs,
+                              omtext.type.attrib? & 
+			      (omdoc.mtext.class)*})
+# identifies a text passage and allows to attatch style and type information to it
+
+term = (ss| element term {id.attrib,
+                     attribute role {text}?,
+                     attribute cdbase {xsd:anyURI}?,
+                     attribute cd {xsd:NCName},
+                     attribute name {xsd:NCName},
+                     (omdoc.mtext.class)*})
+
+FMP = (ss| element FMP {id.attrib, attribute logic {xsd:NMTOKEN}?,
+                        ((assumption*,conclusion*)|omdocmobj.class)})
+
+# If FMP contains a omdocmobj.class then this is the assertion, 
+# if it contains (assumption*,conclusion*), then it is a 
+# logical sequent (A1,...,An |- C1,...,Cm): 
+# all the Ai entail one of the Ci
+
+assumption = (ss| element assumption {id.attrib,
+    	                          attribute inductive {"yes" | "no"}?,
+				  (omdocmobj.class)})
+conclusion = (ss| element conclusion {id.attrib, (omdocmobj.class?)})

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary alg1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary alg1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description"> 
+    A CD of basic algebraic concepts
+
+At present this CD only holds definitions of zero and one. They are
+deliberately defined here without specifying any particular structure
+(e.g. a group) to which they correspond.
+</div></div>
+
+
+<div class="symbol" id="zero">
+<div class="titlebox">
+<span class="titleword">Concept</span>zero</div>This symbol represents the additive identity element.
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid130199"><semantics><mi id="MCRid130201">AbelianMonoid</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid130199" xlink:type="simple"><OMV name="AbelianMonoid" xlink:href="MCRid130201" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="zero-prop-1">
+<span class="titleword">Lemma</span>
+<p> for all a | a + 0 = a </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153844"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid153855"><mi id="MCRid153857">a</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><mi id="MCRid153880">a</mi><mo xlink:href="arith1.xml#plus" xlink:type="simple" id="MCRid153873">+</mo><mo xlink:href="#zero" xlink:type="simple" id="MCRid153884">0</mo><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid153865">=</mo><mi id="MCRid153891">a</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153844" xlink:type="simple"><OMBIND xlink:href="MCRid153847" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid153849" xlink:type="simple"/><OMBVAR xlink:href="MCRid153855" xlink:type="simple"><OMV name="a" xlink:href="MCRid153857" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid153862" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid153865" xlink:type="simple"/><OMA xlink:href="MCRid153871" xlink:type="simple"><OMS cd="arith1" name="plus" xlink:href="MCRid153873" xlink:type="simple"/><OMV name="a" xlink:href="MCRid153880" xlink:type="simple"/><OMS cd="alg1" name="zero" xlink:href="MCRid153884" xlink:type="simple"/></OMA><OMV name="a" xlink:href="MCRid153891" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="lemma" id="zero-prop-3">
+<span class="titleword">Lemma</span>
+<p> for all a | 0 * a = 0 </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid129968"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid129979"><mi id="MCRid129981">a</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><mo xlink:href="#zero" xlink:type="simple" id="MCRid130003">0</mo><mo id="MCRid129997">⁢</mo><mi id="MCRid130010">a</mi><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid129988">=</mo><mo xlink:href="#zero" xlink:type="simple" id="MCRid130015">0</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid129968" xlink:type="simple"><OMBIND xlink:href="MCRid129971" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid129973" xlink:type="simple"/><OMBVAR xlink:href="MCRid129979" xlink:type="simple"><OMV name="a" xlink:href="MCRid129981" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid129986" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid129988" xlink:type="simple"/><OMA xlink:href="MCRid129994" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid129997" xlink:type="simple"/><OMS cd="alg1" name="zero" xlink:href="MCRid130003" xlink:type="simple"/><OMV name="a" xlink:href="MCRid130010" xlink:type="simple"/></OMA><OMS cd="alg1" name="zero" xlink:href="MCRid130015" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="lemma" id="zero-prop-5">
+<span class="titleword">Lemma</span>
+<p>The zero of the integers is 0</p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid130058"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid130069"><mi id="MCRid130072">x</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><mfenced id="id130077" open="(" close=")" separators=""><mfenced id="id130094" open="(" close=")" separators=""><mi id="MCRid129084">x</mi><mo xlink:href="set1.xml#in" xlink:type="simple" id="MCRid130096">∈</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid129088">ℤ</mo></mfenced><mo xlink:href="logic1.xml#and" xlink:type="simple" id="MCRid130088">∧</mo><mfenced id="id129095" open="(" close=")" separators=""><mi id="MCRid129104">x</mi><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid129098">=</mo><mo xlink:href="#zero" xlink:type="simple" id="MCRid129108">0</mo></mfenced><mo xlink:href="logic1.xml#implies" xlink:type="simple" id="MCRid130079">⇒</mo><mi id="MCRid129125">x</mi><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid129119">=</mo><mn id="MCRid129130">0</mn></mfenced></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid130058" xlink:type="simple"><OMBIND xlink:href="MCRid130061" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid130063" xlink:type="simple"/><OMBVAR xlink:href="MCRid130069" xlink:type="simple"><OMV name="x" xlink:href="MCRid130072" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid130077" xlink:type="simple"><OMS cd="logic1" name="implies" xlink:href="MCRid130079" xlink:type="simple"/><OMA xlink:href="MCRid130086" xlink:type="simple"><OMS cd="logic1" name="and" xlink:href="MCRid130088" xlink:type="simple"/><OMA xlink:href="MCRid130094" xlink:type="simple"><OMS cd="set1" name="in" xlink:href="MCRid130096" xlink:type="simple"/><OMV name="x" xlink:href="MCRid129084" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid129088" xlink:type="simple"/></OMA><OMA xlink:href="MCRid129095" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid129098" xlink:type="simple"/><OMV name="x" xlink:href="MCRid129104" xlink:type="simple"/><OMS cd="alg1" name="zero" xlink:href="MCRid129108" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid129117" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid129119" xlink:type="simple"/><OMV name="x" xlink:href="MCRid129125" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid129130">0</OMI></OMA></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="one">
+<div class="titlebox">
+<span class="titleword">Concept</span>one</div>This symbol represents the multiplicative identity element.
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid129181"><semantics><mi id="MCRid129184">Monoid</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid129181" xlink:type="simple"><OMV name="Monoid" xlink:href="MCRid129184" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="one-prop-1">
+<span class="titleword">Lemma</span>
+<p> for all a | 1 * a = a </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid129261"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid129272"><mi id="MCRid129275">a</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><mo xlink:href="#one" xlink:type="simple" id="MCRid129297">1</mo><mo id="MCRid129290">⁢</mo><mi id="MCRid129303">a</mi><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid129282">=</mo><mi id="MCRid129308">a</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid129261" xlink:type="simple"><OMBIND xlink:href="MCRid129264" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid129266" xlink:type="simple"/><OMBVAR xlink:href="MCRid129272" xlink:type="simple"><OMV name="a" xlink:href="MCRid129275" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid129280" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid129282" xlink:type="simple"/><OMA xlink:href="MCRid129288" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid129290" xlink:type="simple"/><OMS cd="alg1" name="one" xlink:href="MCRid129297" xlink:type="simple"/><OMV name="a" xlink:href="MCRid129303" xlink:type="simple"/></OMA><OMV name="a" xlink:href="MCRid129308" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="lemma" id="one-prop-3">
+<span class="titleword">Lemma</span>
+<p> for all a | a * 1 = a </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid129348"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid129360"><mi id="MCRid129362">a</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><mi id="MCRid158199">a</mi><mo id="MCRid158193">⁢</mo><mo xlink:href="#one" xlink:type="simple" id="MCRid158203">1</mo><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid129369">=</mo><mi id="MCRid158210">a</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid129348" xlink:type="simple"><OMBIND xlink:href="MCRid129352" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid129354" xlink:type="simple"/><OMBVAR xlink:href="MCRid129360" xlink:type="simple"><OMV name="a" xlink:href="MCRid129362" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid129367" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid129369" xlink:type="simple"/><OMA xlink:href="MCRid158191" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid158193" xlink:type="simple"/><OMV name="a" xlink:href="MCRid158199" xlink:type="simple"/><OMS cd="alg1" name="one" xlink:href="MCRid158203" xlink:type="simple"/></OMA><OMV name="a" xlink:href="MCRid158210" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="lemma" id="one-prop-5">
+<span class="titleword">Lemma</span>
+<p>The one of the integers is 1</p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid158251"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid158262"><mi id="MCRid158264">x</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><mfenced id="id158269" open="(" close=")" separators=""><mfenced id="id158286" open="(" close=")" separators=""><mi id="MCRid158294">x</mi><mo xlink:href="set1.xml#in" xlink:type="simple" id="MCRid158288">∈</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid158298">ℤ</mo></mfenced><mo xlink:href="logic1.xml#and" xlink:type="simple" id="MCRid158279">∧</mo><mfenced id="id158306" open="(" close=")" separators=""><mi id="MCRid158314">x</mi><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid158308">=</mo><mo xlink:href="#one" xlink:type="simple" id="MCRid158319">1</mo></mfenced><mo xlink:href="logic1.xml#implies" xlink:type="simple" id="MCRid158271">⇒</mo><mi id="MCRid158336">x</mi><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid158329">=</mo><mn id="MCRid158340">1</mn></mfenced></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid158251" xlink:type="simple"><OMBIND xlink:href="MCRid158253" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid158256" xlink:type="simple"/><OMBVAR xlink:href="MCRid158262" xlink:type="simple"><OMV name="x" xlink:href="MCRid158264" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid158269" xlink:type="simple"><OMS cd="logic1" name="implies" xlink:href="MCRid158271" xlink:type="simple"/><OMA xlink:href="MCRid158277" xlink:type="simple"><OMS cd="logic1" name="and" xlink:href="MCRid158279" xlink:type="simple"/><OMA xlink:href="MCRid158286" xlink:type="simple"><OMS cd="set1" name="in" xlink:href="MCRid158288" xlink:type="simple"/><OMV name="x" xlink:href="MCRid158294" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid158298" xlink:type="simple"/></OMA><OMA xlink:href="MCRid158306" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid158308" xlink:type="simple"/><OMV name="x" xlink:href="MCRid158314" xlink:type="simple"/><OMS cd="alg1" name="one" xlink:href="MCRid158319" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid158327" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid158329" xlink:type="simple"/><OMV name="x" xlink:href="MCRid158336" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid158340">1</OMI></OMA></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+
+
+</body>
+</html>

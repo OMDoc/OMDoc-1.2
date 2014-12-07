@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary bigfloat1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary bigfloat1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, James Davenport</div>
+<div class="date"/>
+<div class="description">
+    This CD provides a common representation of "bigfloats" in a mantissa/
+    radix/exponent format.
+    There is a further version, which provides an opportunity to state a
+    precision (only required in a different radix).
+    No operations are defined here -- see arith and alg.
+  </div></div>
+
+
+<div class="omtext" id="CDComment-10">
+<p>
+
+bigfloatprec added 1999-07-21.
+</p>
+</div>
+
+<div class="symbol" id="bigfloat">
+<div class="titlebox">
+<span class="titleword">Concept</span>bigfloat</div> 
+    The bigfloat constructor takes three arguments, a mantissa, a base and the
+    exponent.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid146287"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id146290" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid146298">ℤ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid146304">ℤ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid146310">ℤ</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid146317">BigFloat</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid146287" xlink:type="simple"><OMA xlink:href="MCRid146290" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid146292" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid146298" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid146304" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid146310" xlink:type="simple"/><OMV name="BigFloat" xlink:href="MCRid146317" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="bigfloat-prop-1">
+<span class="titleword">Lemma</span>
+<p><span class="legacy">bigfloat(m,r,e)=m*r^e</span></p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid145733"><semantics><mrow id="MCRid145744"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#bigfloat" xlink:type="simple" id="id145746">bigfloat</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid145752">m</mi><mo separator="true">,</mo><mi id="MCRid145756">r</mi><mo separator="true">,</mo><mi id="MCRid145761">e</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid145738">=</mo><mi id="MCRid145775">m</mi><mo id="MCRid145768">⁢</mo><msup id="MCRid145779"><mi id="MCRid145788">r</mi><mi id="MCRid145792">e</mi></msup><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid145733" xlink:type="simple"><OMA xlink:href="MCRid145736" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid145738" xlink:type="simple"/><OMA xlink:href="MCRid145744" xlink:type="simple"><OMS cd="bigfloat1" name="bigfloat" xlink:href="MCRid145746" xlink:type="simple"/><OMV name="m" xlink:href="MCRid145752" xlink:type="simple"/><OMV name="r" xlink:href="MCRid145756" xlink:type="simple"/><OMV name="e" xlink:href="MCRid145761" xlink:type="simple"/></OMA><OMA xlink:href="MCRid145766" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid145768" xlink:type="simple"/><OMV name="m" xlink:href="MCRid145775" xlink:type="simple"/><OMA xlink:href="MCRid145779" xlink:type="simple"><OMS cd="arith1" name="power" xlink:href="MCRid145781" xlink:type="simple"/><OMV name="r" xlink:href="MCRid145788" xlink:type="simple"/><OMV name="e" xlink:href="MCRid145792" xlink:type="simple"/></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="bigfloatprec">
+<div class="titlebox">
+<span class="titleword">Concept</span>bigfloatprec</div> 
+    The bigfloat "with precision specified in (another) radix" constructor. Takes 
+    3 arguments, the first argument is a floating point number constructed with the
+    bigfloat constructor, the second is the new radix, whilst the third specifies 
+    how many digits are significant.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid169600"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id169603" xlink:href="sts.xml#mapsto"><mi id="MCRid169612">BigFloat</mi><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid169616">ℤ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid169622">ℤ</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid169628">BigFloat</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid169600" xlink:type="simple"><OMA xlink:href="MCRid169603" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid169605" xlink:type="simple"/><OMV name="BigFloat" xlink:href="MCRid169612" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid169616" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid169622" xlink:type="simple"/><OMV name="BigFloat" xlink:href="MCRid169628" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="bigfloatprec-prop-1">
+<span class="titleword">Lemma</span>
+<p> bigfloatprec(f,r,p)=f 
+    However, if converted to radix r, only p digits in that radix are significant.
+    This usually means that it originated in radix r, and has since
+    (e.g. for display purposes) been converted into its current radix. For 
+    exposition, <span class="legacy">f = m*r^e</span>.
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid169680"><semantics><mrow id="MCRid145180"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#bigfloatprec" xlink:type="simple" id="id145182">bigfloatprec</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid145188"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#bigfloat" xlink:type="simple" id="id145190">bigfloat</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid145197">m</mi><mo separator="true">,</mo><mi id="MCRid145201">r</mi><mo separator="true">,</mo><mi id="MCRid145205">e</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo separator="true">,</mo><mi id="MCRid145210">r</mi><mo separator="true">,</mo><mfenced id="id145214" open="⌈" close="⌉" separators=""><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="transc1.xml#log" xlink:type="simple" id="MCRid145225">log</mo><mfenced id="id145223" open="(" close=")" separators=""><mi id="MCRid145232">r</mi><mo separator="true">,</mo><mi id="MCRid145236">m</mi></mfenced></mrow></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid169686">=</mo><mrow id="MCRid145243"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#bigfloat" xlink:type="simple" id="id145245">bigfloat</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid145252">m</mi><mo separator="true">,</mo><mi id="MCRid145256">r</mi><mo separator="true">,</mo><mi id="MCRid145260">e</mi></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid169680" xlink:type="simple"><OMA xlink:href="MCRid169683" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid169686" xlink:type="simple"/><OMA xlink:href="MCRid145180" xlink:type="simple"><OMS cd="bigfloat1" name="bigfloatprec" xlink:href="MCRid145182" xlink:type="simple"/><OMA xlink:href="MCRid145188" xlink:type="simple"><OMS cd="bigfloat1" name="bigfloat" xlink:href="MCRid145190" xlink:type="simple"/><OMV name="m" xlink:href="MCRid145197" xlink:type="simple"/><OMV name="r" xlink:href="MCRid145201" xlink:type="simple"/><OMV name="e" xlink:href="MCRid145205" xlink:type="simple"/></OMA><OMV name="r" xlink:href="MCRid145210" xlink:type="simple"/><OMA xlink:href="MCRid145214" xlink:type="simple"><OMS cd="rounding1" name="ceiling" xlink:href="MCRid145217" xlink:type="simple"/><OMA xlink:href="MCRid145223" xlink:type="simple"><OMS cd="transc1" name="log" xlink:href="MCRid145225" xlink:type="simple"/><OMV name="r" xlink:href="MCRid145232" xlink:type="simple"/><OMV name="m" xlink:href="MCRid145236" xlink:type="simple"/></OMA></OMA></OMA><OMA xlink:href="MCRid145243" xlink:type="simple"><OMS cd="bigfloat1" name="bigfloat" xlink:href="MCRid145245" xlink:type="simple"/><OMV name="m" xlink:href="MCRid145252" xlink:type="simple"/><OMV name="r" xlink:href="MCRid145256" xlink:type="simple"/><OMV name="e" xlink:href="MCRid145260" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+
+
+</body>
+</html>

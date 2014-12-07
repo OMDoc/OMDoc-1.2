@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary polyd.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary polyd.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD contains operators to deal with polynomials and more precisely 
+    Distributed Multivariate Polynomials.
+  </div></div>
+
+
+<div class="omtext" id="CDComment-10">
+<p>
+    Original OpenMath v1.1 Poly 1997
+    Update to Current Format 1999-07-07 DPC
+    Move the names of rings to setname.ocd 1999-11-09 JHD
+    Delete those items moved to the new poly.ocd 1999-11-14 JHD
+  </p>
+</div>
+
+<div class="omtext" id="CDComment-11">
+<p>
+
+This is our attempt at defining a first Content Dictionary to deal with
+polynomials. There are many possible choices for a polynomial CD, and
+several questions to answer. 
+
+The reader may feel that this content dictionary is quite different in
+spirit from the "Basic" one. Although it basically defines a set of concepts
+related to polynomials (such as degree, factorization, resultant...), there
+are two new points here:
+- a certain emphasis on representation issues (including structural
+constraints on some OM objects),
+- an attempt to specify some "computational behaviour" of an OM application
+that handles (part of) this CD.
+
+As some people may disagree with some of our choices, we will try to justify
+them in this rather long foreword. 
+
+1. Representation issues
+
+One of the interest of OM is certainly to enable the use of specialized
+servers. It is important to promote the writing of OM-compliant servers by
+placing as few constraints as possible on the programmers of these
+packages. This CD has been designed with the idea that it could be simple to
+use for a server dealing only with polynomial computations. Hence we have
+used a particular representation for polynomials (distributed with dense
+monomials). This representation is rather abstract in the sense that it does
+not introduce names for variables. It explicitly contains the polynomial
+ring a polynomial belongs to as the set of the coefficients and the number
+of variables. It seems (from our experience) that this information is
+necessary for most specialized servers. 
+
+Expressing constraints on the structure of OM objects made from the symbols
+in this CD is not always easy. One of the main reason is that a symbol such
+as "gcd" is meant to denote the GCD of a set of polynomials, no matter how
+the polynomials are represented. Such a function should thus accept both
+"symbolic" arguments (a list of symbolic object meant to be polynomials) and
+the polynomials in the specific representation defined in this CD. Of
+course, another solution will be to have one "gcd" for one (or several)
+particular representation and another "gcd" to express the general notion
+of polynomial "gcd". We though that the solution we chose was more in the
+spirit of "Basic" and the discussions of the last OpenMath meeting.
+
+A question which is not entirely answered is whether or not it is
+interesting to have "symbolic" objects inside some constructors (such as a
+power which is not an OM integer in "Monom" or a symbolic "PolyRingD" (a
+variable) as an argument of "DMP"). We explicitly forbid that in the first
+version of this CD.
+
+Note that we did not try to express the constraints with signatures in this
+version because we did not find a really satisfactory solution.
+
+2. Specifying some "computational behaviour"
+
+Of course it would be of no use to exactly specify the behaviour of any OM
+application that receives an OM object. There are (at least) two reasons for
+that:
+- an OM object is intended to represent a mathematical object and thus the
+same OM object could be sent to a typesetter as well as to a symbolic
+computation system,
+- even when dealing with programs that compute, exact specifications could be
+impossible or too much constraining for a given system.
+
+On the other hand, we believe that one of the goal of OM is certainly that a
+program needing to factorize an integer could transparently use Maple, Axiom
+or Pari to do the job. This is of course possible only if all severs that
+"implement" (in the sense of really performing) the mathematical notion of
+integer factorization answer in a similar way. In other words, we should not
+hesitate to specify what a particulary useful class of OM applications (the
+"computing" ones) should return (the form of the result) everytime
+compliance to this specification is simple enough because it is obviously
+very useful. We have tried to express this idea in this CD through some
+comments and the use of symbols such as "factored" or <span class="legacy">groebner_basis</span> that
+describe the required results of some functions. 
+
+The general "compliance" rule can be stated as:
+an OM application that understands this CD and implements some of the 
+polynomials operation described is required to implement them using the
+constructors defined in this CD, as indicated in the comments associated
+with the operations.
+
+This means that if the OM version of a computer algebra system claims to
+implement polynomial factorization, another application can send him an
+OM object as described in the "factor" comment (the symbol "factor" applied
+to one argument, a DMP) and the result will be return as defined : a 
+"factored" symbol whose arguments are described in the corresponding entry
+of the poly CD.
+</p>
+</div>
+
+<div class="omtext" id="CDComment-12">
+<p>
+    Definition of data-structure constructors
+  </p>
+</div>
+
+<div class="omtext" id="CDComment-13">
+<p>
+    The polynomial <span class="legacy">x^2*y^6 + 3*y^5</span> can be encoded as
+    <span class="legacy">DMP(poly_ring_d(Z, 2), SDMP(term(1, 2, 6), term(3, 0, 5)))</span>
+
+    The polynomial <span class="legacy">2*y^3*z^5 + x + 1</span> can be
+    <span class="legacy">DMP(poly_ring_d(Q, 3), SDMP(term(2, 0, 3, 5), term(1, 1, 0, 0), term(1, 0, 0, 0)))</span>
+
+    Note that these are not real encodings but a "term-like" encoding (whose
+    understanding should be trivial) meant for the human readers of this
+    dictionary. Of course, actual encodings can be more compact...
+  </p>
+</div>
+
+<div class="symbol" id="DMP">
+<div class="titlebox">
+<span class="titleword">Concept</span>DMP</div>
+    The constructor of DMPs. The first argument is the polynomial
+    ring containing the polynomial and the second is a "SDMP". 
+    Should be of the form DMP(PolyRingD(...), SDMP(...))
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid87805"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id87808" xlink:href="sts.xml#mapsto"><mrow id="MCRid87817"><mrow><mo fence="true">(</mo><mrow><mo xlink:href="#polynomial_ring" xlink:type="simple" id="id87825">polynomial_ring</mo></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid87833">SDMPObject</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#polynomial_ring" xlink:type="simple" id="id87837">polynomial_ring</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid87805" xlink:type="simple"><OMA xlink:href="MCRid87808" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid87811" xlink:type="simple"/><OMA xlink:href="MCRid87817" xlink:type="simple"><OMS cd="sts" name="structure" xlink:href="MCRid87819" xlink:type="simple"/><OMS cd="polysts" name="polynomial_ring" xlink:href="MCRid87825" xlink:type="simple"/></OMA><OMV name="SDMPObject" xlink:href="MCRid87833" xlink:type="simple"/><OMS cd="polysts" name="polynomial_ring" xlink:href="MCRid87837" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="DMPL">
+<div class="titlebox">
+<span class="titleword">Concept</span>DMPL</div>
+    The constructor for lists of multivariate polynomial members of the 
+    same polynomial ring. The first argument is a polynomial ring
+    and the rest are "SDMP"s. DMPL can be attributed with the "ordering" 
+    symbol to indicate a particular ordering for monomials of all its
+    polynomials. 
+    Should be of the form DMPL(PolyRingD(...), SDMP(...)+)
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid87889"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id87892" xlink:href="sts.xml#mapsto"><mrow id="MCRid87901"><mrow><mo fence="true">(</mo><mrow><mo xlink:href="#polynomial_ring" xlink:type="simple" id="id87909">polynomial_ring</mo></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="sts.xml#mapsto">,</mo><mfenced id="id87916" open="(" close=")" separators=""><msup id="MCRid87916"><mo xlink:href="#SDMP" xlink:type="simple" id="id86906">SDMP</mo><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid87918">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid86913">polynomial_ringList</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid87889" xlink:type="simple"><OMA xlink:href="MCRid87892" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid87894" xlink:type="simple"/><OMA xlink:href="MCRid87901" xlink:type="simple"><OMS cd="sts" name="structure" xlink:href="MCRid87903" xlink:type="simple"/><OMS cd="polysts" name="polynomial_ring" xlink:href="MCRid87909" xlink:type="simple"/></OMA><OMA xlink:href="MCRid87916" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid87918" xlink:type="simple"/><OMS cd="polyd" name="SDMP" xlink:href="MCRid86906" xlink:type="simple"/></OMA><OMV name="polynomial_ringList" xlink:href="MCRid86913" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="SDMP">
+<div class="titlebox">
+<span class="titleword">Concept</span>SDMP</div>
+    The constructor for multivariate polynomials without
+    any indication of variables or domain for the coefficients.
+    Its arguments are just "monomial"s. No monomials should differ only by
+    the coefficient (i.e it is not permitted to have both "2*x*y" and
+    "x*y" as monomials in a SDMP). SDMP can be attributed with 
+    the "ordering" symbol to indicate a particular ordering of its
+    monomials. This attribute shall not be set if the SDMP is part of 
+    DMPL that has this attribute set. 
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid86964"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id86968" xlink:href="sts.xml#mapsto"><mfenced id="id86976" open="(" close=")" separators=""><msup id="MCRid86976"><mi id="MCRid86984">MonomialD</mi><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid86978">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid86989">SDMPObject</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid86964" xlink:type="simple"><OMA xlink:href="MCRid86968" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid86970" xlink:type="simple"/><OMA xlink:href="MCRid86976" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid86978" xlink:type="simple"/><OMV name="MonomialD" xlink:href="MCRid86984" xlink:type="simple"/></OMA><OMV name="SDMPObject" xlink:href="MCRid86989" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="term">
+<div class="titlebox">
+<span class="titleword">Concept</span>term</div>
+    The constructor of monomials. Valid applications are of the form
+    Term(coeff, exp1, exp2, ... expn)
+    which represents the monomial 
+    <span class="legacy">coeff * var1^exp1*...varn^expn</span>
+    where n is the number of variables, expi are non-negative integers.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid87049"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id87052" xlink:href="sts.xml#mapsto"><mi id="MCRid87060">Ring</mi><mo xlink:href="sts.xml#mapsto">,</mo><mfenced id="id87064" open="(" close=")" separators=""><msup id="MCRid87064"><mo xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid87072">ℕ</mo><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid87066">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid87080">MonomialD</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid87049" xlink:type="simple"><OMA xlink:href="MCRid87052" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid87054" xlink:type="simple"/><OMV name="Ring" xlink:href="MCRid87060" xlink:type="simple"/><OMA xlink:href="MCRid87064" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid87066" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid87072" xlink:type="simple"/></OMA><OMV name="MonomialD" xlink:href="MCRid87080" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="omtext" id="CDComment-18">
+<p>
+    Polynomial rings constructors
+  </p>
+</div>
+
+<div class="symbol" id="poly_ring_d">
+<div class="titlebox">
+<span class="titleword">Concept</span>poly_ring_d</div> 
+    The constructor of polynomial ring. The first argument is a ring
+    (the ring of the coefficients), the second is the number 
+    of variables as an integer.
+</div>
+
+<div class="omtext" id="CDComment-20">
+<p>
+    Definitions related to orderings
+  </p>
+</div>
+
+<div class="symbol" id="ordering">
+<div class="titlebox">
+<span class="titleword">Concept</span>ordering</div> 
+    Used as an attribute to indicate an ordering of the monomials in a
+    polynomial or list of polynomials. The value of this attribute
+    should be one of the constructors specifying ordering. 
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116182"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Object" xlink:type="simple" id="id116185">Object</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116182" xlink:type="simple"><OMS cd="sts" name="Object" xlink:href="MCRid116185" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="omtext" id="CDComment-22">
+<p>
+    The following orders on monomials have their standards definitions, 
+    see, for example, "Ideals, Varieties and Algorithms", D. Cox, 
+    J.B. Little and D. O'Shea, Springer Verlag.
+  </p>
+</div>
+
+<div class="symbol" id="lexicographic">
+<div class="titlebox">
+<span class="titleword">Concept</span>lexicographic</div> 
+    The lexicographic ordering of monomials.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116258"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ordering" xlink:type="simple" id="id116261">ordering</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116258" xlink:type="simple"><OMS cd="polyd" name="ordering" xlink:href="MCRid116261" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="reverse_lexicographic">
+<div class="titlebox">
+<span class="titleword">Concept</span>reverse_lexicographic</div> 
+    The reverse lexicographic ordering of monomials
+</div>
+
+<div class="symbol" id="graded_lexicographic">
+<div class="titlebox">
+<span class="titleword">Concept</span>graded_lexicographic</div> 
+    Total degree order, graded with the lexicographic ordering.
+</div>
+
+<div class="symbol" id="graded_reverse_lexicographic">
+<div class="titlebox">
+<span class="titleword">Concept</span>graded_reverse_lexicographic</div> 
+    Total degree order, graded with the reverse lexicographic ordering.
+</div>
+
+<div class="symbol" id="elimination">
+<div class="titlebox">
+<span class="titleword">Concept</span>elimination</div> 
+    This is an ordering, which is partially in terms of one
+    ordering, and partially in terms of another.
+    First argument is a number of variables.
+    Second is ordering to apply on the first so many variables.
+    Third is an ordering on the rest, to be used to break ties.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116402"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116405" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid116413">ℕ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="#ordering" xlink:type="simple" id="id116419">ordering</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="#ordering" xlink:type="simple" id="id116425">ordering</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#ordering" xlink:type="simple" id="id116432">ordering</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116402" xlink:type="simple"><OMA xlink:href="MCRid116405" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116407" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid116413" xlink:type="simple"/><OMS cd="polyd" name="ordering" xlink:href="MCRid116419" xlink:type="simple"/><OMS cd="polyd" name="ordering" xlink:href="MCRid116425" xlink:type="simple"/><OMS cd="polyd" name="ordering" xlink:href="MCRid116432" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="elimination-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116459"><semantics><mrow id="MCRid116461"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#elimination" xlink:type="simple" id="id116464">elimination</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid116470"> 1 </mn><mo separator="true">,</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lexicographic" xlink:type="simple" id="id116473">lexicographic</mo><mo separator="true">,</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#graded_reverse_lexicographic" xlink:type="simple" id="id116479">graded_reverse_lexicographic</mo></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116459" xlink:type="simple"><OMA xlink:href="MCRid116461" xlink:type="simple"><OMS cd="polyd" name="elimination" xlink:href="MCRid116464" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid116470"> 1 </OMI><OMS cd="polyd" name="lexicographic" xlink:href="MCRid116473" xlink:type="simple"/><OMS cd="polyd" name="graded_reverse_lexicographic" xlink:href="MCRid116479" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="omtext" id="CDComment-28">
+<p>
+    We need a few more orderings... 
+  </p>
+</div>
+
+<div class="omtext" id="CDComment-29">
+<p>
+    Definition of some other constructors
+  </p>
+</div>
+
+<div class="symbol" id="groebner_basis">
+<div class="titlebox">
+<span class="titleword">Concept</span>groebner_basis</div> 
+    The constructor for a Groebner basis (reduced, minimal). The first
+    argument is an ordering, the second is the Groebner Basis itself
+    (with respect to the ordering) that should be represented as a DMPL.
+</div>
+
+<div class="omtext" id="CDComment-31">
+<p>
+    Definition of operations
+  </p>
+</div>
+
+<div class="symbol" id="plus">
+<div class="titlebox">
+<span class="titleword">Concept</span>plus</div>
+    The sum. The argument is a DMPL. The sum lies within the same
+    <span class="legacy">PolyRingD</span> i.e. a program implementing this operation
+    should return a DMP with the same <span class="legacy">poly_ring_d</span>.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116654"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116657" xlink:href="sts.xml#mapsto"><mi id="MCRid116665">polynomial_ringList</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#PolyRingD" xlink:type="simple" id="id116669">PolyRingD</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116654" xlink:type="simple"><OMA xlink:href="MCRid116657" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116659" xlink:type="simple"/><OMV name="polynomial_ringList" xlink:href="MCRid116665" xlink:type="simple"/><OMS cd="polyd" name="PolyRingD" xlink:href="MCRid116669" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="times">
+<div class="titlebox">
+<span class="titleword">Concept</span>times</div>
+    The product. The argument is a DMPL. The product lies within the same
+    <span class="legacy">PolyRingD</span> i.e. a program implementing this operation
+    should return a DMP with the same <span class="legacy">poly_ring_d</span>.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116741"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116744" xlink:href="sts.xml#mapsto"><mi id="MCRid116752">polynomial_ringList</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#PolyRingD" xlink:type="simple" id="id116756">PolyRingD</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116741" xlink:type="simple"><OMA xlink:href="MCRid116744" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116746" xlink:type="simple"/><OMV name="polynomial_ringList" xlink:href="MCRid116752" xlink:type="simple"/><OMS cd="polyd" name="PolyRingD" xlink:href="MCRid116756" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="power">
+<div class="titlebox">
+<span class="titleword">Concept</span>power</div> The power. First argument is a DMP, second
+    argument is the integer power. The power lies within the same
+    <span class="legacy">PolyRingD</span>  i.e. a program implementing this operation 
+    should return a DMP with the same <span class="legacy">poly_ring_d</span>.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116828"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116831" xlink:href="sts.xml#mapsto"><mi id="MCRid116839">PolynomialR</mi><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid116843">ℤ</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#PolyRingD" xlink:type="simple" id="id116849">PolyRingD</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116828" xlink:type="simple"><OMA xlink:href="MCRid116831" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116833" xlink:type="simple"/><OMV name="PolynomialR" xlink:href="MCRid116839" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid116843" xlink:type="simple"/><OMS cd="polyd" name="PolyRingD" xlink:href="MCRid116849" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="groebner">
+<div class="titlebox">
+<span class="titleword">Concept</span>groebner</div> 
+    The groebner basis (reduced, minimal) of a set of polynomials, with
+    respect to a given ordering. First argument is an ordering, the
+    second is a list of polynomials. A program that can compute
+    the basis is required to return a <span class="legacy">groebner_basis</span> object.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116912"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116914" xlink:href="sts.xml#mapsto"><mo xlink:href="#ordering" xlink:type="simple" id="id116923">ordering</mo><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid116929">polynomial_ringList</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid116933">GroebnerBasis</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116912" xlink:type="simple"><OMA xlink:href="MCRid116914" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116917" xlink:type="simple"/><OMS cd="polyd" name="ordering" xlink:href="MCRid116923" xlink:type="simple"/><OMV name="polynomial_ringList" xlink:href="MCRid116929" xlink:type="simple"/><OMV name="GroebnerBasis" xlink:href="MCRid116933" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="reduce">
+<div class="titlebox">
+<span class="titleword">Concept</span>reduce</div>
+    The reduction of a polynomial with respect to a Groebner basis. 
+    First argument is a DMP, the second argument is a <span class="legacy">groebner_basis</span>
+    object.
+    i.e. a program implementing this operation should return a DMP which
+    represents the polynomial reduced with respect to the Groebner basis.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid116994"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id116996" xlink:href="sts.xml#mapsto"><mi id="MCRid117005">polynomial_ring</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid117009">GroebnerBasis</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#polynomial_ring" xlink:type="simple" id="id117013">polynomial_ring</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid116994" xlink:type="simple"><OMA xlink:href="MCRid116996" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid116999" xlink:type="simple"/><OMV name="polynomial_ring" xlink:href="MCRid117005" xlink:type="simple"/><OMV name="GroebnerBasis" xlink:href="MCRid117009" xlink:type="simple"/><OMS cd="polysts" name="polynomial_ring" xlink:href="MCRid117013" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="PolyRingD">
+<div class="titlebox">
+<span class="titleword">Concept</span>PolyRingD</div></div>
+
+
+
+</body>
+</html>

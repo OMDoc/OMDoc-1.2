@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_adt.omdoc">
+
+<metadata>
+<dc:title>test</dc:title>
+<dc:creator role="aut">hf</dc:creator>
+<dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>                                                                     
+<theory xml:id="test_adt">
+
+  <adt xml:id="nat-adt" style="foo">
+    <sortdef name="pos-nat" style="foo">
+      <constructor name="succ" style="foo" scope="local">
+	<metadata>
+	  <dc:subject xml:lang="en">The successor function</dc:subject>
+	  <dc:subject xml:lang="de">Die Nachfolger Funktion</dc:subject>
+	</metadata>
+	<argument>
+	  <type><OMOBJ><OMS cd="test_adt" name="nat"/></OMOBJ></type>
+	  <selector total="yes" name="pred">
+	    <metadata>
+	      <dc:subject xml:lang="en">The predecessor function</dc:subject>
+	      <dc:subject xml:lang="de">Die Vorgaenger-Funktion</dc:subject>
+	    </metadata>
+	  </selector>
+	</argument>
+	<argument>
+	  <type><OMOBJ><OMS cd="test_adt" name="nat"/></OMOBJ></type> 
+        </argument>
+      </constructor>
+      <recognizer name="myrecognizer" style="bar" scope="global">
+	<metadata>
+	  <dc:subject xml:lang="en">recognizer</dc:subject>
+	  <dc:subject xml:lang="de">Erkenner</dc:subject>
+	</metadata>
+      </recognizer>
+    </sortdef>
+  </adt> 
+
+
+</theory>
+</omdoc>
+

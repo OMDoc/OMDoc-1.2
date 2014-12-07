@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>OpenMath Content Dictionary in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">OpenMath Content Dictionary in OMDoc form</div>
+<div class="authors">Michael Kohlhase.xsl, The OpenMath Society</div>
+<div class="date">1999-06-03</div>
+<div class="description">
+    This CD holds symbols denoting various types of numbers, vectors
+    and similar constructs. Principally these are required for
+    compatibility with MathML.
+  </div></div>
+
+
+<div class="symbol" id="type">
+<div class="titlebox">
+<span class="titleword">Concept</span>type</div>
+      A symbol to be used within an OpenMath attribution to convey the type of
+      the object.
+  </div>
+
+<div class="example" id="type-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The variable z is attributed with a type for complex numbers.
+  </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid109275"><semantics><mfenced id="id109282" open="" close="" separators=""><msub id="MCRid109282"><mi id="MCRid109296">z</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#complex_cartesian_type" xlink:type="simple" id="id109288">complex_cartesian_type</mo></msub></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid109275" xlink:type="simple"><OMATTR xlink:href="MCRid109278" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid109280"><OMS cd="typmml" name="type" xlink:href="MCRid109282" xlink:type="simple"/><OMS cd="typmml" name="complex_cartesian_type" xlink:href="MCRid109288" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid109296" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="integer_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>integer_type</div>
+    Type of an integer.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid81330"><semantics><mi id="MCRid81333">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid81330" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid81333" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="real_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>real_type</div>
+    Type of a real number.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid81373"><semantics><mi id="MCRid81376">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid81373" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid81376" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="rational_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>rational_type</div>
+    Type of a rational number.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid105184"><semantics><mi id="MCRid105186">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid105184" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid105186" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="complex_cartesian_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>complex_cartesian_type</div>
+    Type of a complex number specified in terms of its real and imaginary
+    parts.
+</div>
+
+<div class="symbol" id="complex_polar_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>complex_polar_type</div>
+    Type of a complex number specified in terms of its modulus and argument.
+</div>
+
+<div class="symbol" id="constant_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>constant_type</div>
+    A type for the common constants, pi ~= 3.1415, e ~= 2.718, i = square
+    root of -1, gamma ~= .5772, NaN, infinity (all in the nums cd), true
+    and false (in the logic cd). Also for MathML variables declared to
+    have type constant, as in &lt;ci type="constant"&gt;x&lt;/ci&gt;.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid81139"><semantics><mi id="MCRid81142">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid81139" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid81142" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="vector_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>vector_type</div>
+    Type of a (column) vector, an n-tuple of entries.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid81187"><semantics><mi id="MCRid81190">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid81187" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid81190" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="list_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>list_type</div>
+    Type for a list.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid80272"><semantics><mi id="MCRid80274">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid80272" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid80274" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="set_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>set_type</div>
+    Type for a set.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid80320"><semantics><mi id="MCRid80323">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid80320" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid80323" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="matrix_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>matrix_type</div>
+    Type for a matrix (n tuple of rows, each of which are litss of the
+    same number m of entries).
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid80369"><semantics><mi id="MCRid80372">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid80369" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid80372" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="fn_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>fn_type</div>
+    Type for a function name.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid80417"><semantics><mi id="MCRid80420">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid80417" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid80420" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="fn_type-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The variable f is attributed to say it represents a function.
+  </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid80453"><semantics><mfenced id="id80461" open="" close="" separators=""><msub id="MCRid80461"><mi id="MCRid80474">f</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fn_type" xlink:type="simple" id="id80467">fn_type</mo></msub></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid80453" xlink:type="simple"><OMATTR xlink:href="MCRid80456" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid80458"><OMS cd="typmml" name="type" xlink:href="MCRid80461" xlink:type="simple"/><OMS cd="typmml" name="fn_type" xlink:href="MCRid80467" xlink:type="simple"/></OMATP><OMV name="f" xlink:href="MCRid80474" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Common attributes
+# $Id: omdocattribs.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocattribs.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+namespace local = ""
+
+# all the explicitly namespaced attributes, except xml:lang, which 
+# is handled explicitly
+nonlocal-attribs = attribute * - (local:* | xml:*) {xsd:string} 
+
+# the attributes for CSS and PRES styling
+css.attribs = attribute style {xsd:string}?, attribute class {xsd:string}?
+
+omdocref  = xsd:anyURI         # an URI reference pointing to an OMDoc fragment
+omdocrefs = list {xsd:anyURI*}  # a whitespace-separated list of omdocref
+
+xref.attrib = attribute xref {omdocref}
+idrest.attribs = css.attribs, nonlocal-attribs*, attribute xml:base {xsd:anyURI}?
+id.attrib = attribute xml:id {xsd:ID}?, idrest.attribs
+
+omdoc.toplevel.attribs = id.attrib, attribute generated-from {omdocref}?
+
+# The current XML-recommendation doesn't yet support the 
+# three-letter short names for languages (ISO 693-2). So 
+# the following section will be using the two-letter 
+# (ISO 693-1) encoding for the languages.
+#
+#       en : English,   de : German,    fr : French,
+#       la : Latin,     it : Italian,   nl : Dutch,
+#       ru : Russian,   pl : Polish,    es : Spanish,
+#       tr : Turkish,   zh : Chinese,   ja : Japanese,
+#       ko : Korean     ... 
+
+iso639 = "aa" | "ab" | "af" | "am" | "ar" | "as" |
+"ay" | "az" | "ba" | "be" | "bg" | "bh" | "bi" | "bn" | "bo" | "br" | "ca" | "co"
+| "cs" | "cy" | "da" | "de" | "dz" | "el" | "en" | "eo" | "es" | "et" | "eu" |
+"fa" | "fi" | "fj" | "fo" | "fr" | "fy" | "ga" | "gd" | "gl" | "gn" | "gu" | "ha"
+| "he" | "hi" | "hr" | "hu" | "hy" | "ia" | "ie" | "ik" | "id" | "is" | "it" |
+"iu" | "ja" | "jv" | "ka" | "kk" | "kl" | "km" | "kn" | "ko" | "ks" | "ku" | "ky"
+| "la" | "ln" | "lo" | "lt" | "lv" | "mg" | "mi" | "mk" | "ml" | "mn" | "mo" |
+"mr" | "ms" | "mt" | "my" | "na" | "ne" | "nl" | "no" | "oc" | "om" | "or" | "pa"
+| "pl" | "ps" | "pt" | "qu" | "rm" | "rn" | "ro" | "ru" | "rw" | "sa" | "sd" |
+"sg" | "sh" | "si" | "sk" | "sl" | "sm" | "sn" | "so" | "sq" | "sr" | "ss" | "st"
+| "su" | "sv" | "sw" | "ta" | "te" | "tg" | "th" | "ti" | "tk" | "tl" | "tn" |
+"to" | "tr" | "ts" | "tt" | "tw" | "ug" | "uk" | "ur" | "uz" | "vi" | "vo" | "wo"
+| "xh" | "yi" | "yo" | "za" | "zh" | "zu"
+
+xml.lang.attrib  = attribute xml:lang {iso639}?

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary indnat.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary indnat.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, Olga Caprotti</div>
+<div class="description"> Inductive definition of natural numbers </div></div>
+
+
+<div class="symbol" id="indNat">
+<div class="titlebox">
+<span class="titleword">Concept</span>indNat</div> Attribution tag to denote the
+    type of inductively defined natural numbers. It is also denoted as
+    setname1:N.
+  </div>
+
+<div class="symbol" id="zero">
+<div class="titlebox">
+<span class="titleword">Concept</span>zero</div> The natural number 0, also constant base function
+          for the inductive definition of the type of natural numbers
+      </div>
+
+<div class="symbol" id="succ">
+<div class="titlebox">
+<span class="titleword">Concept</span>succ</div> Successor function on the natural number. 
+           Constructor for the inductively defined natural numbers. 
+           Takes argument a a natural number and returns a natural
+           number.
+      </div>
+
+<div class="symbol" id="plus">
+<div class="titlebox">
+<span class="titleword">Concept</span>plus</div> Addition of natural numbers defined recursively
+           by using the successor.
+      </div>
+
+<div class="example" id="plus-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid87199"><semantics><mfenced id="id87210" open="(" close=")" separators=""><mi id="MCRid87219">n</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#plus" xlink:type="simple" id="MCRid87212">+</mo><mrow id="MCRid87223"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#succ" xlink:type="simple" id="MCRid87226">s</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid87232">m</mi></mrow><mo fence="true">)</mo></mrow></mrow></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid87204">=</mo><mrow id="MCRid87239"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#succ" xlink:type="simple" id="MCRid87241">s</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id87247" open="(" close=")" separators=""><mi id="MCRid87256">n</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#plus" xlink:type="simple" id="MCRid87250">+</mo><mi id="MCRid87260">m</mi></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid87199" xlink:type="simple"><OMA xlink:href="MCRid87202" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid87204" xlink:type="simple"/><OMA xlink:href="MCRid87210" xlink:type="simple"><OMS cd="indnat" name="plus" xlink:href="MCRid87212" xlink:type="simple"/><OMV name="n" xlink:href="MCRid87219" xlink:type="simple"/><OMA xlink:href="MCRid87223" xlink:type="simple"><OMS cd="indnat" name="succ" xlink:href="MCRid87226" xlink:type="simple"/><OMV name="m" xlink:href="MCRid87232" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid87239" xlink:type="simple"><OMS cd="indnat" name="succ" xlink:href="MCRid87241" xlink:type="simple"/><OMA xlink:href="MCRid87247" xlink:type="simple"><OMS cd="indnat" name="plus" xlink:href="MCRid87250" xlink:type="simple"/><OMV name="n" xlink:href="MCRid87256" xlink:type="simple"/><OMV name="m" xlink:href="MCRid87260" xlink:type="simple"/></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="times">
+<div class="titlebox">
+<span class="titleword">Concept</span>times</div> Multiplication of natural numbers defined recursively
+           by using the successor and plus.
+      </div>
+
+<div class="example" id="times-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid111610"><semantics><mfenced id="id111621" open="(" close=")" separators=""><mi id="MCRid111629">n</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#times" xlink:type="simple" id="MCRid111623">⁢</mo><mrow id="MCRid111634"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#succ" xlink:type="simple" id="MCRid111636">s</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid111642">m</mi></mrow><mo fence="true">)</mo></mrow></mrow></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid111615">=</mo><mfenced id="id111649" open="(" close=")" separators=""><mfenced id="id111657" open="(" close=")" separators=""><mi id="MCRid111666">n</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#times" xlink:type="simple" id="MCRid111660">⁢</mo><mi id="MCRid86656">m</mi></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#plus" xlink:type="simple" id="MCRid111651">+</mo><mi id="MCRid86662">n</mi></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid111610" xlink:type="simple"><OMA xlink:href="MCRid111613" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid111615" xlink:type="simple"/><OMA xlink:href="MCRid111621" xlink:type="simple"><OMS cd="indnat" name="times" xlink:href="MCRid111623" xlink:type="simple"/><OMV name="n" xlink:href="MCRid111629" xlink:type="simple"/><OMA xlink:href="MCRid111634" xlink:type="simple"><OMS cd="indnat" name="succ" xlink:href="MCRid111636" xlink:type="simple"/><OMV name="m" xlink:href="MCRid111642" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid111649" xlink:type="simple"><OMS cd="indnat" name="plus" xlink:href="MCRid111651" xlink:type="simple"/><OMA xlink:href="MCRid111657" xlink:type="simple"><OMS cd="indnat" name="times" xlink:href="MCRid111660" xlink:type="simple"/><OMV name="n" xlink:href="MCRid111666" xlink:type="simple"/><OMV name="m" xlink:href="MCRid86656" xlink:type="simple"/></OMA><OMV name="n" xlink:href="MCRid86662" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

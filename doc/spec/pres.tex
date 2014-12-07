@@ -1,0 +1,837 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.2 specifiation
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: pres.tex 8379 2009-06-11 05:32:28Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/doc/spec/pres.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=pres,short=Notation and Presentation]{Notation and Presentation (Module {\PRESmodule{spec}})}
+
+As we have seen, {\omdoc} is concerned mainly with the content and structure of
+mathematical documents, and offers a complex infrastructure for dealing with that.
+However, mathematical texts often carry typographic conventions that cannot be determined
+by general principles alone. Moreover, non-standard presentations of fragments of
+mathematical texts sometimes carry meanings that do not correspond to the mathematical
+content or structure proper. In order to accommodate this, {\omdoc} provides a limited
+functionality for embedding style information into the document.
+\begin{erratum}[date=2007-09-10,reported-by=Kristina Sojakova]{added CMP* to content of {\tt presentation} element}
+\begin{myfig}{qtpres}{The {\omdoc} Elements for Notation Information}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{4.7truecm}|>{\tt}p{2truecm}|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+             & {\rm Required}  & {\rm Optional}     &           \\\hline\hline
+ omstyle    & element & for, xml:id, xref, class, style & (style|xslt)* \\\hline
+ presentation & for   & xml:id, xref, fixity, role, lbrack, rbrack, separator, 
+                        bracket-style, class, style, precedence, crossref-symbol
+                                           & CMP*, (use | xslt | style)* \\\hline
+ xslt       & format  & xml:lang, requires, xref & {\xslt} fragment\\\hline 
+ use        & format    
+            & xml:lang, requires, fixity, precedence
+              lbrack, rbrack, separator, element, 
+              attributes, crossref-symbol         & (element | text | recurse | map | value-of)*\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+\end{erratum}
+
+The normal (but of course not the only) way to generate presentation from {\xml} documents
+is to use {\xslt} style sheets (see {\mychapref{transform-xsl}} for other applications).
+{\xslt}~\cite{Clark:xslt99} is a general transformation language for {\xml}.  {\xslt}
+programs (often called {\defin{style sheet}s}) consist of a set of {\defin{template}s}
+(rules for the transformation of certain nodes in the {\xml} tree). These templates are
+recursively applied to the input tree to produce the desired output.
+
+The general approach to presentation and notation in {\omdoc} is not to provide
+general-purpose presentational primitives that can be sprinkled over the document, since
+that would distract the author from the mathematical content, but to support the
+specification of general style information for {\omdoc} elements and mathematical symbols
+in separate elements.
+
+In the case of a single {\omdoc} document it is possible to write a specialized
+style sheet that transforms the content-oriented markup used in the document into
+mathematical notation. However, if we have to deal with a large collection of
+{\omdoc} representations, then we can either write a specialized style sheet for
+each document (this is clearly infeasible to do by hand), or we can develop a
+style sheet for the whole collection (such style sheets tend to get large and
+unmanageable).
+
+The {\omdoc} format allows to generate specialized style sheets that are tailored to the
+presentation of (collections of) {\omdoc} documents. The mechanism will be discussed in
+{\mychapref{transform-xsl}}, here we only concern ourselves with the {\omdoc} primitives
+for representing the necessary data. In the next section, we will address the
+specification of style information for {\omdoc} elements by {\element{omstyle}} elements,
+and then the question of the specification of notation for mathematical symbols in
+{\element{presentation}} elements.
+
+\begin{tsection}[id=omstyle,short=Styling OMDoc Elements]{Specifying Style Information for {\omdoc} Elements}
+  
+  {\omdoc} provides the {\eldef{omstyle}}\footnote{This element would perhaps be more
+    aptly be named {\snippet{omclass}}, since its function is more similar to the {\css}
+    class concept\twin{CSS}{class}, but we keep the name {\element{omstyle}} for backwards
+    compatibility in {\omdoc} 1.2.}  elements for specifying
+  {\twintoo{style}{information}} for {\omdoc} elements.  An {\element{omstyle}} element
+  has the attributes
+  \begin{description}
+  \item[{\attribute{element}{omstyle}}] This required attribute specifies the
+    {\omdoc} element this style information should be applied to. The value of
+    this attribute must be the full {\twintoo{qualified}{name}} (i.e.  including
+    the {\indextoo{namespace}}) of the element.
+  \item[{\attribute{for}{omstyle, presentation}}] This optional attribute allows
+    to further restrict the {\omdoc} element to a single instance. The value of
+    this attribute is a {\twintoo{URI}{reference}} to a single element.
+  \item[{\attribute{xref}{omstyle, presentation, use, xslt, style}}] This optional
+    attribute can be used to refer to another existing {\element{omstyle}} element (in
+    another document via a {\twintoo{URI}{reference}}), sometimes avoiding double
+    specification: If an {\element{omstyle}} element carries an {\attribute{xref}{omstyle,
+        presentation}} attribute, its attributes and content is disregarded, and those of
+    the target {\element{omstyle}} element is considered instead.
+  \item[{\attribute{class}{omstyle, presentation}}] This optional attribute is an
+    additional parameter that controls the output style. Remember that all {\omdoc}
+    elements that have {\attributeshort[ns-attr=xml]{id}} attributes also carry a
+    {\attributeshort{class}} attribute, which allows to specify different notational
+    conventions (see {\mysecref{common-attribs}}): In the presentation of an {\omdoc}
+    element only those {\element{omstyle}} elements are taken into account that have the
+    same value in the {\attribute{class}{omstyle, presentation}} attribute.
+    
+    Note that the choice of notational style is not a content-carrying feature,
+    and should not be depended on, indeed the value of the
+    {\attribute{class}{presentation}} need not be respected by output routines,
+    but can be overwritten.
+\end{description}
+In the presentation process described in {\mysecref{omdoc2pres}} the information specified
+in the body of this element is then used to generate {\xslt} templates that are included
+then into the generated style sheets. This information is either given directly in {\xslt}
+using the {\eldef{xslt}} element, or in a {\eldef{style}} element using an
+{\omdoc}-internal equivalent of a small subset of {\xslt}. The latter is used if the full
+power of {\xslt} is not needed, and has the advantage that it can be transformed into the
+input of other formatting engines.  The {\element{xslt}} and {\element{style}} elements
+share the following attributes:
+\begin{description}
+\item[{\attribute{format}{use, xslt, style}}] This required attribute specifies the output
+  format. Its value is a set of format specifiers divided by the {\snippet{|}} character.
+  We use the specifiers {\attval{TeX}{format}{use}} for {\TeX} and {\LaTeX},
+  {\attval{pmml}{format}{use}} for {\pmathml}, {\attval{cmml}{format}{use}} for
+  {\cmathml}, {\attval{html}{format}{use}} for {\html},
+  {\attval{mathematica}{format}{use}} for {\mathematica}
+  notebooks\twin{notebook}{Mathematica}. Other formats can be specified at liberty.
+  Finally, there is the pseudo format-specifier {\attval{default}{format}{use}}, which
+  will be taken, if no other format is defined.  Note that case matters in these
+  specifiers, so {\snippet{TeX}} is not the same as {\snippet{tex}}. Furthermore,
+  {\attval{default}{format}{use}} is not a regular format specifier, so it cannot appear
+  in the disjunctions.
+\item[{\attribute[ns-attr=xml]{lang}{use, xslt, style}}] This specifies the languages for
+  which this notation is used. Note that it is used differently than e.g. in the
+  {\element{CMP}} element: on {\element{omstyle}}, the attribute
+  {\attribute[ns-attr=xml]{lang}{use, xslt, style}} contains a whitespace-separated list
+  of language specifiers and it does not have a default value {\snippet{en}}, if the
+  attribute is not present, this means that this element is not language-specific.
+\item[{\attribute{requires}{use, xslt, style}}] This attribute contains a
+  {\twintoo{URI}{reference}} that points to a {\element{code}} element that contains a
+  code fragment that is needed to be included for the presentation engine. For instance,
+  the body of the {\element{omstyle}} element may contain {\TeX} macros that need to be
+  defined.  Their definitions would need to be included in the output document by the
+  presentation style sheet before they can be used.
+\end{description}
+
+{\mylstref{phrase}} shows a very simple example, where a {\element{phrase}} element is used to
+mark a text passage as ``important''. Its {\attribute{class}{phrase}} attribute is picked
+up by the {\element{omstyle}} element to prompt special treatment in the output.
+
+\begin{lstlisting}[label=lst:phrase,
+  caption={Specifying Style Information with the {\element{phrase}}
+    Element.},index={omstyle,style,xslt,element,text,recurse,}]
+<CMP>
+  I want to mark <phrase xml:id="w1" class="important">this important
+  text</phrase> as special.<phrase class="linebreak"/>
+</CMP>
+
+<omstyle element="omdoc:phrase" class="important">
+  <style format='html|pmml'><element name="em"><recurse/></element></style>
+  <xslt format='TeX' xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:text>\emph{</xsl:text>
+      <xsl:apply-templates/>
+    <xsl:text>}</xsl:text>
+  </xslt>
+</omstyle>
+
+<omstyle element="omdoc:phrase" class="linebreak">
+  <style format='html|pmml'><element name="br"/></style>
+  <style format='TeX'><text>\par\noindent</text></style>
+</omstyle>
+\end{lstlisting}
+\end{tsection}
+
+\begin{tsection}[id=style]{A Restricted Style Language}
+  
+  Let us now have a closer look at the presentation-language used in {\element{style}}
+  elements.  In the first {\element{omstyle}} element in {\mylstref{phrase}} we see that
+  the content of an {\element{xslt}} element is an {\xslt} fragment.  Note that when
+  referring to {\omdoc} elements, the {\xslt} must use the full
+  {\twintoo{qualified}{name}} (i.e. including the {\indextoo{namespace}}) of the elements
+  for the presentation to work.\footnote{For DTD validation the {\xslt} fragments must be
+    encoded using the {\tt{xsl:}} namespace prefix, unless the DTD has been adapted to a
+    different prefix by setting the appropriate parameter entity.}
+\begin{myfig}{qtstyle}{The {\omdoc} Elements for Styling}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{2.4truecm}|>{\tt}p{4.2truecm}|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+             & {\rm Required}  & {\rm Optional}     &           \\\hline\hline
+ style      & format  & xml:lang, requires, xref & (element | text | recurse | map | value-of)*\\\hline 
+ element    & name    & crid, cr, ns       & (attribute | element | text | 
+                                              value-of  | recurse | map)*\\\hline
+ attribute  & name    &                    & (value-of | text)*\\\hline
+ text       &         &                    & (\#PCDATA)\\\hline
+ value-of   & select  &                    & EMPTY\\\hline
+ recurse    &         & select             & EMPTY\\\hline
+ map        &         & select             & separator?, (element | text | recurse | map)\\\hline
+ separator  &         &                    & (element | text | recurse | map)\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+  
+Let us analyze the example to see the presentation in action before we define it. In the
+first {\element{style}} element in the {\element{omstyle}} for {\snippet{linebreak}} in
+{\mylstref{phrase}} we see that the {\element{element}} element can be used to insert an
+{\xml} element into the output; in this case it is the empty {\html} element
+{\snippet{<br/>}}. In the second {\element{style}} child the {\element{text}} element (it
+does not have attributes) allows to add arbitrary text into the output (in this case some
+{\TeX} macros). In the first {\element{omstyle}} element, we see that the
+{\element{element}} element may be non-empty, it contains the element {\element{recurse}},
+which corresponds to the directive to continue presentation generation recursively over
+the children of the element specified in the dominating {\element{omstyle}} element. The
+effect of this is that the content of the first {\element{phrase}} element is encased in
+the {\html} {\snippet{em}} element.
+
+Textual material can be added to the output in two ways: by copying it from the source, or
+supplying it in the transformation. For the latter, {\omdoc} supplies the {\eldef{text}}
+element (it does not have attributes), which allows to add arbitrary text (its body) into
+the output. For the former, we have the {\eldef{value-of}} element, an empty element that
+carries the required attribute {\attribute{select}{value-of}}, whose value is an {\xpath}
+expression. It adds the value (a string) to the {\xml} node specified by the expression to
+the output.
+
+The {\eldef{element}} element allows to generate {\xml} elements. It has a required
+attribute {\attribute{name}{element}}, which contains its (local) name, and the optional
+attribute {\attribute{ns}{element}} to specify the namespace. Attributes of the resulting
+element can be specified by the {\eldef{attribute}} element: any {\element{attribute}}
+element adds an {\twintoo{attribute-value}{pair}} of the form
+{\snippet{\llquote{name}="\llquote{value}"}} to the output element specified by the
+enclosing {\element{element}} element, where the local part {\llquote{name}} is the value
+of the {\attribute{name}{attribute}} attribute (its namespace URI given by the value the
+optional {\attribute{ns}{attribute}} attribute), and {\llquote{value}} is either the
+result of presentation on the content of the {\element{attribute}} element or (iff that is
+empty), the value of the {\xpath} expression in the optional
+{\attribute{select}{attribute}} attribute.
+
+To navigate the {\omdoc} structure to be transformed, we have two elements: the
+{\element{recurse}} allows to specify a fragment continues presentation on a sub-element,
+and the {\element{map}} element that maps directives over a set of sub-elements.  The
+{\eldef{recurse}} element is empty, and can have the attribute
+{\attribute{select}{recurse}}, which contains an {\xpath}~\cite{ClaDeR:xpath99} expression
+specifying a set of {\omdoc} elements the presentation should continue with recursively.
+If this attribute is missing, presentation continues on the children as in
+{\mylstref{phrase}}. The {\eldef{map}} element (see~\mylstref{presentation} for an
+example) has the optional attribute {\attribute{select}{map}} and contains a combination
+of the transformation directive elements {\element{element}}, {\element{text}},
+{\element{recurse}}, {\element{map}} after an optional {\element{separator}} child. The
+{\element{map}} element directs the presentation engine to map the body
+directives\footnote{i.e. those elements after the {\element{separator}} element} over the
+list of elements specified by the {\xpath} expression in the {\attribute{select}{map}},
+between any two elements, the result of styling the body of the {\element{separator}}
+element is inserted between the result node sets. In {\mylstref{presentation}} the
+{\element{map}} element recursively styles the children of the
+{\element[ns-elt=om]{OMBVAR}} element and separates them by commata.  Furthermore, the
+{\element{map}} element can have the attributes {\attribute{precedence}{map}},
+{\attribute{lbrack}{map}}, and {\attribute{rbrack}{map}} to specify brackets (with
+precedence-based elision) around the result. This is useful for generating argument
+groups.
+
+  Note that this {\omdoc}-internalized subset of {\xslt} restricts the expressivity of the
+  presentation style by leaving out the computational features of {\xslt}.  Firstly, the
+  infrastructure for iteration, recursion, variable declaration, \ldots is not present,
+  and secondly, path expressions are restricted to pure {\xpath}~\cite{ClaDeR:xpath99},
+  leaving out all {\xslt} extensions (e.g. functions calls), again leaving us with a more
+  declarative subset of {\xslt}.
+\end{tsection}
+
+\begin{tsection}[id=presentation,short=Notation of Symbols]{Specifying the Notation of Symbols}
+  In this section we discuss the problem of specifying the notation of mathematical
+  symbols in {\omdoc}. The approach taken is very similar to the one for {\omdoc} elements
+  presented in the previous section. The mathematical concepts and symbols introduced in
+  an {\omdoc} document (by {\element{symbol}} elements or implicitly by abstract data
+  types) often carry typographic conventions that cannot be determined by general
+  principles alone. Therefore, these need to be specified, so that pleasing presentations
+  can be generated.
+  
+  We have already seen the use of {\element{style}} and {\element{xslt}} elements for
+  specifying the presentation of general {\omdoc} elements in the last section. Here we
+  will present yet another way to specify presentation information that is specialized to
+  notations of mathematical symbols.  The main idea is to specify the properties of
+  mathematical symbols in relation to the representations of their children and siblings.
+  
+\begin{tsubsection}[id=pres-templates]{Specifying Notation via Templates}
+  Let us build up our intuition by an example: For the notation information for the
+  universal quantifier we would use an {\xslt} template like the one shown in
+  {\mylstref{template}}.
+\begin{lstlisting}[label=lst:template,language=XSLT,
+  caption={An {\xslt} Template for the Universal Quantifier},mathescape,
+  index={xsl:template,xsl:text,xsl:for-each,xsl:apply-templates,xsl:if}]
+<xsl:template match="OMBIND[OMS[position()=1 and @name='forall' and @cd='quant1']]">
+  <xsl:text>$\forall$</xsl:text>
+  <xsl:for-each select="OMBVAR"/>
+   <xsl:apply-templates/>
+   <xsl:if test="position()!=last()">,</xsl:if>
+  </xsl:for-each>
+  <xsl:text>.</xsl:text>
+   <xsl:apply-templates select="*[3]"/>
+</xsl:template>
+\end{lstlisting}
+  The {\xpath} expression in the {\attributeshort{match}} attribute (the
+  {\twindef{template}{head}}) specifies that this template acts as a presentation rule for
+  {\element[ns-elt=om]{OMBIND}} elements, where the first child is of the form
+  {\snippet{<OMS cd="quant1" name="forall"/>}}. Applied to such a node, the body of the
+  template will be executed: it will print the quantifier $\forall$, then the bound
+  variables as a comma-separated list (for each of the children of
+  {\element[ns-elt=om]{OMBVAR}} it recursively applies {\xslt} templates from the style
+  sheet), print a dot, and then recurse on the third child of the
+  {\element[ns-elt=om]{OMBIND}} element.  Thus this template will print the {\openmath}
+  expression below as $\allcdot{P,Q}{P\vee Q\Rightarrow Q\vee P}$ assuming appropriate
+  templates for implication and disjunction.
+
+\begin{lstlisting}[label=lst:or-comm,index={OMBIND,OMS,OMBVAR,OMV,OMA}]
+<OMBIND>
+  <OMS cd="quant1" name="forall"/>
+  <OMBVAR><OMV name="P"/><OMV name="Q"/></OMBVAR>
+  <OMA>
+    <OMS cd="logic1" name="implies"/>
+    <OMA><OMS cd="logic1" name="or"/>
+      <OMV name="P"/>
+      <OMV name="Q"/>
+    </OMA>
+    <OMA><OMS cd="logic1" name="or"/>
+      <OMV name="Q"/>
+      <OMV name="P"/>
+    </OMA>
+  </OMA>
+</OMBIND>
+\end{lstlisting}
+
+  To annotate a symbol with notation information {\omdoc} supplies the
+  {\eldef{presentation}} element. It is a top-level element whose
+  {\attribute{for}{presentation}} attribute points to the symbol in question. It contains
+  a multilingual {\element{CMP}} group that allows to specify the notation\footnote{Of
+    course in the content markup in {\omdoc}, this looks somewhat awkward, since the
+    representation relies on the fact that it will be rendered in the correct way. In the
+    source, the whole markup looks somewhat circular.}.  Like the {\element{omstyle}}
+  element, it has children that specify the presentation: The {\element{xslt}} element can
+  be used to literally include the body of the template, and the {\element{style}} can
+  express the presentation directives natively in {\omdoc}. In {\mylstref{presentation}}
+  we have juxtaposed the presentational content from {\mylstref{template}} in
+  {\element{xslt}} and {\element{style}} elements. Note that the directives in their body
+  share much of the structure; the directives in the {\element{style}} are somewhat more
+  succinct. The main difference to the {\xslt} template in {\mylstref{template}} is the
+  specification of the template head: the attributes in the {\element{presentation}}
+  element carry all the information necessary to identify the application conditions.
+
+\begin{lstlisting}[label=lst:presentation,language=XSLT,
+  caption={A Simple {\element{presentation}} Element for the Universal Quantifier},mathescape,
+  index={xsl:template,xsl:text,xsl:for-each,xsl:apply-templates,xsl:if}]
+<presentation for="#quant1.forall" role="binding">
+  <CMP>We write 
+    <OMOBJ>
+      <OMBIND><OMS cd="quant1" name="forall"/>
+        <OMBVAR><OMV name="X></OMBVAR>
+        <OMV name="A"/>
+      </OMBIND>
+    </OMOBJ>
+    for the phrase "A holds for all X". 
+  </CMP> 
+  <xslt format="default" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:text>$\forall$</xsl:text>
+    <xsl:for-each select="OMBVAR"/>
+     <xsl:apply-templates/>
+     <xsl:if test="position()!=last()">,</xsl:if>
+    </xsl:for-each>
+    <xsl:text>.</xsl:text>
+    <xsl:apply-templates select="*[3]"/>
+  </xslt>
+  <style format="html">
+    <text>&#8704;</text>
+    <map select="OMBVAR/*">
+      <separator><text>,</text></separator>
+      <recurse/>
+    </map>
+    <text>.</text>
+    <recurse select="*[3]"/>
+  </style>
+  <style format="pmml">
+    <element crid="." name="mrow" ns="http://www.w3.org/1998/Math/MathML">
+      <element crid="*[1]" cr="yes" name="mo"><text>&#8704;</text></element>
+      <element name="mrow" crid="*[2]">
+        <map select="OMBVAR/*">
+          <separator>
+            <element name="mo" cr="yes">
+              <attribute name="separator"><text>true</text></attribute>
+              <text>,</text>
+            </element>
+          </separator>
+          <recurse/>
+        </map>
+      </element>
+      <recurse select="*[3]"/>
+    </element>
+  </style>
+</presentation>
+\end{lstlisting}
+
+  The {\element{element}} element can have the {\attribute{crid}{element}} attribute which
+  specifies the role of the generated element in parallel markup of mathematical formulae
+  (see~\mysubsecref{math-markup:mathml}). The value of this element (if present) must be a
+  {\xpath} fragment (see~\cite{ClaDeR:xpath99}) pointing to the element in the source that
+  semantically corresponds to the generated element (see
+  {\mylstref{presentation}}\footnote{There the top-level generated {\snippet{mrow}}
+    element corresponds to the application as specified by the path ``{\snippet{.}}'',
+    whereas its first child corresponds to the quantifier symbol, and the bound variables
+    correspond to each other.}). Finally, the {\element{element}} element can carry the
+  {\attribute{cr}{element}} attribute, which (if its value is {\attval{yes}{cr}{element}})
+  instructs the presentation system to to set an {\snippet{xlink:href}} attribute on the
+  result element that acts as a {\indextoo{cross-reference}} to the symbol declaration.
+
+\end{tsubsection}
+
+
+\begin{tsubsection}[id=pres-declarative]{Specifying Notation via Syntactic Roles}
+  Note that hand-coding {\xslt}-templates is a tedious and error-prone process, and that
+  we need a template for each output format (e.g. {\LaTeX}, {\html}, {\pmathml}, ASCII),
+  and even various output languages (for instance the greatest common divisor of two
+  integers is expressed by the symbol $gcd$ in English but $ggT$ (``gr\"o{\ss}ter
+  gemeinsamer Teiler'') in German). Obviously, the respective templates for all of these
+  transformations share a great deal of structure (in our example, they only differ in the
+  representation of the glyph for the quantifier itself). 
+
+  Therefore {\omdoc} goes another step and supplies a set of abbreviations that are
+  sufficient for most presentation applications via the {\element{use}} elements that can
+  occur as children of {\element{presentation}} elements. The user only needs to specify
+  the relevant information in the {\element{use}} elements and a separate translation
+  process generates the needed {\xslt} templates from that (see
+  {\mychapref{transform-xsl}}). The {\eldef{use}} elements make use of the same symbolic
+  attributes and specialize (over-define) these attributes according to the respective
+  format and language.  The following set of attributes are particular to the
+  {\element{presentation}}, since they are independent of the language and the output
+  format.
+
+\begin{description}
+\item[{\attribute{for}{presentation}}, {\attribute{xref}{presentation}},
+  {\attribute{class}{presentation}}] (see the specification for {\element{omstyle}} in the
+  last section)
+\item[{\attribute{role}{presentation}}] This attribute specifies to which roles of
+  the symbol the {\element{presentation}} element applies. The value of this
+  attribute can be one of
+  \begin{description}
+  \item[{\attval{applied}{role}{presentation}}] for situations, where the symbol
+    occurs as a function symbol that is applied to a list of arguments, i.e. as
+    the first child of an {\element[ns-elt=om]{OMA}} or an {\element[ns-elt=m]{apply}} element.
+  \item[{\attval{binding}{role}{presentation}}] for situations, where the symbol
+    occurs as a binding symbol, i.e as the first child of an {\element[ns-elt=om]{OMBIND}}
+    element or an {\element[ns-elt=m]{apply}} element that is followed by an
+    {\element[ns-elt=m]{bvar}} element.
+  \item[{\attval{key}{role}{presentation}}] for situations, where the symbol occurs as a
+    key in an attribution, i.e. as a child of an {\element[ns-elt=om]{OMATTR}} element at
+    an odd position ({\cmathml} does not have the attribution construct).
+  \end{description}
+In the examples in {\myfigref{function-style}} we have assumed the head to be an
+{\element[ns-elt=om]{OMA}} element (for functional application). It can also be an
+{\element[ns-elt=om]{OMBIND}} as in the case of a quantifier in
+{\myfigref{ombind-presentation}}.
+\item[{\attribute{fixity}{presentation, use}}] This optional attribute can be one of the
+  keywords {\attval{prefix}{fixity}{presentation}} (the default),
+  {\attval{infix}{fixity}{presentation}}, {\attval{postfix}{fixity}{presentation}}, and
+  {\attval{assoc}{fixity}{presentation}}. The value {\attval{assoc}{fixity}{presentation}}
+  has two variants: {\attval{infixl}{fixity}{presentation}} and
+  {\attval{infixr}{fixity}{presentation}}, which have the same presentation;
+  {\attval{infixl}{fixity}{presentation}} is used for a binary infix operator that
+  associates to the left like the list constructor in Standard ML,
+  {\attval{infixr}{fixity}{presentation}} is the right-leaning analogon. 
+
+  If the {\attribute{fixity}{presentation, use}} attribute is given, then it determines
+  the placement of the symbol specified in the {\attribute{for}{presentation}}
+  attribute. For {\attval{prefix}{fixity}{presentation}} it is placed in front of the
+  arguments, (this is the generic mathematical function notation). For
+  {\attval{postfix}{fixity}{presentation}} the function is put behind the arguments, e.g.
+  for derivatives: $f'$. The case {\attval{infix}{fixity}{presentation}} is reserved for
+  binary operators, where the function is inserted between the two arguments. Finally,
+  {\attval{assoc}{fixity}{presentation}} is used for associative operators like addition,
+  it puts the function symbol between any two arguments.
+  
+  Note that {\attval{infix}{fixity}{presentation}} is almost a special case of
+  {\attval{assoc}{fixity}{presentation}}, but since it is reserved for binary
+  operators, it disregards any arguments but the first two.
+\item[{\attribute{bracket-style}{presentation}}] The
+  {\attribute{fixity}{presentation, use}} information can be combined with the
+  bracketing style, which can be either
+  {\attval{lisp}{bracket-style}{presentation}} ({\snippetin{LISP}}-style brackets) or
+  {\attval{math}{bracket-style}{presentation}} (generic mathematical function
+  notation which is the default).
+  
+  {\Myfigref{function-style}} shows some combinations of attributes and their
+  results on the function style.
+\item[{\attribute{precedence}{presentation}}] allows us to specify the operator precedence
+  in order to elide unnecessary brackets. The {\omdoc} presentation system orients itself
+  on the {\scsys{Prolog}} standard: lower precedences mean stronger binding, and brackets
+  can be omitted. If we set the default precedence to 1000, and other precedences as
+  specified in {\myfigref{precedence}}, then the formulae below are presented as $(x+2)^2$
+  and $x+y^2$, respectively.
+  \begin{center}
+\begin{lstlisting}[numbers=none,index={OMA,OMS,OMV}]
+ <OMA>                                     <OMA>
+   <OMS cd="arith1" name="power"/>           <OMS cd="arith1" name="plus"/>   
+   <OMA>                                     <OMV name="x"/>
+     <OMS cd="arith1" name="plus"/>          <OMA>
+     <OMV name="x"/>                           <OMS cd="arith1" name="power"/>
+     <OMV name="y"/>                           <OMV name="y"/>
+   </OMA>                                      <OMI>2</OMI>
+   <OMI>2</OMI>                              </OMA>
+ </OMA>                                    </OMA>
+\end{lstlisting}
+\end{center}
+\begin{myfig}{precedence}{Common Operator Precedences}
+  \begin{tabular}{|l|l|l|}\hline
+    Precedence & Operators                  & Comment\\\hline\hline
+    200    & +,-                        & unary \\\hline
+    200    & $\hat{}$                   & exponentiation \\\hline
+    400    & $*,\land,\cap$             & multiplicative \\\hline
+    500    & $+,-,\lor,\cup$            & additive\\\hline
+    600    & /                          & fraction \\\hline
+    700    & $=, \ne, \leq, <, >, \geq$ & relation\\\hline
+  \end{tabular}
+\end{myfig}
+\end{description}
+The next set of attributes can occur both in {\element{presentation}} and
+{\element{use}} elements. If they occur in both, then the values of those
+specified on the {\element{use}} elements take precedence over those specified in
+the dominating {\element{presentation}} element. 
+\begin{description}
+\item[{\attribute{lbrack}{presentation, use}}/{\attribute{rbrack}{presentation, use}}]
+  These two attributes handle the brackets to be used in presentation of a complex
+  expression.  They will be used unless elided according to the precedence.
+\item[{\attribute{separator}{presentation, use}}] This specifies the separator in
+  the argument list of a function. The default for {\attribute{separator}{presentation, use}} is
+  the {\indextoo{comma}}.  See {\myfigref{function-style}} for some combinations.
+  \begin{myfig}{function-style}{Attribute-Combination and Function Style}
+  \begin{tabular}{|c|c|c||c|}\hline
+     {\snippet{fixity}}  & {\snippet{bracket-style}}  & {\snippet{separator}}  & yields       \\\hline\hline
+     {\snippet{prefix}}  & {\snippet{lisp}} & `` '' & $ (f\; 1\; 2\; 3)$ \\\hline
+     {\snippet{postfix}} & {\snippet{lisp}} & `` '' & $(1\; 2\; 3\; f)$  \\\hline
+     {\snippet{prefix}}  & {\snippet{math}} & ``{\snippet{,}}'' &$f(1,2,3)$  \\\hline
+     {\snippet{postfix}} & {\snippet{math}} & ``{\snippet{,}}'' &$(1,2,3)f$ \\\hline\hline
+     \multicolumn{4}{|c|}{assuming {\snippet{lbrack="("}} and {\snippet{rbrack=")"}}}\\\hline
+  \end{tabular}
+  \end{myfig}
+\item[{\attribute{crossref-symbol}{presentation, use}}] This attribute specifies to which
+  parts of the symbol's presentation {\indextoo{cross-reference}s} should be attached to:
+  in some formats like {\html}, and recently also in {\LaTeX} (thanks to the
+  {\snippetin{hyperref.sty}} package), it may be useful to attach a hyperlink from the
+  presentation of the symbol to its definition.  Some symbols are constructed by using the
+  {\attribute{lbrack}{presentation, use}} and {\attribute{rbrack}{presentation, use}}, or
+  the {\attribute{separator}{presentation, use}} attributes as part of the symbol
+  presentation. For instance, in the notation $(a,b)$ for pairs, the binary function
+  symbol for pairing is really composed of three parts ``('', ``)'', and ``,'', which
+  should all be cross-referenced. The attribute's values
+  {\attval{no}{crossref-symbol}{presentation}},
+  {\attval{yes}{crossref-symbol}{presentation}},
+  {\attval{brackets}{crossref-symbol}{presentation}},
+  {\attval{separator}{crossref-symbol}{presentation}},
+  {\attval{lbrack}{crossref-symbol}{presentation}},
+  {\attval{rbrack}{crossref-symbol}{presentation}}
+  {\attval{all}{crossref-symbol}{presentation}} can be used to specify this behavior.
+  {\attval{no}{crossref-symbol}{presentation}} means cross-referencing is forbidden,
+  {\attval{yes}{crossref-symbol}{presentation}} -- which is the default value -- means
+  cross-referencing only on the print-form of the function symbol,
+  {\attval{lbrack}{crossref-symbol}{presentation}},
+  {\attval{rbrack}{crossref-symbol}{presentation}},
+  {\attval{brackets}{crossref-symbol}{presentation}}, only on the left/right/both
+  brackets, {\attval{separator}{crossref-symbol}{presentation}}, on the separator, and
+  finally {\attval{all}{crossref-symbol}{presentation}} on all presentation parts.
+  
+  In {\myfigref{ombind-presentation}}, the effect of the default
+  {\attval{yes}{crossref-symbol}{presentation}} can be seen in the lower part of
+  the figure: the {\LaTeX} and the {\html} presentations have attached hyperlinks
+  to the representation of the universal quantifier.
+\end{description}
+
+\begin{myfig}{ombind-presentation}
+{Notation for {\snippet{forall}} (cf. {\mylstref{template}}) using {\snippet{presentation}}}
+\setbox0=\hbox{\begin{minipage}{5cm}
+\begin{lstlisting}[frame=none,numbers=none,index={presentation,use}]
+<presentation for="#forall" 
+              role="binding"    
+              separator=".">     
+ <use format="TeX">\forall</use>
+ <use format="html">&#8704;</use>
+</presentation>                 
+\end{lstlisting}
+\end{minipage}}
+\setbox1=\hbox{\begin{minipage}{5cm}
+\begin{lstlisting}[frame=none,numbers=none,index={OMBIND,OMS,OMBVAR,OMV}]
+<OMBIND>
+  <OMS cd="quant1" name="forall"/>
+  <OMBVAR>
+    <OMV name="X"/>
+  </OMBVAR>
+  <OMS cd="logic1" name="true"/>
+</OMBIND>
+\end{lstlisting}
+\end{minipage}}
+\setbox2=\hbox{\footnotesize\begin{tabular}{ll}
+      \LaTeX: & \verb+\href{../ocd/logic1.ps#true}{\forall}X.+\\
+      & \verb+\href{../ocd/logic1.ps#true}{{\sf true}}+\\
+      \html: & \snippet{<a href="../ocd/logic1.html\#forall">\&\#8704;</a> X.}\\
+      &\snippet{<a href="../ocd/logic1.html\#true"><b>true</b></a>}
+\end{tabular}}
+\begin{tabular}{|c|c|}\hline
+  Notation specification & Example\\\hline
+  \box0 & \box1 \\\hline
+ \multicolumn{2}{|p{11cm}|}{Using {\xslt} templates induced from the 
+   {\element{presentation}} element on the {\openmath} expression yields
+  $\allcdot{X}{\sf true}$, where the glyph  $\forall$ carries a
+  hyperlink\footnote{given a 
+  suitable output device like a browser or a recent version of {\snippetin{dvips}}} to
+  it definition, as the {\attribute{crossref-symbol}{presentation}} on the
+  {\element{presentation}} element has the default value
+  {\attval{yes}{crossref-symbol}{presentation}}. Internally, the hyperlinks are
+  format-dependent, we have: 
+  \begin{center}\box2\vspace*{-2ex}\end{center}} \\\hline
+\end{tabular}
+\end{myfig}
+The next set of attributes can only appear on the {\element{use}} attribute, since
+they are only meaningful for selected output formats. 
+
+\begin{description}
+\item[{\attribute{format}{use, xslt, style}}, {\attribute[ns-attr=xml]{lang}{use, xslt,
+      style}}, {\attribute{requires}{use, xslt, style}}] (see the specification
+  for {\element{xslt}} and {\element{style}} above).
+\item[{\attribute{element}{use}}, {\attribute{attributes}{use}},
+  {\attribute{bracket-style}{use}}] These attributes simplify the specification of
+  notations in {\xml}-based formats like {\mathml}\index{mathml@{\mathml}}. The
+  {\attribute{element}{use}} attribute contains the name and the
+  {\attribute{attributes}{use}} the attribute declarations of an {\xml} element that takes
+  the place of the brackets specified in the attributes {\attribute{lbrack}{presentation,
+      use}} and {\attribute{rbrack}{presentation, use}}. If the attribute
+  {\attribute{fixity}{use}} is used on a {\element{use}} element in conjunction with the
+  {\attribute{element}{use}} and {\attribute{attributes}{use}} attributes, then it
+  specifies the position of the element brackets rather than the brackets specified in the
+  {\attribute{lbrack}{presentation, use}} and {\attribute{rbrack}{presentation, use}}
+  attributes.
+    
+  For instance, the {\twintoo{binomial}{coefficient}} is some presented as $\left({n\atop
+      m}\right)$ (spoken ``$n$ choose $m$'') and represented as
+\begin{lstlisting}
+  <mfrac linethickness='0'><mi>n</mi><mi>m</mi></frac>
+\end{lstlisting}
+  in {\pmathml}. The first {\element{presentation}} element in {\mylstref{binomial}} shows
+  a {\element{presentation}} element that has this effect. The second
+  {\element{presentation}} element in {\mylstref{binomial}} shows a notation declaration,
+  which applied to
+\begin{lstlisting}
+<OMA><OMS cd="arith" name="power"/>
+  <OMI>3</OMI><OMI>5</OMI>
+</OMA>
+\end{lstlisting}
+  would yield {\snippet{3<sup>5</sup>}} for the target {\snippet{html}}.
+\end{description}
+
+
+\begin{lstlisting}[label=lst:binomial,
+  caption={Presentation for Binomial Coefficients},
+  index={presentation,use}]
+<presentation for="#binomial" role="applied">
+  <use format="default" fixity="infix">choose</use> 
+  <use format="TeX" lbrack="\bigl({" rbrack="}\bigr)">\atop</use>
+  <use format="pmml" element="mfrac" attributes="linethickness='0'"/>
+</presentation>
+
+<presentation for="#power" role="applied" fixity="infix" 
+   crossref-symbol="no" precedence="200" bracket-style="lisp">
+  <use format="html" fixity="prefix" bracket-style="math" element="sup"/>
+  <use format="TeX">^</use>
+  <use format="pmml" element="msup" fixity="prefix"/>
+</presentation>
+\end{lstlisting}  
+
+Conceptually, the attributes of the {\element{presentation}} and {\element{use}}
+elements form a meta-language for {\xslt} style sheets that aims at covering the
+most common notations succinctly and legibly. In situations, where this language
+does not suffice, we must fall back to to {\element{style}} or even
+{\element{xslt}} elements.
+\end{tsubsection}
+\end{tsection}
+
+\begin{tsection}[id=pres-bound]{Presenting Bound Variables}
+  
+  As we have seen in {\mysecref{sem-var}}, the presentation approaches for symbols do not
+  work for (bound) variables\twin{bound}{variable}\footnote{We say that an
+    {\element[ns-elt=om]{OMBIND}} element binds\index{binding} a variable {\snippet{<OMV
+        name="x"/>}}, iff this {\element[ns-elt=om]{OMBIND}} element is the nearest one,
+    such that {\snippet{<OMV name="x"/>}} occurs in (second child of the
+    {\element[ns-elt=om]{OMATTR}} element in) the {\element[ns-elt=om]{OMBVAR}} child
+    (this is the {\twindef{defining}{occurrence}} of {\snippet{<OMV name="x"/>}}). For
+    content {\mathml}, the definition is analogous, only that an
+    {\element[ns-elt=m]{apply}} element with {\element[ns-elt=m]{bvar}} child takes the
+    role of the {\element[ns-elt=om]{OMBIND}} and {\element[ns-elt=om]{OMBVAR}}
+    elements.}, as there is no independent place to put the {\element{presentation}}
+  element. In this section, we will present the {\omdoc} solution to this problem. The
+  main idea is simply to annotate {\twintoo{defining}{occurrence}s} of variables with
+  notation information. Without this, we are forced to use the ASCII variable name in
+  {\openmath} and a translation of the {\pmathml} in the {\element[ns-elt=m]{ci}} element
+  for other formats in {\mathml}. This is hardly adequate for modern mathematics, where
+  variables are numbered, decorated with primes or change marks, and cast in other colors
+  or font families for better recognition.
+  
+  In {\omdoc} we follow the spirit of the {\openmath} standard~\cite{BusCapCar:2oms04}
+  which suggests to annotate (via {\element[ns-elt=om]{OMATTR}} parts of) the {\openmath}
+  objects with notation information by {\element{presentation}} elements. Unlike
+  {\openmath}, we restrict this practice to {\twintoo{defining}{occurrence}s} of
+  {\twintoo{bound}{variable}s}, since all the other constructs can be handled with the
+  methods introduced above.  We use the symbol {\snippet{<OMS cd="omdoc"
+      name="notation"/>}} symbol to identify the following object as a notation
+  declaration and the {\element[ns-elt=om]{OMFOREIGN}} element to hold it.
+
+\begin{erratum}[reported-by=Alberto Gonzales Palomo,date=2006-10-06]{The {\texttt{for}}
+    attribute should be {\texttt{\#X4}} instead of {\texttt{\#X}} in listings 19.5 and 19.6}
+\begin{lstlisting}[language=OpenMath,label=lst:notation-om,
+    caption={Notation for Bound Variables in {\openmath}},
+    index={OMOBJ,OMBIND,OMS,OMBVAR,OMV,OMATTR,OMATP}]
+<OMOBJ>                            
+  <OMBIND>                          
+    <OMS cd="quant1" name="forall"/> 
+    <OMBVAR>                         
+      <OMATTR>                        
+        <OMATP>                        
+          <OMS cd="omdoc" name="notation"/>
+          <OMFOREIGN encoding="application/omdoc+xml">
+            <presentation for="#X"> 
+              <use format="TeX">X_4</use>
+              <use format="pmml">
+                <msub><mi>X</mi><mn>4</mn></msub>
+              </use>
+              <use format="html">X<sub>4</sub></use>
+            </presentation>
+          </OMFOREIGN>
+        </OMATP>
+        <OMV name="X4"/>                
+      </OMATTR>                        
+    </OMBVAR>
+    <OMA><OMS cd="relation1" name="eq"/>
+      <OMV name="X4"/>
+      <OMV name="X4"/>
+    </OMA>
+  </OMBIND>                         
+</OMOBJ>
+\end{lstlisting}
+  To represent binding objects in {\cmathml} we follow a very similar strategy, using the
+  {\element[ns-elt=m]{semantics}} element to associate the defining occurrence of the
+  bound variable with its notation declaration, which is embedded into the
+  {\element[ns-elt=m]{annotation-xml}} child.
+
+\begin{lstlisting}[language=MathML,label=lst:notation-mathml,
+     caption={Notation for Bound Variables in {\cmathml}},
+     index={math,apply,forall,bvar,ci,csymbol}]
+<m:math>
+  <m:apply>  
+    <m:forall/>
+    <m:bvar>
+      <m:semantics>
+        <m:ci><m:msub><m:mi>X</m:mi><m:mn>4</m:mn></m:msub></m:ci>
+        <m:annotation-xml encoding="application/xml+OMDoc"
+          definitionURL="http://omdoc.org/omdoc.omdoc#notation">
+          <presentation for="#X4"> 
+            <use format="TeX">X_4</use>
+            <style format="pmml">
+              <element name="msub" ns="http://www.w3.org/1998/Math/MathML">
+                <element name="mi" ns="http://www.w3.org/1998/Math/MathML">
+                  <text>X</text>
+                </element>
+                <element name="mn" ns="http://www.w3.org/1998/Math/MathML">
+                  <text>4</text>
+                </element>
+              </element>
+            </style>
+            <style format="html">
+              <text>X</text>
+              <element name="sub" ns="http://www.w3.org/1999/xhtml">
+                <text>4</text>
+              </element>
+            </style>
+          </presentation>
+        </m:annotation-xml>
+      </m:semantics>
+    </m:bvar>
+    <m:apply><m:eq/><m:cn>4</m:cn><m:cn>4</m:cn></m:apply>
+  </m:apply>
+</m:math>
+\end{lstlisting}
+\end{erratum}
+With these declarations, all the variables in the scope of the universal quantifier
+  would be represented as $X_4$, yielding $\allcdot{X_4}{X_4=X_4}$ which is exactly what
+  we wanted. Note that if we want to specify notations for function variables ({\omdoc}
+  does not prevent the user from doing this), we need to also specify notations for the
+  {\twintoo{non-applied}{occurrence}s} of the symbol --- otherwise a fallback using the
+  variable name has to be used. For instance, to make the (false) conjecture that all
+  relations are symmetric we could use the following representation:
+\begin{lstlisting}[language=OpenMath,label=notation-om-function,
+    caption={Notation for bound variables in {\openmath}},
+    index={OMOBJ,OMBIND,OMS,OMBVAR,OMV,OMATTR,OMATP}]
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMBIND>                          
+    <OMS cd="quant1" name="forall"/> 
+    <OMBVAR>                         
+      <OMATTR>                        
+        <OMATP>                        
+          <OMS cd="omdoc" name="notation"/>
+          <OMFOREIGN encoding="application/omdoc+xml">
+            <presentation xmlns="http://www.mathweb.org/omdoc"
+                          for="#R" role="applied" precedence="500" fixity="infix"> 
+              <use format="TeX">\prec</use>
+              <use format="pmml|html">&#x022DE;</use>
+            </presentation>
+            <presentation xmlns="http://www.mathweb.org/omdoc" for="#R"> 
+              <use format="TeX">{}\prec{}</use>
+              <use format="pmml|html">&#x022DE;</use>
+            </presentation>
+          </OMFOREIGN>
+        </OMATP>
+        <OMV name="R"/>                
+      </OMATTR>
+      <OMV name="X"/>
+    </OMBVAR>
+    <OMA><OMV name="R"/><OMV name="X"/><OMV name="X"/></OMA>
+  </OMBIND>                         
+</OMOBJ>
+\end{lstlisting}
+This would give us the presentation $\allcdot{{}\prec{},X}{X\prec X}$. Here, the first
+occurrence of the variable ${}\prec{}$ is handled by the second notation declaration (it
+does not occur in applied position), the second occurrence of $\prec$ is in applied
+position, so the second notation declaration governs this and puts it in to infix
+position. Note that while {\omdoc} allows to specify this kind of notation declarations,
+they should be used with great care and discretion.  In this particular case, the infix
+notation of $\prec$ de-emphasizes the variable nature, and might lead to confusion;
+moreover, the particular choice of the glyph $\prec$ may suggest irreflexivity, which may
+or may not be intended.
+\end{tsection}
+\end{tchapter}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  xsl omstyle xref  xslt pmml cmml mathematica tex lang en PCDATA
+% LocalWords:  lst linebreak OMSTR em br href om omlet cd quant comm qtpres gr
+% LocalWords:  ter gemeinsamer Teiler sen ta tion ombind arith lbrack rbrack mi
+% LocalWords:  crossref hyperref sty dvips mathml mfrac linethickness omclass
+% LocalWords:  frac lt gt msup pres mroot var bvar ci OMATP msub mn eq attribs
+% LocalWords:  csymbol definitionURL cn mathescape sem OMFOREIGN qtstylen crid
+% LocalWords:  cr ns mrow xlink rt mo xmlns attr elt infixl infixr CDATA
+% LocalWords:  recurse omdoc html CMP qtstyle OMBVAR forall OMV OMA OMOBJ gcd
+% LocalWords:  ggT OMATTR Prolog OMI

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary polyr.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary polyr.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD contains operators to deal with polynomials and more precisely 
+    Recursive Polynomials.
+    Note that polynomials are regarded as univariates in their most
+    significant variable (as defined by the order in PolynomialRingR:
+    the first variable to appear is the most significant),
+    with monomials in decreasing order of exponent, and coefficients
+    being polynomials in the rest of the variables. This means that 
+    polynomials have a unique representation, except for the fact that
+    <span class="legacy">yz \in Z[x,y,z]</span> could also be represented as
+    <span class="legacy">x^0yz</span>. This latter is
+    discouraged, but currently not expressly forbidden.
+  </div></div>
+
+
+<div class="omtext" id="CDComment-10">
+<p>
+    Original OpenMath v1.1 Poly 1997
+    Update to Current Format 1999-07-07 DPC
+    Move the names of rings to setname1.ocd 1999-11-09 JHD
+    Delete those items moved to the new poly.ocd 1999-11-14 JHD
+    Convert to recursive polynomials 1999-11-20 JHD
+  </p>
+</div>
+
+<div class="omtext" id="CDComment-11">
+<p>
+    Definition of data-structure constructors
+  </p>
+</div>
+
+<div class="omtext" id="CDComment-12">
+<p>
+    The polynomial <span class="legacy">x^2*y^6 + 3*y^5</span> can be conceptually encoded as
+    <span class="legacy">poly_r_rep(x,term(2,poly_r_rep(y,term(6,1))),term(0,poly_r_rep(y,term(5,3))))</span>
+    It lies in <span class="legacy">polynomial_ring_r(Z,x,y)</span> (and other rings, of course)
+
+    The polynomial <span class="legacy">2*y^3*z^5 + x + 1</span> can be conceptually encoded as
+    <span class="legacy">poly_r_rep(x,term(1,1),term(0,poly_r_rep(y,term(3,poly_r_rep(z,term(5,2))),term(0,1))))</span></p>
+</div>
+
+<div class="symbol" id="term">
+<div class="titlebox">
+<span class="titleword">Concept</span>term</div>
+    A constructor for monomials, that is products of powers and
+    elements of the base ring.
+    First argument is from N (the exponent of the variable
+    implied by an outer <span class="legacy">poly_r_rep</span>)
+    second argument is a coefficient (from the ground field, or a
+    polynomial in lesser variables).
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid88525"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id88528" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid88536">ℕ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid88543">PolynomialR</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid88547">MonomialR</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid88525" xlink:type="simple"><OMA xlink:href="MCRid88528" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid88530" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid88536" xlink:type="simple"/><OMV name="PolynomialR" xlink:href="MCRid88543" xlink:type="simple"/><OMV name="MonomialR" xlink:href="MCRid88547" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="poly_r_rep">
+<div class="titlebox">
+<span class="titleword">Concept</span>poly_r_rep</div>
+    A constructor for the representation of polynomials.
+    The first argument is the polynomial variable, the rest are
+    monomials (in decreasing order of exponent). 
+</div>
+
+<div class="example" id="poly_r_rep-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The polynomial <span class="legacy">x^2*y^6 + 3*x^0*y^5 = x^2*y^6 + 3*y^5</span> may be 
+    encoded as:
+  </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid112933"><semantics><mrow id="MCRid112936"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#poly_r_rep" xlink:type="simple" id="id112938">poly_r_rep</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid112944">x</mi><mo separator="true">,</mo><mrow id="MCRid112949"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:type="simple" id="id112951">term</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid112957"> 2 </mn><mo separator="true">,</mo><mrow id="MCRid112961"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#poly_r_rep" xlink:type="simple" id="id112963">poly_r_rep</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid112969">y</mi><mo separator="true">,</mo><mrow id="MCRid112974"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:type="simple" id="id112976">term</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid112983"> 6 </mn><mo separator="true">,</mo><mn id="MCRid112986"> 1 </mn></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo separator="true">,</mo><mrow id="MCRid112992"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:type="simple" id="id112994">term</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid113001"> 0 </mn><mo separator="true">,</mo><mrow id="MCRid87949"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#poly_r_rep" xlink:type="simple" id="id87951">poly_r_rep</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid87957">y</mi><mo separator="true">,</mo><mrow id="MCRid87962"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:type="simple" id="id87964">term</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid87970"> 5 </mn><mo separator="true">,</mo><mn id="MCRid87974"> 3 </mn></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid112933" xlink:type="simple"><OMA xlink:href="MCRid112936" xlink:type="simple"><OMS cd="polyr" name="poly_r_rep" xlink:href="MCRid112938" xlink:type="simple"/><OMV name="x" xlink:href="MCRid112944" xlink:type="simple"/><OMA xlink:href="MCRid112949" xlink:type="simple"><OMS cd="polyr" name="term" xlink:href="MCRid112951" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid112957"> 2 </OMI><OMA xlink:href="MCRid112961" xlink:type="simple"><OMS cd="polyr" name="poly_r_rep" xlink:href="MCRid112963" xlink:type="simple"/><OMV name="y" xlink:href="MCRid112969" xlink:type="simple"/><OMA xlink:href="MCRid112974" xlink:type="simple"><OMS cd="polyr" name="term" xlink:href="MCRid112976" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid112983"> 6 </OMI><OMI xlink:type="simple" xlink:href="MCRid112986"> 1 </OMI></OMA></OMA></OMA><OMA xlink:href="MCRid112992" xlink:type="simple"><OMS cd="polyr" name="term" xlink:href="MCRid112994" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid113001"> 0 </OMI><OMA xlink:href="MCRid87949" xlink:type="simple"><OMS cd="polyr" name="poly_r_rep" xlink:href="MCRid87951" xlink:type="simple"/><OMV name="y" xlink:href="MCRid87957" xlink:type="simple"/><OMA xlink:href="MCRid87962" xlink:type="simple"><OMS cd="polyr" name="term" xlink:href="MCRid87964" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid87970"> 5 </OMI><OMI xlink:type="simple" xlink:href="MCRid87974"> 3 </OMI></OMA></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="polynomial_r">
+<div class="titlebox">
+<span class="titleword">Concept</span>polynomial_r</div>
+    The constructor of Recursive Polynomials. The first argument
+    is the polynomial ring containing the polynomial and the second
+    is a <span class="legacy">poly_r_rep</span>.
+</div>
+
+<div class="example" id="polynomial_r-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The polynomial <span class="legacy">x^2*y^6 + 3*x^0*y^5 = x^2*y^6 + 3*y^5</span> in the 
+    polynomial ring with the integers as the coefficient ring and 
+    variables x,y in that order may be encoded as:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid88085"><semantics><mrow id="MCRid88088"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#polynomial_r" xlink:type="simple" id="id88090">polynomial_r</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid88096"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#polynomial_ring_r" xlink:type="simple" id="id88098">polynomial_ring_r</mo><mrow><mo fence="true">(</mo><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid88105">ℤ</mo><mo separator="true">,</mo><mi id="MCRid88111">x</mi><mo separator="true">,</mo><mi id="MCRid88115">y</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo separator="true">,</mo><mrow id="MCRid88120"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#poly_r_rep" xlink:type="simple" id="id88123">poly_r_rep</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid88129">x</mi><mo separator="true">,</mo><mrow id="MCRid88133"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:type="simple" id="id88136">term</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid88142"> 2 </mn><mo separator="true">,</mo><mrow id="MCRid88145"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#poly_r_rep" xlink:type="simple" id="id88148">poly_r_rep</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid88154">y</mi><mo separator="true">,</mo><mrow id="MCRid88158"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:type="simple" id="id88160">term</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid88167"> 6 </mn><mo separator="true">,</mo><mn id="MCRid88170"> 1 </mn></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo separator="true">,</mo><mrow id="MCRid88177"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:type="simple" id="id88179">term</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid88186"> 0 </mn><mo separator="true">,</mo><mrow id="MCRid88189"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#poly_r_rep" xlink:type="simple" id="id88191">poly_r_rep</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid88198">y</mi><mo separator="true">,</mo><mrow id="MCRid88202"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#term" xlink:type="simple" id="id88204">term</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid88210"> 5 </mn><mo separator="true">,</mo><mn id="MCRid88214"> 3 </mn></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid88085" xlink:type="simple"><OMA xlink:href="MCRid88088" xlink:type="simple"><OMS cd="polyr" name="polynomial_r" xlink:href="MCRid88090" xlink:type="simple"/><OMA xlink:href="MCRid88096" xlink:type="simple"><OMS cd="polyr" name="polynomial_ring_r" xlink:href="MCRid88098" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid88105" xlink:type="simple"/><OMV name="x" xlink:href="MCRid88111" xlink:type="simple"/><OMV name="y" xlink:href="MCRid88115" xlink:type="simple"/></OMA><OMA xlink:href="MCRid88120" xlink:type="simple"><OMS cd="polyr" name="poly_r_rep" xlink:href="MCRid88123" xlink:type="simple"/><OMV name="x" xlink:href="MCRid88129" xlink:type="simple"/><OMA xlink:href="MCRid88133" xlink:type="simple"><OMS cd="polyr" name="term" xlink:href="MCRid88136" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid88142"> 2 </OMI><OMA xlink:href="MCRid88145" xlink:type="simple"><OMS cd="polyr" name="poly_r_rep" xlink:href="MCRid88148" xlink:type="simple"/><OMV name="y" xlink:href="MCRid88154" xlink:type="simple"/><OMA xlink:href="MCRid88158" xlink:type="simple"><OMS cd="polyr" name="term" xlink:href="MCRid88160" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid88167"> 6 </OMI><OMI xlink:type="simple" xlink:href="MCRid88170"> 1 </OMI></OMA></OMA></OMA><OMA xlink:href="MCRid88177" xlink:type="simple"><OMS cd="polyr" name="term" xlink:href="MCRid88179" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid88186"> 0 </OMI><OMA xlink:href="MCRid88189" xlink:type="simple"><OMS cd="polyr" name="poly_r_rep" xlink:href="MCRid88191" xlink:type="simple"/><OMV name="y" xlink:href="MCRid88198" xlink:type="simple"/><OMA xlink:href="MCRid88202" xlink:type="simple"><OMS cd="polyr" name="term" xlink:href="MCRid88204" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid88210"> 5 </OMI><OMI xlink:type="simple" xlink:href="MCRid88214"> 3 </OMI></OMA></OMA></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="omtext" id="CDComment-16">
+<p>
+    Polynomial ring constructor
+  </p>
+</div>
+
+<div class="symbol" id="polynomial_ring_r">
+<div class="titlebox">
+<span class="titleword">Concept</span>polynomial_ring_r</div> 
+    The constructor of a recursive polynomial ring. The first argument
+    is a ring (the ring of the coefficients), the rest are the 
+    variables (in order).
+</div>
+
+<div class="example" id="polynomial_ring_r-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid117289"><semantics><mrow id="MCRid117291"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#polynomial_ring_r" xlink:type="simple" id="id117293">polynomial_ring_r</mo><mrow><mo fence="true">(</mo><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid117300">ℤ</mo><mo separator="true">,</mo><mi id="MCRid117306">x</mi><mo separator="true">,</mo><mi id="MCRid117310">y</mi></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid117289" xlink:type="simple"><OMA xlink:href="MCRid117291" xlink:type="simple"><OMS cd="polyr" name="polynomial_ring_r" xlink:href="MCRid117293" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid117300" xlink:type="simple"/><OMV name="x" xlink:href="MCRid117306" xlink:type="simple"/><OMV name="y" xlink:href="MCRid117310" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

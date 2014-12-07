@@ -1,0 +1,25 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module STH
+     SYSTEM http://www.mathweb.org/omdoc/dtd/omdocsth.dtd
+     PUBLIC -//OMDoc//ELEMENTS OMDoc STH V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ELEMENT %omdocsth.theory.qname; 
+      (%omdocdoc.meta.content;(%omdocst.commonname.qname;)*,
+       (%omdocmtxt.CMP.qname;)*,(%omdoc.intheory.class;)*)>
+<!ATTLIST %omdocsth.theory.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %id.attrib;>
+
+<!ELEMENT %omdocsth.imports.qname; 
+          ((%omdocmtxt.CMP.qname;)*%omdoccth.imports.mix;)>
+<!ATTLIST %omdocsth.imports.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %from.attrib;
+          hiding CDATA #IMPLIED
+          type (local|global) "global">
+<!-- hiding is a list of references to symbol ids -->
+
+

@@ -1,0 +1,55 @@
+omdoc{display:block}
+
+omtext,axiom,symbol,assertion,proof,example 
+   {display:block;width:95%;padding:10pt;align:center;
+    margin-top:4pt;margin-bottom:4pt;
+    border-color:#222222;border-width:2pt;border-style:inset}
+
+
+metadata{display:block;width:80%;padding:10pt;align:center;
+    margin-top:4pt;margin-bottom:4pt;
+    border-color:#222222;border-width:2pt;border-style:inset}
+
+Date,Title,Creator,Contributor,Source,Rights,Description
+   {display:block;width:95%;padding:2pt;align:center}
+Title{background-color:#6699cc;
+	color: #ffffff;
+	border-bottom-width: 2px;
+	font-family: verdana, tahoma, century gothic, gothic l, arial, helvetica, sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+	letter-spacing: -2;
+	text-align: left;
+	}
+
+omtext,axiom,symbol{background-color:#93a8f8;align:center}
+
+assertion{border-color:black}
+
+proof,example{margin-left:30pt;width:88%}
+
+assertion{background-color:#e5e5e4}
+false-conjecture{background-color:#CC3300}
+definition{background-color:#e5e5e1}
+example{background-color:#7289f0}
+counterexample{background-color:#CC3300}
+text{margin-left:30pt}
+proof{background-color:#90b3fc}
+exercise{background-color:#5a7ffc;margin-left:30pt}
+code{font-family:courier;background-color:#ffa964;width:60%}
+
+OMOBJ{font-style=oblique}
+OMA:before{content:"("}
+OMA:after{content:")"}
+
+OMBIND:before{content:"("}
+OMBIND:after{content:")"}
+
+OMBVAR:before{content:"["}
+OMBVAR:after{content:"]"}
+
+OMS:before{content:attr(name)"@"attr(cd)}
+OMS:after{content:" "}
+
+OMV:before{content:attr(name)}
+OMV:after{content:" "}

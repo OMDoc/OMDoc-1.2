@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary veccalc1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary veccalc1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">This CD contains symbols to represent functions which are
+    concerned with vector calculus.
+  </div></div>
+
+
+<div class="symbol" id="divergence">
+<div class="titlebox">
+<span class="titleword">Concept</span>divergence</div>
+    This symbol is used to represent the divergence function. It takes one
+    argument which should be a vector of scalar valued functions,
+    intended to represent a vector valued function and returns a
+    scalar value. It should satisfy the defining relation:
+
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid121719"><semantics><mtext id="MCRid121721">test</mtext><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid121719" xlink:type="simple"><OMSTR xlink:type="simple" xlink:href="MCRid121721">test</OMSTR></OMOBJ></annotation-xml></semantics></math><span class="legacy">divergence(F) = \partial(F_(x_1))/\partial(x_1) + ...  + \partial(F_(x_n))/\partial(x_n)</span>
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid121746"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id121749" xlink:href="sts.xml#mapsto"><mrow id="id121757" xlink:href="sts.xml#mapsto"><mfenced id="id121757" open="(" close=")" separators=""><mi id="MCRid121765">Vector</mi></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid121770">Vector</mi></mrow><mo xlink:href="sts.xml#mapsto">↦</mo><mrow id="id121775" xlink:href="sts.xml#mapsto"><mi id="MCRid121784">Vector</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid145411">Scalar</mi></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid121746" xlink:type="simple"><OMA xlink:href="MCRid121749" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid121751" xlink:type="simple"/><OMA xlink:href="MCRid121757" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid121759" xlink:type="simple"/><OMV name="Vector" xlink:href="MCRid121765" xlink:type="simple"/><OMV name="Vector" xlink:href="MCRid121770" xlink:type="simple"/></OMA><OMA xlink:href="MCRid121775" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid121777" xlink:type="simple"/><OMV name="Vector" xlink:href="MCRid121784" xlink:type="simple"/><OMV name="Scalar" xlink:href="MCRid145411" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="divergence-prop-1">
+<span class="titleword">Lemma</span>
+<p><span class="legacy">divergence(F) = \partial(F_(x_1))/\partial(x_1) + ...  + \partial(F_(x_n))/\partial(x_n)</span></p>
+</div>
+
+<div class="symbol" id="grad">
+<div class="titlebox">
+<span class="titleword">Concept</span>grad</div>
+    This symbol is used to represent the grad function. It takes one
+    argument which should be a scalar valued function and returns a
+    vector of functions. It should satisfy the defining relation:
+    <span class="legacy">grad(F) = (\partial(F)/\partial(x_1), ... ,\partial(F)/partial(x_n))</span>
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid121516"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id121519" xlink:href="sts.xml#mapsto"><mrow id="id121527" xlink:href="sts.xml#mapsto"><mfenced id="id121527" open="(" close=")" separators=""><mi id="MCRid121536">Vector</mi></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid121540">Scalar</mi></mrow><mo xlink:href="sts.xml#mapsto">↦</mo><mrow id="id121545" xlink:href="sts.xml#mapsto"><mi id="MCRid121554">Vector</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid121558">Vector</mi></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid121516" xlink:type="simple"><OMA xlink:href="MCRid121519" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid121521" xlink:type="simple"/><OMA xlink:href="MCRid121527" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid121529" xlink:type="simple"/><OMV name="Vector" xlink:href="MCRid121536" xlink:type="simple"/><OMV name="Scalar" xlink:href="MCRid121540" xlink:type="simple"/></OMA><OMA xlink:href="MCRid121545" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid121547" xlink:type="simple"/><OMV name="Vector" xlink:href="MCRid121554" xlink:type="simple"/><OMV name="Vector" xlink:href="MCRid121558" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="grad-prop-1">
+<span class="titleword">Lemma</span>
+<p><span class="legacy">grad(F) = (\partial(F)/\partial(x_1), ... ,\partial(F)/partial(x_n))</span></p>
+</div>
+
+<div class="symbol" id="curl">
+<div class="titlebox">
+<span class="titleword">Concept</span>curl</div>
+    This symbol is used to represent the curl function. It takes one
+    argument which should be a vector of scalar valued functions, intended
+    to represent a vector valued function and returns a vector of
+    functions. It should satisfy the defining relation:
+    <span class="legacy">curl(F) = i X \partial(F)/\partial(x) + j X \partial(F)/\partial(y) + j X \partial(F)/\partial(Z)</span> where i,j,k are the unit vectors
+    corresponding to the x,y,z axes respectively and the multiplication X
+    is cross multiplication.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid120660"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id120663" xlink:href="sts.xml#mapsto"><mrow id="MCRid120671"><mi id="MCRid120673">threevector</mi><mrow><mo fence="true">(</mo><mrow><mi id="MCRid120677">threevector</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="sts.xml#mapsto">↦</mo><mrow id="id120682" xlink:href="sts.xml#mapsto"><mi id="MCRid120691">threevector</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid120695">threevector</mi></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid120660" xlink:type="simple"><OMA xlink:href="MCRid120663" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid120665" xlink:type="simple"/><OMA xlink:href="MCRid120671" xlink:type="simple"><OMV name="threevector" xlink:href="MCRid120673" xlink:type="simple"/><OMV name="threevector" xlink:href="MCRid120677" xlink:type="simple"/></OMA><OMA xlink:href="MCRid120682" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid120685" xlink:type="simple"/><OMV name="threevector" xlink:href="MCRid120691" xlink:type="simple"/><OMV name="threevector" xlink:href="MCRid120695" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="curl-prop-1">
+<span class="titleword">Lemma</span>
+<p><span class="legacy">curl(F) = i X \partial(F)/\partial(x) + j X \partial(F)/\partial(y) + j X \partial(F)/\partial(Z)</span></p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid120769"><semantics><mrow id="MCRid120780"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#curl" xlink:type="simple" id="id120782">curl</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid120788">F</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid120774">=</mo><mrow id="MCRid120802"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#vectorproduct" xlink:type="simple" id="id120804">vectorproduct</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id120811" open="[" close="]" separators=""><mrow><mn id="MCRid120820"> 1 </mn><mo separator="true">,</mo><mn id="MCRid120823"> 0 </mn><mo separator="true">,</mo><mn id="MCRid120826"> 0 </mn></mrow></mfenced><mo separator="true">,</mo><mrow id="MCRid120831"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="calculus1.xml#partialdiff" xlink:type="simple" id="MCRid120833">∂</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id120839" open="[" close="]" separators=""><mn id="MCRid120851"> 1 </mn></mfenced><mo separator="true">,</mo><mi id="MCRid120855">F</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="arith1.xml#plus" xlink:type="simple" id="MCRid120796">+</mo><mrow id="MCRid120862"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#vectorproduct" xlink:type="simple" id="id120864">vectorproduct</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id120870" open="[" close="]" separators=""><mrow><mn id="MCRid120879"> 0 </mn><mo separator="true">,</mo><mn id="MCRid120882"> 1 </mn><mo separator="true">,</mo><mn id="MCRid120886"> 0 </mn></mrow></mfenced><mo separator="true">,</mo><mrow id="MCRid120890"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="calculus1.xml#partialdiff" xlink:type="simple" id="MCRid120892">∂</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id149760" open="[" close="]" separators=""><mn id="MCRid149768"> 2 </mn></mfenced><mo separator="true">,</mo><mi id="MCRid149772">F</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="arith1.xml#plus" xlink:type="simple">+</mo><mrow id="MCRid149779"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#vectorproduct" xlink:type="simple" id="id149781">vectorproduct</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id149787" open="[" close="]" separators=""><mrow><mn id="MCRid149795"> 0 </mn><mo separator="true">,</mo><mn id="MCRid149798"> 0 </mn><mo separator="true">,</mo><mn id="MCRid149802"> 1 </mn></mrow></mfenced><mo separator="true">,</mo><mrow id="MCRid149806"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="calculus1.xml#partialdiff" xlink:type="simple" id="MCRid149808">∂</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id149815" open="[" close="]" separators=""><mn id="MCRid149824"> 3 </mn></mfenced><mo separator="true">,</mo><mi id="MCRid149828">F</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid120769" xlink:type="simple"><OMA xlink:href="MCRid120772" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid120774" xlink:type="simple"/><OMA xlink:href="MCRid120780" xlink:type="simple"><OMS cd="veccalc1" name="curl" xlink:href="MCRid120782" xlink:type="simple"/><OMV name="F" xlink:href="MCRid120788" xlink:type="simple"/></OMA><OMA xlink:href="MCRid120794" xlink:type="simple"><OMS cd="arith1" name="plus" xlink:href="MCRid120796" xlink:type="simple"/><OMA xlink:href="MCRid120802" xlink:type="simple"><OMS cd="linalg1" name="vectorproduct" xlink:href="MCRid120804" xlink:type="simple"/><OMA xlink:href="MCRid120811" xlink:type="simple"><OMS cd="linalg2" name="vector" xlink:href="MCRid120813" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid120820"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid120823"> 0 </OMI><OMI xlink:type="simple" xlink:href="MCRid120826"> 0 </OMI></OMA><OMA xlink:href="MCRid120831" xlink:type="simple"><OMS cd="calculus1" name="partialdiff" xlink:href="MCRid120833" xlink:type="simple"/><OMA xlink:href="MCRid120839" xlink:type="simple"><OMS cd="list1" name="list" xlink:href="MCRid120842" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid120851"> 1 </OMI></OMA><OMV name="F" xlink:href="MCRid120855" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid120862" xlink:type="simple"><OMS cd="linalg1" name="vectorproduct" xlink:href="MCRid120864" xlink:type="simple"/><OMA xlink:href="MCRid120870" xlink:type="simple"><OMS cd="linalg2" name="vector" xlink:href="MCRid120873" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid120879"> 0 </OMI><OMI xlink:type="simple" xlink:href="MCRid120882"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid120886"> 0 </OMI></OMA><OMA xlink:href="MCRid120890" xlink:type="simple"><OMS cd="calculus1" name="partialdiff" xlink:href="MCRid120892" xlink:type="simple"/><OMA xlink:href="MCRid149760" xlink:type="simple"><OMS cd="list1" name="list" xlink:href="MCRid149762" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid149768"> 2 </OMI></OMA><OMV name="F" xlink:href="MCRid149772" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid149779" xlink:type="simple"><OMS cd="linalg1" name="vectorproduct" xlink:href="MCRid149781" xlink:type="simple"/><OMA xlink:href="MCRid149787" xlink:type="simple"><OMS cd="linalg2" name="vector" xlink:href="MCRid149789" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid149795"> 0 </OMI><OMI xlink:type="simple" xlink:href="MCRid149798"> 0 </OMI><OMI xlink:type="simple" xlink:href="MCRid149802"> 1 </OMI></OMA><OMA xlink:href="MCRid149806" xlink:type="simple"><OMS cd="calculus1" name="partialdiff" xlink:href="MCRid149808" xlink:type="simple"/><OMA xlink:href="MCRid149815" xlink:type="simple"><OMS cd="list1" name="list" xlink:href="MCRid149817" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid149824"> 3 </OMI></OMA><OMV name="F" xlink:href="MCRid149828" xlink:type="simple"/></OMA></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="Laplacian">
+<div class="titlebox">
+<span class="titleword">Concept</span>Laplacian</div>
+    This symbol is used to represent the laplacian function. It takes one
+    argument which should be a vector of scalar valued functions, intended
+    to represent a vector valued function and returns a vector of
+    functions. It should satisfy the defining relation:
+    <span class="legacy">laplacian(F) = \partial^2(F)/\partial(x_1)^2 + ... +  \partial^2(F)/\partial(x_n)^2</span>
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid149891"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id149894" xlink:href="sts.xml#mapsto"><mrow id="id149902" xlink:href="sts.xml#mapsto"><mfenced id="id149902" open="(" close=")" separators=""><mi id="MCRid149910">Vector</mi></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid149914">Scalar</mi></mrow><mo xlink:href="sts.xml#mapsto">↦</mo><mrow id="id149920" xlink:href="sts.xml#mapsto"><mi id="MCRid149928">Vector</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid149933">Scalar</mi></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid149891" xlink:type="simple"><OMA xlink:href="MCRid149894" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid149896" xlink:type="simple"/><OMA xlink:href="MCRid149902" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid149904" xlink:type="simple"/><OMV name="Vector" xlink:href="MCRid149910" xlink:type="simple"/><OMV name="Scalar" xlink:href="MCRid149914" xlink:type="simple"/></OMA><OMA xlink:href="MCRid149920" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid149922" xlink:type="simple"/><OMV name="Vector" xlink:href="MCRid149928" xlink:type="simple"/><OMV name="Scalar" xlink:href="MCRid149933" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="Laplacian-prop-1">
+<span class="titleword">Lemma</span>
+<p><span class="legacy">laplacian(F) = \partial^2(F)/\partial(x_1)^2 + ... + \partial^2(F)/\partial(x_n)^2</span></p>
+</div>
+
+
+
+</body>
+</html>

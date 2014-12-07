@@ -1,0 +1,96 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module DOC
+     SYSTEM http://www.mathweb.org/omdoc/dtd/omdocdoc.dtd
+     PUBLIC -//OMDoc//ELEMENTS OMDoc DOC V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!-- qnames for omdoc infrastructure  elements -->
+<!ENTITY % omdocdoc.catalogue.qname "%omdoc.pfx;catalogue">
+<!ENTITY % omdocdoc.loc.qname "%omdoc.pfx;loc">
+<!ENTITY % omdocdoc.extradata.qname "%omdoc.pfx;extradata">
+
+<!ENTITY % otheromgrouptype "">
+<!ENTITY % omgrouptype "enumeration|sequence|itemize|sectioning|
+                        dataset|labeled-dataset%otheromgrouptype;">
+<!-- values dataset, labeled-dataset are deprecated in 1.2 -->
+
+<!ELEMENT %omdocdoc.catalogue.qname; (%omdocdoc.loc.qname;)*>
+
+<!ELEMENT %omdocdoc.loc.qname; EMPTY>
+<!ATTLIST %omdocdoc.loc.qname; theory NMTOKEN #REQUIRED
+              omdoc CDATA #IMPLIED
+              cd CDATA #IMPLIED>
+<!-- omdoc attributes omdoc and cd are URIRefs pointing to the omdoc 
+     and/or the OpenMath content dictionary defining this theory -->
+
+<!-- OMDoc Metadata comes in two forms, Dublin core, and other -->
+<!ELEMENT %omdocdoc.metadata.qname; 
+          (%omdocdc.class;%omdocdoc.extradata.qname;)*>
+<!ATTLIST %omdocdoc.metadata.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idi.attrib; 
+          inherits CDATA #IMPLIED>
+
+<!-- other metadata that is not bibliographic can be included in the 
+     <extradata> element, declare any needed XML elements in the 
+     internal subset of the DTD declaration --> 
+<!ENTITY % omdocdoc.extradata.content "ANY">
+<!ELEMENT %omdocdoc.extradata.qname; %omdocdoc.extradata.content;> 
+<!ATTLIST %omdocdoc.extradata.qname; %omdoc.xmlns.theory.attrib;>          
+          
+
+<!-- this element can be used in lieu of a comment, it is read 
+     by the style sheet, (comments are not) and can therefore 
+     be transformed by them -->
+<!ELEMENT %omdocdoc.ignore.qname; ANY>
+<!ATTLIST %omdocdoc.ignore.qname; 
+          %omdoc.xmlns.theory.attrib;
+          type CDATA #IMPLIED
+          comment CDATA #IMPLIED>
+
+<!ELEMENT %omdocdoc.with.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocdoc.with.qname; 
+          %omdoc.xmlns.theory.attrib;
+          id ID #IMPLIED
+          %css.attrib;
+          %omdoc.nsschema.attrib;>
+<!-- identifies a text passage and 
+     allows to attatch style information to it -->
+
+<!-- co-referencing  allows to use elements with an 
+     'id' attribute multiple times -->
+<!ELEMENT %omdocdoc.ref.qname; EMPTY>
+<!ATTLIST %omdocdoc.ref.qname;
+          id ID #REQUIRED
+          xref CDATA #REQUIRED
+   	  type NMTOKEN "include">
+<!-- the types supported (there may be more over time) are 
+     - 'include' (the default) for in-text replacement 
+     - 'cite' for a reference with a generated label -->
+
+<!-- grouping defines the structure of a document-->
+<!ELEMENT %omdocdoc.omgroup.qname; 
+          (%omdocdoc.meta.content;(%omdoc.class;)*)>
+<!ATTLIST %omdocdoc.omgroup.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idi.attrib;
+          type (%omgrouptype;) #IMPLIED>
+
+<!-- finally the definition of the OMDoc root element -->
+<!ENTITY % omdoc.omdoc.qname "%omdoc.pfx;omdoc">
+<!ELEMENT %omdoc.omdoc.qname; 
+          (%omdocdoc.meta.content;(%omdocdoc.catalogue.qname;)?,
+            (%omdoc.class;)*)>
+<!ATTLIST %omdoc.omdoc.qname; 
+          %id.attrib; 
+          %omdoc.nsschema.attrib; 
+          %omdocdc.xmlns.extra.attrib;
+          %om.xmlns.extra.attrib;
+          %mathml.xmlns.extra.attrib;
+          %omdoc.xmlns.theory.attrib;
+          type (%omgrouptype;|theory-collection) #IMPLIED
+	  catalogue CDATA #IMPLIED
+	  version CDATA #FIXED "1.2">
+

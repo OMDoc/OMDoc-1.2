@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module MTXT 
+  $Id: omdocmtxt.rnc 7774 2008-07-01 05:49:00Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocmtxt.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="omdoc.class" combine="choice">
+    <ref name="omtext"/>
+  </define>
+  <!-- attribute for is a whitespace-separated list of  URIrefs -->
+  <define name="for.attrib">
+    <attribute name="for">
+      <ref name="omdocrefs"/>
+    </attribute>
+  </define>
+  <define name="fori.attrib">
+    <optional>
+      <attribute name="for">
+        <ref name="omdocrefs"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="from.attrib">
+    <attribute name="from">
+      <ref name="omdocref"/>
+    </attribute>
+  </define>
+  <define name="verbalizes.attrib">
+    <attribute name="verbalizes">
+      <ref name="omdocrefs"/>
+    </attribute>
+  </define>
+  <define name="parallel.attribs">
+    <optional>
+      <ref name="verbalizes.attrib"/>
+    </optional>
+    <optional>
+      <attribute name="index">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="omdocmtxt.MC.content">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="CMP"/>
+    </zeroOrMore>
+  </define>
+  <define name="omdocmtxt.MCF.content">
+    <ref name="omdocmtxt.MC.content"/>
+    <zeroOrMore>
+      <ref name="FMP"/>
+    </zeroOrMore>
+  </define>
+  <!-- what can go into a mathematical text (to be exteneded in other modules) -->
+  <define name="omdoc.mtext.class">
+    <choice>
+      <text/>
+      <ref name="phrase"/>
+      <ref name="term"/>
+      <ref name="omdocmobj.class"/>
+    </choice>
+  </define>
+  <define name="rsttype">
+    <choice>
+      <value>abstract</value>
+      <value>introduction</value>
+      <value>annote</value>
+      <value>conclusion</value>
+      <value>thesis</value>
+      <value>comment</value>
+      <value>antithesis</value>
+      <value>elaboration</value>
+      <value>motivation</value>
+      <value>evidence</value>
+      <value>note</value>
+      <value>notation</value>
+    </choice>
+  </define>
+  <define name="statementtype">
+    <choice>
+      <value>axiom</value>
+      <value>definition</value>
+      <value>example</value>
+      <value>proof</value>
+      <value>derive</value>
+      <value>hypothesis</value>
+    </choice>
+  </define>
+  <define name="assertiontype">
+    <choice>
+      <value>theorem</value>
+      <value>lemma</value>
+      <value>corollary</value>
+      <value>proposition</value>
+      <value>conjecture</value>
+      <value>false-conjecture</value>
+      <value>obligation</value>
+      <value>postulate</value>
+      <value>formula</value>
+      <value>assumption</value>
+      <value>rule</value>
+    </choice>
+  </define>
+  <define name="omtext">
+    <element name="omtext">
+      <ref name="omdoc.toplevel.attribs"/>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <ref name="rsttype"/>
+            <ref name="statementtype"/>
+            <ref name="assertiontype"/>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="for">
+          <ref name="omdocref"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="from">
+          <ref name="omdocref"/>
+        </attribute>
+      </optional>
+      <optional>
+        <ref name="verbalizes.attrib"/>
+      </optional>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <oneOrMore>
+        <ref name="CMP"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="FMP"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- attribute 'for' is a URIref, to omdocdoc.class's it is needed by the 'type' attribute -->
+  <define name="CMP">
+    <choice>
+      <ref name="ss"/>
+      <element name="CMP">
+        <ref name="xml.lang.attrib"/>
+        <ref name="id.attrib"/>
+        <zeroOrMore>
+          <ref name="omdoc.mtext.class"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="phrase">
+    <choice>
+      <ref name="ss"/>
+      <element name="phrase">
+        <ref name="id.attrib"/>
+        <ref name="parallel.attribs"/>
+        <optional>
+          <attribute name="type">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <optional>
+          <ref name="verbalizes.attrib"/>
+        </optional>
+        <zeroOrMore>
+          <ref name="omdoc.mtext.class"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <!-- identifies a text passage and allows to attatch style and type information to it -->
+  <define name="term">
+    <choice>
+      <ref name="ss"/>
+      <element name="term">
+        <ref name="id.attrib"/>
+        <optional>
+          <attribute name="role"/>
+        </optional>
+        <attribute name="cd">
+          <data type="NCName"/>
+        </attribute>
+        <attribute name="name">
+          <data type="NCName"/>
+        </attribute>
+        <zeroOrMore>
+          <ref name="omdoc.mtext.class"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="FMP">
+    <choice>
+      <ref name="ss"/>
+      <element name="FMP">
+        <ref name="id.attrib"/>
+        <optional>
+          <attribute name="logic">
+            <data type="NMTOKEN"/>
+          </attribute>
+        </optional>
+        <choice>
+          <group>
+            <zeroOrMore>
+              <ref name="assumption"/>
+            </zeroOrMore>
+            <zeroOrMore>
+              <ref name="conclusion"/>
+            </zeroOrMore>
+          </group>
+          <ref name="omdocmobj.class"/>
+        </choice>
+      </element>
+    </choice>
+  </define>
+  <!--
+    If FMP contains a omdocmobj.class then this is the assertion, 
+    if it contains (assumption*,conclusion*), then it is a 
+    logical sequent (A1,...,An |- C1,...,Cm): 
+    all the Ai entail one of the Ci
+  -->
+  <define name="assumption">
+    <choice>
+      <ref name="ss"/>
+      <element name="assumption">
+        <ref name="id.attrib"/>
+        <optional>
+          <attribute name="inductive">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <ref name="omdocmobj.class"/>
+      </element>
+    </choice>
+  </define>
+  <define name="conclusion">
+    <choice>
+      <ref name="ss"/>
+      <element name="conclusion">
+        <ref name="id.attrib"/>
+        <optional>
+          <ref name="omdocmobj.class"/>
+        </optional>
+      </element>
+    </choice>
+  </define>
+</grammar>

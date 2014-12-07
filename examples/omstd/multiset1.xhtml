@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary multiset1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary multiset1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD defines the set functions and constructors for basic
+    multiset theory. It is intended to be `compatible' with the
+    corresponding elements in MathML i.e. set operations acting
+    on sets of type=multiset.
+  </div></div>
+
+
+<div class="omtext" id="CDComment-10">
+<p>Based on set1.ocd</p>
+</div>
+
+<div class="symbol" id="size">
+<div class="titlebox">
+<span class="titleword">Concept</span>size</div> 
+    This symbol is used to denote the number of elements in a multiset. It is
+    either a non-negative integer, or an infinite cardinal number. The
+    symbol infinity may be used for an unspecified infinite cardinal.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid151843"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id124008" xlink:href="sts.xml#mapsto"><mi id="MCRid124016">Multiset</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid124020">CardinalNumber</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid151843" xlink:type="simple"><OMA xlink:href="MCRid124008" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid124010" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid124016" xlink:type="simple"/><OMV name="CardinalNumber" xlink:href="MCRid124020" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="size-ex-1">
+<span class="titleword">Example</span>
+<p>The size of the multiset{3,3,9} = 3</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid123474"><semantics><mfenced id="id123485" open="|" close="|" separators=""><mfenced id="id123493" open="{" close="}" separators=""><mn id="MCRid123502"> 3 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple" id="MCRid123495">,</mo><mn id="MCRid123505"> 3 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid123508"> 9 </mn></mfenced></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid123479">=</mo><mn id="MCRid123514"> 3 </mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid123474" xlink:type="simple"><OMA xlink:href="MCRid123477" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid123479" xlink:type="simple"/><OMA xlink:href="MCRid123485" xlink:type="simple"><OMS cd="multiset1" name="size" xlink:href="MCRid123487" xlink:type="simple"/><OMA xlink:href="MCRid123493" xlink:type="simple"><OMS cd="multiset1" name="multiset" xlink:href="MCRid123495" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid123502"> 3 </OMI><OMI xlink:type="simple" xlink:href="MCRid123505"> 3 </OMI><OMI xlink:type="simple" xlink:href="MCRid123508"> 9 </OMI></OMA></OMA><OMI xlink:type="simple" xlink:href="MCRid123514"> 3 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="cartesian_product">
+<div class="titlebox">
+<span class="titleword">Concept</span>cartesian_product</div>
+    This symbol represents an n-ary construction function for constructing
+    the Cartesian product of multisets. It takes n multiset arguments in order to
+    construct their Cartesian product.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid147729"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id147732" xlink:href="sts.xml#mapsto"><mfenced id="id147740" open="(" close=")" separators=""><msup id="MCRid147740"><mrow id="MCRid147748"><mrow><mo fence="true">(</mo><mrow><mi id="MCRid147757">Set</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid147742">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mrow id="MCRid147763"><mrow><mo fence="true">(</mo><mrow><mi id="MCRid147772">Set1</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid147729" xlink:type="simple"><OMA xlink:href="MCRid147732" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid147734" xlink:type="simple"/><OMA xlink:href="MCRid147740" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid147742" xlink:type="simple"/><OMA xlink:href="MCRid147748" xlink:type="simple"><OMS cd="sts" name="structure" xlink:href="MCRid147751" xlink:type="simple"/><OMV name="Set" xlink:href="MCRid147757" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid147763" xlink:type="simple"><OMS cd="sts" name="structure" xlink:href="MCRid147765" xlink:type="simple"/><OMV name="Set1" xlink:href="MCRid147772" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="cartesian_product-ex-1">
+<span class="titleword">Example</span>
+<p>
+    An example to show the representation of the Cartesian product of
+    multisets: AxBxC.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid122942"><semantics><mfenced id="id122945" open="" close="" separators=""><mi id="MCRid122953">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cartesian_product" xlink:type="simple" id="MCRid122947">×</mo><mi id="MCRid122958">B</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cartesian_product" xlink:type="simple">×</mo><mi id="MCRid122962">C</mi></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid122942" xlink:type="simple"><OMA xlink:href="MCRid122945" xlink:type="simple"><OMS cd="multiset1" name="cartesian_product" xlink:href="MCRid122947" xlink:type="simple"/><OMV name="A" xlink:href="MCRid122953" xlink:type="simple"/><OMV name="B" xlink:href="MCRid122958" xlink:type="simple"/><OMV name="C" xlink:href="MCRid122962" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="emptyset">
+<div class="titlebox">
+<span class="titleword">Concept</span>emptyset</div>
+    This symbol is used to represent the empty multiset, that is the multiset which
+    contains no members. It takes no parameters.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid123008"><semantics><mi id="MCRid123011">Multiset</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid123008" xlink:type="simple"><OMV name="Multiset" xlink:href="MCRid123011" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="emptyset-prop-1">
+<span class="titleword">Lemma</span>
+<p> The intersection of A with the empty (multi) set is the empty
+    (multi) set </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid123101"><semantics><mi id="MCRid123120">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#intersect" xlink:type="simple" id="MCRid123114">∩</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#emptyset" xlink:type="simple" id="MCRid123124">∅</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid123106">=</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#emptyset" xlink:type="simple" id="MCRid123132">∅</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid123101" xlink:type="simple"><OMA xlink:href="MCRid123104" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid123106" xlink:type="simple"/><OMA xlink:href="MCRid123112" xlink:type="simple"><OMS cd="multiset1" name="intersect" xlink:href="MCRid123114" xlink:type="simple"/><OMV name="A" xlink:href="MCRid123120" xlink:type="simple"/><OMS cd="multiset1" name="emptyset" xlink:href="MCRid123124" xlink:type="simple"/></OMA><OMS cd="multiset1" name="emptyset" xlink:href="MCRid123132" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="lemma" id="emptyset-prop-3">
+<span class="titleword">Lemma</span>
+<p> The union of A with the empty (multi) set is A </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid123174"><semantics><mi id="MCRid152047">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#union" xlink:type="simple" id="MCRid152041">∪</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#emptyset" xlink:type="simple" id="MCRid152051">∅</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid123179">=</mo><mi id="MCRid152058">A</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid123174" xlink:type="simple"><OMA xlink:href="MCRid123177" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid123179" xlink:type="simple"/><OMA xlink:href="MCRid152039" xlink:type="simple"><OMS cd="multiset1" name="union" xlink:href="MCRid152041" xlink:type="simple"/><OMV name="A" xlink:href="MCRid152047" xlink:type="simple"/><OMS cd="multiset1" name="emptyset" xlink:href="MCRid152051" xlink:type="simple"/></OMA><OMV name="A" xlink:href="MCRid152058" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="multiset">
+<div class="titlebox">
+<span class="titleword">Concept</span>multiset</div> 
+    This symbol represents the multiset construct. It is either an
+    n-ary function, in which case the multiset entries are given 
+    explicitly, or it works on an elements construct. There is no 
+    implied ordering to the elements of a multiset.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid152108"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id152110" xlink:href="sts.xml#mapsto"><mfenced id="id152118" open="(" close=")" separators=""><msup id="MCRid152118"><mo xlink:href="#Object" xlink:type="simple" id="id152127">Object</mo><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid152121">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid152134">Multiset</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid152108" xlink:type="simple"><OMA xlink:href="MCRid152110" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid152112" xlink:type="simple"/><OMA xlink:href="MCRid152118" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid152121" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid152127" xlink:type="simple"/></OMA><OMV name="Multiset" xlink:href="MCRid152134" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="multiset-ex-1">
+<span class="titleword">Example</span>
+<p>The multiset {4, 1, 0, 1 4} </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid152225"><semantics><mfenced id="id152227" open="{" close="}" separators=""><mn id="MCRid152235"> 4 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple" id="MCRid152229">,</mo><mn id="MCRid152239"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid152242"> 0 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid152245"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid152248"> 4 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid152225" xlink:type="simple"><OMA xlink:href="MCRid152227" xlink:type="simple"><OMS cd="multiset1" name="multiset" xlink:href="MCRid152229" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid152235"> 4 </OMI><OMI xlink:type="simple" xlink:href="MCRid152239"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid152242"> 0 </OMI><OMI xlink:type="simple" xlink:href="MCRid152245"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid152248"> 4 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="intersect">
+<div class="titlebox">
+<span class="titleword">Concept</span>intersect</div> 
+    This symbol is used to denote the n-ary intersection of 
+    multisets. It takes multisets as arguments, and denotes the 
+    multiset that contains all the elements that occur in all of 
+    them, with multiplicity the minimum of their multiplicities 
+    in all multisets.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid152295"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id152298" xlink:href="sts.xml#mapsto"><mfenced id="id152306" open="(" close=")" separators=""><msup id="MCRid152306"><mi id="MCRid152314">Multiset</mi><mo xlink:href="sts.xml#nassoc" xlink:type="simple" id="MCRid152308">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid152320">Multiset</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid152295" xlink:type="simple"><OMA xlink:href="MCRid152298" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid152300" xlink:type="simple"/><OMA xlink:href="MCRid152306" xlink:type="simple"><OMS cd="sts" name="nassoc" xlink:href="MCRid152308" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid152314" xlink:type="simple"/></OMA><OMV name="Multiset" xlink:href="MCRid152320" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="intersect-prop-1">
+<span class="titleword">Lemma</span>
+<p>
+    (A intersect B) is a subset of A and 
+    (A intersect B) is a subset of B
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid152427"><semantics><mfenced id="id152438" open="(" close=")" separators=""><mi id="MCRid152455">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#intersect" xlink:type="simple" id="MCRid152448">∩</mo><mi id="MCRid152459">B</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#subset" xlink:type="simple" id="MCRid152440">⊆</mo><mi id="MCRid152464">A</mi></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="logic1.xml#and" xlink:type="simple" id="MCRid152432">∧</mo><mfenced id="id152469" open="(" close=")" separators=""><mi id="MCRid152487">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#intersect" xlink:type="simple" id="MCRid152480">∩</mo><mi id="MCRid152491">B</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#subset" xlink:type="simple" id="MCRid152472">⊆</mo><mi id="MCRid152496">B</mi></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid152427" xlink:type="simple"><OMA xlink:href="MCRid152430" xlink:type="simple"><OMS cd="logic1" name="and" xlink:href="MCRid152432" xlink:type="simple"/><OMA xlink:href="MCRid152438" xlink:type="simple"><OMS cd="multiset1" name="subset" xlink:href="MCRid152440" xlink:type="simple"/><OMA xlink:href="MCRid152446" xlink:type="simple"><OMS cd="multiset1" name="intersect" xlink:href="MCRid152448" xlink:type="simple"/><OMV name="A" xlink:href="MCRid152455" xlink:type="simple"/><OMV name="B" xlink:href="MCRid152459" xlink:type="simple"/></OMA><OMV name="A" xlink:href="MCRid152464" xlink:type="simple"/></OMA><OMA xlink:href="MCRid152469" xlink:type="simple"><OMS cd="multiset1" name="subset" xlink:href="MCRid152472" xlink:type="simple"/><OMA xlink:href="MCRid152478" xlink:type="simple"><OMS cd="multiset1" name="intersect" xlink:href="MCRid152480" xlink:type="simple"/><OMV name="A" xlink:href="MCRid152487" xlink:type="simple"/><OMV name="B" xlink:href="MCRid152491" xlink:type="simple"/></OMA><OMV name="B" xlink:href="MCRid152496" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="union">
+<div class="titlebox">
+<span class="titleword">Concept</span>union</div> 
+    This symbol is used to denote the n-ary union of multisets. It
+    takes multisets as arguments, and denotes the multiset that 
+    contains all the elements that occur in any of them, with 
+    multiplicity the sum of all the multiplicities in the multiset 
+    arguments.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid152547"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id152550" xlink:href="sts.xml#mapsto"><mfenced id="id152558" open="(" close=")" separators=""><msup id="MCRid152558"><mi id="MCRid152566">Multiset</mi><mo xlink:href="sts.xml#nassoc" xlink:type="simple" id="MCRid152560">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid152571">Multiset</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid152547" xlink:type="simple"><OMA xlink:href="MCRid152550" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid152552" xlink:type="simple"/><OMA xlink:href="MCRid152558" xlink:type="simple"><OMS cd="sts" name="nassoc" xlink:href="MCRid152560" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid152566" xlink:type="simple"/></OMA><OMV name="Multiset" xlink:href="MCRid152571" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="union-prop-1">
+<span class="titleword">Lemma</span>
+<p> 
+    A is a subset of (A union B) and B is a subset of (A union B) 
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid152679"><semantics><mfenced id="id152689" open="(" close=")" separators=""><mi id="MCRid152698">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#subset" xlink:type="simple" id="MCRid152692">⊆</mo><mi id="MCRid152710">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#union" xlink:type="simple" id="MCRid152704">∪</mo><mi id="MCRid152714">B</mi></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="logic1.xml#and" xlink:type="simple" id="MCRid152683">∧</mo><mfenced id="id152721" open="(" close=")" separators=""><mi id="MCRid152730">B</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#subset" xlink:type="simple" id="MCRid152723">⊆</mo><mi id="MCRid152742">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#union" xlink:type="simple" id="MCRid152736">∪</mo><mi id="MCRid152747">B</mi></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid152679" xlink:type="simple"><OMA xlink:href="MCRid152681" xlink:type="simple"><OMS cd="logic1" name="and" xlink:href="MCRid152683" xlink:type="simple"/><OMA xlink:href="MCRid152689" xlink:type="simple"><OMS cd="multiset1" name="subset" xlink:href="MCRid152692" xlink:type="simple"/><OMV name="A" xlink:href="MCRid152698" xlink:type="simple"/><OMA xlink:href="MCRid152702" xlink:type="simple"><OMS cd="multiset1" name="union" xlink:href="MCRid152704" xlink:type="simple"/><OMV name="A" xlink:href="MCRid152710" xlink:type="simple"/><OMV name="B" xlink:href="MCRid152714" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid152721" xlink:type="simple"><OMS cd="multiset1" name="subset" xlink:href="MCRid152723" xlink:type="simple"/><OMV name="B" xlink:href="MCRid152730" xlink:type="simple"/><OMA xlink:href="MCRid152734" xlink:type="simple"><OMS cd="multiset1" name="union" xlink:href="MCRid152736" xlink:type="simple"/><OMV name="A" xlink:href="MCRid152742" xlink:type="simple"/><OMV name="B" xlink:href="MCRid152747" xlink:type="simple"/></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="lemma" id="union-prop-3">
+<span class="titleword">Lemma</span>
+<p>
+    for all sets A,B and C
+    union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid152789"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid152800"><mi id="MCRid152802">A</mi><mo separator="true">,</mo><mi id="MCRid152806">B</mi><mo separator="true">,</mo><mi id="MCRid152810">C</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><mi id="MCRid152832">A</mi><mo xlink:href="#union" xlink:type="simple" id="MCRid152826">∪</mo><mfenced id="id152836" open="(" close=")" separators=""><mi id="MCRid152846">B</mi><mo xlink:href="#intersect" xlink:type="simple" id="MCRid152839">∩</mo><mi id="MCRid152850">C</mi></mfenced><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid152818">=</mo><mfenced id="id152865" open="(" close=")" separators=""><mi id="MCRid152874">A</mi><mo xlink:href="#union" xlink:type="simple" id="MCRid152867">∪</mo><mi id="MCRid152878">B</mi></mfenced><mo xlink:href="#intersect" xlink:type="simple" id="MCRid152859">∩</mo><mfenced id="id152883" open="(" close=")" separators=""><mi id="MCRid152892">A</mi><mo xlink:href="#union" xlink:type="simple" id="MCRid152886">∪</mo><mi id="MCRid152896">C</mi></mfenced></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid152789" xlink:type="simple"><OMBIND xlink:href="MCRid152792" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid152794" xlink:type="simple"/><OMBVAR xlink:href="MCRid152800" xlink:type="simple"><OMV name="A" xlink:href="MCRid152802" xlink:type="simple"/><OMV name="B" xlink:href="MCRid152806" xlink:type="simple"/><OMV name="C" xlink:href="MCRid152810" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid152816" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid152818" xlink:type="simple"/><OMA xlink:href="MCRid152824" xlink:type="simple"><OMS cd="multiset1" name="union" xlink:href="MCRid152826" xlink:type="simple"/><OMV name="A" xlink:href="MCRid152832" xlink:type="simple"/><OMA xlink:href="MCRid152836" xlink:type="simple"><OMS cd="multiset1" name="intersect" xlink:href="MCRid152839" xlink:type="simple"/><OMV name="B" xlink:href="MCRid152846" xlink:type="simple"/><OMV name="C" xlink:href="MCRid152850" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid152856" xlink:type="simple"><OMS cd="multiset1" name="intersect" xlink:href="MCRid152859" xlink:type="simple"/><OMA xlink:href="MCRid152865" xlink:type="simple"><OMS cd="multiset1" name="union" xlink:href="MCRid152867" xlink:type="simple"/><OMV name="A" xlink:href="MCRid152874" xlink:type="simple"/><OMV name="B" xlink:href="MCRid152878" xlink:type="simple"/></OMA><OMA xlink:href="MCRid152883" xlink:type="simple"><OMS cd="multiset1" name="union" xlink:href="MCRid152886" xlink:type="simple"/><OMV name="A" xlink:href="MCRid152892" xlink:type="simple"/><OMV name="C" xlink:href="MCRid152896" xlink:type="simple"/></OMA></OMA></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="setdiff">
+<div class="titlebox">
+<span class="titleword">Concept</span>setdiff</div> 
+    This symbol is used to denote the multiset difference of two 
+    multisets. It takes two multisets as arguments, and denotes the 
+    multiset that contains all the elements that occur in the first 
+    multiset with strictly greater multiplicity than in the second.
+    The multiplicity in the result is the difference of the two.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid152949"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id152952" xlink:href="sts.xml#mapsto"><mi id="MCRid152960">Multiset</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid152964">Multiset</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid152968">Multiset</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid152949" xlink:type="simple"><OMA xlink:href="MCRid152952" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid152954" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid152960" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid152964" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid152968" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="setdiff-prop-1">
+<span class="titleword">Lemma</span>
+<p>
+    the difference of A and B is a subset of A
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153076"><semantics><mi id="MCRid153095">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#setdiff" xlink:type="simple" id="MCRid153089">∖</mo><mi id="MCRid153099">B</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#subset" xlink:type="simple" id="MCRid153081">⊆</mo><mi id="MCRid153104">A</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153076" xlink:type="simple"><OMA xlink:href="MCRid153078" xlink:type="simple"><OMS cd="multiset1" name="subset" xlink:href="MCRid153081" xlink:type="simple"/><OMA xlink:href="MCRid153087" xlink:type="simple"><OMS cd="multiset1" name="setdiff" xlink:href="MCRid153089" xlink:type="simple"/><OMV name="A" xlink:href="MCRid153095" xlink:type="simple"/><OMV name="B" xlink:href="MCRid153099" xlink:type="simple"/></OMA><OMV name="A" xlink:href="MCRid153104" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="subset">
+<div class="titlebox">
+<span class="titleword">Concept</span>subset</div>
+    This symbol has two (multiset) arguments. It is used to denote 
+    that the first set is a subset of the second, i.e. every element 
+    of the first occurs with multiplicity at least as much in the 
+    second.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153154"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id153156" xlink:href="sts.xml#mapsto"><mi id="MCRid153164">Multiset</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid153168">Multiset</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname2.xml#Boolean" xlink:type="simple" id="MCRid153173">Bool</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153154" xlink:type="simple"><OMA xlink:href="MCRid153156" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid153158" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid153164" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid153168" xlink:type="simple"/><OMS cd="setname2" name="Boolean" xlink:href="MCRid153173" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="subset-prop-1">
+<span class="titleword">Lemma</span>
+<p>
+    if B is a subset of A and C is a subset of B 
+    then C is a subset of A
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153283"><semantics><mfenced id="id153285" open="(" close=")" separators=""><mfenced id="id153302" open="(" close=")" separators=""><mi id="MCRid153310">B</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#subset" xlink:type="simple" id="MCRid153304">⊆</mo><mi id="MCRid153314">A</mi></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="logic1.xml#and" xlink:type="simple" id="MCRid153296">∧</mo><mfenced id="id153320" open="(" close=")" separators=""><mi id="MCRid153328">C</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#subset" xlink:type="simple" id="MCRid153322">⊆</mo><mi id="MCRid153333">B</mi></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="logic1.xml#implies" xlink:type="simple" id="MCRid153287">⇒</mo><mi id="MCRid153348">C</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#subset" xlink:type="simple" id="MCRid153341">⊆</mo><mi id="MCRid153352">A</mi></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153283" xlink:type="simple"><OMA xlink:href="MCRid153285" xlink:type="simple"><OMS cd="logic1" name="implies" xlink:href="MCRid153287" xlink:type="simple"/><OMA xlink:href="MCRid153294" xlink:type="simple"><OMS cd="logic1" name="and" xlink:href="MCRid153296" xlink:type="simple"/><OMA xlink:href="MCRid153302" xlink:type="simple"><OMS cd="multiset1" name="subset" xlink:href="MCRid153304" xlink:type="simple"/><OMV name="B" xlink:href="MCRid153310" xlink:type="simple"/><OMV name="A" xlink:href="MCRid153314" xlink:type="simple"/></OMA><OMA xlink:href="MCRid153320" xlink:type="simple"><OMS cd="multiset1" name="subset" xlink:href="MCRid153322" xlink:type="simple"/><OMV name="C" xlink:href="MCRid153328" xlink:type="simple"/><OMV name="B" xlink:href="MCRid153333" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid153339" xlink:type="simple"><OMS cd="multiset1" name="subset" xlink:href="MCRid153341" xlink:type="simple"/><OMV name="C" xlink:href="MCRid153348" xlink:type="simple"/><OMV name="A" xlink:href="MCRid153352" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="in">
+<div class="titlebox">
+<span class="titleword">Concept</span>in</div> 
+    This symbol has two arguments, an element and a multiset. It is 
+    used to denote that the element is in the given multiset.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153401"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id153403" xlink:href="sts.xml#mapsto"><mo xlink:href="#Object" xlink:type="simple" id="id153412">Object</mo><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid153418">Multiset</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname2.xml#Boolean" xlink:type="simple" id="MCRid153422">Bool</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153401" xlink:type="simple"><OMA xlink:href="MCRid153403" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid153405" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid153412" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid153418" xlink:type="simple"/><OMS cd="setname2" name="Boolean" xlink:href="MCRid153422" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="in-prop-1">
+<span class="titleword">Lemma</span>
+<p>
+    if a is in A and a is in B then a is in A intersection B
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153531"><semantics><mfenced id="id153534" open="(" close=")" separators=""><mfenced id="id153550" open="(" close=")" separators=""><mi id="MCRid153558">a</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#in" xlink:type="simple" id="MCRid153552">∈</mo><mi id="MCRid153562">A</mi></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="logic1.xml#and" xlink:type="simple" id="MCRid153544">∧</mo><mfenced id="id153568" open="(" close=")" separators=""><mi id="MCRid153576">a</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#in" xlink:type="simple" id="MCRid153570">∈</mo><mi id="MCRid153580">B</mi></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="logic1.xml#implies" xlink:type="simple" id="MCRid153536">⇒</mo><mi id="MCRid153595">a</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#in" xlink:type="simple" id="MCRid153589">∈</mo><mi id="MCRid153608">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#intersect" xlink:type="simple" id="MCRid153601">∩</mo><mi id="MCRid153612">B</mi></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153531" xlink:type="simple"><OMA xlink:href="MCRid153534" xlink:type="simple"><OMS cd="logic1" name="implies" xlink:href="MCRid153536" xlink:type="simple"/><OMA xlink:href="MCRid153542" xlink:type="simple"><OMS cd="logic1" name="and" xlink:href="MCRid153544" xlink:type="simple"/><OMA xlink:href="MCRid153550" xlink:type="simple"><OMS cd="multiset1" name="in" xlink:href="MCRid153552" xlink:type="simple"/><OMV name="a" xlink:href="MCRid153558" xlink:type="simple"/><OMV name="A" xlink:href="MCRid153562" xlink:type="simple"/></OMA><OMA xlink:href="MCRid153568" xlink:type="simple"><OMS cd="multiset1" name="in" xlink:href="MCRid153570" xlink:type="simple"/><OMV name="a" xlink:href="MCRid153576" xlink:type="simple"/><OMV name="B" xlink:href="MCRid153580" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid153587" xlink:type="simple"><OMS cd="multiset1" name="in" xlink:href="MCRid153589" xlink:type="simple"/><OMV name="a" xlink:href="MCRid153595" xlink:type="simple"/><OMA xlink:href="MCRid153599" xlink:type="simple"><OMS cd="multiset1" name="intersect" xlink:href="MCRid153601" xlink:type="simple"/><OMV name="A" xlink:href="MCRid153608" xlink:type="simple"/><OMV name="B" xlink:href="MCRid153612" xlink:type="simple"/></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="notin">
+<div class="titlebox">
+<span class="titleword">Concept</span>notin</div> 
+    This symbol has two arguments, an element and a multiset. It is 
+    used to denote that the element is not in the given multiset.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153663"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id153665" xlink:href="sts.xml#mapsto"><mo xlink:href="#Object" xlink:type="simple" id="id153674">Object</mo><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid153680">Multiset</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname2.xml#Boolean" xlink:type="simple" id="MCRid153684">Bool</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153663" xlink:type="simple"><OMA xlink:href="MCRid153665" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid153668" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid153674" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid153680" xlink:type="simple"/><OMS cd="setname2" name="Boolean" xlink:href="MCRid153684" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="notin-ex-1">
+<span class="titleword">Example</span>
+<p>  4 is not in {1,1,2,3}</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153788"><semantics><mn id="MCRid153799"> 4 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#notin" xlink:type="simple" id="MCRid153793">∉</mo><mfenced id="id153802" open="{" close="}" separators=""><mn id="MCRid153811"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple" id="MCRid153804">,</mo><mn id="MCRid153814"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid153817"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid153820"> 3 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153788" xlink:type="simple"><OMA xlink:href="MCRid153791" xlink:type="simple"><OMS cd="multiset1" name="notin" xlink:href="MCRid153793" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid153799"> 4 </OMI><OMA xlink:href="MCRid153802" xlink:type="simple"><OMS cd="multiset1" name="multiset" xlink:href="MCRid153804" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid153811"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid153814"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid153817"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid153820"> 3 </OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="prsubset">
+<div class="titlebox">
+<span class="titleword">Concept</span>prsubset</div> 
+    This symbol has two (multiset) arguments. It is used to denote 
+    that the first multiset is a proper subset of the second, that is 
+    a subset of the second multiset but not actually equal to it.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153869"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id153871" xlink:href="sts.xml#mapsto"><mi id="MCRid153880">Multiset</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid153884">Multiset</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname2.xml#Boolean" xlink:type="simple" id="MCRid153888">Bool</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153869" xlink:type="simple"><OMA xlink:href="MCRid153871" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid153874" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid153880" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid153884" xlink:type="simple"/><OMS cd="setname2" name="Boolean" xlink:href="MCRid153888" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="prsubset-ex-1">
+<span class="titleword">Example</span>
+<p>  {2,3} is a proper subset of {2,2,3}</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153971"><semantics><mfenced id="id153982" open="{" close="}" separators=""><mn id="MCRid153990"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple" id="MCRid153984">,</mo><mn id="MCRid153993"> 3 </mn></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#prsubset" xlink:type="simple" id="MCRid153976">⊊</mo><mfenced id="id153997" open="{" close="}" separators=""><mn id="MCRid154006"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple" id="MCRid154000">,</mo><mn id="MCRid154009"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid154013"> 3 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153971" xlink:type="simple"><OMA xlink:href="MCRid153973" xlink:type="simple"><OMS cd="multiset1" name="prsubset" xlink:href="MCRid153976" xlink:type="simple"/><OMA xlink:href="MCRid153982" xlink:type="simple"><OMS cd="multiset1" name="multiset" xlink:href="MCRid153984" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid153990"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid153993"> 3 </OMI></OMA><OMA xlink:href="MCRid153997" xlink:type="simple"><OMS cd="multiset1" name="multiset" xlink:href="MCRid154000" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid154006"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid154009"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid154013"> 3 </OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="notsubset">
+<div class="titlebox">
+<span class="titleword">Concept</span>notsubset</div> 
+    This symbol has two (multiset) arguments. It is used to denote 
+    that the first multiset is not a subset of the second.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154060"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id154063" xlink:href="sts.xml#mapsto"><mi id="MCRid154071">Multiset</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid154075">Multiset</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname2.xml#Boolean" xlink:type="simple" id="MCRid154079">Bool</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154060" xlink:type="simple"><OMA xlink:href="MCRid154063" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid154065" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid154071" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid154075" xlink:type="simple"/><OMS cd="setname2" name="Boolean" xlink:href="MCRid154079" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="notsubset-ex-1">
+<span class="titleword">Example</span>
+<p>  {2,3,3} is not a subset of {1,2,3}</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154163"><semantics><mfenced id="id154173" open="{" close="}" separators=""><mn id="MCRid154182"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple" id="MCRid154176">,</mo><mn id="MCRid154185"> 3 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid154188"> 3 </mn></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#notsubset" xlink:type="simple" id="MCRid154167">⊈</mo><mfenced id="id154192" open="{" close="}" separators=""><mn id="MCRid154201"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple" id="MCRid154194">,</mo><mn id="MCRid154204"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid154208"> 3 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154163" xlink:type="simple"><OMA xlink:href="MCRid154165" xlink:type="simple"><OMS cd="multiset1" name="notsubset" xlink:href="MCRid154167" xlink:type="simple"/><OMA xlink:href="MCRid154173" xlink:type="simple"><OMS cd="multiset1" name="multiset" xlink:href="MCRid154176" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid154182"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid154185"> 3 </OMI><OMI xlink:type="simple" xlink:href="MCRid154188"> 3 </OMI></OMA><OMA xlink:href="MCRid154192" xlink:type="simple"><OMS cd="multiset1" name="multiset" xlink:href="MCRid154194" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid154201"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid154204"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid154208"> 3 </OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="notprsubset">
+<div class="titlebox">
+<span class="titleword">Concept</span>notprsubset</div> 
+    This symbol has two (multiset) arguments. It is used to denote 
+    that the first multiset is not a proper subset of the second. A 
+    proper subset of a multiset is a subset of the multiset but not 
+    actually equal to it.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154256"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id154258" xlink:href="sts.xml#mapsto"><mi id="MCRid154267">Multiset</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid154271">Multiset</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname2.xml#Boolean" xlink:type="simple" id="MCRid154275">Bool</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154256" xlink:type="simple"><OMA xlink:href="MCRid154258" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid154261" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid154267" xlink:type="simple"/><OMV name="Multiset" xlink:href="MCRid154271" xlink:type="simple"/><OMS cd="setname2" name="Boolean" xlink:href="MCRid154275" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="notprsubset-ex-1">
+<span class="titleword">Example</span>
+<p>{1,2,1} is not a proper subset of {1,2,1}</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154359"><semantics><mfenced id="id154369" open="{" close="}" separators=""><mn id="MCRid154378"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple" id="MCRid154372">,</mo><mn id="MCRid154381"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid154384"> 1 </mn></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#notprsubset" xlink:type="simple" id="MCRid154363">⊄</mo><mfenced id="id154388" open="{" close="}" separators=""><mn id="MCRid154397"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple" id="MCRid154390">,</mo><mn id="MCRid154400"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#multiset" xlink:type="simple">,</mo><mn id="MCRid154404"> 1 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154359" xlink:type="simple"><OMA xlink:href="MCRid154361" xlink:type="simple"><OMS cd="multiset1" name="notprsubset" xlink:href="MCRid154363" xlink:type="simple"/><OMA xlink:href="MCRid154369" xlink:type="simple"><OMS cd="multiset1" name="multiset" xlink:href="MCRid154372" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid154378"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid154381"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid154384"> 1 </OMI></OMA><OMA xlink:href="MCRid154388" xlink:type="simple"><OMS cd="multiset1" name="multiset" xlink:href="MCRid154390" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid154397"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid154400"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid154404"> 1 </OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

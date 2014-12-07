@@ -1,0 +1,95 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module EXT
+      SYSTEM http://www.mathweb.org/omdoc/dtd/omdocext.dtd
+      PUBLIC -//OMDoc//ELEMENTS OMDoc EXT V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocext.input.qname "%omdoc.pfx;input">
+<!ENTITY % omdocext.output.qname "%omdoc.pfx;output">
+<!ENTITY % omdocext.effect.qname "%omdoc.pfx;effect">
+<!ENTITY % omdocext.data.qname "%omdoc.pfx;data">
+
+
+
+<!ENTITY % omdocext.omlet.attrib 
+          "%idi.attrib;
+	   action NMTOKEN #IMPLIED
+	   type NMTOKEN #IMPLIED
+	   data CDATA #IMPLIED
+	   argstr CDATA #IMPLIED
+	   function CDATA #IMPLIED
+           width CDATA #IMPLIED
+           height CDATA #IMPLIED
+           %omdoc.nsschema.attrib;">
+<!-- atribute action specifies the action to be taken when activated,
+     attribute data is a URIref to data in a private element
+     attribute argstr is a string of arguments supplied to the function 
+     attribute function is an URIref, points to a code element 
+     attribute width/height for screen display -->
+
+
+<!ELEMENT %omdocext.omlet.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocext.omlet.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %omdocext.omlet.attrib;> 
+
+<!ENTITY % omdocext.private.attrib "%id.attrib;
+                  for CDATA #IMPLIED
+                  theory CDATA #IMPLIED
+                  pto CDATA #IMPLIED
+                  pto-version CDATA #IMPLIED
+		  type NMTOKEN #IMPLIED
+                  requires CDATA #IMPLIED">
+
+<!ENTITY % omdocext.private.content 
+           "%omdocdoc.meta.content;(%omdocext.data.qname;)+">
+<!ELEMENT %omdocext.private.qname; (%omdocext.private.content;)>
+<!ATTLIST %omdocext.private.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %omdocext.private.attrib;
+          replaces CDATA #IMPLIED>
+<!-- 'replaces is a URIref to the omdoc elements that are replaced by the 
+     system-specific information in this element -->
+
+<!ENTITY % omdocext.code.content
+           "%omdocext.private.content;,
+            (%omdocext.input.qname;)?,
+            (%omdocext.output.qname;)?,
+            (%omdocext.effect.qname;)?">
+<!ENTITY % omdocext.code.attrib 
+           "%omdocext.private.attrib;
+            classid CDATA #IMPLIED
+	    codebase CDATA #IMPLIED">
+<!ELEMENT %omdocext.code.qname; (%omdocext.code.content;)>
+<!ATTLIST %omdocext.code.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %omdocext.code.attrib;>
+
+<!ENTITY % omdocext.doc.content 
+           "(%omdocmtxt.CMP.qname;)*,(%omdocmtxt.FMP.qname;)*">
+<!ELEMENT %omdocext.input.qname; (%omdocext.doc.content;)>
+<!ATTLIST %omdocext.input.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %mid.attrib;>
+
+<!ELEMENT %omdocext.output.qname; (%omdocext.doc.content;)>
+<!ATTLIST %omdocext.output.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %mid.attrib;>
+
+<!ELEMENT %omdocext.effect.qname; (%omdocext.doc.content;)>
+<!ATTLIST %omdocext.effect.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %mid.attrib;>
+
+<!ENTITY % omdocext.data.attrib
+              "%mid.attrib;
+               format CDATA #IMPLIED
+               href CDATA #IMPLIED
+               size CDATA #IMPLIED">
+<!ELEMENT %omdocext.data.qname; ANY>
+<!ATTLIST %omdocext.data.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %omdocext.data.attrib;>

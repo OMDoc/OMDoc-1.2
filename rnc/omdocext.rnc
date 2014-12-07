@@ -1,0 +1,47 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module EXT 
+# $Id: omdocext.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocext.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+
+omdoc.mtext.class  |= omlet
+omdocext.class  = private | code | omlet
+omdoc.class |= omdocext.class
+
+omdocext.private.attrib = fori.attrib, attribute requires {omdocref}?
+
+private = element private {omdoc.toplevel.attribs,omdocext.private.attrib,
+	                   attribute reformulates {omdocref}?, 
+			   metadata?,data+}
+# reformulates is a URIref to the omdoc elements that are reformulated by the 
+# system-specific information in this element
+code = element code {omdoc.toplevel.attribs,omdocext.private.attrib,
+                     (metadata?,data+,input?,output?,effect?)}
+input  = (ss| element input  {id.attrib, (omdocmtxt.MCF.content)})
+output = (ss| element output {id.attrib, (omdocmtxt.MCF.content)})
+effect = (ss| element effect {id.attrib, (omdocmtxt.MCF.content)})
+
+data = (ss| element data {id.attrib, 
+                     attribute format {xsd:string}?,
+                     attribute href {xsd:anyURI}?, 
+                     attribute size {xsd:string}?,
+		     attribute pto {xsd:string}?,
+                     attribute pto-version {xsd:string}?,
+                     attribute original {"external" | "local"}?,
+		     Anything})
+
+omlet = (ss| element omlet {id.attrib,
+	   	       attribute action    {"display" | "execute" | "other"}?,
+	   	       attribute show      {"new" | "replace" | "embed" | "other"}?,
+	   	       attribute actuate  {"onPresent" | "onLoad" | "onRequest" | "other"}?,
+		       metadata?,
+		       (omdoc.mtext.class | param)*,
+		       (attribute data {xsd:anyURI}|(private|code))})
+
+param = (ss| element param {id.attrib,
+   attribute name      {xsd:string},
+   attribute value     {xsd:string}?,
+   attribute valuetype {"data" | "ref" | "object"}?,
+   (omdocmobj.class)?})

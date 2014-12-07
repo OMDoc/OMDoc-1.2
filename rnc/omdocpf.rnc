@@ -1,0 +1,35 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module PF 
+# $Id: omdocpf.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocpf.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+
+omdocpf.opt.content  |= proof | proofobject
+omdoc.class          |= proof | proofobject
+
+proof = element proof {omdoc.toplevel.attribs,fori.attrib,
+                       metadata?,(omtext|symbol|definition|derive|hypothesis)*}
+proofobject = element proofobject {omdoc.toplevel.attribs,fori.attrib,
+                                  metadata?,(omdocmobj.class)}
+omdocpf.just.content = method?, premise*, (proof | proofobject)*
+
+derive.type.attr = attribute type {("conclusion" | "gap")}
+
+derive     = (ss| element derive {id.attrib,derive.type.attr?,
+	                         omdocmtxt.MCF.content,method?})
+hypothesis = (ss| element hypothesis {id.attrib,
+	                         attribute inductive {"yes" | "no"}?,
+	                         omdocmtxt.MCF.content})
+
+method = (ss| element method {xref.attrib?, (omdocmobj.class|premise|proof|proofobject)*})
+# 'xref' is a pointer to the element defining the method
+
+premise = (ss| element premise {xref.attrib,
+               attribute rank {xsd:nonNegativeInteger}})
+
+# The rank of a premise specifies its importance in the inference rule. 
+# Rank 0 (the default) is a real premise, whereas positive rank signifies 
+# sideconditions of varying degree.
+

@@ -1,0 +1,89 @@
+/*general HTML stuff */
+body {/*margin:5mm 10mm 5mm 10mm;*/
+      background-color:#c6ddf8;color:black;
+      font-family:helvetica;font-size:medium;}
+
+a.special:visited {color:black;text-decoration:none;}
+a.special:link {color:black;text-decoration:none;}
+a.special:active {color:black;text-decoration:none;}
+a.special:hover {color:black;text-decoration:none;}
+
+a:hover {color:#151b7e;}
+a:visited {color:black;}
+a:link {color:#151b7e;}
+
+td {font-size:normal;font-family:helvetica;}
+h2 {color:blue}
+
+/* Module MATH */
+span.math {font-style=oblique}
+div.displaymath {font-style:oblique;display:block;align:center}
+
+/* Module DC */
+div.titleblock{width:80%;margin-left:10%;fontsize:medium;
+			border-style:inset;border-color:#222222;border-width:2pt}
+div.title,div.author,div.date,
+div.subject,div.description
+   {align:center}
+div.author{font-variant:small-caps}
+div.subject{font-style:italic}
+div.title{fontsize:large;font-weight:bold}
+div.author,div.date,div.subject,div.description
+   {width:80%;left-margin:10%;align:center;fontsize:medium}
+div.author{font-variant:small-caps}
+div.subject{font-style:italic}
+div.firstname:after,div.surname:after,div.othername:after
+   {content:' '}
+div.email{font-family:monospace}  
+
+/* Module DOC */
+div.omtext{width:100%;margin:5mm 5mm 5mm 5mm;margin-bottom:0pt;padding:0pt}
+div.quote{font-size:larger;width:80%;font-family:sans-serif}
+div.caption{font-size:smaller;font-style:italic;align:right}
+div.annotation{font-size:smaller;color:gray}
+div.ednote{font-size:smaller;background-color:red}
+
+/* Module ST */
+span.titleword{font-weight:bold}
+span.titleword:after{content:': '}
+div.titlebox{padding:0pt}
+
+div.assertion,div.false-conjecture,div.definition,
+div.example,div.counterexample,div.proof,
+div.exercise,div.axiom,div.symbol
+   {padding:4pt;align:center;margin-top:2pt;margin-bottom:2pt;
+    border-color:#222222;border-width:2pt;border-style:inset}
+
+div.axiom,div.symbol
+   {background-color:#93a8f8;align:center}
+div.assertion,div.false-conjecture{border-color:black}
+div.proof,div.counterexample,div.example
+   {margin-left:30pt;width:88%}
+
+div.assertion{background-color:#e5e5e4}
+div.false-conjecture{background-color:#CC3300}
+div.definition{background-color:#e5e5e1}
+div.example{background-color:#7289f0}
+div.counterexample{background-color:#CC3300}
+
+/* Module PROOF */
+div.proof{background-color:#90b3fc}
+
+/* Module QUIZ */
+div.exercise{background-color:#5a7ffc;margin-left:30pt}
+
+/* Module EXT */
+div.code{font-family:courier;background-color:#ffa964;width:60%}
+div.omlet{}
+div.image{}
+div.legacy{}
+
+/* Module RT */
+div.note{background-color:#e5e5e4}
+span.noteref:before{content:'['}
+span.noteref:after{content:']'}
+span.notenumber:before{content:'['}
+span.notenumber:after{content:']'}
+
+/* Various */
+div.migration{color:red;font-size:smaller}

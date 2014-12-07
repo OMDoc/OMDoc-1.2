@@ -1,0 +1,17 @@
+== OMDoc document ontology ==
+
+Note: As of 2007/09/17, the *.n3 files (N3) are the autoritative source.  The
+*.owl files (RDF/XML) are generated from that.
+
+The ontology is designed in a modular way.  For exchange, it is more convenient
+to have it in one file.  This file is available in onefile/omdoc.owl (RDF/XML).
+The tool for generating this file will soon be provided here.
+
+Please see http://mathweb.org/wiki/OMDoc/document_ontology for further
+documentation.
+
+== OMDoc 1.2 information ==
+
+The tools that currently support the OMDoc ontology use OMDoc-trunk.  The most
+recent version of the ontology can thus be found at
+https://svn.omdoc.org/repos/omdoc/trunk/owl.  Changes compatible with OMDoc 1.2 will be merged back every once a while.

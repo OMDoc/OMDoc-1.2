@@ -1,0 +1,19 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2): Module QUIZ Entities
+     PUBLIC: -//OMDoc//ENTITIES OMDoc QUIZ V1.2//EN
+     SYSTEM: http://www.mathweb.org/omdoc/dtd/omdocquiz.ent
+   See the documentation and examples at http://www.mathweb.org/omdoc 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocquiz.exercise.qname "%omdoc.pfx;exercise">
+<!ENTITY % omdocquiz.solution.qname "%omdoc.pfx;solution">
+<!ENTITY % omdocquiz.mc.qname "%omdoc.pfx;mc">
+<!ENTITY % omdocquiz.hint.qname "%omdoc.pfx;hint">
+
+<!-- set the following entity to the empty string, 
+     if not importing module QUIZ -->
+<!ENTITY % omdocquiz.class "|%omdocquiz.exercise.qname;
+                            |%omdocquiz.hint.qname;
+                            |%omdocquiz.mc.qname;
+                            |%omdocquiz.solution.qname;">

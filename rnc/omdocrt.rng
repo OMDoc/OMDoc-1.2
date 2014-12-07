@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module DOC 
+  $Id: omdocrt.rnc 6635 2007-07-13 06:41:22Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocrt.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="omdoc.mtext.class" combine="choice">
+    <choice>
+      <ref name="ss"/>
+      <ref name="ul"/>
+      <ref name="ol"/>
+      <ref name="dl"/>
+      <ref name="p"/>
+      <ref name="note"/>
+      <ref name="link"/>
+      <ref name="table"/>
+      <ref name="idx"/>
+    </choice>
+  </define>
+  <define name="omdocrt.common.attrib">
+    <ref name="id.attrib"/>
+    <ref name="fori.attrib"/>
+    <ref name="parallel.attribs"/>
+  </define>
+  <define name="ul">
+    <element name="ul">
+      <ref name="omdocrt.common.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <oneOrMore>
+        <ref name="li"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="ol">
+    <element name="ol">
+      <ref name="omdocrt.common.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <oneOrMore>
+        <ref name="li"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="dl">
+    <element name="dl">
+      <ref name="omdocrt.common.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <oneOrMore>
+        <ref name="di"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="li">
+    <element name="li">
+      <ref name="omdocrt.common.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="di">
+    <element name="di">
+      <ref name="omdocrt.common.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <oneOrMore>
+        <ref name="dt"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="dd"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="dt">
+    <element name="dt">
+      <ref name="omdocrt.common.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="dd">
+    <element name="dd">
+      <ref name="omdocrt.common.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="p">
+    <element name="p">
+      <ref name="omdocrt.common.attrib"/>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="note">
+    <element name="note">
+      <ref name="omdocrt.common.attrib"/>
+      <optional>
+        <attribute name="type">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- a simplified html table -->
+  <define name="table">
+    <element name="table">
+      <ref name="omdocrt.common.attrib"/>
+      <oneOrMore>
+        <ref name="tr"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="tr">
+    <choice>
+      <ref name="ss"/>
+      <element name="tr">
+        <ref name="omdocrt.common.attrib"/>
+        <oneOrMore>
+          <choice>
+            <ref name="td"/>
+            <ref name="th"/>
+          </choice>
+        </oneOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="td">
+    <choice>
+      <ref name="ss"/>
+      <element name="td">
+        <ref name="omdocrt.common.attrib"/>
+        <zeroOrMore>
+          <ref name="omdoc.mtext.class"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="th">
+    <choice>
+      <ref name="ss"/>
+      <element name="th">
+        <ref name="omdocrt.common.attrib"/>
+        <zeroOrMore>
+          <ref name="omdoc.mtext.class"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="link">
+    <element name="link">
+      <ref name="omdocrt.common.attrib"/>
+      <attribute name="href">
+        <data type="anyURI"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- index -->
+  <define name="index.att">
+    <optional>
+      <attribute name="sort-by"/>
+    </optional>
+    <optional>
+      <attribute name="see">
+        <ref name="omdocrefs"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="seealso">
+        <ref name="omdocrefs"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="links">
+        <list>
+          <zeroOrMore>
+            <data type="anyURI"/>
+          </zeroOrMore>
+        </list>
+      </attribute>
+    </optional>
+  </define>
+  <define name="idx">
+    <element name="idx">
+      <choice>
+        <ref name="id.attrib"/>
+        <ref name="xref.attrib"/>
+      </choice>
+      <optional>
+        <ref name="idt"/>
+      </optional>
+      <oneOrMore>
+        <ref name="ide"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="ide">
+    <element name="ide">
+      <optional>
+        <attribute name="index">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <ref name="index.att"/>
+      <zeroOrMore>
+        <ref name="idp"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="idt">
+    <element name="idt">
+      <ref name="idrest.attribs"/>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="idp">
+    <element name="idp">
+      <ref name="index.att"/>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+</grammar>

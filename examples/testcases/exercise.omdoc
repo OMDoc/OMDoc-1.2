@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_exercise.omdoc">
+
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>                                                                     
+
+<theory xml:id="test_exercise">
+
+  <exercise xml:id="myex" style="foo" for="#bar">
+    <metadata>
+      <dc:title>metadata for exercise</dc:title>
+      <dc:creator role="aut">hf</dc:creator>
+      <dc:date>2001-02-25T00:00:00</dc:date>
+    </metadata>
+    <CMP xml:lang="en">exercise</CMP>
+    <CMP xml:lang="zh">lianxi</CMP>
+    <FMP/>
+
+    <hint xml:id="myhint" style="foobar">
+      <metadata>
+	<dc:title>metadata for hint</dc:title>
+	<dc:creator role="aut">hf</dc:creator>
+	<dc:date>2001-02-25T00:00:00</dc:date>
+      </metadata>
+      <CMP>one</CMP>
+      <FMP/>
+    </hint>
+
+    <solution xml:id="mysol" style="bla" for="#something">
+      <metadata>
+	<dc:title>metadata for solution</dc:title>
+	<dc:creator role="aut">hf</dc:creator>
+	<dc:date>2001-02-25T00:00:00</dc:date>
+      </metadata>
+      <omtext>
+	<CMP xml:lang="de">eins</CMP>
+	<CMP xml:lang="zh">yi</CMP>
+	<FMP/>
+      </omtext>
+    </solution>
+
+    <solution xml:id="mysol2">
+      <omtext><CMP>testing the proof model of solution</CMP></omtext>
+     <proof xml:id="myproof" for="#bla">
+	<derive xml:id="dummy"/>
+      </proof>
+    </solution>
+  </exercise>
+
+  <exercise xml:id="myex2" for="#foo">
+    <CMP>some introductory text here</CMP>
+    <hint><CMP>and a hint</CMP></hint>
+    <mc xml:id="mymc" style="blabla">
+      <choice xml:id="mych" style="something">
+	<metadata>
+	  <dc:title>metadata for choice</dc:title>
+	  <dc:creator role="aut">hf</dc:creator>
+	  <dc:date>2001-02-25T00:00:00</dc:date>
+	</metadata>
+	<CMP>choice</CMP>
+	<CMP xml:lang="zh">xuanze</CMP>
+	<FMP/>
+      </choice>
+      <hint xml:id="subhint"/>
+      <answer verdict="true" xml:id="myans" style="good">
+	<metadata>
+	  <dc:title>metadata for answer</dc:title>
+	  <dc:creator role="aut">hf</dc:creator>
+	  <dc:date>2001-02-25T00:00:00</dc:date>
+	</metadata>
+	<CMP>answer</CMP>
+	<CMP xml:lang="zh">dafu</CMP>
+	<FMP/>
+      </answer>
+    </mc>
+    <mc xml:id="mymc2">
+      <choice xml:id="anotherchoice"/>
+      <answer verdict="false" xml:id="finalanswer"/>
+    </mc>
+  </exercise>
+
+</theory>
+</omdoc>
+

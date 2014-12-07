@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary error.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary error.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/></div>
+
+
+<div class="symbol" id="unhandled_symbol">
+<div class="titlebox">
+<span class="titleword">Concept</span>unhandled_symbol</div>
+    This symbol represents the error which is raised when an application
+    reads a symbol which is present in the mentioned content
+    dictionary, but which it has not implemented.
+
+    When receiving such a symbol, the application should act as if it had
+    received the OpenMath error object constructed from
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84720"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#unhandled_symbol" xlink:type="simple" id="id84721">unhandled_symbol</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84720" xlink:type="simple"><OMS cd="error" name="unhandled_symbol" xlink:href="MCRid84721" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>
+    and the unhandled symbol as in the example below.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid113180"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id113183" xlink:href="sts.xml#mapsto"><mi id="MCRid113191">OMSymbol</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#error" xlink:type="simple" id="id113196">error</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid113180" xlink:type="simple"><OMA xlink:href="MCRid113183" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid113185" xlink:type="simple"/><OMV name="OMSymbol" xlink:href="MCRid113191" xlink:type="simple"/><OMS cd="sts" name="error" xlink:href="MCRid113196" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="unhandled_symbol-ex-1">
+<span class="titleword">Example</span>
+<p> The application does not implement the Complex numbers:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid113229"><semantics><mrow style="color:red" id="MCRid113231"><mo>OM Error</mo><mrow><mo fence="true">(</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#unhandled_symbol" xlink:type="simple" id="id113233">unhandled_symbol</mo><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid113229" xlink:type="simple"><OME xlink:href="MCRid113231" xlink:type="simple"><OMS cd="error" name="unhandled_symbol" xlink:href="MCRid113233" xlink:type="simple"/><OMS cd="setname1" name="C" xlink:href="MCRid85288" xlink:type="simple"/></OME></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="unexpected_symbol">
+<div class="titlebox">
+<span class="titleword">Concept</span>unexpected_symbol</div>
+    This symbol represents the error which is raised when an application
+    reads a symbol which is not present in the mentioned content dictionary.
+
+    When receiving such a symbol, the application should act as if it had
+    received the OpenMath error object constructed from
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid85323"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#unexpected_symbol" xlink:type="simple" id="id85325">unexpected_symbol</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid85323" xlink:type="simple"><OMS cd="error" name="unexpected_symbol" xlink:href="MCRid85325" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>
+    and the unexpected symbol as in the example below.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid85342"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id85344" xlink:href="sts.xml#mapsto"><mi id="MCRid85353">OMSymbol</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#error" xlink:type="simple" id="id85357">error</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid85342" xlink:type="simple"><OMA xlink:href="MCRid85344" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid85346" xlink:type="simple"/><OMV name="OMSymbol" xlink:href="MCRid85353" xlink:type="simple"/><OMS cd="sts" name="error" xlink:href="MCRid85357" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="unexpected_symbol-ex-1">
+<span class="titleword">Example</span>
+<p>The application received a mistyped symbol</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84757"><semantics><mrow style="color:red" id="MCRid84760"><mo>OM Error</mo><mrow><mo fence="true">(</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#unexpected_symbol" xlink:type="simple" id="id84762">unexpected_symbol</mo><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84757" xlink:type="simple"><OME xlink:href="MCRid84760" xlink:type="simple"><OMS cd="error" name="unexpected_symbol" xlink:href="MCRid84762" xlink:type="simple"/><OMS cd="arith1" name="plurse" xlink:href="MCRid84768" xlink:type="simple"/></OME></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="unsupported_CD">
+<div class="titlebox">
+<span class="titleword">Concept</span>unsupported_CD</div>
+    This symbol represents the error which is raised when an application
+    reads a symbol where the mentioned content dictionary is not
+    present.
+
+    When receiving such a symbol, the application should act as if it had
+    received the OpenMath error object constructed from
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84805"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#unsupported_CD" xlink:type="simple" id="id84807">unsupported_CD</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84805" xlink:type="simple"><OMS cd="error" name="unsupported_CD" xlink:href="MCRid84807" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> and
+    the symbol from the unsupported Content Dictionary as in the example
+    below.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid109093"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id109096" xlink:href="sts.xml#mapsto"><mi id="MCRid109104">OMSymbol</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#error" xlink:type="simple" id="id109109">error</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid109093" xlink:type="simple"><OMA xlink:href="MCRid109096" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid109098" xlink:type="simple"/><OMV name="OMSymbol" xlink:href="MCRid109104" xlink:type="simple"/><OMS cd="sts" name="error" xlink:href="MCRid109109" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="unsupported_CD-ex-1">
+<span class="titleword">Example</span>
+<p> The application does not know about the CD specfun1</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid109145"><semantics><mrow style="color:red" id="MCRid109148"><mo>OM Error</mo><mrow><mo fence="true">(</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#unsupported_CD" xlink:type="simple" id="id109150">unsupported_CD</mo><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid109145" xlink:type="simple"><OME xlink:href="MCRid109148" xlink:type="simple"><OMS cd="error" name="unsupported_CD" xlink:href="MCRid109150" xlink:type="simple"/><OMS cd="specfun1" name="BesselJ" xlink:href="MCRid109156" xlink:type="simple"/></OME></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,631 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.2 specifiation
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: mtext.tex 8379 2009-06-11 05:32:28Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/doc/spec/mtext.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=mtxt,short=Mathematical Text]{Mathematical Text (Modules
+  {\MTXTmodule{spec}} and {\RTmodule{spec}})}
+
+The everyday mathematical language used in textbooks, conversations, and written onto
+blackboards all over the world consists of a {\indextoo{rigorous}}, slightly stylized
+version of {\twintoo{natural}{language}} interspersed with mathematical formulae, that is
+sometimes called {\twindef{mathematical}{vernacular}}\footnote{The term ``mathematical
+  vernacular'' was first introduced by Nicolaas Govert de Bruijn in the 1970s
+  (see~\cite{DeBruijn:tmv94} for a discussion). It derives from the word ``vernacular''
+  used in the {\twintoo{Catholic}{church}} to distinguish the language used by
+  {\indextoo{laymen}} from the official {\indextoo{Latin}}.}.
+
+\begin{erratum}[date=2007-09-10,reported-by=Kristina Sojakova]{added the attribute xml:id to
+  the {\tt CMP} element; added the attribute from to the {\tt omtext} element}  
+\begin{erratum}[date=2009-02-26,reported-by=Christoph Lange]{added the attribute cdbase to
+    the {\tt term} element}
+\begin{myfig}{qtcfmp}{The {\omdoc} Elements for Specifying Mathematical Properties}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{2.8truecm}|c|>{\tt}p{4truecm}|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & D & Content  \\\hline
+             & {\rm Required}  & {\rm Optional}  & C &           \\\hline\hline
+ CMP         &  & xml:id, xml:lang                   & -- & \llquote{math vernacular}\\\hline
+ FMP         &  & xml:id, logic                      & -- 
+             & (assumption*, conclusion*) | {\mobjabbr} \\\hline
+ assumption  &  & xml:id, inductive, class, style    & +  & (\mobjabbr)  \\\hline
+ conclusion  &  & xml:id, class, style               & +  & (\mobjabbr)  \\\hline
+ phrase      &  & xml:id, class, style, index, verbalizes, type
+                                                     & -- & \llquote{math vernacular}\\\hline
+ term        & cd, name & cdbase, role, xml:id, class, style & -- & \llquote{math vernacular}\\\hline
+ omtext      &  & xml:id, type, for, from, class, style, verbalizes    & +  & CMP+, FMP* \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+\end{erratum}
+\end{erratum}
+
+\begin{tsection}[id=mtext]{Multilingual Mathematical Vernacular}
+  {\omdoc} models mathematical vernacular as parsed text interspersed with
+  content-carrying elements. Most prominently, the {\element[ns-elt=om]{OMOBJ}},
+  {\element[ns-elt=m]{math}}, and {\element{legacy}} elements are used for mathematical
+  objects, see {\mychapref{mobj}}. Other elements structure the text, such as the
+  {\element{phrase}} and {\element{term}} elements introduced in this chapter, or link it
+  to the document structure as the {\element{ref}} or {\element{ignore}} elements
+  introduced above. In {\myfigref{modstable}} we have given an overview over the ones
+  described in this book. The last two modules in {\myfigref{modstable}} are optional (see
+  {\mysecref{sub-languages}}).  Other (external or future) {\omdoc} modules can introduce
+  further elements; natural extensions come when {\omdoc} is applied to areas outside
+  mathematics, for instance {\twintoo{computer science}{vernacular}} needs to talk about
+  {\twintoo{code}{fragment}s} (see {\mysecref{private}} and~\cite{Kohlhase:codemlspec}),
+  {\twintoo{chemistry}{vernacular}} about chemical formulae (e.g. represented in Chemical
+  Markup Language~\cite{CML:web}).
+
+\begin{myfig}{modstable}{{\omdoc} Modules Contributing to Mathematical Vernacular}
+\begin{small}
+  \begin{tabular}{|l|p{4cm}|p{3.5cm}|l|}\hline
+    Module & Elements & Comment & see\\\hline\hline
+    \MOBJmodule{spec} &  {\element[ns-elt=om]{OMOBJ}}, {\element[ns-elt=m]{math}}, {\element{legacy}}
+                      & mathematical Objects 
+                      & p.~\pageref{chap:mobj}\\\hline
+    \MTXTmodule{spec} & {\element{phrase}}, {\element{term}}
+                      & phrase-level markup
+                      & below \\\hline                  
+    \DOCmodule{spec}  & {\element{ref}}, {\element{ignore}}
+                      & document structure
+                      & p.~\pageref{chap:omdoc-infrastructure}\\\hline                  
+    \RTmodule{spec}   & {\element{p}}, {\element{ol}}, {\element{ul}}, {\element{dl}},
+                        {\element{table}}, {\element{link}},
+                        {\element{note}}, {\element{idx}} 
+                      & rich text structure & p.~\pageref{sec:rt}\\\hline
+    \EXTmodule{spec}  & {\element{omlet}} & for applets, images, \ldots 
+                      & p.~\pageref{eldef:omlet}\\\hline
+  \end{tabular}
+\end{small}
+\end{myfig}
+
+To be able to support
+{\twintoo{multilingual}{documents}}\twin{multilingual}{support}\twin{languages}{multiple},
+the mathematical vernacular is represented as a groups of {\eldef{CMP}}\footnote{The name
+  comes from ``Commented Mathematical Property'' and was originally taken from {\openmath}
+  content dictionaries\index{content dictionary} for continuity reasons. Note that {\xml}
+  does note confuse the two, since they are in different {\indextoo{namespace}s}.}
+elements which contain the vernacular and have an optional
+{\attributeshort[ns-attr=xml]{lang}} attribute that specifies the language they are
+written in. Conforming with the {\xml} recommendation, we use the ISO
+639\atwin{ISO}{639}{norm} two-letter {\twintoo{country}{code}s}
+({\snippetin{de}}$\;\widehat=\;$German, {\snippetin{en}}$\;\widehat=\;$English,
+{\snippetin{fr}}$\;\widehat=\;$French, {\snippetin{nl}}$\;\widehat=\;$Dutch, \ldots). If
+no {\attributeshort[ns-attr=xml]{lang}} is given, then {\attvalshort{en}{xml:lang}} is
+assumed as the default value. It is forbidden to have two or more sibling {\element{CMP}}
+with the same value of {\attribute[ns-attr=xml]{lang}{CMP}}, moreover, {\element{CMP}}s
+that are siblings must be translations of each other.\footnote{The translation requirement
+  may be alleviated in the future, when further variant relations are encoded in
+  {\element{CMP}} groups (see~\cite{KohKoh:copmem06} for a discussion in the context of
+  ``communities of practice''). Then a generalized uniqueness condition must be observed in
+  {\element{CMP}} groups, so that systems can choose between the supplied variants.} We
+speak of a {\twintoo{multilingual}{group}} of {\element{CMP}} elements if this is the
+case.
+\begin{erratum}[reported-by=Krzysztof Retel,date=2006-09-14]{should be "definiendum" not "definiens"}
+\begin{lstlisting}[escapechar=\%,label=lst:multiling,mathescape,
+  caption={A Multilingual Group of {\element{CMP}} Elements},
+  index={trl,xml:lang,CMP,FMP,OMOBJ}]
+ <CMP>
+   Let <OMOBJ id="set"><OMV name="V"/></OMOBJ> be a set. 
+   A <term role="definiendum">unary operation</term> on 
+   <OMOBJ><OMR href="#set"/></OMOBJ> is a function  
+   <OMOBJ id="fun"><OMV name="F"/></OMOBJ> with
+   <OMOBJ id="im">
+     <OMA>
+       <OMS cd="relations1" name="eq"/>
+       <OMA><OMS cd="fns1" name="domain"/><OMV name="F"/></OMA>
+       <OMV name="V"/>
+     </OMA>
+   </OMOBJ> and 
+   <OMOBJ id="ran">
+     <OMA>
+       <OMS cd="relations1" name="eq"/>
+       <OMA><OMS cd="fns1" name="range"/><OMV name="F"/></OMA>
+       <OMV name="V"/>
+     </OMA>
+   </OMOBJ>.
+ </CMP>
+ <CMP xml:lang="de">
+   Sei <OMOBJ><OMR href="#set"/></OMOBJ> eine Menge. 
+   Eine <term role="definiendum">un%\"a%re Operation</term> 
+   ist eine Funktion <OMOBJ><OMR href="#fun"/></OMOBJ>, so dass
+   <OMOBJ><OMR href="#im"/></OMOBJ> und 
+   <OMOBJ><OMR href="#ran"/></OMOBJ>.
+ </CMP>
+ <CMP xml:lang="fr">
+   Soit <OMOBJ><OMR href="#set"/></OMOBJ> un ensemble. 
+   Une <term role="definiendum">op%\'e%ration unaire</term> s%\^u%r
+   <OMOBJ><OMR href="#set"/></OMOBJ> est une fonction 
+   <OMOBJ><OMR href="#fun"/></OMOBJ> avec 
+   <OMOBJ><OMR href="#im"/></OMOBJ> et 
+   <OMOBJ><OMR href="#ran"/></OMOBJ>.
+ </CMP>
+\end{lstlisting}
+\end{erratum}
+
+{\mylstref{multiling}} shows an example of such a {\twintoo{multilingual}{group}}. Here,
+the {\openmath} extension by {\indextoo{DAG}}\atwin{directed}{acyclic}{graph}
+representation (see {\mysecref{openmath}}) facilitates multi-language support: Only the
+language-dependent parts of the text have to be rewritten, the (language-independent)
+formulae can simply be re-used by cross-referencing\index{cross-reference}.
+\end{tsection}
+
+\begin{tsection}[id=FMP]{Formal Mathematical Properties}
+  
+  An {\eldef{FMP}}\footnote{The name comes from ``Formal Mathematical Properties'' and was
+    originally taken from {\openmath} content dictionaries for continuity reasons.}
+  element is the general element for representing formal mathematical content in the form
+  of {\openmath} objects. {\element{FMP}}s always appear in groups, which can differ in
+  the value of their {\attribute{logic}{FMP}} attribute, which specifies the logical
+  formalism. The value of this attribute specifies the {\twintoo{logical}{system}} used in
+  formalizing the content.  All members of the group have to formalize the same
+  mathematical object or property, i.e. they have to be translations of each other, like
+  siblings {\element{CMP}}s, we speak of a {\defemph{multi-logic {\element{FMP}}
+      group\twin{multi-logic}{group}}} in this case. Furthermore, if an {\element{FMP}}
+  group has {\element{CMP}} siblings, all must express the same content.
+
+  In {\mylstref{omtext-def}} we see two {\element{FMP}} elements, that state the property
+  of being a unary operation in two logics. The first one ({\snippet{fol}} for
+  {\twintoo{first-order}{logic}}) uses an equivalence to convey the restriction, the
+  second one ({\snippet{hol}} for {\twintoo{higher-order}{logic}}) has
+  $\lambda$-abstraction and can therefore define the binary predicate {\snippet{binop}}
+  directly.
+
+\begin{lstlisting}[escapechar=\%,label=lst:omtext-def,mathescape,
+  caption={A multi-logic {\element{FMP}} group for {\mylstref{multiling}}.},
+  index={trl,xml:lang,CMP,FMP,OMOBJ}]
+<omtext xml:id="binop-def" type="definition">
+   %$\ldots$ {\emph{the content of {\mylstref{multiling}}} here $\ldots$%
+  <FMP logic="fol">$\allcdot{V,F}{binop(F,V)\Leftrightarrow{\bf{Im}}(F)=V\wedge{\bf{Dom}}(F)=V}$</FMP>
+  <FMP logic="hol">$binop=\lambda{V,F}.{\bf{Im}}(F)=V\wedge{\bf{Dom}}(F)=V$</FMP>
+</omtext>
+\end{lstlisting}
+
+As mathematical statements of properties of objects often come as {\defin{sequent}s},
+i.e. as sets of conclusions drawn from a set of assumptions, {\omdoc} also allows the
+content of an {\element{FMP}} to be a (possibly empty) set of {\eldef{assumption}}
+elements followed by a (possibly empty) set of {\eldef{conclusion}} elements. The intended
+meaning is that the {\element{FMP}} asserts that one of the conclusions is entailed by the
+assumptions together in the current context.  As a consequence
+\begin{lstlisting}[mathescape]
+<FMP><conclusion>$A$</conclusion></FMP>
+\end{lstlisting}
+  is equivalent to {\snippet{<FMP>}$A$\snippet{</FMP>}}, where $A$ is an {\openmath},
+  {\cmathml}, or {\element{legacy}} representation of a mathematical formula. The
+  {\element{assumption}} and {\element{conclusion}} elements allow to specify the content
+  by an {\element[ns-elt=om]{OMOBJ}}, {\element[ns-elt=m]{math}}, or {\element{legacy}}
+  element. The {\element{assumption}} and
+  {\element{conclusion}} elements carry an optional {\attributeshort[ns-attr=xml]{id}}
+  attribute, which can be used to refer to them by {\element{ref}} elements in structure
+  sharing. This is important for specifying sequent-style proofs (see
+  {\mychapref{proofs}}), where the assumptions and conclusions of sequents are largely
+  invariant over a proof and would have to be copied otherwise. The {\element{assumption}}
+  element carries an additional optional attribute {\attribute{inductive}{assumption}} for
+  inductive hypotheses\twin{inductive}{hypothesis}.
+
+  In the (somewhat contrived) example in {\mylstref{sequent}} we show a
+  {\indextoo{sequent}} for a simple fact about {\twintoo{set}{intersection}}. Here the
+  knowledge in both assumptions (together) is enough to entail one of the conclusions (the
+  first in this case). For details about the {\element{phrase}} element see
+  {\mysecref{phrases}} below.
+
+\begin{lstlisting}[mathescape,label=lst:sequent,
+  caption={Representing Vernacular as an {\element{FMP}} Sequent},
+  index={trl,xml:lang,CMP,FMP,OMOBJ}]
+<CMP>If $a\in{U}$ and $a\in{V}$, then $a\in{U}\cap{V}$ or 
+  <phrase index="moon_cheese">the moon is made of green cheese</phrase>.
+</CMP>
+<FMP>
+  <assumption xml:id="A">$a\in{U}$</assumption>
+  <assumption xml:id="B">$a\in{V}$</assumption>
+  <conclusion xml:id="C">$a\in{U}\cap{V}$</conclusion>
+  <conclusion xml:id="moon_cheese">$made\_of(moon,gc)$</conclusion>
+</FMP>
+\end{lstlisting}
+\end{tsection}
+
+\begin{tsection}[id=omtext]{Text Fragments and their Rhetoric/Mathematical Roles}
+
+  As we have explicated above, all mathematical documents state properties of mathematical
+  objects --- informally in mathematical vernacular or formally (as logical formulae), or
+  both. {\omdoc} uses the {\eldef{omtext}} element to mark up text passages that form
+  conceptual units, e.g. paragraphs, statements, or remarks.  {\element{omtext}} elements
+  have an optional {\attribute[ns-attr=xml]{id}{omtext}} attribute, so that they can be
+  {\indextoo{cross-reference}d}, the intended purpose of the text fragment in the larger
+  document context can be described by the optional attribute {\attribute{type}{omtext}}.
+  This can take e.g. the values {\attval{abstract}{type}{omtext}},
+  {\attval{introduction}{type}{omtext}}, {\attval{conclusion}{type}{omtext}},
+  {\attval{comment}{type}{omtext}}, {\attval{thesis}{type}{omtext}},
+  {\attval{antithesis}{type}{omtext}}, {\attval{elaboration}{type}{omtext}},
+  {\attval{motivation}{type}{omtext}}, {\attval{evidence}{type}{omtext}},
+  \erratumAdd[reported-by=Kristina Sojakova,date=2006-07-21]{\attval{note}{type}{omtext}}
+  {\attval{transition}{type}{omtext}} with the obvious meanings. In the last five cases
+  {\element{omtext}} also has the extra attribute {\attribute{for}{omtext}}, and in the
+  last one, also an attribute {\attribute{from}{omtext}}, since these are in reference to
+  other {\omdoc} elements.
+
+  The content of an {\element{omtext}} element is {\twintoo{mathematical}{vernacular}}
+  contained in a multi-lingual {\element{CMP}} group, followed by an (optional)
+  multi-logic {\element{FMP}} group that expresses the same content.  This
+  {\element{CMP}} group can be preceded by a {\element{metadata}} element that can be used
+  to specify authorship, give the passage a title, etc. (see {\mysecref{dc-elements}}).
+
+  We have used the {\attribute{type}{omtext}} attribute on {\element{omtext}} to classify
+  text fragments by their {\twintoo{rhetoric}{role}}. This is adequate for much of the
+  generic text that makes up the {\indextoo{narrative}} and explanatory text in a
+  mathematical textbook. But many text fragments in mathematical documents directly state
+  properties of mathematical objects (we will call them
+  {\twintoo{mathematical}{statement}s}; see {\mychapref{statements}} for a more elaborated
+  markup infrastructure). These are usually classified as {\indextoo{definition}s},
+  {\indextoo{axiom}s}, etc.  Moreover, they are of a form that can (in principle) be
+  formalized up to the level of logical formula; in fact, mathematical vernacular is seen
+  by mathematicians as a more convenient form of communication for mathematical statements
+  that can ultimately be translated into a foundational logical system like axiomatic set
+  theory~\cite{Bernays:ast91}.  For such text fragments, {\omdoc} reserves the following
+  values for the {\attribute{type}{omtext}} attribute:
+\begin{description}
+\item[{\attval{axiom}{type}{omtext}}] (fixes or restricts the meaning of certain
+  symbols or concepts.) An axiom is a piece of mathematical knowledge that cannot
+  be derived from anything else we know.
+\item[{\attval{definition}{type}{omtext}}] (introduces new concepts or symbols.) A
+  definition is an axiom that introduces a new symbol or construct, without restricting
+  the meaning of others.
+\item[{\attval{example}{type}{omtext}}] (for or against a mathematical property).
+\item[{\attval{proof}{type}{omtext}}] (a proof), i.e. a rigorous --- but maybe informal
+  --- argument that a mathematical statement holds.
+\item[{\attval{hypothesis}{type}{omtext}}] (a local assumption in a proof that will be
+  discharged later) for text fragments that come from (parts of) proofs.
+\item[{\attval{derive}{type}{omtext}}] (a step in a proof), we will specify the exact
+  meanings of this and the two above in {\mychapref{proofs}} and present more structured
+  counterparts.
+\end{description} 
+\begin{erratum}[reported-by=Gordan Ristovski,date=2008-06-18]{omtext can also be an assumption, obligation or rule as all of these can be expressed in informal as well as formal way}
+\begin{erratum}[reported-by=Christoph Lange,date=2008-07-02]{And there should also be <omtext type=``assertion''> for generic assertions, corresponding to the <assertion> element without a type.}
+Finally, {\omdoc} also reserves the values {\attval{assertion}{type}{omtext}}, {\attval{theorem}{type}{omtext}},
+{\attval{proposition}{type}{omtext}}, {\attval{lemma}{type}{omtext}},
+{\attval{corollary}{type}{omtext}}, {\attval{postulate}{type}{omtext}},
+{\attval{conjecture}{type}{omtext}}, {\attval{false-conjecture}{type}{omtext}}, {\attval{assumption}{type}{omtext}}, {\attval{obligation}{type}{omtext}}, {\attval{rule}{type}{omtext}} and
+{\attval{formula}{type}{omtext}} for statements that assert properties of mathematical
+objects (see {\myfigref{assertion-types}} in {\mysubsecref{assertions}} for
+explanations).\end{erratum}\end{erratum} Note that the differences between these values are largely pragmatic or
+proof-theoretic (conjectures become theorems once there is a proof).  Mathematical
+{\element{omtext}} elements (such with one of these types) can have additional
+{\element{FMP}} elements (Formal Mathematical Property) that formally represents the
+meaning of the descriptive text in the {\element{CMP}}s (if that is feasible).
+
+Further types of text can be specified by providing a URI that points to a description of
+the text type (much like the {\attribute[ns-elt=m]{definitionURL}{csymbol}} attribute on
+the {\element[ns-elt=m]{csymbol}} elements in {\cmathml}).
+
+Of course, the {\attribute{type}{omtext}} only allows a rough classification of the
+{\twintoo{mathematical}{statement}s} at the text level, and does not make the underlying
+{\twintoo{content}{structure}} explicit or reveals their contribution and interaction with
+{\twintoo{mathematical}{context}}.  For that purpose {\omdoc} supplies a set of
+specialized elements, which we will discuss in {\mychapref{statements}}.  Thus
+{\element{omtext}} elements will be used to give informal accounts of mathematical
+statements that are better and more fully annotated by the infrastructure introduced in
+{\mychapref{statements}}. However, in narrative documents, we often want to be informal,
+while maintaining a link to the formal element. For this purpose {\omdoc} provides the
+optional {\attribute{verbalizes}{omtext}} attribute on the {\element{omtext}} element. Its
+value is a whitespace-separated list of URI references to formal representations (see
+{\mysecref{inline-statements}} for further discussion).
+\end{tsection}
+
+\begin{tsection}[id=phrases]{Phrase-Level Markup of Mathematical Vernacular}
+
+  To make the sentence-internal structure of mathematical vernacular more explicit,
+  {\omdoc} provides an infrastructure to mark up natural language phrases in
+  sentences. Linguistically, a {\defin{phrase}} is a group of words that functions as a
+  single unit in the syntax of a sentence. Examples include ``noun phrases, verb phrases,
+  or prepositional phrases''. In {\omdoc} we adhere to this intuition and restrict the
+  {\element{phrase}} element to phrases in this sense. The {\element{term}} element is
+  naturally restricted to phrases by construction.  The {\element{phrase}} element is a
+  general wrapper for sentence-level phrases that allows to mark their specific
+  properties.
+
+  The {\eldef{phrase}} element allows the same content as the {\element{CMP}} element, so
+  that it can be transparently nested. It has the optional attribute
+  {\attribute[ns-attr=xml]{id}{phrase}} for referencing the text fragment and the {\css}
+  attributes {\attribute{style}{phrase}} and {\attribute{class}{phrase}} to associate
+  presentation information with it (see the discussion in
+  {\mysecsref{common-attribs}{omstyle}}). The {\attribute{type}{phrase}} attribute can be
+  used to specify the (linguistic or mathematical) type of the phrase, currently {\omdoc}
+  does not make any restrictions on the values of this attribute, for the mathematical
+  type we recommend to use values for the {\attribute{type}{omtext}} attribute specified
+  in {\mysecref{omtext}}. Furthermore, the {\element{phrase}} element allows the attribute
+  {\attribute {index}{phrase}} for {\atwintoo{parallel}{multilingual}{markup}}: Recall
+  that sibling {\element{CMP}} elements form {\twintoo{multilingual}{group}s} of text
+  fragments.  We can use the {\element{phrase}} element to make the correspondence
+  relation on text fragments more fine-grained: {\element{phrase}} elements in sibling
+  {\element{CMP}s} that have the same {\attribute{index}{phrase}} value are considered to
+  be equivalent.  Of course, the value of an {\attribute{index}{phrase}} has to be unique
+  in the dominating {\element{CMP}} element (but not beyond). Thus the
+  {\attribute{index}{phrase}} attributes simplify manipulation of
+  {\indextoo{multilingual}} texts, see {\mylstref{parallel-multiling}} for an example at
+  the discourse level.
+
+  Finally, the {\element{phrase}} element can carry a {\attribute{verbalizes}{phrase}}
+  attribute whose value is a whitespace-separated list of URI references that act as
+  pointers to other {\omdoc} elements. This has two applications: the first is another
+  kind of parallel markup where we can state that a phrase corresponds to (and thus
+  ``verbalizes'') a part of formula in a sibling {\element{FMP}} element.
+
+\begin{lstlisting}[label=lst:parallel-formal-informal,mathescape,
+  caption=Parallel Markup between Formal and Informal,
+  index={phrase,CMP,FMP}]
+<CMP>
+  If <phrase verbalizes="#isaG">$\langle G,\circ\rangle$ is a group</phrase>, then of course
+     <phrase verbalizes="#isaM">it is a monoid</phrase> by construction.
+</CMP>
+<FMP>
+  <OMOBJ>
+    <OMA><OMS cd="logic1" name="implies"/>
+      <OMA id="isaG"><OMS cd="algebra" name="group"/>
+        <OMA id="GG"><OMS cd="set" name="pair">
+          <OMV name="G"/><OMV name="op"/>
+        </OMA>
+      </OMA>
+      <OMA xml:id="isaM"><OMS cd="algebra" name="monoid"/>
+        <OMR href="GG"/>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</FMP>
+\end{lstlisting}
+Another important application of the {\attribute{verbalizes}{phrase}} is the case of
+inline mathematical statements, which we will discuss in {\mysecref{inline-statements}}.
+\end{tsection}
+
+\begin{tsection}[id=terms]{Technical Terms}
+  In {\omdoc} we can give the notion of a {\twindef{technical}{term}} a very precise
+  meaning: it is a {\indextoo{phrase}} representing a {\indextoo{concept}} for which a
+  {\indextoo{declaration}} exists in a {\twintoo{content}{dictionary}} (see
+  {\mysubsecref{symbol-dec}}). In this respect it is the natural language equivalent for
+  an {\openmath} symbol or a {\cmathml} token\footnote{and is subject to the same
+    visibility and scoping conditions as those; see {\mysecref{theories}} for
+    details}. Let us consider an example: We can equivalently say ``$0\in\NN$'' and ``the
+  number zero is a natural number''. The first rendering in a formula, we would cast as
+  the following {\openmath} object:
+\begin{lstlisting}[language=OpenMath,numbers=none]
+<OMOBJ>
+  <OMA><OMS cd="set1" name="in"/>
+    <OMS cd="nat" name="zero"/>
+    <OMS cd="nat" name="Nats"/>
+  </OMA>
+</OMOBJ>
+\end{lstlisting}
+  with the effect that the components of the formula are disambiguated by pointing to the
+  respective content dictionaries. Moreover, this information can be used by added-value
+  services e.g. to cross-link the symbol presentations in the formula to their definition
+  (see {\mychapref{transform-xsl}}), or to detect logical dependencies. To allow this for
+  mathematical vernacular as well, we provide the {\element{term}} element: in our example
+  we might use the following markup.
+\begin{lstlisting}[language=OpenMath,numbers=none,mathescape]
+$\ldots$<term  cd="nat" name="zero">the number zero</term> is an 
+<term cd="nat" name="Nats">natural number</term>$\ldots$
+\end{lstlisting}
+The {\eldef{term}} element has two required attributes: {\attribute{cd}{term}} and
+{\attribute{name}{term}}\erratumAdd[date=2009-02-26,reported-by=Christoph Lange]{also need {\tt cdbase} for identifying}{, and optionally {\attribute{cdbase}{term}}}, which together determine the meaning of the phrase just like
+they do for {\element[ns-elt=om]{OMS}} elements (see the discussion in
+{\mysecref{openmath}} and {\mysubsecref{identifying}}). The {\element{term}} element also
+allows the attribute {\attribute[ns-attr=xml]{id}{term}} for identification of the phrase
+occurrence, the {\css} attributes\twin{CSS}{attribute} for styling and the optional
+{\attribute{role}{term}} attribute that allows to specify the role the respective phrase
+plays. We reserve the value {\attval{definiens}{role}{term}} for the defining occurrence
+of a phrase in a definition.  This will in general mark the exact point to point to when
+presenting other occurrences of the same\footnote{We understand this to mean with the same
+  {\attribute{cd}{term}} and {\attribute{name}{term}} attributes.} phrase. Other attribute
+values for the {\attribute{role}{term}} are possible, {\omdoc} does not fix them at the
+current time.  Consider for instance the following text fragment from
+{\myfigref{bourbaki}} in {\mychapref{algebra}}.
+
+\begin{quote}
+  {\sc{Definition 1.}} {\emph{Let $E$ be a set. A mapping of $E\times E$ is called a {\bf{law
+        of composition}} on $E$. The value $f(x,y)$ of $f$ for an ordered pair $(x,y)\in
+    E\times E$ is called the {\bf{composition of}} $x$ and $y$ under this law.  A set with
+    a law of composition is called a magma.}}
+\end{quote}
+Here the first boldface term is the \begin{erratum}[reported-by=Gordan Ristovski,date=2008-07-11]{Should be Deffiniendum instead of deffiniens}definiendum for a ``law of composition''\end{erratum}, the second one
+for the result of applying this to two arguments. It seems that this is not a totally
+different concept that is defined here, but is derived systematically from the concept of
+a ``law of composition'' defined before. Pending a thorough linguistic investigation we
+will mark up such occurrences with {\tt{definiens-applied}}, for instance in 
+
+\begin{erratum}[reported-by=Krzysztof Retel,date=2006-09-14]{should be "definiendum" not "definiens"}
+\begin{lstlisting}[mathescape,caption={Marking up the Technical Terms},label=lst:terms]
+Let $E$ be a set. A mapping of $E\times E$ is called a 
+<term cd="magmas" name="law_of_comp" role="definiendum">law of composition</term> on $E$. 
+The value $f(x,y)$ of $f$ for an ordered pair $(x,y)\in E\times E$ is called the 
+<term  cd="magmas"name="law_of_comp" role="definiendum-applied">composition of</term>
+$x$ and $y$ under this law.
+\end{lstlisting}
+\end{erratum}
+There are probably more such systematic correlations; we leave their categorization and
+modeling in {\omdoc} to the future.
+\end{tsection}
+
+\begin{tsection}[id=rt,short=Rich Text Structure]{Rich Text Structure (Module {\RTmodule{spec}})}
+
+  The infrastructure for mathematical vernacular introduced above assumed the
+  {\element{CMP}} elements as atomic fragments of {\twintoo{mathematical}{vernacular}}
+  allowing for very little discourse-level structure below the level of
+  {\element{CMP}}. This would be sufficient, if the {\element{CMP}} were only used for
+  text, but as we have seen above, the {\element{CMP}} element is also used for
+  mathematical text fragments that correspond to mathematical {\indextoo{statement}s} like
+  {\indextoo{definition}s} or {\indextoo{theorem}s}, which might have internal text
+  structure and therefore required corresponding structural elements in {\omdoc}.
+
+\begin{myfig}{rt}{Rich Text Format {\omdoc}}
+  \begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|c|>{\tt}l|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & D & Content  \\\hline
+ p           & &xml:id, style, class, index, verbalizes & + & \llquote{math vernacular} \\\hline
+ ol          & &xml:id, style, class, index, verbalizes & + &  li* \\\hline
+ ul          & &xml:id, style, class, index, verbalizes & + & li* \\\hline
+ li          & &xml:id, style, class, index, verbalizes & + &  \llquote{math vernacular} \\\hline
+ dl          & &xml:id, style, class, index, verbalizes & + &  di* \\\hline
+ di          & &xml:id, style, class, index, verbalizes & + &  dt*,dd*\\\hline
+ dt          & &xml:id, style, class, index, verbalizes & + &  \llquote{math vernacular} \\\hline
+ dd          & &xml:id, style, class, index, verbalizes & + &  \llquote{math vernacular} \\\hline
+ idx         & &(xml:id|xref)                           & -- & idt?, ide+ \\\hline
+ ide         & &index, sort-by, see, seealso, links    & -- & idp* \\\hline
+ idt         & &style, class                            & --&  \llquote{math vernacular} \\\hline
+ idp         & &sort-by, see, seealso, links            & --&  \llquote{math vernacular} \\\hline
+ table       & &xml:id, style, class, index, verbalizes & + &  tr* \\\hline
+ tr          & &xml:id, style, class, index, verbalizes & + &  td* \\\hline
+ td          & &xml:id, style, class, index, verbalizes & + &  \llquote{math vernacular} \\\hline
+ th          & &xml:id, style, class, index, verbalizes & +  &  \llquote{math vernacular} \\\hline
+ link        & href &xml:id, style, class, index, verbalizes & --  & \llquote{math vernacular} \\\hline
+ note        & &type, xml:id, style, class, index, verbalizes & + & \llquote{math vernacular} \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+In this section we will discuss the {\omdoc} rich text structure module {\RTmodule{spec}},
+which introduces text structuring elements for mathematical text below the level of
+mathematical statements.  The elements in this module are loosely patterned after elements
+from the {\xhtml} specification~\cite{W3C:xhtml2000}, and can occur as part of
+{\twintoo{mathematical}{vernacular}}.  Where we do not explicitly discuss the content, it
+is {\twintoo{mathematical}{vernacular}} as well. The module {\RTmodule{spec}} provides
+five classes of elements, which we will show in context in {\mylstref{richtext}}.
+
+\begin{lstlisting}[label=lst:richtext,
+   caption={An Example of Rich Text Structure},
+   index={CMP,ul,li,phrase,link}]
+<CMP>
+  <p style="color:red" xml:id="p1">All <idx><idt>animals are dangerous</idt>
+    <idp>dangerous</idp><idp  seealso="creature">animal</idp></idx>!
+    (which is a highly <phrase class="emphasis">unfounded</phrase> 
+    statement). In reality only some animals are, for instance:</p>
+  <ul xml:id="l1">
+    <li>sharks (they bite) and </li>
+    <li>bees (they sting).</li>
+  </ul>
+  <p>If we measure danger by the number of deaths, we obtain</p>
+  <table>
+    <tr>             <th>Culprits</th> <th>Deaths</th> <th>Action</th></tr>
+    <tr>             <td>sharks</td>   <td>312</td>    <td>bite</td></tr>
+    <tr xml:id="bn"> <td>bees</td>     <td>23</td>     <td>sting</td></tr>
+    <tr>             <td>cars</td>     <td>7500</td>   <td>crash</td></tr>
+  </table>
+  <p>So, if we do the numbers <note xml:id="n1" type="ednote">check the
+  numbers again</note> we see that animals are dangerous, but they are 
+  less so than cars but much more photogenic as we can see
+  <link href="http://www.yellowpress.com/killerbee.jpg">here</link>.</p>
+
+  <note type="footnote">From the International Journal of Bee-keeping; numbers only
+  available for 2002.</note> 
+</CMP>
+\end{lstlisting}
+\begin{description}
+\item[\emph{Paragraphs}\index{paragraph}] {\eldef{p}} elements can be used as children in
+  a {\element{CMP}} to divide the text into {\indextoo{paragraph}s}.
+\item[\emph{Ordered Lists}\twin{ordered}{list}] The {\eldef{ol}} element is a constructor
+  for {\twintoo{ordered}{list}s}, which has {\eldef{li}} elements as children that
+  represent the items. These contain mathematical vernacular as content and are presented
+  as consecutively numbered.
+\item[\emph{Unordered Lists}\twin{unordered}{list}] {\eldef{ul}} is the constructor for
+  unordered or {\twintoo{bulleted}{list}s}\twin{unordered}{list}, the in the presentation,
+  list items are indicated by some sort of bullet.
+\item[\emph{Description Lists}\twin{description}{list}] Finally, {\eldef{dl}} is a
+  constructor for {\twintoo{description}{list}s}, which have {\eldef{di}} elements as
+  children. The {\element{di}} elements contain an optional {\eldef{dt}} element
+  (description title) followed by a (possibly empty) list of {\eldef{dd}} elements that
+  contain the descriptions.
+\item[\emph{Tables}\index{table}] To mark up simple tables we use the {\eldef{table}}
+  element. Just as in {\xhtml}, it has an arbitrary number of {\eldef{tr}}
+  ({\twintoo{table}{row}}) elements that contain {\eldef{td}} ({\twintoo{table}{data}})
+  and {\eldef{th}} ({\twintoo{table}{header}}) elements, which contain mathematical
+  vernacular.  Note that {\omdoc} does not support advanced formatting attributes of
+  {\xhtml}, but as tables are mathematical text in the module {\RTmodule{spec}} it does
+  support nested tables.
+\item[\emph{Hyperlinks}\index{hyperlink}] The {\eldef{link}} element is equivalent to the
+  {\xhtml} {\snippet{a}} element, and carries a required
+  {\attribute{href}{link}}\footnote{It is anticipated that future versions of {\omdoc} may
+    use {\twintoo{simple}{link}s} from {\indextoo{xlink}}~\cite{DeRMal:xlink01} for such
+    cross-referencing\index{cross-reference} tasks, but at the moment we keep in style to
+    the rest of the specification.}  attribute that points to an arbitrary resource in
+  form of a {\twintoo{URI}{reference}}.
+\item[\emph{Index Markup}\twin{index}{markup}] The {\eldef{idx}} element is used for index
+  markup in {\omdoc}. It contains an optional {\eldef{idt}} element that contains the
+  {\twintoo{index}{text}}, i.e. the phrase that is indexed. The remaining content of the
+  index element specifies what is entered into various indexes. For every index this
+  phrase is registered to there is one {\eldef{ide}} element ({\twintoo{index}{entry}});
+  the respective entry is specified by name in its \erratumAdd[reported-by=Michael
+  Kohlhase,date=2007-07-12]{the index attribute should be optional}{optional}
+  {\attribute{index}{ide}} attribute. The {\element{ide}} element contains a sequence of
+  {\twintoo{index}{phrase}s} given in {\eldef{idp}} elements. The content of an
+  {\element{idp}} element is regular mathematical text. Since index entries are usually
+  sorted, (and mathematical text is difficult to sort), they carry an attribute
+  {\attribute{sort-by}{idp}} whose value (a sequence of Unicode characters) can be sorted
+  lexically~\cite{Unicode:collation}. Moreover, each {\element{idp}} and {\element{ide}}
+  element carries the attributes {\attribute{see}{idp,ide}},
+  {\attribute{seealso}{idp,ide}}, and {\attribute{links}{idp,ide}}, that allow to specify
+  extra information on these. The values of the first ones are references to
+  {\element{idx}} elements, while the value of the {\attribute{links}{idp}} attribute is a
+  whitespace-separated list of (external) URI references.  The formatting of the
+  {\twintoo{index}{text}} is governed by the attributes {\attributeshort{style}} and
+  {\attributeshort{class}} on the {\element{idt}} element. The {\element{idx}} element can
+  carry either an {\attribute[ns-attr=xml]{id}{idx}} attribute (if this is the defining
+  occurrence of the index text) or an {\attribute{xref}{idx}} attribute. In the latter
+  case, all the {\element{ide}} elements from the defining {\element{idx}} (the one that
+  has the {\attribute[ns-attr=xml]{id}{idx}} attribute) are imported into the referring
+  {\element{idx}} element (the one that has the {\attribute{xref}{idx}} attribute).
+\item[\emph{Notes}\index{note}] The {\eldef{note}} element is the closest approximation to
+  a {\indextoo{footnote}} or {\indextoo{endnote}}, where the kind of note is determined by
+  the {\attribute{type}{note}} attribute. {\omdoc} supplies
+  {\attval{footnote}{type}{note}} as a default value, but does not restrict the range of
+  values. Its {\attribute{for}{note}} attribute allows it to be attached to other {\omdoc}
+  elements externally where it is not allowed by the {\omdoc} document type. In our
+  example, we have attached a footnote by reference to a table row, which does not allow
+  {\element{note}} children.
+\end{description}
+  All elements in the {\RTmodule{spec}} module carry an optional
+  {\attributeshortcomment{xml:id}{in module RT}} attribute for identification and an
+  {\attribute{index}{in module RT}} attribute for
+  {\atwintoo{parallel}{multilingual}{markup}} (e.g. {\mysecref{phrases}} for an
+  explanation and {\mylstref{parallel-multiling}} for a {\indextoo{translation}} example).
+
+\begin{lstlisting}[label=lst:parallel-multiling,
+   caption={Multilingual Parallel Markup},
+   index={omtext,CMP,ul,li,p}]
+<omtext xml:id="animals.overview">
+  <CMP>
+    <p index="intro">Consider the following animals:</p>
+    <ul index="animals">
+      <li index="first">a tiger,</li>
+      <li index="second">a dog.</li>
+    </ul>
+  </CMP>
+  <CMP xml:lang="de">
+    <p index="intro">Betrachte die folgenden Tiere:</p>
+    <ul index="animals">
+      <li index="first">Ein Tiger</li>
+      <li index="second">Ein Hund</li>
+    </ul>
+  </CMP>
+</omtext>
+\end{lstlisting}
+\end{tsection}
+\end{tchapter}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  RT ids multiling lst ul li testtext lang Hier testen wir ein ol
+% LocalWords:  mehrsprachigen parallelen erster Strichelstrich etwas anderes tr
+% LocalWords:  td href xlink rt mtxt Req dtd mobj richtext ednote bn modstable
+% LocalWords:  Betrachte folgenden Tiere und Hund ns elt idx attr dl di dt dd
+% LocalWords:  Nicolaas Govert ref omlet alsoinCMP alsoincmp lang en fr nl lst
+% LocalWords:  escapechar multiling mathescape trl aut func im cd eq fns xref
+% LocalWords:  Sei eine Menge ist Funktion da und Une unaire est une fonction
+% LocalWords:  avec fol hol ple qtcfmp binop mtxt de Bruijn truecm FMP CMP xml
+% LocalWords:  omtext mtext DTD OMOBJ ol ul mobj attribs omstyle une une
+% LocalWords:  OMA OMS nat Nats xsl openmath bourbaki magmas comp OMV OMR href
+% LocalWords:  un op defini tion jecture definitionURL csymbol def omdoc sump
+% LocalWords:  idt idp seealso multi metadata une et ide th une restructurred
+% LocalWords:  CoP Soit une isaG isaM une GG une dass une gc dec une

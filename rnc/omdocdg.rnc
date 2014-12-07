@@ -1,0 +1,24 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module CTH 
+# $Id: omdocdg.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocdg.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+
+omdoc.class |= decomposition | path-just
+omdoccth.theory-inclusion.justification |= decomposition*
+omdoccth.axiom-inclusion.justification  |= path-just*
+
+decomposition = element decomposition {omdoc.toplevel.attribs,fori.attrib,
+	                               attribute links {omdocrefs}}
+# attribute 'for' points to a 'theory-inclusion', which this 
+# element justifies; attribute 'links' is an URIrefs, points to a 
+# list of axiom-inlcusions and theory-inclusions
+
+path-just = element path-just {fori.attrib,id.attrib,
+	    	    	       attribute local {omdocref},
+            	    	       attribute globals {omdocrefs}}
+# attribute 'local' is an URIref, points to axiom-inclusion
+#           'globals' is an URIrefs, points to a list of theory-inclusions
+

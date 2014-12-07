@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module CTH 
+  $Id: omdocdg.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocdg.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns:omdoc="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="omdoc.class" combine="choice">
+    <choice>
+      <ref name="decomposition"/>
+      <ref name="path-just"/>
+    </choice>
+  </define>
+  <define name="omdoccth.theory-inclusion.justification" combine="choice">
+    <zeroOrMore>
+      <ref name="decomposition"/>
+    </zeroOrMore>
+  </define>
+  <define name="omdoccth.axiom-inclusion.justification" combine="choice">
+    <zeroOrMore>
+      <ref name="path-just"/>
+    </zeroOrMore>
+  </define>
+  <define name="decomposition">
+    <element name="decomposition">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+      <attribute name="links">
+        <ref name="omdocrefs"/>
+      </attribute>
+    </element>
+  </define>
+  <!--
+    attribute 'for' points to a 'theory-inclusion', which this 
+    element justifies; attribute 'links' is an URIrefs, points to a 
+    list of axiom-inlcusions and theory-inclusions
+  -->
+  <define name="path-just">
+    <element name="path-just">
+      <ref name="fori.attrib"/>
+      <ref name="id.attrib"/>
+      <attribute name="local">
+        <ref name="omdocref"/>
+      </attribute>
+      <attribute name="globals">
+        <ref name="omdocrefs"/>
+      </attribute>
+    </element>
+  </define>
+</grammar>
+<!--
+  attribute 'local' is an URIref, points to axiom-inclusion
+            'globals' is an URIrefs, points to a list of theory-inclusions
+-->

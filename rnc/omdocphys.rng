@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!--
+    A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module PHYS
+    $Id: omdocphys.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+    $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocphys.rnc $
+    See the documentation and examples at http://www.omdoc.org
+    Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+  -->
+  <define name="system">
+    <element name="system">
+      <ref name="omdoc.id.attrib"/>
+      <attribute name="type">
+        <choice>
+          <value>ideal</value>
+          <value>real</value>
+        </choice>
+      </attribute>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="observable"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="improvement"/>
+      </optional>
+      <optional>
+        <ref name="algebra"/>
+      </optional>
+      <optional>
+        <ref name="realization"/>
+      </optional>
+    </element>
+  </define>
+  <define name="observable">
+    <element name="observable">
+      <attribute name="low">
+        <data type="float"/>
+      </attribute>
+      <attribute name="high">
+        <data type="float"/>
+      </attribute>
+      <ref name="omdoc.id.attrib"/>
+      <ref name="omdocmobj.class"/>
+      <ref name="omdocmobj.class"/>
+    </element>
+  </define>
+  <define name="improvement">
+    <element name="improvement">
+      <ref name="omdoc.id.attrib"/>
+      <ref name="omdocmtxt.MCF.content"/>
+    </element>
+  </define>
+  <define name="realization">
+    <element name="realization">
+      <ref name="omdoc.id.attrib"/>
+      <ref name="omdocmtxt.MCF.content"/>
+    </element>
+  </define>
+  <define name="interpretation">
+    <element name="interpretation">
+      <ref name="omdoc.id.attrib"/>
+      <ref name="omdocmtxt.MCF.content"/>
+    </element>
+  </define>
+  <define name="state">
+    <element name="state">
+      <ref name="omdoc.id.attrib"/>
+      <attribute name="of">
+        <ref name="omdocref"/>
+      </attribute>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="value"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="value">
+    <element name="value">
+      <ref name="omdoc.id.attrib"/>
+      <attribute name="for">
+        <ref name="omdocref"/>
+      </attribute>
+      <attribute name="num">
+        <data type="float"/>
+      </attribute>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+    </element>
+  </define>
+  <define name="experiment">
+    <element name="experiment">
+      <ref name="omdoc.id.attrib"/>
+      <ref name="omdocmtxt.MCF.content"/>
+      <ref name="state"/>
+      <ref name="state"/>
+    </element>
+  </define>
+  <define name="evidence">
+    <element name="evidence">
+      <ref name="omdoc.id.attrib"/>
+      <attribute name="for">
+        <ref name="omdocref"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="experiment"/>
+      </zeroOrMore>
+      <ref name="interpretation"/>
+    </element>
+  </define>
+</grammar>

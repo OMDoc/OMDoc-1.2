@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.2 specifiation
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: mobj-rnc.tex 6154 2006-10-03 11:31:31Z  $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/doc/spec/mobj-rnc.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=mobj-rnc]{The RelaxNG Schemata for Mathematical Objects}
+
+For completeness we reprint the {\relaxng} schemata for the external formats
+{\omdoc} makes use of.
+\begin{tsection}[id=rnc:openmath]{The RelaxNG Schema for OpenMath}
+  For completeness we reprint the {\relaxng} schema for {\openmath}, the original
+  can be found in the {\openmath}2 standard~\cite{BusCapCar:2oms04}.
+  \lstinputlisting[language=RNC,nolol,
+  index={OMS,OMV,OMI,OMB,OMSTR,OMF,OMA,OMBIND,OMBVAR,OME,OMATTR,OMATP,OMOBJ}]
+  {../../rnc/openmath2.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:mathml]{The RelaxNG Schema for MathML}
+  For completeness, we reprint the {\relaxng} schema for {\mathml}. It comes in three
+  parts, the schema driver, and the parts for content- and presentation {\mathml} which we
+  will present in the next two subsections.
+  \lstinputlisting[nolol,language=RNC,index={m:math}]{../../rnc/mathml2/mathml2.rnc}
+
+\begin{tsubsection}[id=rnc:pmathml]{Presentation {\mathml}}
+  \lstinputlisting[nolol,language=RNC,index={m:math}]{../../rnc/mathml2/mathml2-presentation.rnc}
+\end{tsubsection}
+
+\begin{tsubsection}[id=rnc:cmathml]{Content {\mathml}}
+  \lstinputlisting[nolol,language=RNC,index={m:math}]{../../rnc/mathml2/mathml2-content.rnc}
+\end{tsubsection}
+\end{tsection}
+\end{tchapter}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+
+% LocalWords:  mobj rnc RNC openmath OMB OMSTR OMF OME OMATP mathml nolol OMV
+% LocalWords:  pmathml cmathml OMI OMA OMBIND OMBVAR OMATTR OMOBJ

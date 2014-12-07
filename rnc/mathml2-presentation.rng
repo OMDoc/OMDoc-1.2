@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for MathML2 Presentation Elements
+  $Id: mathml2-presentation.rnc 8008 2008-09-07 19:01:01Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdoc.rnc $
+  (c) 2005 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- Simple sizes -->
+  <define name="simple-size">
+    <choice>
+      <value>small</value>
+      <value>normal</value>
+      <value>big</value>
+    </choice>
+  </define>
+  <!-- Centering values -->
+  <define name="centering.values">
+    <choice>
+      <value>left</value>
+      <value>center</value>
+      <value>right</value>
+    </choice>
+  </define>
+  <!--
+    The named spaces 
+    this is also used in the value of the "width" attribute on the "mpadded" element 
+  -->
+  <define name="named-space">
+    <choice>
+      <value>veryverythinmathspace</value>
+      <value>verythinmathspace</value>
+      <value>thinmathspace</value>
+      <value>mediummathspace</value>
+      <value>thickmathspace</value>
+      <value>verythickmathspace</value>
+      <value>veryverythickmathspace</value>
+    </choice>
+  </define>
+  <!-- Thickness -->
+  <define name="thickness">
+    <choice>
+      <value>thin</value>
+      <value>medium</value>
+      <value>thick</value>
+    </choice>
+  </define>
+  <!-- number with units used to specified lengths -->
+  <define name="length-with-unit">
+    <data type="string"/>
+  </define>
+  <!-- {pattern="(-?([0-9]+|[0-9]*\.[0-9]+)*(em|ex|px|in|cm|mm|pt|pc|%))|0"} -->
+  <define name="length-with-optional-unit">
+    <data type="string"/>
+  </define>
+  <!-- {pattern="-?([0-9]+|[0-9]*\.[0-9]+)*(em|ex|px|in|cm|mm|pt|pc|%)?"} -->
+  <!-- This is just "infinity" that can be used as a length -->
+  <define name="infinity">
+    <value>infinity</value>
+  </define>
+  <!-- colors defined as RGB -->
+  <define name="RGB-color">
+    <data type="string">
+      <param name="pattern">#(([0-9]|[a-f]){3}|([0-9]|[a-f]){6})</param>
+    </data>
+  </define>
+  <!--
+     This schema module defines sets of attributes common to several elements
+     of presentation MathML.
+  -->
+  <!--
+    The mathematics style attributes. These attributes are valid on all
+        presentation token elements except "mspace" and "mglyph", and on no
+        other elements except "mstyle". 
+  -->
+  <define name="Token-style.attrib">
+    <optional>
+      <attribute name="mathvariant">
+        <choice>
+          <value>normal</value>
+          <value>bold</value>
+          <value>italic</value>
+          <value>bold-italic</value>
+          <value>double-struck</value>
+          <value>bold-fraktur</value>
+          <value>script</value>
+          <value>bold-script</value>
+          <value>fraktur</value>
+          <value>sans-serif</value>
+          <value>bold-sans-serif</value>
+          <value>sans-serif-italic</value>
+          <value>sans-serif-bold-italic</value>
+          <value>monospace</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="mathsize">
+        <choice>
+          <ref name="simple-size"/>
+          <ref name="length-with-unit"/>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- For both of the following attributes the types should be more restricted -->
+      <attribute name="mathcolor">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="mathbackground">
+        <data type="string"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- These operators are all related to operators. They are valid on "mo" and "mstyle". -->
+  <define name="Operator.attrib">
+    <optional>
+      <!--
+        this attribute value is normally inferred from the position of
+        the operator in its "<mrow"> 
+      -->
+      <attribute name="form">
+        <choice>
+          <value>prefix</value>
+          <value>infix</value>
+          <value>postfix</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- set by dictionnary, else it is "thickmathspace" -->
+      <attribute name="lspace">
+        <choice>
+          <ref name="length-with-unit"/>
+          <ref name="named-space"/>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- set by dictionary, else it is "thickmathspace" -->
+      <attribute name="rspace">
+        <choice>
+          <ref name="length-with-unit"/>
+          <ref name="named-space"/>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- set by dictionnary, else it is "false" -->
+      <attribute name="fence">
+        <data type="boolean"/>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- set by dictionnary, else it is "false" -->
+      <attribute name="separator">
+        <data type="boolean"/>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- set by dictionnary, else it is "false" -->
+      <attribute name="stretchy">
+        <data type="boolean"/>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- set by dictionnary, else it is "true" -->
+      <attribute name="symmetric">
+        <data type="boolean"/>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- set by dictionnary, else it is "false" -->
+      <attribute name="movablelimits">
+        <data type="boolean"/>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- set by dictionnary, else it is "false" -->
+      <attribute name="accent">
+        <data type="boolean"/>
+      </attribute>
+    </optional>
+    <optional>
+      <!-- set by dictionnary, else it is "false" -->
+      <attribute name="largeop">
+        <data type="boolean"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="minsize">
+        <choice>
+          <ref name="length-with-unit"/>
+          <ref name="named-space"/>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="maxsize">
+        <choice>
+          <ref name="length-with-unit"/>
+          <ref name="named-space"/>
+          <ref name="infinity"/>
+          <data type="float"/>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="mglyph">
+    <element name="mglyph">
+      <optional>
+        <attribute name="alt">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="fontfamily">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="index">
+          <data type="positiveInteger"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <!--
+     This is the XML schema module for the token elements of the 
+     presentation part of MathML.
+  -->
+  <define name="Glyph-alignmark.class">
+    <choice>
+      <ref name="malignmark"/>
+      <ref name="mglyph"/>
+    </choice>
+  </define>
+  <!-- "mi" is supposed to have a default value of its "mathvariant" attribute  set to "italic" -->
+  <define name="mi">
+    <element name="mi">
+      <ref name="Token-style.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="Glyph-alignmark.class"/>
+          <text/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "mo" -->
+  <define name="mo">
+    <element name="mo">
+      <ref name="Operator.attrib"/>
+      <ref name="Token-style.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="Glyph-alignmark.class"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "mn" -->
+  <define name="mn">
+    <element name="mn">
+      <ref name="Token-style.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="Glyph-alignmark.class"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "mtext" -->
+  <define name="mtext">
+    <element name="mtext">
+      <ref name="Token-style.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="Glyph-alignmark.class"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- ms (the values of "lquote" or "rquote" are not restricted to be one character strings...) -->
+  <define name="ms">
+    <element name="ms">
+      <optional>
+        <attribute name="lquote" a:default="&amp;quot;">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="rquote" a:default="&amp;quot;">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="Token-style.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="Glyph-alignmark.class"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- And the group of any token -->
+  <define name="Presentation-token.class">
+    <choice>
+      <ref name="mi"/>
+      <ref name="mo"/>
+      <ref name="mn"/>
+      <ref name="mtext"/>
+      <ref name="ms"/>
+    </choice>
+  </define>
+  <!--
+     This is an XML Schema module for the presentation elements of MathML
+     dealing with subscripts and superscripts.
+  -->
+  <!-- "msub" -->
+  <define name="msub">
+    <element name="msub">
+      <optional>
+        <attribute name="subscriptshift">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Presentation-expr.class"/>
+      <ref name="Presentation-expr.class"/>
+    </element>
+  </define>
+  <!-- "msup" -->
+  <define name="msup">
+    <element name="msup">
+      <optional>
+        <attribute name="supscriptshift">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Presentation-expr.class"/>
+      <ref name="Presentation-expr.class"/>
+    </element>
+  </define>
+  <!-- "msubsup" -->
+  <define name="msubsup">
+    <element name="msubsup">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <attribute name="subscriptshift">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="supscriptshift">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <ref name="Presentation-expr.class"/>
+      <ref name="Presentation-expr.class"/>
+    </element>
+  </define>
+  <!-- "munder" -->
+  <define name="munder">
+    <element name="munder">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <attribute name="accentunder">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <ref name="Presentation-expr.class"/>
+      <ref name="Presentation-expr.class"/>
+    </element>
+  </define>
+  <!-- "mover" -->
+  <define name="mover">
+    <element name="mover">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <attribute name="accent">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <ref name="Presentation-expr.class"/>
+      <ref name="Presentation-expr.class"/>
+    </element>
+  </define>
+  <!-- "munderover" -->
+  <define name="munderover">
+    <element name="munderover">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <attribute name="accentunder">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="accent">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <ref name="Presentation-expr.class"/>
+      <ref name="Presentation-expr.class"/>
+      <ref name="Presentation-expr.class"/>
+    </element>
+  </define>
+  <!-- "mmultiscripts", "mprescripts" and "none" -->
+  <define name="Presentation-expr-or-none.class">
+    <choice>
+      <ref name="Presentation-expr.class"/>
+      <ref name="none"/>
+    </choice>
+  </define>
+  <define name="mmultiscripts">
+    <element name="mmultiscripts">
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Presentation-expr.class"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr-or-none.class"/>
+        <ref name="Presentation-expr-or-none.class"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="mprescripts"/>
+        <zeroOrMore>
+          <ref name="Presentation-expr-or-none.class"/>
+          <ref name="Presentation-expr-or-none.class"/>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="none">
+    <element name="none">
+      <empty/>
+    </element>
+  </define>
+  <define name="mprescripts">
+    <element name="mprescripts">
+      <empty/>
+    </element>
+  </define>
+  <define name="Presentation-script.class">
+    <choice>
+      <ref name="msub"/>
+      <ref name="msup"/>
+      <ref name="msubsup"/>
+      <ref name="munder"/>
+      <ref name="mover"/>
+      <ref name="munderover"/>
+      <ref name="mmultiscripts"/>
+    </choice>
+  </define>
+  <define name="mspace">
+    <element name="mspace">
+      <optional>
+        <attribute name="width" a:defaultValue="0em">
+          <choice>
+            <ref name="length-with-unit"/>
+            <ref name="named-space"/>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="height" a:defaultValue="0ex">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="depth" a:defaultValue="0ex">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="linebreak" a:defaultValue="auto">
+          <choice>
+            <value>auto</value>
+            <value>newline</value>
+            <value>indentingnewline</value>
+            <value>nobreak</value>
+            <value>goodbreak</value>
+            <value>badbreak</value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <!--
+     This is the XML schema module for the layout elements of the 
+     presentation part of MathML.
+  -->
+  <!-- "mrow" -->
+  <define name="mrow">
+    <element name="mrow">
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "mfrac" -->
+  <define name="mfrac">
+    <element name="mfrac">
+      <optional>
+        <attribute name="bevelled">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="denomalign" a:defaultValue="center">
+          <ref name="centering.values"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="numalign" a:defaultValue="center">
+          <ref name="centering.values"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="linethickness" a:defaultValue="1">
+          <choice>
+            <ref name="length-with-optional-unit"/>
+            <ref name="thickness"/>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Presentation-expr.class"/>
+      <ref name="Presentation-expr.class"/>
+    </element>
+  </define>
+  <!-- "msqrt" -->
+  <define name="msqrt">
+    <element name="msqrt">
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "mroot" -->
+  <define name="mroot">
+    <element name="mroot">
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Presentation-expr.class"/>
+      <ref name="Presentation-expr.class"/>
+    </element>
+  </define>
+  <!-- "mpadded" -->
+  <define name="mpadded-space">
+    <data type="string">
+      <param name="pattern">(\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?)*(width|lspace|height|depth))|(em|ex|px|in|cm|mm|pt|pc))</param>
+    </data>
+  </define>
+  <!--
+    MaxF: definition from spec seems wrong, 
+          fixing to ([+|-] unsigned-number (%[pseudo-unit]|pseudo-unit|h-unit)) | namedspace | 0 
+  -->
+  <define name="mpadded-width-space">
+    <data type="string">
+      <param name="pattern">((\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?) *(width|lspace|height|depth)?)|(width|lspace|height|depth)|(em|ex|px|in|cm|mm|pt|pc)))|((veryverythin|verythin|thin|medium|thick|verythick|veryverythick)mathspace)|0</param>
+    </data>
+  </define>
+  <define name="mpadded">
+    <element name="mpadded">
+      <attribute name="width">
+        <ref name="mpadded-width-space"/>
+      </attribute>
+      <optional>
+        <!--
+          should have default=0 below but '0' is not in value space 
+          see bug #425 
+        -->
+        <attribute name="lspace">
+          <ref name="mpadded-space"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="height">
+          <ref name="mpadded-space"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="depth">
+          <ref name="mpadded-space"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "mphantom" -->
+  <define name="mphantom">
+    <element name="mphantom.attlist">
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "mfenced" -->
+  <define name="mfenced">
+    <element name="mfenced">
+      <optional>
+        <attribute name="open" a:defaultValue="(">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="close" a:defaultValue=")">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="separators" a:defaultValue=",">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "menclose" -->
+  <define name="menclose">
+    <element name="menclose">
+      <optional>
+        <attribute name="notation" a:defaultValue="longdiv">
+          <choice>
+            <value>actuarial</value>
+            <value>longdiv</value>
+            <value>radical</value>
+            <value>box</value>
+            <value>roundedbox</value>
+            <value>circle</value>
+            <value>left</value>
+            <value>right</value>
+            <value>top</value>
+            <value>bottom</value>
+            <value>updiagonalstrike</value>
+            <value>downdiagonalstrike</value>
+            <value>verticalstrike</value>
+            <value>horizontalstrike</value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- And the group of everything -->
+  <define name="Presentation-layout.class">
+    <choice>
+      <ref name="mrow"/>
+      <ref name="mfrac"/>
+      <ref name="msqrt"/>
+      <ref name="mroot"/>
+      <ref name="mpadded"/>
+      <ref name="mphantom"/>
+      <ref name="mfenced"/>
+      <ref name="menclose"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for tables in MathML presentation. -->
+  <define name="Table-alignment.attrib">
+    <optional>
+      <attribute name="rowalign" a:defaultValue="baseline">
+        <data type="string">
+          <param name="pattern">(top|bottom|center|baseline|axis)(top|bottom|center|baseline|axis)*</param>
+        </data>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="columnalign" a:defaultValue="center">
+        <data type="string">
+          <param name="pattern">(left|center|right)(left|center|right)*</param>
+        </data>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="groupalign">
+        <data type="string"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="mtr">
+    <element name="mtr">
+      <ref name="Table-alignment.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <oneOrMore>
+        <ref name="mtd"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="mlabeledtr">
+    <element name="mlabeledtr">
+      <ref name="Table-alignment.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="mtd"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "mtd" -->
+  <define name="mtd">
+    <element name="mtd">
+      <ref name="Table-alignment.attrib"/>
+      <optional>
+        <attribute name="columnspan" a:defaultValue="1">
+          <data type="positiveInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="rowspan" a:defaultValue="1">
+          <data type="positiveInteger"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "mtable" -->
+  <define name="mtable">
+    <element name="mtable">
+      <ref name="Table-alignment.attrib"/>
+      <optional>
+        <attribute name="align" a:defaultValue="axis">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="alignmentscope" a:defaultValue="true">
+          <data type="string">
+            <param name="pattern">(true|false)( true| false)*</param>
+          </data>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="columnwidth" a:defaultValue="auto">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="width" a:defaultValue="auto">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="rowspacing" a:defaultValue="1.0ex">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="columnspacing" a:defaultValue="0.8em">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="rowlines" a:defaultValue="none">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="columnlines" a:defaultValue="none">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="frame" a:defaultValue="none">
+          <choice>
+            <value>none</value>
+            <value>solid</value>
+            <value>dashed</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="framespacing" a:defaultValue="0.4em 0.5ex">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="equalrows" a:defaultValue="false">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="equalcolumns" a:defaultValue="false">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="displaystyle" a:defaultValue="false">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="side" a:defaultValue="right">
+          <choice>
+            <value>left</value>
+            <value>right</value>
+            <value>leftoverlap</value>
+            <value>rightoverlap</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="minlabelspacing" a:defaultValue="0.8em">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="mtr"/>
+          <ref name="mlabeledtr"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "maligngroup" -->
+  <define name="maligngroup">
+    <element name="maligngroup">
+      <optional>
+        <attribute name="groupalign">
+          <choice>
+            <value>left</value>
+            <value>center</value>
+            <value>right</value>
+            <value>decimalpoint</value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <!-- "malignmark" -->
+  <define name="malignmark">
+    <element name="malignmark">
+      <optional>
+        <attribute name="edge" a:defaultValue="left">
+          <choice>
+            <value>left</value>
+            <value>right</value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="Presentation-table.class">
+    <choice>
+      <ref name="mtable"/>
+      <ref name="maligngroup"/>
+      <ref name="malignmark"/>
+    </choice>
+  </define>
+  <!-- "mstyle" -->
+  <define name="mstyle">
+    <element name="mstyle">
+      <optional>
+        <attribute name="scriptlevel">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="displaystyle">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="scriptsizemultiplier" a:defaultValue="0.71">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="scriptminsize" a:defaultValue="8pt">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="color">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="background" a:defaultValue="transparent">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="veryverythinmathspace" a:defaultValue="0.0555556em">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="verythinmathspace" a:defaultValue="0.111111em">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="thinmathspace" a:defaultValue="0.166667em">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="mediummathspace" a:defaultValue="0.222222em">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="thickmathspace" a:defaultValue="0.277778em">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="verythickmathspace" a:defaultValue="0.333333em">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="veryverythickmathspace" a:defaultValue="0.388889em">
+          <ref name="length-with-unit"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="linethickness" a:defaultValue="1">
+          <choice>
+            <ref name="length-with-optional-unit"/>
+            <ref name="thickness"/>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="Operator.attrib"/>
+      <ref name="Token-style.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!--  This is the XML Schema module for the MathML "merror" element. -->
+  <define name="merror">
+    <element name="merror">
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!--  This is the XML Schema module for the MathML "maction" element. -->
+  <define name="maction">
+    <element name="maction">
+      <optional>
+        <attribute name="actiontype">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="selection" a:defaultValue="1">
+          <data type="positiveInteger"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Presentation-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+</grammar>

@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+
+foreach omdoc ($*)
+    echo ${omdoc}
+    `dirname $0`/checkomdoc -q ${omdoc} >/dev/null
+end

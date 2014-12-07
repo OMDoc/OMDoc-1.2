@@ -1,0 +1,7 @@
+# omdocdc.sem.oz (vor rt)
+omdoc.sem.ozf: omdoc.sem.oz omdocmobj.sem.oz omdocmtxt.sem.oz \
+	omdocrt.sem.oz omdocst.sem.oz omdocadt.sem.oz \
+	omdocsth.sem.oz omdocpres.sem.oz omdocpf.sem.oz \
+	omdocext.sem.oz omdocquiz.sem.oz omdoccth.sem.oz \
+	omdocdoc.sem.oz activemath.sem.oz
+	$(OZC) $(OZCFLAGS) -c $< -o $@

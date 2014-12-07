@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary list2.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary list2.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    Several basic list functions are given in this CD.
+  </div></div>
+
+
+<div class="symbol" id="first">
+<div class="titlebox">
+<span class="titleword">Concept</span>first</div> 
+    This symbol represents a function which returns the first elements of
+    its argument, which should be a list.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid124331"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id124333" xlink:href="sts.xml#mapsto"><mi id="MCRid124342">List</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#Object" xlink:type="simple" id="id124346">Object</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid124331" xlink:type="simple"><OMA xlink:href="MCRid124333" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid124336" xlink:type="simple"/><OMV name="List" xlink:href="MCRid124342" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid124346" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="first-ex-1">
+<span class="titleword">Example</span>
+<p>Specification of the first element of the list [1,2,3]</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid96454"><semantics><mrow id="MCRid96456"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#first" xlink:type="simple" id="id96458">first</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id96465" open="[" close="]" separators=""><mn id="MCRid96473"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="list1.xml#list" xlink:type="simple" id="MCRid96467">,</mo><mn id="MCRid96476"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="list1.xml#list" xlink:type="simple">,</mo><mn id="MCRid96480"> 3 </mn></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid96454" xlink:type="simple"><OMA xlink:href="MCRid96456" xlink:type="simple"><OMS cd="list2" name="first" xlink:href="MCRid96458" xlink:type="simple"/><OMA xlink:href="MCRid96465" xlink:type="simple"><OMS cd="list1" name="list" xlink:href="MCRid96467" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid96473"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid96476"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid96480"> 3 </OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="rest">
+<div class="titlebox">
+<span class="titleword">Concept</span>rest</div> 
+    This symbol represents a function which returns a list made up of all
+    the elements except the first of its argument, which should be a list.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid95889"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id95892" xlink:href="sts.xml#mapsto"><mi id="MCRid95900">List</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid95904">List</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid95889" xlink:type="simple"><OMA xlink:href="MCRid95892" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid95894" xlink:type="simple"/><OMV name="List" xlink:href="MCRid95900" xlink:type="simple"/><OMV name="List" xlink:href="MCRid95904" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="rest-ex-1">
+<span class="titleword">Example</span>
+<p>Specification of the list [1,2,3], apart from the first element</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid95935"><semantics><mrow id="MCRid95938"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rest" xlink:type="simple" id="id95940">rest</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id95946" open="[" close="]" separators=""><mn id="MCRid95955"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="list1.xml#list" xlink:type="simple" id="MCRid95948">,</mo><mn id="MCRid120201"> 2 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="list1.xml#list" xlink:type="simple">,</mo><mn id="MCRid120204"> 3 </mn></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid95935" xlink:type="simple"><OMA xlink:href="MCRid95938" xlink:type="simple"><OMS cd="list2" name="rest" xlink:href="MCRid95940" xlink:type="simple"/><OMA xlink:href="MCRid95946" xlink:type="simple"><OMS cd="list1" name="list" xlink:href="MCRid95948" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid95955"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid120201"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid120204"> 3 </OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="cons">
+<div class="titlebox">
+<span class="titleword">Concept</span>cons</div> 
+    This symbol represents the cons list function. It takes 2 arguments:
+    the second must be a list, where the elements have the same type as
+    the type of the first. The function denotes a new list which has
+    the first argument as its first element followed by the elements of
+    the second argument.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid120251"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id120254" xlink:href="sts.xml#mapsto"><mo xlink:href="#Object" xlink:type="simple" id="id120262">Object</mo><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid120269">List</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid120273">List</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid120251" xlink:type="simple"><OMA xlink:href="MCRid120254" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid120256" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid120262" xlink:type="simple"/><OMV name="List" xlink:href="MCRid120269" xlink:type="simple"/><OMV name="List" xlink:href="MCRid120273" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="cons-prop-1">
+<span class="titleword">Lemma</span>
+<p>
+    cons(first(lst),rest(lst))=lst
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid120312"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid120324"><mi id="MCRid120326">lst</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><mrow id="MCRid95352"><mo xlink:href="#cons" xlink:type="simple" id="id95354">cons</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid95361"><mo xlink:href="#first" xlink:type="simple" id="id95363">first</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid95370">lst</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo separator="true">,</mo><mrow id="MCRid95375"><mo xlink:href="#rest" xlink:type="simple" id="id95377">rest</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid95384">lst</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid120333">=</mo><mi id="MCRid95390">lst</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid120312" xlink:type="simple"><OMBIND xlink:href="MCRid120315" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid120318" xlink:type="simple"/><OMBVAR xlink:href="MCRid120324" xlink:type="simple"><OMV name="lst" xlink:href="MCRid120326" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid120331" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid120333" xlink:type="simple"/><OMA xlink:href="MCRid95352" xlink:type="simple"><OMS cd="list2" name="cons" xlink:href="MCRid95354" xlink:type="simple"/><OMA xlink:href="MCRid95361" xlink:type="simple"><OMS cd="list2" name="first" xlink:href="MCRid95363" xlink:type="simple"/><OMV name="lst" xlink:href="MCRid95370" xlink:type="simple"/></OMA><OMA xlink:href="MCRid95375" xlink:type="simple"><OMS cd="list2" name="rest" xlink:href="MCRid95377" xlink:type="simple"/><OMV name="lst" xlink:href="MCRid95384" xlink:type="simple"/></OMA></OMA><OMV name="lst" xlink:href="MCRid95390" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+
+
+</body>
+</html>

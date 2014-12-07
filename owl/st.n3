@@ -1,0 +1,312 @@
+# Note that namespace URIs must end with / or #
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odo:     <http://www.omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# These must be declared explicitly for OWL-DL conformity --Christoph Lange
+dc:creator
+	a	owl:AnnotationProperty .
+dc:description
+	a	owl:AnnotationProperty .
+dc:subject
+	a	owl:AnnotationProperty .
+dc:contributor
+	a	owl:AnnotationProperty .
+dc:title
+	a	owl:AnnotationProperty .
+
+<>
+	a	 owl:Ontology ;
+	dc:title "OMDoc document ontology, module ST" ;
+	dc:description """OMDoc document ontology in OWL-DL, statement module.  See chapter 15 (Mathematical Statements) of the OMDoc specification.
+This file is designed to be imported from the main module `omdoc'.""" ;
+	dc:creator "Christoph Lange <ch.lange@jacobs-university.de>" ;
+	dc:contributor "Normen Müller <n.mueller@jacobs-university.de>" , "Krzysztof Retel <retel@macs.hw.ac.uk>" ;
+	# Contributors, please add your name here, and in the main file omdoc.n3. --Christoph Lange
+	dc:subject "Semantic Mathematical Markup, Mathematical Statements" ;
+	owl:imports <file:base.n3> .
+
+#
+# BASE CLASSES 
+#
+
+odo:Statement
+	a	 owl:Class ;
+	rdfs:subClassOf odo:OMDocConcept ;
+	dc:description """Any OMDoc statement, as defined in the OMDoc specification, chapters 14.3 (Text Fragments and their Rhetoric/Mathematical Roles) and 15 (Mathematical Statements). A statement can only belong to one theory.""" ;
+	owl:disjointWith odo:Theory .
+
+#
+# THEORIES
+#
+
+odo:Theory
+	a	 owl:Class ;
+	rdfs:subClassOf odo:OMDocConcept ;
+	dc:description """An OMDoc theory, as defined in chapter 15.6 (Theories as Structured Contexts) of the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:theory element.
+Note that theories are no proper statements, although the basic infrastructure for theories is part of the statement module of OMDoc.""" ;
+	owl:disjointWith odo:Statement .
+
+odo:imports
+	a	 owl:TransitiveProperty , owl:ObjectProperty ;
+	rdfs:domain odo:Theory ;
+	rdfs:range odo:Theory ;
+	rdfs:subPropertyOf odo:dependsOn ;
+	dc:description """An import relation between two theories, which is not further specified (e.g. by morphisms), as defined in chapter 15.6.1 (Simple Inheritance) of the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:theory/@import attribute""" .
+
+#
+# STATEMENTS
+#
+
+#
+# GENERAL STATEMENT RELATIONS
+#
+
+odo:homeTheoryOf
+	a	 owl:InverseFunctionalProperty , owl:ObjectProperty ;
+	rdfs:domain odo:Theory ;
+	rdfs:range
+		  [ owl:unionOf (odo:Statement odo:Theory)
+		  ] ;
+	rdfs:subPropertyOf odo:contains ;
+	owl:inverseOf odo:homeTheory ;
+	dc:description """Expresses that a theory is the home of a statement or another (nested) theory (and thereby also provides a context for the statement or the theory, but not the only one, as importing theories elsewhere embeds them into new contexts as well).  Each statement or nested theory has at most one home theory.  See chapter 15.1 (Types of Statements in Mathematics) of the OMDoc specification for a definition.""" .
+
+odo:homeTheory
+	a	 owl:FunctionalProperty , owl:ObjectProperty ;
+	rdfs:range odo:Theory ;
+	rdfs:domain
+		  [ owl:unionOf (odo:Statement odo:Theory)
+		  ] ;
+	owl:inverseOf odo:homeTheoryOf ;
+	dc:description """Expresses that a statement or a nested theory has another theory as its home theory, which provides the context for the statement or the theory.  Each statement or nested theory has at most one home theory.  See chapter 15.1 (Types of Statements in Mathematics) of the OMDoc specification for a definition.
+In OMDoc/XML, this is represented by the omdoc:*/@theory attribute (at least for non-constitutive statements) or by containment within an omdoc:theory element.
+Probably, this relation should be refactored into two ones.  A statement has exactly one home theory, but a theory need not have a home theory, if it's at top level. --Christoph Lange""" .
+
+odo:specifies
+	# TODO Is there a better name than "specifies"? --Christoph Lange
+	a	 owl:ObjectProperty ;
+	rdfs:domain odo:Statement ;
+	rdfs:range odo:Statement ;
+	rdfs:subPropertyOf odo:dependsOn ;
+	# TODO check whether this is really a kind of dependency. Or should there be two relations like this -- one with dependency properties, the other without? --Christoph Lange
+	dc:description """Expresses that one statement A further specifies (e.g. exemplifies or proves) another statement B in a way that makes A depend on B. This generic relation is not explicitly defined by the OMDoc specification (if mostly occurs in terms of a @for attribute, though), but it may be needed for a coherent taxonomy of relations between OMDoc concepts.
+In OMDoc/XML, this is (mostly) represented by the omdoc:*/@for attribute.
+Note that this property is not transitive!""" .
+
+#
+# CONSTITUTIVE STATEMENTS
+#
+
+odo:ConstitutiveStatement
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Statement ;
+	dc:description """An OMDoc statement, which is theory-constitutive, as defined in the OMDoc specification, chapter 15.1 (Types of Statements in Mathematics) and 15.2 (Theory-Constitutive Statements in OMDoc).""" ;
+	owl:disjointWith odo:NonconstitutiveStatement .
+
+odo:Symbol
+	a	 owl:Class ;
+	rdfs:subClassOf odo:ConstitutiveStatement ;
+	dc:description """An OMDoc symbol, as defined in the OMDoc specification, chapter 15.2.1 (Symbol Declarations).
+In OMDoc/XML, this is represented by the omdoc:symbol element.""" ;
+	owl:disjointWith odo:Axiom , odo:Definition .
+
+odo:Axiom
+	a	 owl:Class ;
+	rdfs:subClassOf odo:ConstitutiveStatement ;
+	dc:description """An OMDoc axiom, as defined in the OMDoc specification, chapter 15.2.2 (Axioms).
+In OMDoc/XML, this is represented by the omdoc:axiom element.""" ;
+	owl:disjointWith odo:Symbol , odo:Definition .
+
+odo:Definition
+	a	 owl:Class ;
+	rdfs:subClassOf odo:ConstitutiveStatement ;
+	dc:description """An OMDoc definition, as defined in the OMDoc specification, chapter 15.2.4 (Definitions).
+In OMDoc/XML, this is represented by the omdoc:definition element.""" ;
+	owl:disjointWith odo:Axiom , odo:Symbol .
+
+odo:hasDefinition
+	a	 owl:FunctionalProperty , owl:ObjectProperty ;
+	rdfs:domain odo:Symbol ;
+	rdfs:range odo:Definition ;
+	rdfs:subPropertyOf odo:dependsOn ;
+	owl:inverseOf odo:defines ;
+	dc:description """Expresses that a definition defines a symbol; see chapter 15.2.4 (Definitions) of the OMDoc specification.  A symbol can have at most one definition.  A definition defines at least one symbol.
+Note: The inverse relation is provided by `defines'.  Using Symbol-hasDefinition-Definition makes more sense, however: If we have, for example, a statement that contains a formula that contains a symbol, we could express this as a kind of ``dependency'' relation between the statement and the symbol.  Actually, the statement depends on the _definition_ of the symbol, however, and a reasoner can understand this by following the chain ``statement->symbol->definition''; recall that the dependency definition is transitive.  Cf. the archived discussion about that on http://mathweb.org/wiki/Talk:OMDoc/document_ontology/rules#Assertion_depends_on_definition --Christoph Lange""" .
+
+odo:defines
+	a	 owl:InverseFunctionalProperty , owl:ObjectProperty ;
+	rdfs:domain odo:Definition ;
+	rdfs:range odo:Symbol ;
+	owl:inverseOf odo:hasDefinition ;
+	dc:description """Expresses that a definition defines a symbol; see chapter 15.2.4 (Definitions) of the OMDoc specification.  A symbol can have at most one definition.  A definition defines at least one symbol.
+In OMDoc/XML, this is represented by the omdoc:definition/@for attribute.""" .
+
+#
+# NON-CONSTITUTIVE STATEMENTS
+#
+
+odo:NonconstitutiveStatement
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Statement ;
+	dc:description """An OMDoc statement, which is not theory-constitutive, as defined in the OMDoc specification, chapter 15.1 (Types of Statements in Mathematics).""" ;
+	owl:disjointWith odo:ConstitutiveStatement .
+
+odo:Assertion
+	a	 owl:Class ;
+	rdfs:subClassOf odo:NonconstitutiveStatement ;
+	dc:description """An OMDoc assertion, as defined in the OMDoc specification, chapter 15.3.1 (Assertions).
+In OMDoc/XML, this is represented by the omdoc:assertion element.
+Note: This class has lots of subclasses.  Their semantics needs to be clarified, as not everything is clearly documented in the OMDoc specification; see the discussion on
+http://mathweb.org/wiki/Talk:OMDoc/document_ontology --Christoph Lange""" ;
+	owl:disjointWith odo:Example , odo:TypeAssertion , odo:Alternative .
+
+odo:Theorem
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is a theorem; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:assertion/@type='theorem' attribute""" ;
+	owl:disjointWith odo:Proposition , odo:Obligation , odo:Assumption , odo:Corollary , odo:Postulate , odo:Conjecture , odo:Rule , odo:Lemma , odo:FalseConjecture , odo:Formula .
+
+odo:Lemma
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is a lemma; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:assertion/@type='lemma' attribute.""" ;
+	owl:disjointWith odo:Theorem , odo:Proposition , odo:Obligation , odo:Corollary , odo:Assumption , odo:Postulate , odo:Conjecture , odo:Rule , odo:FalseConjecture , odo:Formula .
+
+odo:Corollary
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is a corollary; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:assertion/@type='corollary' attribute.""" ;
+	owl:disjointWith odo:Theorem , odo:Obligation , odo:Proposition , odo:Assumption , odo:Postulate , odo:Conjecture , odo:Rule , odo:Lemma , odo:FalseConjecture , odo:Formula .
+
+odo:Proposition
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is a proposition; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:assertion/@type='proposition' attribute.""" ;
+	owl:disjointWith odo:Theorem , odo:Obligation , odo:Corollary , odo:Assumption , odo:Postulate , odo:Conjecture , odo:Rule , odo:Lemma , odo:FalseConjecture , odo:Formula .
+
+odo:Conjecture
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is a conjecture; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:assertion/@type='conjecture' attribute.""" ;
+   	owl:disjointWith odo:Theorem , odo:Obligation , odo:Proposition , odo:Assumption , odo:Corollary , odo:Postulate , odo:Rule , odo:Lemma , odo:FalseConjecture , odo:Formula .
+
+odo:FalseConjecture
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is a conjecture that has proven to be false; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:assertion/@type='false-conjecture' attribute.""" ;
+	owl:disjointWith odo:Theorem , odo:Proposition , odo:Obligation , odo:Corollary , odo:Assumption , odo:Postulate , odo:Conjecture , odo:Rule , odo:Lemma , odo:Formula .
+
+odo:Obligation
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is an obligation; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:assertion/@type='obligation' attribute.""" ;
+	owl:disjointWith odo:Theorem , odo:Proposition , odo:Assumption , odo:Corollary , odo:Postulate , odo:Conjecture , odo:Rule , odo:Lemma , odo:Formula , odo:FalseConjecture .
+
+odo:Postulate
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is a postulate; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:assertion/@type='postulate' attribute.""" ;
+	owl:disjointWith odo:Theorem , odo:Obligation , odo:Proposition , odo:Assumption , odo:Corollary , odo:Conjecture , odo:Rule , odo:Lemma , odo:FalseConjecture , odo:Formula .
+
+odo:Formula
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is a formula; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by omdoc:assertion/@type='formula' attribute.""" ;
+	owl:disjointWith odo:Theorem , odo:Proposition , odo:Obligation , odo:Corollary , odo:Assumption , odo:Postulate , odo:Conjecture , odo:Rule , odo:Lemma , odo:FalseConjecture .
+
+odo:Assumption
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is an assumption; see figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification.
+In OMDoc/XML, this is represented by omdoc:assertion/@type='assumption' attribute.""" ;
+	owl:disjointWith odo:Theorem , odo:Proposition , odo:Obligation , odo:Corollary , odo:Postulate , odo:Conjecture , odo:Rule , odo:Lemma , odo:FalseConjecture , odo:Formula .
+
+odo:Rule
+	a	 owl:Class ;
+	rdfs:subClassOf odo:Assertion ;
+	dc:description """An OMDoc assertion, which is a rule.  This type of assertion is missing from figure 15.10 (Types of Mathematical Assertions) in the OMDoc specification, but it occurs in the XML schema nevertheless (Appendix D.4, enumeration ``assertiontype'').
+In OMDoc/XML, this is represented by the omdoc:assertion/@type='rule' attribute.""" ;
+	owl:disjointWith odo:Theorem , odo:Proposition , odo:Obligation , odo:Assumption , odo:Corollary , odo:Postulate , odo:Conjecture , odo:Lemma , odo:Formula , odo:FalseConjecture .
+
+odo:TypeAssertion
+	a	 owl:Class ;
+	rdfs:subClassOf odo:NonconstitutiveStatement ;
+	dc:description """An OMDoc type assertion, as defined in the OMDoc specification, chapter 15.3.2 (Type Assertions).
+In OMDoc/XML, this is represented by the omdoc:type element, if it occurs on theory level.""" ;
+	owl:disjointWith odo:Example , odo:Alternative , odo:Assertion .
+
+odo:Example
+	a	 owl:Class ;
+	rdfs:subClassOf odo:NonconstitutiveStatement ;
+	dc:description """An OMDoc example, as defined in the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc).
+In OMDoc/XML, this is represented by the omdoc:example element.""" ;
+	owl:disjointWith odo:TypeAssertion , odo:Alternative , odo:Assertion .
+
+odo:exemplifies
+	a	 owl:ObjectProperty ;
+	rdfs:domain odo:Example ;
+	rdfs:range
+		  [ owl:unionOf (odo:Symbol odo:Definition odo:Assertion)
+		  ] ;
+	rdfs:subPropertyOf odo:specifies ;
+	dc:description """The statement that is exemplified by this example; see the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc).
+In OMDoc/XML, this is represented by the omdoc:example/@for attribute.""" .
+
+odo:corroborates
+	a	 owl:ObjectProperty ;
+	rdfs:range odo:Assertion ;
+	rdfs:subPropertyOf odo:exemplifies ;
+	# Note: rdfs:domain is inherited from the super property (see the comment at the end of this file).
+	dc:description """The assertion that is corroborated by this example; see the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc). Although not explicitly stated in the OMDoc book, I guess that only assertions can be corroborated by an example; for a symbol or definition, it wouldn't make sense.
+In OMDoc/XML, this is represented by the omdoc:example/@for attribute, together with omdoc:example/@type='for'.""" .
+
+odo:refutes
+	a	 owl:ObjectProperty ;
+	rdfs:range odo:Assertion ;
+	rdfs:subPropertyOf odo:exemplifies ;
+	# Note: rdfs:domain is inherited from the super property (see the comment at the end of this file).
+	dc:description """The assertion that is refuted by this example; see the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc).  Although not explicitly stated in the OMDoc book, I guess that only assertions can be corroborated by an example; for a symbol or definition, it wouldn't make sense.
+In OMDoc/XML, this is represented by the omdoc:example/@for attribute, together with omdoc:example/@type='against'.""" .
+
+odo:Alternative
+	a	 owl:Class ;
+	rdfs:subClassOf odo:NonconstitutiveStatement ;
+	dc:description """An OMDoc alternative definition, as defined in the OMDoc specification, chapter 15.3.3 (Alternative Definitions).
+In OMDoc/XML, this is represented by the omdoc:alternative element.""" ;
+	owl:disjointWith odo:Example , odo:TypeAssertion , odo:Assertion .
+
+# Notes on the inheritance of range and domain; a mail from Christoph Lange to Krzysztof Retel:
+
+# I'm not sure whether we need to explicitly specify range and/or domain of a
+# subproperty (as you did for the "corroborates" and "refutes" subproperties of
+# "exemplifies"). It would make sense to assume that these are inherited from
+# the super-property. But of course, we have to make sure. (Sure, it won't hurt
+# to always explicitly specify things, but if it's not necessary, I don't want
+# to.) Unfortunately, I could not find a specification of that. There is one old
+# mail from the ages before the standardization of RDFS, which points out that
+# this issue should be clarified:
+
+# http://lists.w3.org/Archives/Public/www-rdf-logic/2000Dec/0001.html
+
+# The RDF semantics spec mentions the entailment rule (ext3 and ext4) for
+# inheritance of range and domain as "extensional" (see
+# http://www.w3.org/TR/2004/REC-rdf-mt-20040210/#RDFSExtRules and
+# http://www.w3.org/TR/2004/REC-rdf-mt-20040210/#ExtensionalDomRang), but what
+# does that mean? Is it optional to implement them, whereas it is mandatory to
+# implement the non-extensional entailment rules? Do common RDF libraries
+# implement them? (I'll check that for Jena, the library I'm using.) Does OWL
+# change the semantics of RDFS?

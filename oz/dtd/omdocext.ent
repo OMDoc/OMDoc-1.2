@@ -1,0 +1,18 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2): Module EXT Entities
+     PUBLIC: -//OMDoc//ENTITIES OMDoc EXT V1.2//EN
+     SYSTEM: http://www.mathweb.org/omdoc/dtd/omdocext.ent
+   See the documentation and examples at http://www.mathweb.org/omdoc 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocext.omlet.qname "%omdoc.pfx;omlet">
+<!ENTITY % omdocext.private.qname "%omdoc.pfx;private">
+<!ENTITY % omdocext.code.qname "%omdoc.pfx;code">
+
+<!-- set these two entities to the empty string, 
+     when not importing module EXT -->
+<!ENTITY % omdocext.mtext.mix "|%omdocext.omlet.qname;">
+<!ENTITY % omdocext.class "|%omdocext.private.qname;
+                           |%omdocext.code.qname;">
+

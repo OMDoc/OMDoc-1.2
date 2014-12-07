@@ -1,0 +1,124 @@
+<!--
+  Extensions for pedagogical purposes:
+  ==================================== 
+
+  The following elements are allowed in <data>...</data> 
+  or <extradata></extradata> because that element has the ANY content model.
+  -->
+
+<!-- here are possible extensions put by George at 26.11.2001 according to the protocol of a group meeting at 6.11.2001 -->
+
+<!-- element relation can contain metadata and references classified by the set of attributes given, one can have multiple relation elements with different types within one metadata structure. Place in the item - metadata/extradata -->
+
+<!ELEMENT relation (metadata?, ref*)>
+
+<!ATTLIST relation id ID #IMPLIED type (depends-on|for|against|similar|citation) #IMPLIED>
+
+<!-- here are the extenions needed for citation; to be provided in metadata/extradata of a relation element -->
+
+<!ELEMENT bib-extra (journal?,booktitle?,address?, note?, annote?,organization?, series)>
+
+<!ATTLIST bib-extra type NMTOKEN #REQUIRED key CDATA #IMPLIED pages CDATA #IMPLIED number CDATA #IMPLIED volume CDATA #IMPLIED chapter CDATA #IMPLIED>
+ 
+<!ELEMENT journal (#PCDATA)>
+<!ELEMENT booktitle (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT note (CMP*)>
+<!ELEMENT annote (CMP*)>
+<!ELEMENT organization (#PCDATA)>
+<!ELEMENT series (#PCDATA)>
+
+<!-- the element teacher is supposed to be used within metadata/extradata section; it should possibly have metadata and a CMP for some concrete remarks -->
+
+<!ELEMENT teacher (metadata?, CMP*)>
+<!ATTLIST teacher use (typical-error|reaction|feedback) #REQUIRED>
+
+<!-- pedagogical usage module is the collection of elements needed for pedagical purpose that should be put into the metadata/extradata -->
+
+<!ELEMENT field EMPTY>
+<!ATTLIST field use (cs|math|economy|historical|physics|engineering) #REQUIRED>
+
+<!ELEMENT ped-type EMPTY>
+<!ATTLIST ped-type use (check-question|make-hypothesis|proof|model|explore) #REQUIRED> 
+
+<!ELEMENT learning-context EMPTY>
+<!ATTLIST learning-context use NMTOKEN #REQUIRED>
+
+<!ELEMENT ped-level EMPTY>
+<!ATTLIST ped-level use (knowledge|comprehension|application|transfer) #REQUIRED>
+
+
+<!-- the end of new elements -->
+
+
+<!-- multiple choice element answer redefined  George 28.11.2001 -->
+<!-- change commented out because answer is already defined in Omdoc 1.1
+     and mbase can't support multiple different version of an element
+     AFranke 10.04.02
+<!ELEMENT answer (CMP*, FMP*,mc*)>
+  -->
+<!-- the end of the multiple choice changes-->
+
+
+<!ELEMENT depends-on (ref*)>
+
+<!ELEMENT difficulty EMPTY>
+<!ATTLIST difficulty level (difficult|fair|easy) "fair">
+
+<!ELEMENT abstractness EMPTY>
+<!ATTLIST abstractness level (abstract|neutral|concrete) "neutral">
+
+<!ELEMENT ppmethod (metadata,CMP*,context,input,application-conditions, output, side-effects?)>
+
+<!ATTLIST ppmethod id ID #REQUIRED>
+
+<!ELEMENT context (CMP*)>
+
+<!ELEMENT application-conditions (CMP*)>
+
+<!ELEMENT side-effects (CMP*)>
+
+<!-- This is wrong. Corrected from CMP* to %inCMP; /afranke 10.04.02 -->
+<!-- added element 'ul' /afranke 11.04.02 -->
+<!ELEMENT ol (li+)>
+<!ELEMENT ul (li+)>
+<!ELEMENT li (%inCMP;)>
+
+<!ELEMENT command (#PCDATA)>
+<!ELEMENT param (#PCDATA|replace)*>
+ 
+<!ELEMENT replace EMPTY>
+
+<!-- copied attribute 'type' from omdoc.dtd /afranke 11.04.02 -->
+<!ATTLIST ref xref CDATA #IMPLIED
+              type NMTOKEN "include"
+              theory NMTOKEN #IMPLIED
+              name NMTOKEN #IMPLIED>
+
+<!-- added 'format' and 'verbosity' attributes to CMP /afranke 11.04.02 -->
+<!ATTLIST CMP %langmatter; 
+              format CDATA #IMPLIED
+              verbosity (high|normal|low) #IMPLIED>
+
+<!-- added 'type' attribute to exercise /afranke+moschm 12.4.02 -->
+<!ATTLIST exercise %idrefmatter;
+                   type CDATA #IMPLIED>
+
+<!ELEMENT startup (command,param)?>
+<!ELEMENT eval (command,param)?>
+<!ELEMENT shutdown (command,param)?>
+
+<!ELEMENT highlight (%inCMP;)>
+<!ATTLIST highlight type CDATA #IMPLIED>
+
+<!ENTITY amp '&amp;#38;#38;'>
+<!ENTITY lt '&amp;#38;#60;'>
+<!ENTITY apos '&amp;#39;'>
+<!ENTITY quot '&amp;#34;'>
+<!ENTITY gt '&amp;#62;'>
+
+<!-- additional elements for Analysis Individuell, AFranke 10.04.02 -->
+
+<!ELEMENT br EMPTY>
+
+<!-- end of additional elements -->

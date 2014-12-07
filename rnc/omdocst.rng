@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module ST 
+  $Id: omdocst.rnc 8338 2009-05-11 21:09:54Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocst.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="omdocst.scope.attrib">
+    <optional>
+      <attribute name="scope">
+        <choice>
+          <value>global</value>
+          <value>local</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="omdocst.constitutive.class">
+    <choice>
+      <ref name="symbol"/>
+      <ref name="axiom"/>
+      <ref name="definition"/>
+      <ref name="imports"/>
+    </choice>
+  </define>
+  <define name="omdocst.nonconstitutive.class">
+    <choice>
+      <ref name="assertion"/>
+      <ref name="type"/>
+      <ref name="alternative"/>
+      <ref name="example"/>
+      <ref name="theory"/>
+    </choice>
+  </define>
+  <define name="theory-unique">
+    <data type="NCName"/>
+  </define>
+  <define name="just-by.attrib">
+    <attribute name="just-by">
+      <ref name="omdocref"/>
+    </attribute>
+  </define>
+  <define name="omdoc.class" combine="choice">
+    <ref name="omdocst.nonconstitutive.class"/>
+  </define>
+  <define name="omdocst.constitutive.attribs">
+    <ref name="id.attrib"/>
+    <optional>
+      <attribute name="generated-from">
+        <ref name="omdocref"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="sym.role.attrib">
+    <attribute name="role">
+      <choice>
+        <value>type</value>
+        <value>sort</value>
+        <value>object</value>
+        <value>binder</value>
+        <value>attribution</value>
+        <value>application</value>
+        <value>constant</value>
+        <value>semantic-attribution</value>
+        <value>error</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="symbol">
+    <element name="symbol">
+      <ref name="omdocst.scope.attrib"/>
+      <optional>
+        <attribute name="name">
+          <ref name="theory-unique"/>
+        </attribute>
+      </optional>
+      <ref name="omdocst.constitutive.attribs"/>
+      <optional>
+        <ref name="sym.role.attrib"/>
+      </optional>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="type"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="axiom">
+    <element name="axiom">
+      <ref name="omdocst.constitutive.attribs"/>
+      <ref name="fori.attrib"/>
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="omdocmtxt.MCF.content"/>
+    </element>
+  </define>
+  <!-- informal definitions -->
+  <define name="def.informal">
+    <optional>
+      <attribute name="type">
+        <value>informal</value>
+      </attribute>
+    </optional>
+  </define>
+  <!-- simple definitions -->
+  <define name="exists.attrib">
+    <attribute name="existence">
+      <ref name="omdocref"/>
+    </attribute>
+  </define>
+  <define name="def.simple">
+    <attribute name="type">
+      <value>simple</value>
+    </attribute>
+    <optional>
+      <ref name="exists.attrib"/>
+    </optional>
+    <ref name="omdocmobj.class"/>
+  </define>
+  <!-- implicit definitions -->
+  <define name="unique.attrib">
+    <attribute name="uniqueness">
+      <ref name="omdocref"/>
+    </attribute>
+  </define>
+  <define name="def.implicit">
+    <attribute name="type">
+      <value>implicit</value>
+    </attribute>
+    <optional>
+      <ref name="exists.attrib"/>
+    </optional>
+    <optional>
+      <ref name="unique.attrib"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="FMP"/>
+    </zeroOrMore>
+  </define>
+  <!-- definitions by (recursive) equations -->
+  <define name="exhaust.attrib">
+    <attribute name="exhaustivity">
+      <ref name="omdocref"/>
+    </attribute>
+  </define>
+  <define name="consist.attrib">
+    <attribute name="consistency">
+      <ref name="omdocref"/>
+    </attribute>
+  </define>
+  <define name="def.eq">
+    <optional>
+      <attribute name="type">
+        <choice>
+          <value>pattern</value>
+          <value>inductive</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <ref name="exhaust.attrib"/>
+    </optional>
+    <optional>
+      <ref name="consist.attrib"/>
+    </optional>
+    <oneOrMore>
+      <ref name="requation"/>
+    </oneOrMore>
+    <optional>
+      <ref name="measure"/>
+    </optional>
+    <optional>
+      <ref name="ordering"/>
+    </optional>
+  </define>
+  <!-- all definition forms, add more by extending this. -->
+  <define name="defs.all">
+    <choice>
+      <ref name="def.informal"/>
+      <ref name="def.simple"/>
+      <ref name="def.implicit"/>
+      <ref name="def.eq"/>
+    </choice>
+  </define>
+  <!--
+    Definitions contain CMPs,  FMPs and concept specifications. 
+    The latter define the set of concepts defined in this element. 
+    They can be reached under this name in the content dictionary 
+    of the name specified in the theory attribute of the definition.
+  -->
+  <define name="definition">
+    <element name="definition">
+      <ref name="omdocst.constitutive.attribs"/>
+      <attribute name="for">
+        <list>
+          <oneOrMore>
+            <data type="NCName"/>
+          </oneOrMore>
+        </list>
+      </attribute>
+      <ref name="omdocmtxt.MC.content"/>
+      <ref name="defs.all"/>
+    </element>
+  </define>
+  <define name="requation">
+    <choice>
+      <ref name="ss"/>
+      <element name="requation">
+        <ref name="id.attrib"/>
+        <ref name="omdocmobj.class"/>
+        <ref name="omdocmobj.class"/>
+      </element>
+    </choice>
+  </define>
+  <define name="measure">
+    <choice>
+      <ref name="ss"/>
+      <element name="measure">
+        <ref name="id.attrib"/>
+        <ref name="omdocmobj.class"/>
+      </element>
+    </choice>
+  </define>
+  <define name="ordering">
+    <choice>
+      <ref name="ss"/>
+      <element name="ordering">
+        <ref name="id.attrib"/>
+        <optional>
+          <attribute name="terminating">
+            <ref name="omdocref"/>
+          </attribute>
+        </optional>
+        <ref name="omdocmobj.class"/>
+      </element>
+    </choice>
+  </define>
+  <!-- the non-constitutive statements, they need a theory attribute -->
+  <define name="omdoc.toplevel.attribs" combine="interleave">
+    <optional>
+      <attribute name="theory">
+        <ref name="omdocref"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="ded.status.class">
+    <choice>
+      <value>satisfiable</value>
+      <value>counter-satisfiable</value>
+      <value>no-consequence</value>
+      <value>theorem</value>
+      <value>conter-theorem</value>
+      <value>contradictory-axioms</value>
+      <value>tautologous-conclusion</value>
+      <value> tautology</value>
+      <value>equivalent</value>
+      <value>conunter-equivalent</value>
+      <value>unsatisfiable-conclusion</value>
+      <value>unsatisfiable</value>
+    </choice>
+  </define>
+  <define name="assertion">
+    <element name="assertion">
+      <ref name="omdoc.toplevel.attribs"/>
+      <optional>
+        <attribute name="type">
+          <ref name="assertiontype"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="status">
+          <ref name="ded.status.class"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="just-by">
+          <ref name="omdocrefs"/>
+        </attribute>
+      </optional>
+      <ref name="omdocmtxt.MCF.content"/>
+    </element>
+  </define>
+  <!--
+    the assertiontype has no formal meaning yet, it is solely for human consumption. 
+    'just-by' is a list of URIRefs that point to proof objects, etc that justifies the status.
+  -->
+  <define name="type">
+    <element name="type">
+      <ref name="omdoc.toplevel.attribs"/>
+      <optional>
+        <ref name="just-by.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="system">
+          <ref name="omdocref"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="for">
+          <ref name="omdocref"/>
+        </attribute>
+      </optional>
+      <ref name="omdocmtxt.MC.content"/>
+      <ref name="omdocmobj.class"/>
+      <optional>
+        <ref name="omdocmobj.class"/>
+      </optional>
+    </element>
+  </define>
+  <define name="alternative">
+    <element name="alternative">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="for.attrib"/>
+      <ref name="omdocmtxt.MC.content"/>
+      <ref name="defs.all"/>
+      <attribute name="entailed-by">
+        <ref name="omdocref"/>
+      </attribute>
+      <attribute name="entails">
+        <ref name="omdocref"/>
+      </attribute>
+      <attribute name="entailed-by-thm">
+        <ref name="omdocref"/>
+      </attribute>
+      <attribute name="entails-thm">
+        <ref name="omdocref"/>
+      </attribute>
+    </element>
+  </define>
+  <!--
+    just-by, points to the theorem justifying well-definedness
+    entailed-by, entails, point to other (equivalent definitions
+    entailed-by-thm, entails-thm point to the theorems justifying
+    the entailment relation)
+  -->
+  <define name="example">
+    <element name="example">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="for.attrib"/>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>for</value>
+            <value>against</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="assertion">
+          <ref name="omdocref"/>
+        </attribute>
+      </optional>
+      <ref name="omdocmtxt.MC.content"/>
+      <zeroOrMore>
+        <ref name="omdocmobj.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="theory">
+    <element name="theory">
+      <ref name="id.attrib"/>
+      <optional>
+        <attribute name="cdurl">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdbase">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdreviewdate">
+          <data type="date"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdversion">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdrevision">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdstatus">
+          <choice>
+            <value>official</value>
+            <value>experimental</value>
+            <value>private</value>
+            <value>obsolete</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="omdoc.class"/>
+          <ref name="omdocst.constitutive.class"/>
+          <ref name="tgroup"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="omdocsth.imports.model">
+    <ref name="id.attrib"/>
+    <ref name="from.attrib"/>
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+  </define>
+  <define name="imports">
+    <choice>
+      <ref name="ss"/>
+      <element name="imports">
+        <ref name="omdocsth.imports.model"/>
+      </element>
+    </choice>
+  </define>
+  <define name="tgroup">
+    <element name="tgroup">
+      <ref name="omdocst.constitutive.attribs"/>
+      <ref name="group.attribs"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="omdoc.class"/>
+          <ref name="omdocst.constitutive.class"/>
+          <ref name="tgroup"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+</grammar>

@@ -1,0 +1,2 @@
+omdoc.out.ozf: omdoc.out.oz
+	$(OZC) $(OZCFLAGS) -c $< -o $@

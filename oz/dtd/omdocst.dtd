@@ -1,0 +1,134 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module ST
+     SYSTEM http://www.mathweb.org/omdoc/dtd/omdocst.dtd
+     PUBLIC -//OMDoc//ELEMENTS OMDoc ST V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocst.pattern.qname "%omdoc.pfx;pattern">
+<!ENTITY % omdocst.value.qname "%omdoc.pfx;value">
+<!ENTITY % omdocst.measure.qname "%omdoc.pfx;measure">
+<!ENTITY % omdocst.ordering.qname "%omdoc.pfx;ordering">
+
+
+<!ENTITY % cfm	 "(%omdocdoc.meta.content;(%omdocst.symbol.qname;)*,
+                   (%omdocmtxt.CMP.qname;)*,(%omdocmtxt.FMP.qname;)*)">
+
+<!ELEMENT %omdocst.symbol.qname; 
+          (%omdocdoc.meta.content;
+           (%omdocmtxt.CMP.qname;)*,
+           (%omdocst.commonname.qname;|%omdocst.type.qname;)*)>
+<!ATTLIST %omdocst.symbol.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %omdocst.symbol.attrib;
+          generated-by CDATA #IMPLIED>
+
+<!ELEMENT %omdocst.commonname.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocst.commonname.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %xml.lang.attrib;
+          %mid.attrib;>
+
+<!ELEMENT %omdocst.axiom.qname; %cfm;>
+<!ATTLIST %omdocst.axiom.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idc.attrib; %fori.attrib; %genby.attrib;>
+
+<!-- Definitions contain CMPs,  FMPs and concept specifications. 
+     The latter define the set of concepts defined in this element. 
+     They can be reached under this name in the content dictionary 
+     of the name specified in the theory attribute of the definition. -->
+<!ELEMENT %omdocst.definition.qname; 
+          (%omdocdoc.meta.content;(%omdocmtxt.CMP.qname;)*,
+           (%omdocmtxt.FMP.qname;)*,
+           ((%omdocst.requation.qname;)+|(%omdocmobj.class;))?,
+           (%omdocst.measure.qname;)?,(%omdocst.ordering.qname;)?)>
+<!ATTLIST %omdocst.definition.qname; 
+          %omdoc.xmlns.theory.attrib;
+          just-by CDATA #IMPLIED
+          type  %definitiontype; "simple"
+          generated-by CDATA #IMPLIED
+	  %idc.attrib; %for.attrib;>
+ <!-- attribute just-by is an URIref points to an assertion -->
+
+<!ELEMENT %omdocst.requation.qname; 
+          (%omdocst.pattern.qname;,%omdocst.value.qname;)>
+<!ATTLIST %omdocst.requation.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idi.attrib;>
+
+<!ELEMENT %omdocst.pattern.qname; (%omdocmobj.class;)>
+<!ATTLIST %omdocst.pattern.qname; %omdoc.xmlns.theory.attrib;>
+          
+<!ELEMENT %omdocst.value.qname; (%omdocmobj.class;)>
+<!ATTLIST %omdocst.value.qname; %omdoc.xmlns.theory.attrib;>
+
+
+<!ELEMENT %omdocst.measure.qname; (%omdocmobj.class;)>
+<!ATTLIST %omdocst.measure.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %mid.attrib;>
+
+<!ELEMENT %omdocst.ordering.qname; (%omdocmobj.class;)>
+<!ATTLIST %omdocst.ordering.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %mid.attrib;>
+
+
+<!-- the non-constitutive statements, they need a theory attribute -->
+<!ENTITY % omdocst.theory.attrib "theory CDATA #IMPLIED">
+
+<!ELEMENT %omdocst.assertion.qname; %cfm;>
+<!ATTLIST %omdocst.assertion.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idi.attrib; %genby.attrib;
+          %omdocst.theory.attrib;
+          type (%assertiontype;) "conjecture"
+          proofs CDATA #IMPLIED>
+<!-- the %assertiontype; has no formal meaning yet, it is solely 
+     for human consumption. The 'generated-by' is for 
+     theory-interpretations, which can  generate assertions. 
+     'proofs' is a list of URIRefs -->
+
+<!ELEMENT %omdocst.type.qname; ((%omdocmtxt.CMP.qname;)*,(%omdocmobj.class;))>
+<!ATTLIST %omdocst.type.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idi.attrib; 
+          just-by CDATA #IMPLIED           
+          for CDATA #IMPLIED
+          system NMTOKEN #REQUIRED>
+
+     
+<!ELEMENT %omdocst.alternative.qname; 
+          (%omdocdoc.meta.content;(%omdocmtxt.CMP.qname;)*,
+           (%omdocmtxt.FMP.qname;)*,
+           ((%omdocst.requation.qname;)+|(%omdocmobj.class;))?)>
+<!ATTLIST %omdocst.alternative.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %id.attrib; %for.attrib;
+          %omdocst.theory.attrib;
+          type  %definitiontype; "simple"
+          generated-by CDATA #IMPLIED
+          just-by CDATA #IMPLIED           
+          entailed-by CDATA #REQUIRED      
+          entails CDATA #REQUIRED          
+          entailed-by-thm CDATA #REQUIRED  
+          entails-thm CDATA #REQUIRED>      
+<!-- the CDATA attributes are URIrefs
+     just-by, points to the theorem justifying well-definedness
+     entailed-by, entails, point to other (equivalent definitions
+     entailed-by-thm, entails-thm point to the theorems justifying
+     the entailment relation -->
+
+
+<!ELEMENT %omdocst.example.qname; 
+          (%omdocdoc.meta.content;(%omdocst.symbol.qname;)*,
+           (%omdocmtxt.CMP.qname;)*,(%omdocmobj.class;)*)>
+<!ATTLIST %omdocst.example.qname; 
+          %omdoc.xmlns.theory.attrib;
+          type (for|against) #IMPLIED
+          assertion CDATA #IMPLIED 
+          %id.attrib; %for.attrib;>
+<!-- attributes assertion is an URIref -->
+

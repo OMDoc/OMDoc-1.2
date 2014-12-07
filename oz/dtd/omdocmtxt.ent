@@ -1,0 +1,61 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2): Module MTXT Entities
+     PUBLIC: -//OMDoc//ENTITIES OMDoc MTXT V1.2//EN
+     SYSTEM: http://www.mathweb.org/omdoc/dtd/omdocmtxt.ent
+   See the documentation and examples at http://www.mathweb.org/omdoc 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocmtxt.omtext.qname "%omdoc.pfx;omtext">
+<!ENTITY % omdocmtxt.CMP.qname "%omdoc.pfx;CMP">
+<!ENTITY % omdocmtxt.FMP.qname "%omdoc.pfx;FMP">
+
+<!ENTITY % omdocmtxt.class "|%omdocmtxt.omtext.qname;">
+
+<!--    The current XML-recommendation doesn't yet support the 
+        three-letter short names for languages (ISO 693-2). So 
+        the following section will be using the two-letter 
+        (ISO 693-1) encoding for the languages.
+
+	en : English,	de : German,	fr : French,
+	la : Latin, 	it : Italian, 	nl : Dutch,
+	ru : Russian,	pl : Polish,	es : Spanish,
+	tr : Turkish,	zh : Chinese,	ja : Japanese,
+	ko : Korean     ...                     -->
+<!ENTITY % ISO639 "(aa|ab|af|am|ar|as|ay|az|ba|be|bg|bh|bi|bn|bo|br|ca|co|
+                    cs|cy|da|de|dz|el|en|eo|es|et|eu|fa|fi|fj|fo|fr|fy|ga|
+                    gd|gl|gn|gu|ha|he|hi|hr|hu|hy|ia|ie|ik|id|is|it|iu|ja|
+                    jv|ka|kk|kl|km|kn|ko|ks|ku|ky|la|ln|lo|lt|lv|mg|mi|mk|
+                    ml|mn|mo|mr|ms|mt|my|na|ne|nl|no|oc|om|or|pa|pl|ps|pt|
+                    qu|rm|rn|ro|ru|rw|sa|sd|sg|sh|si|sk|sl|sm|sn|so|sq|sr|
+                    ss|st|su|sv|sw|ta|te|tg|th|ti|tk|tl|tn|to|tr|ts|tt|tw|
+                    ug|uk|ur|uz|vi|vo|wo|xh|yi|yo|za|zh|zu)">
+
+<!ENTITY % xml.lang.attrib "xml:lang %ISO639; 'en'">
+
+
+
+<!ENTITY % mid.attrib "mid CDATA #IMPLIED">
+<!-- attribute mid is an URIref, pointing to the MBase identifier of the element -->
+
+
+<!-- the attributes for CSS and PRES styling -->
+<!ENTITY % css.attrib "style CDATA #IMPLIED
+                       class NMTOKEN #IMPLIED">
+ 
+<!-- we do not define the id attribute to be of type ID as one 
+     would expect,since we only want them to be unique in a theory, 
+     and we want still to be able to concatenate OMDoc files -->
+<!ENTITY % id.attrib "id ID #REQUIRED %css.attrib; %mid.attrib;">
+<!ENTITY % idc.attrib "id CDATA #REQUIRED %css.attrib; %mid.attrib;">
+<!ENTITY % idi.attrib "id ID #IMPLIED %css.attrib; %mid.attrib;">
+<!ENTITY % idic.attrib "id CDATA #IMPLIED %css.attrib; %mid.attrib;">
+
+<!ENTITY % for.attrib "for CDATA #REQUIRED">
+<!ENTITY % fori.attrib "for CDATA #IMPLIED">
+<!-- attribute for is a whitespace-separated list of  URIrefs -->
+
+<!ENTITY % genby.attrib "generated-by CDATA #IMPLIED">
+<!ENTITY % from.attrib	 "%id.attrib; from CDATA #REQUIRED">
+
+

@@ -1,0 +1,25 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2): Module STH Entities
+     PUBLIC: -//OMDoc//ENTITIES OMDoc STH V1.2//EN
+     SYSTEM: http://www.mathweb.org/omdoc/dtd/omdocsth.ent
+   See the documentation and examples at http://www.mathweb.org/omdoc 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocsth.theory.qname "%omdoc.pfx;theory">
+<!ENTITY % omdocsth.imports.qname "%omdoc.pfx;imports">
+
+<!ENTITY % otherdefinitiontype "">
+<!ENTITY % definitiontype "(simple|inductive|implicit|recursive|obj
+                           %otherdefinitiontype;)">
+
+<!ENTITY % omdocsth.class "|%omdocsth.theory.qname;">
+
+<!ENTITY % omdocsth.intheory.class
+           "|%omdocsth.imports.qname;">
+
+
+
+
+
+

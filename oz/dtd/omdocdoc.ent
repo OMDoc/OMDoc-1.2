@@ -1,0 +1,27 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2): Module DOC Entities
+     PUBLIC: -//OMDoc//ENTITIES OMDoc DOC V1.2//EN
+     SYSTEM: http://www.mathweb.org/omdoc/dtd/omdocdoc.ent
+   See the documentation and examples at http://www.mathweb.org/omdoc 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocdoc.metadata.qname "%omdoc.pfx;metadata">
+<!ENTITY % omdocdoc.ignore.qname "%omdoc.pfx;ignore">
+<!ENTITY % omdocdoc.with.qname "%omdoc.pfx;with">
+<!ENTITY % omdocdoc.ref.qname "%omdoc.pfx;ref">
+<!ENTITY % omdocdoc.omgroup.qname "%omdoc.pfx;omgroup">
+
+<!ENTITY % omdocdoc.meta.content "(%omdocdoc.metadata.qname;)?,">
+
+<!ENTITY % omdocdoc.class "%omdocdoc.ignore.qname;
+                           |%omdocdoc.ref.qname;
+                           |%omdocdoc.omgroup.qname;">
+
+<!-- the stuff that can go into a mathematical text -->
+<!ENTITY % omdocdoc.mtext.mix "|%omdocdoc.ignore.qname;
+                               |%omdocdoc.ref.qname;
+                               |%omdocdoc.with.qname;">
+
+<!-- the stuff that can go into other text -->
+<!ENTITY % omdocdoc.style.extra "|%omdocdoc.with.qname;">

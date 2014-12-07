@@ -1,0 +1,29 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module PHYS
+# $Id: omdocphys.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocphys.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+system  = element system {omdoc.id.attrib,
+                           attribute type {"ideal" | "real"},
+			   metadata?,
+			   observable*,
+			   improvement?,
+			   algebra?,
+			   realization?}
+
+observable = element  observable {attribute low {xsd:float},
+	                          attribute high {xsd:float},
+				  omdoc.id.attrib,
+				  (omdocmobj.class),
+				  (omdocmobj.class)}
+
+improvement = element improvement {omdoc.id.attrib,omdocmtxt.MCF.content}
+realization = element realization {omdoc.id.attrib,omdocmtxt.MCF.content}
+interpretation = element interpretation {omdoc.id.attrib,omdocmtxt.MCF.content}
+state = element state {omdoc.id.attrib,attribute of {omdocref},metadata?,value*}
+value = element value {omdoc.id.attrib,attribute for {omdocref},
+                       attribute num {xsd:float},
+		       metadata?}                       
+experiment = element experiment {omdoc.id.attrib,omdocmtxt.MCF.content,state,state}
+evidence = element evidence {omdoc.id.attrib, attribute for {omdocref},experiment*,interpretation}

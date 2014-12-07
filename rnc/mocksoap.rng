@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Mock Soap with OMDoc content  (OMDoc 1.2)           
+  $Id: mocksoap.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/mocksoap.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:ws="http://www.mathweb.org/ws-fictional" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <ref name="Envelope"/>
+  </start>
+  <include href="omdocattribs.rng"/>
+  <include href="omdocmobj.rng"/>
+  <include href="omdocdoc.rng"/>
+  <include href="omdocdc.rng"/>
+  <include href="omdoccc.rng"/>
+  <include href="omdocmtxt.rng"/>
+  <include href="omdocst.rng"/>
+  <include href="omdocpf.rng"/>
+  <define name="Envelope">
+    <element name="env:Envelope">
+      <ref name="Body"/>
+    </element>
+  </define>
+  <define name="Body">
+    <element name="env:Body">
+      <zeroOrMore>
+        <choice>
+          <ref name="prover"/>
+          <ref name="prove"/>
+          <ref name="proof"/>
+          <ref name="theory"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="prover">
+    <element name="ws:prover">
+      <optional>
+        <attribute name="env:encodingStyle">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <ref name="name"/>
+      </optional>
+      <optional>
+        <ref name="version"/>
+      </optional>
+      <optional>
+        <ref name="URL"/>
+      </optional>
+      <optional>
+        <ref name="uptime"/>
+      </optional>
+      <optional>
+        <ref name="sysinfo"/>
+      </optional>
+    </element>
+  </define>
+  <define name="name">
+    <element name="ws:name">
+      <text/>
+    </element>
+  </define>
+  <define name="version">
+    <element name="ws:version">
+      <text/>
+    </element>
+  </define>
+  <define name="URL">
+    <element name="ws:URL">
+      <text/>
+    </element>
+  </define>
+  <define name="uptime">
+    <element name="ws:uptime">
+      <text/>
+    </element>
+  </define>
+  <define name="sysinfo">
+    <element name="ws:sysinfo">
+      <optional>
+        <ref name="ostype"/>
+      </optional>
+      <optional>
+        <ref name="mips"/>
+      </optional>
+    </element>
+  </define>
+  <define name="ostype">
+    <element name="ws:ostype">
+      <text/>
+    </element>
+  </define>
+  <define name="mips">
+    <element name="ws:mips">
+      <text/>
+    </element>
+  </define>
+  <define name="prove">
+    <element name="ws:prove">
+      <optional>
+        <attribute name="env:encodingStyle">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="assertion"/>
+          <ref name="replyWith"/>
+          <ref name="timeout"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="replyWith">
+    <element name="ws:replyWith">
+      <zeroOrMore>
+        <ref name="state"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="timeout">
+    <element name="ws:timeout">
+      <text/>
+    </element>
+  </define>
+  <define name="state">
+    <element name="ws:state">
+      <text/>
+    </element>
+  </define>
+</grammar>

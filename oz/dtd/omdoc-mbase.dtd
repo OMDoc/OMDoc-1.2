@@ -1,0 +1,19 @@
+<!-- The default configuration for loading DTD modules -->
+<!ENTITY % omdoc.mathml.module "IGNORE">   <!-- MathML -->
+<!ENTITY % omdoc.openmath.module "INCLUDE"> <!-- OpenMath -->
+<!ENTITY % omdoc.rt.module "INCLUDE">       <!-- Rich Text Structure-->
+<!ENTITY % omdoc.pres.module "INCLUDE">     <!-- presentation -->
+<!ENTITY % omdoc.ext.module "INCLUDE">      <!-- web extensions -->
+<!ENTITY % omdoc.pf.module "INCLUDE">       <!-- proofs --> 
+<!ENTITY % omdoc.st.module "INCLUDE">       <!-- math statements -->
+<!ENTITY % omdoc.sth.module "INCLUDE">      <!-- simple theories -->
+<!ENTITY % omdoc.adt.module "INCLUDE">      <!-- Abstract Data Types -->
+<!ENTITY % omdoc.cth.module "INCLUDE">      <!-- complex theories -->
+<!ENTITY % omdoc.quiz.module "INCLUDE">     <!-- simple exercises --> 
+
+<!-- after setting the switches, we load the general DTD -->
+<!ENTITY % omdoc.dtd PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                            "omdoc.dtd">%omdoc.dtd;
+
+<!-- then load the ActiveMath extensions -->
+<!ENTITY % activemath.dtd "activemath.dtd">%activemath.dtd;

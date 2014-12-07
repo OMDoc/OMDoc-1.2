@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module PF 
+  $Id: omdocpf.rnc 7251 2007-11-14 09:44:19Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocpf.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns:omdoc="http://www.mathweb.org/omdoc" ns="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="omdocpf.opt.content" combine="choice">
+    <choice>
+      <ref name="proof"/>
+      <ref name="proofobject"/>
+    </choice>
+  </define>
+  <define name="omdoc.class" combine="choice">
+    <choice>
+      <ref name="proof"/>
+      <ref name="proofobject"/>
+    </choice>
+  </define>
+  <define name="proof">
+    <element name="proof">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="omtext"/>
+          <ref name="symbol"/>
+          <ref name="definition"/>
+          <ref name="derive"/>
+          <ref name="hypothesis"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="proofobject">
+    <element name="proofobject">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <ref name="omdocmobj.class"/>
+    </element>
+  </define>
+  <define name="omdocpf.just.content">
+    <optional>
+      <ref name="method"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="premise"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <choice>
+        <ref name="proof"/>
+        <ref name="proofobject"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="derive.type.attr">
+    <attribute name="type">
+      <choice>
+        <value>conclusion</value>
+        <value>gap</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="derive">
+    <choice>
+      <ref name="ss"/>
+      <element name="derive">
+        <ref name="id.attrib"/>
+        <optional>
+          <ref name="derive.type.attr"/>
+        </optional>
+        <ref name="omdocmtxt.MCF.content"/>
+        <optional>
+          <ref name="method"/>
+        </optional>
+      </element>
+    </choice>
+  </define>
+  <define name="hypothesis">
+    <choice>
+      <ref name="ss"/>
+      <element name="hypothesis">
+        <ref name="id.attrib"/>
+        <optional>
+          <attribute name="inductive">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <ref name="omdocmtxt.MCF.content"/>
+      </element>
+    </choice>
+  </define>
+  <define name="method">
+    <choice>
+      <ref name="ss"/>
+      <element name="method">
+        <optional>
+          <ref name="xref.attrib"/>
+        </optional>
+        <zeroOrMore>
+          <choice>
+            <ref name="omdocmobj.class"/>
+            <ref name="premise"/>
+            <ref name="proof"/>
+            <ref name="proofobject"/>
+          </choice>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <!-- 'xref' is a pointer to the element defining the method -->
+  <define name="premise">
+    <choice>
+      <ref name="ss"/>
+      <element name="premise">
+        <ref name="xref.attrib"/>
+        <attribute name="rank">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </element>
+    </choice>
+  </define>
+</grammar>
+<!--
+  The rank of a premise specifies its importance in the inference rule. 
+  Rank 0 (the default) is a real premise, whereas positive rank signifies 
+  sideconditions of varying degree.
+-->

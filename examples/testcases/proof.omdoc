@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_proof.omdoc">
+
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>                                                                     
+
+<theory xml:id="test_proof">
+  
+  <proof xml:id="myproof" theory="foo" for="#bar" style="la">
+    <metadata>
+      <dc:title>metadata for proof</dc:title>
+      <dc:creator role="aut">hf</dc:creator>
+      <dc:date>2001-02-23T00:00:00</dc:date>
+    </metadata>                                                                     
+    <derive xml:id="concl" style="foo">
+      <CMP>some text</CMP>
+      <CMP xml:lang="de">etwas text</CMP>
+      <method xref="reference">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> (any -> any -> any) -> any -> bool</OMSTR></OMOBJ> 
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> bool</OMSTR></OMOBJ> 
+	<premise xref="blabla" rank="42"/>
+	<premise xref="lala"/>
+	<proof xml:id="subproof" theory="theo" for="#something">
+	  <derive xml:id="xyz"/>
+	</proof>
+      </method>
+    </derive>
+  </proof>
+
+<proof xml:id="nextproof" for="#something">
+  <omtext xml:id="mymetacom" style="toll">
+    <CMP>hi</CMP>
+    <CMP xml:lang="de">ho</CMP>
+  </omtext>
+  <derive xml:id="getsitsowntestomdoc"><CMP>gets its own test omdoc</CMP></derive>
+  <hypothesis xml:id="myhypo" style="some"><CMP>first hypothesis</CMP></hypothesis>
+  <omtext xml:id="blub"><CMP>blub</CMP></omtext>
+  <derive xml:id="soitdoesntgetcrowdedhere"><CMP>so it does not get crowded here</CMP></derive>
+  <hypothesis xml:id="anotherhypo">
+    <CMP xml:lang="de">zweiundvierzig</CMP>
+    <CMP xml:lang="zh">si shi er</CMP>
+    <FMP/>
+  </hypothesis>
+  <derive xml:id="last">
+    <method>
+      <proofobject xml:id="pobj" style="bla" for="#foo" theory="bar">
+	<metadata>
+	  <dc:title>metadata for proofobject</dc:title>
+	  <dc:creator role="aut">hf</dc:creator>
+	  <dc:date>2001-02-23T00:00:00</dc:date>
+	</metadata>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> bool</OMSTR></OMOBJ> 
+      </proofobject>
+    </method>
+  </derive>
+</proof>
+
+</theory>
+</omdoc>
+

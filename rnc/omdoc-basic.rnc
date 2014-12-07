@@ -1,0 +1,16 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2: OMDoc Basic) 
+# $Id: omdoc-basic.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdoc-basic.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+start = omdoc
+
+include "omdocattribs.rnc"
+include "omdocmobj.rnc"
+include "omdocdoc.rnc"
+include "omdocdc.rnc"
+include "omdoccc.rnc"
+include "omdocmtxt.rnc"
+include "omdocrt.rnc"
+

@@ -1,0 +1,6 @@
+omdoc.parser.ozf: $(OMDOCDTDFILES)
+	OZLOAD=cache=$(CACHE):cache=$(OZHOME)/cache:cache=${HOME}/.oz/cache \
+	$(OZE) x-ozlib://mathweb/dtdtool.exe --dtd2parser $< -o $@
+omdoc.dtd.ozf: $(OMDOCDTDFILES)
+	OZLOAD=cache=$(CACHE):cache=$(OZHOME)/cache:cache=${HOME}/.oz/cache \
+	$(OZE) x-ozlib://mathweb/dtdtool.exe --dtd2functor $< -o $@

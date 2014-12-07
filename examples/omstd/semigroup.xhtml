@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary semigroup.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary semigroup.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, Olga Caprotti</div>
+<div class="date"/>
+<div class="description"> The definition of a semigroup as setoid with a binary operation. </div></div>
+
+
+<div class="symbol" id="associative">
+<div class="titlebox">
+<span class="titleword">Concept</span>associative</div> The type of associative binary operation.
+  </div>
+
+<div class="lemma" id="associative-prop-1">
+<span class="titleword">Lemma</span>
+<p> Is defined as  
+      <span class="legacy">Lambda {sg_Carrier:&gt; Setoid; sg_op: mapsto(sg_Carrier sg_Carrier sg_Carrier)}.</span><span class="legacy">PiType{ x,y,z: sg_Carrier }. eq(sg_op(x, sg_op(y,z)), sg_op( sg_op(x,y),z))</span></p>
+</div>
+
+<div class="symbol" id="Semigroup">
+<div class="titlebox">
+<span class="titleword">Concept</span>Semigroup</div> The contructor for the type of semigroups as a Setoid 
+      with a binary operation.
+  </div>
+
+<div class="lemma" id="Semigroup-prop-1">
+<span class="titleword">Lemma</span>
+<p> Is defined as  
+      <span class="legacy">Lambda {sg_Carrier:&gt; Setoid; sg_op: mapsto(sg_Carrier sg_Carrier sg_Carrier)}.</span><span class="legacy">SigmaType{ sg_Carrier:&gt; Setoid; sg_op:mapsto(sg_Carrier sg_Carrier sg_Carrier); (associative sg_Carrier sg_op) }</span></p>
+</div>
+
+<div class="symbol" id="make_Semigroup">
+<div class="titlebox">
+<span class="titleword">Concept</span>make_Semigroup</div> The contructor for the tuples consisting of a setoid, 
+      and an associative binary operation.
+  </div>
+
+<div class="lemma" id="make_Semigroup-prop-1">
+<span class="titleword">Lemma</span>
+<p> Is defined as  
+      <span class="legacy">Lambda {sg_Carrier:&gt; Setoid; </span><span class="legacy">sg_op: 	mapsto(sg_Carrier sg_Carrier sg_Carrier);</span><span class="legacy">proof: (associative sg_Carrier sg_op)}.</span><span class="legacy">Tuple (Setoid,	sg_op, proof)</span></p>
+</div>
+
+
+
+</body>
+</html>

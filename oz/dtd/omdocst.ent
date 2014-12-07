@@ -1,0 +1,37 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2): Module ST Entities
+     PUBLIC: -//OMDoc//ENTITIES OMDoc ST V1.2//EN
+     SYSTEM: http://www.mathweb.org/omdoc/dtd/omdocst.ent
+   See the documentation and examples at http://www.mathweb.org/omdoc 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocst.symbol.qname "%omdoc.pfx;symbol">
+<!ENTITY % omdocst.commonname.qname "%omdoc.pfx;commonname">
+<!ENTITY % omdocst.requation.qname "%omdoc.pfx;requation">
+<!ENTITY % omdocst.axiom.qname "%omdoc.pfx;axiom">
+<!ENTITY % omdocst.definition.qname "%omdoc.pfx;definition">
+
+<!ENTITY % omdocst.symbol.attrib '%idc.attrib;
+                                  kind (type|sort|object) "object"
+               		          scope (global|local) "global"'>
+
+<!ENTITY % omdocst.assertion.qname "%omdoc.pfx;assertion">
+<!ENTITY % omdocst.type.qname "%omdoc.pfx;type">
+<!ENTITY % omdocst.alternative.qname "%omdoc.pfx;alternative">
+<!ENTITY % omdocst.example.qname "%omdoc.pfx;example">
+
+<!ENTITY % omdocst.constitutive.class
+           "|%omdocst.symbol.qname;
+            |%omdocst.axiom.qname;
+            |%omdocst.definition.qname;">
+
+
+<!ENTITY % omdocst.nonconstitutive.class
+           "|%omdocst.assertion.qname;
+            |%omdocst.type.qname;
+            |%omdocst.alternative.qname;
+            |%omdocst.example.qname;">
+
+<!ENTITY % omdocst.class "%omdocst.nonconstitutive.class;
+                          %omdocst.constitutive.class;">

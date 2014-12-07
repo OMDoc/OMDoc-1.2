@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for MathML2
+  $Id: mathml2.rnc 8008 2008-09-07 19:01:01Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdoc.rnc $
+  (c) 2005 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="non-mathml-attribs">
+    <attribute>
+      <anyName>
+        <except>
+          <nsName ns=""/>
+          <name>xlink:href</name>
+        </except>
+      </anyName>
+      <data type="string"/>
+    </attribute>
+  </define>
+  <define name="MathML.Common.attrib">
+    <optional>
+      <attribute name="class">
+        <data type="NMTOKENS"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="style">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="id">
+        <data type="ID"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="xlink:href">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <zeroOrMore>
+      <ref name="non-mathml-attribs"/>
+    </zeroOrMore>
+  </define>
+  <include href="mathml2-presentation.rng"/>
+  <include href="mathml2-content.rng"/>
+  <define name="Presentation-expr.class">
+    <choice>
+      <ref name="PresExpr.class"/>
+      <ref name="ContExpr.class"/>
+    </choice>
+  </define>
+  <define name="Content-expr.class">
+    <choice>
+      <ref name="ContExpr.class"/>
+      <ref name="PresExpr.class"/>
+    </choice>
+  </define>
+  <define name="PresExpr.class">
+    <choice>
+      <ref name="Presentation-token.class"/>
+      <ref name="Presentation-layout.class"/>
+      <ref name="Presentation-script.class"/>
+      <ref name="Presentation-table.class"/>
+      <ref name="mspace"/>
+      <ref name="maction"/>
+      <ref name="merror"/>
+      <ref name="mstyle"/>
+    </choice>
+  </define>
+  <define name="ContExpr.class">
+    <choice>
+      <ref name="Content-tokens.class"/>
+      <ref name="Content-arith.class"/>
+      <ref name="Content-functions.class"/>
+      <ref name="Content-logic.class"/>
+      <ref name="Content-constants.class"/>
+      <ref name="Content-sets.class"/>
+      <ref name="Content-relations.class"/>
+      <ref name="Content-elementary-functions.class"/>
+      <ref name="Content-calculus.class"/>
+      <ref name="Content-linear-algebra.class"/>
+      <ref name="Content-vector-calculus.class"/>
+      <ref name="Content-statistics.class"/>
+      <ref name="Content-constructs.class"/>
+      <ref name="semantics"/>
+    </choice>
+  </define>
+  <define name="Browser-interface.attrib">
+    <optional>
+      <attribute name="baseline">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="overflow" a:default="scroll">
+        <choice>
+          <value>scroll</value>
+          <value>elide</value>
+          <value>truncate</value>
+          <value>scale</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="altimg">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="alttext">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="type">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="name">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="height">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="width">
+        <data type="string"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="math.attlist">
+    <ref name="Browser-interface.attrib"/>
+    <optional>
+      <attribute name="macros">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="display" a:default="inline">
+        <choice>
+          <value>block</value>
+          <value>inline</value>
+        </choice>
+      </attribute>
+    </optional>
+    <ref name="MathML.Common.attrib"/>
+  </define>
+  <define name="math.content">
+    <choice>
+      <ref name="PresExpr.class"/>
+      <ref name="ContExpr.class"/>
+    </choice>
+  </define>
+  <define name="math">
+    <element name="math">
+      <ref name="math.attlist"/>
+      <zeroOrMore>
+        <ref name="math.content"/>
+      </zeroOrMore>
+    </element>
+  </define>
+</grammar>

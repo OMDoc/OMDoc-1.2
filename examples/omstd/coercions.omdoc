@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="coercions-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary coercions.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">Olga Caprotti</dc:creator>
+  <dc:date> 1999-10-20T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/coercions.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> Coercion Functions among  OM Types </dc:description>
+</metadata>
+
+<theory xml:id="coercions">
+
+<imports xml:id="coercions-imports-cc" from="cc.omdoc#cc"/>
+<imports xml:id="coercions-imports-omtypes" from="omtypes.omdoc#omtypes"/>
+
+<symbol name="int2flt" xml:id="int2flt">
+<metadata>
+<dc:description> The function that converts an integer to a float.
+</dc:description>
+</metadata>
+</symbol>
+<example xml:id="int2flt-ex-1" type="for" for="#int2flt">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMATTR>
+      <OMATP>
+	<OMS cd="cc" name="type"/>
+	<OMS cd="omtypes" name="float"/>
+      </OMATP>
+      <OMA>
+	<OMS cd="coercions" name="int2flt"/>
+	<OMI> 1 </OMI>
+      </OMA>
+    </OMATTR>
+  </OMOBJ> 
+</example>
+</theory>
+</omdoc>

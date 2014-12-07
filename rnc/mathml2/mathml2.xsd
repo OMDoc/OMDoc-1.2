@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for MathML2
+    SYSTEM http://www.mathweb.org/omdoc/rnc/mathml2.rnc	  		 
+  (c) 2005 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/1998/Math/MathML" xmlns:ns1="http://creativecommons.org/ns" xmlns:omdoc="http://www.mathweb.org/omdoc" xmlns:openmath="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mathml="http://www.w3.org/1998/Math/MathML" xmlns:elements="http://purl.org/dc/elements/1.1/">
+  <xs:include schemaLocation="mathml2-presentation.xsd"/>
+  <xs:include schemaLocation="mathml2-content.xsd"/>
+  <xs:import schemaLocation="omdocattribs.xsd"/>
+  <xs:import namespace="http://creativecommons.org/ns" schemaLocation="omdoccc.xsd"/>
+  <xs:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="omdocdc.xsd"/>
+  <xs:import namespace="http://www.mathweb.org/omdoc" schemaLocation="omdoc.xsd"/>
+  <xs:import namespace="http://www.openmath.org/OpenMath" schemaLocation="openmath2.xsd"/>
+  <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:attributeGroup name="non-mathml-attribs">
+    <xs:attributeGroup ref="local"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="Common.attrib">
+    <xs:attribute name="class" type="xs:NMTOKENS"/>
+    <xs:attribute name="style" type="xs:string"/>
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute ref="xlink:href"/>
+    <xs:attributeGroup ref="mathml:non-mathml-attribs"/>
+  </xs:attributeGroup>
+  <xs:group name="Presentation-expr.class">
+    <xs:choice>
+      <xs:group ref="mathml:PresExpr.class"/>
+      <xs:element ref="mathml:ContExpr.class"/>
+    </xs:choice>
+  </xs:group>
+  <xs:group name="Content-expr.class">
+    <xs:choice>
+      <xs:element ref="mathml:ContExpr.class"/>
+      <xs:group ref="mathml:PresExpr.class"/>
+    </xs:choice>
+  </xs:group>
+  <xs:group name="PresExpr.class">
+    <xs:choice>
+      <xs:element ref="mathml:Presentation-token.class"/>
+      <xs:element ref="mathml:Presentation-layout.class"/>
+      <xs:element ref="mathml:Presentation-script.class"/>
+      <xs:group ref="mathml:Presentation-table.class"/>
+      <xs:element ref="mathml:mspace"/>
+      <xs:element ref="mathml:maction"/>
+      <xs:element ref="mathml:merror"/>
+      <xs:element ref="mathml:mstyle"/>
+    </xs:choice>
+  </xs:group>
+  <xs:element name="ContExpr.class" abstract="true"/>
+  <xs:attributeGroup name="Browser-interface.attrib">
+    <xs:attribute name="baseline" type="xs:string"/>
+    <xs:attribute name="overflow">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="scroll"/>
+          <xs:enumeration value="elide"/>
+          <xs:enumeration value="truncate"/>
+          <xs:enumeration value="scale"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="altimg" type="xs:anyURI"/>
+    <xs:attribute name="alttext" type="xs:string"/>
+    <xs:attribute name="type" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="height" type="xs:string"/>
+    <xs:attribute name="width" type="xs:string"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="math.attlist">
+    <xs:attributeGroup ref="mathml:Browser-interface.attrib"/>
+    <xs:attribute name="macros" type="xs:string"/>
+    <xs:attribute name="display">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="block"/>
+          <xs:enumeration value="inline"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attributeGroup ref="mathml:Common.attrib"/>
+  </xs:attributeGroup>
+  <xs:group name="math.content">
+    <xs:choice>
+      <xs:group ref="mathml:PresExpr.class"/>
+      <xs:element ref="mathml:ContExpr.class"/>
+    </xs:choice>
+  </xs:group>
+  <xs:element name="math">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:math.content"/>
+      <xs:attributeGroup ref="mathml:math.attlist"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

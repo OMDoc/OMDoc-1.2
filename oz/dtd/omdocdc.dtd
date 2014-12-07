@@ -1,0 +1,119 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module DC 
+     SYSTEM http://www.mathweb.org/omdoc/dtd/omdocdc.dtd
+     PUBLIC -//OMDoc//ELEMENTS OMDoc DC V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocdc.prefixed "%NS.prefixed;">
+<!ENTITY % omdocdc.xmlns "http://purl.org/dc/elements/1.1/">
+<!ENTITY % omdocdc.prefix "dc">
+
+<![%omdocdc.prefixed;[<!ENTITY % omdocdc.pfx "%omdocdc.prefix;:">]]>
+<!ENTITY % omdocdc.pfx "">
+
+<![%omdocdc.prefixed;[<!ENTITY % omdocdc.xmlns.extra.attrib 
+      "xmlns:%omdocdc.prefix; CDATA #FIXED '%omdocdc.xmlns;'">]]>
+<!ENTITY % omdocdc.xmlns.extra.attrib "">
+
+<!ENTITY % omdocdc.Contributor.qname "%omdocdc.pfx;Contributor">
+<!ENTITY % omdocdc.Creator.qname "%omdocdc.pfx;Creator">
+<!ENTITY % omdocdc.Title.qname "%omdocdc.pfx;Title">
+<!ENTITY % omdocdc.Subject.qname "%omdocdc.pfx;Subject">
+<!ENTITY % omdocdc.Description.qname "%omdocdc.pfx;Description">
+<!ENTITY % omdocdc.Publisher.qname "%omdocdc.pfx;Publisher">
+<!ENTITY % omdocdc.Type.qname "%omdocdc.pfx;Type">
+<!ENTITY % omdocdc.Format.qname "%omdocdc.pfx;Format">
+<!ENTITY % omdocdc.Source.qname "%omdocdc.pfx;Source">
+<!ENTITY % omdocdc.Language.qname "%omdocdc.pfx;Language">
+<!ENTITY % omdocdc.Relation.qname "%omdocdc.pfx;Relation">
+<!ENTITY % omdocdc.Rights.qname "%omdocdc.pfx;Rights">
+<!ENTITY % omdocdc.Date.qname "%omdocdc.pfx;Date">
+<!ENTITY % omdocdc.Identifier.qname "%omdocdc.pfx;Identifier">
+
+
+
+<!-- Persons in Dublin Core Metadata -->
+<!ENTITY % omdocdc.person.content "(#PCDATA%omdocdoc.style.extra;)*">
+<!-- the date format in Dublin Core -->
+<!ENTITY % omdocdc.date.content "(#PCDATA)">
+<!-- the identifier format for Dublin Core -->
+<!ENTITY % omdocdc.ident.content "(#PCDATA)">
+<!-- the rest of Dublin Core content -->
+<!ENTITY % omdocdc.rest.content "ANY">
+
+<!ENTITY % omdocdc.class
+           "%omdocdc.Contributor.qname; 
+           | %omdocdc.Creator.qname; 
+           | %omdocdc.Subject.qname; 
+           | %omdocdc.Title.qname; 
+           | %omdocdc.Description.qname; 
+           | %omdocdc.Publisher.qname; 
+           | %omdocdc.Date.qname; 
+           | %omdocdc.Type.qname; 
+           | %omdocdc.Format.qname; 
+           | %omdocdc.Identifier.qname; 
+           | %omdocdc.Source.qname; 
+           | %omdocdc.Language.qname; 
+           | %omdocdc.Relation.qname; 
+           | %omdocdc.Rights.qname;|">
+
+<!ENTITY % dcns "xmlns CDATA #FIXED 'http://purl.org/dc/elements/1.1/'">
+<!ENTITY % dcidi "%dcns; %idi.attrib;">
+<!ENTITY % omdocdc.roles.extra.value "">
+<!ENTITY % omdocdc.roles.default.value "aut">
+<!ENTITY % omdocdc.roles.value 
+           "aut|ant|clb|edt|ths|trc|trl%omdocdc.roles.extra.value;">
+<!ENTITY % dcrole "%dcidi;  %xml.lang.attrib;
+           role (%omdocdc.roles.value;) '%omdocdc.roles.default.value;'">
+<!ENTITY % dclang "%dcns; %omdoc.xmlns.theory.attrib; %xml.lang.attrib;">
+
+<!-- first the Dublin Core Metadata model of the
+     Dublin Metadata initiative (http://purl.org/dc) -->
+
+<!ELEMENT %omdocdc.Contributor.qname; %omdocdc.person.content;>
+<!ATTLIST %omdocdc.Contributor.qname; %dcrole;>
+
+<!ELEMENT %omdocdc.Creator.qname; %omdocdc.person.content;>
+<!ATTLIST %omdocdc.Creator.qname; %dcrole;>
+
+<!ELEMENT %omdocdc.Title.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocdc.Title.qname; %dclang;>
+
+<!ELEMENT %omdocdc.Subject.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocdc.Subject.qname; %dclang;>
+
+<!ELEMENT %omdocdc.Description.qname; (%omdoc.mtext.content;)*>
+<!ATTLIST %omdocdc.Description.qname; %dclang;>
+
+<!ELEMENT %omdocdc.Publisher.qname; %omdocdc.rest.content;>
+<!ATTLIST %omdocdc.Publisher.qname; %dcidi;>
+
+<!ELEMENT %omdocdc.Type.qname; %omdocdc.rest.content;>
+<!ATTLIST %omdocdc.Type.qname; %dcns;>
+
+<!ELEMENT %omdocdc.Format.qname; %omdocdc.rest.content;>
+<!ATTLIST %omdocdc.Format.qname; %dcns;>
+
+<!ELEMENT %omdocdc.Source.qname; %omdocdc.rest.content;>
+<!ATTLIST %omdocdc.Source.qname; %dcns;>
+
+<!ELEMENT %omdocdc.Language.qname; %omdocdc.rest.content;>
+<!ATTLIST %omdocdc.Language.qname; %dcns;>
+
+<!ELEMENT %omdocdc.Relation.qname; %omdocdc.rest.content;>
+<!ATTLIST %omdocdc.Relation.qname; %dcns;>
+
+<!ELEMENT %omdocdc.Rights.qname; %omdocdc.rest.content;>
+<!ATTLIST %omdocdc.Rights.qname; %dcns;>
+
+<!ELEMENT %omdocdc.Date.qname; %omdocdc.date.content;>
+<!ATTLIST %omdocdc.Date.qname; 
+          %dcns; action NMTOKEN #IMPLIED who IDREF #IMPLIED>
+
+<!ELEMENT %omdocdc.Identifier.qname; %omdocdc.ident.content;>
+<!ATTLIST %omdocdc.Identifier.qname; %dcns; scheme NMTOKEN "ISBN">
+
+
+

@@ -1,0 +1,96 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module PRES
+      SYSTEM http://www.mathweb.org/omdoc/dtd/omdocpres.dtd
+      PUBLIC -//OMDoc//ELEMENTS OMDoc PRES V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocpres.use.qname "%omdoc.pfx;use">
+<!ENTITY % omdocpres.xslt.qname "%omdoc.pfx;xslt">
+<!ENTITY % omdocpres.style.qname "%omdoc.pfx;style">
+<!ENTITY % omdocpres.element.qname "%omdoc.pfx;element">
+<!ENTITY % omdocpres.attribute.qname "%omdoc.pfx;attribute">
+<!ENTITY % omdocpres.text.qname "%omdoc.pfx;text">
+<!ENTITY % omdocpres.value-of.qname "%omdoc.pfx;value-of">
+<!ENTITY % omdocpres.recurse.qname "%omdoc.pfx;recurse">
+
+
+<!ENTITY % crossreftype "(no|yes|brackets|separator|lbrack|rbrack|all)">
+<!ENTITY % fixitytype "(prefix|infix|postfix|assoc)">
+
+<!ENTITY % style.attrib "%idi.attrib; 
+                         xref CDATA #IMPLIED">
+ 
+<!ENTITY % format.attrib "format CDATA #REQUIRED
+                         requires CDATA #IMPLIED
+                         xml:lang CDATA #IMPLIED">
+
+<!ENTITY % omdocpres.presentation.attrib
+                      "%style.attrib;
+                       for CDATA #REQUIRED
+                       parent (OMA|OMBIND|OMATTR) #IMPLIED
+                       fixity %fixitytype; 'prefix'
+                       lbrack CDATA '('
+                       rbrack CDATA ')'
+                       separator CDATA ','
+                       bracket-style (lisp|math) 'math'
+		       precedence NMTOKEN '1000'
+		       crossref-symbol  %crossreftype; 'yes'
+                       theory CDATA #IMPLIED">
+
+<!ELEMENT %omdocpres.presentation.qname; 
+          (%omdocpres.use.qname;|%omdocpres.xslt.qname;|%omdocpres.style.qname;)*>
+<!ATTLIST %omdocpres.presentation.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %omdocpres.presentation.attrib;>
+
+<!ELEMENT %omdocpres.use.qname; 
+          (#PCDATA|%omdocpres.element.qname;|%omdocpres.text.qname;
+                  |%omdocpres.recurse.qname;|%omdocpres.value-of.qname;)*>
+<!ATTLIST %omdocpres.use.qname; %format.attrib;
+              bracket-style (lisp|math) #IMPLIED
+              fixity %fixitytype; #IMPLIED
+              lbrack CDATA #IMPLIED
+              rbrack CDATA #IMPLIED
+              separator CDATA #IMPLIED
+              element CDATA #IMPLIED
+              attributes CDATA #IMPLIED
+	      crossref-symbol %crossreftype; #IMPLIED>
+<!-- the attributes in the <use> element overwrite those in the 
+     <presentation> element, therefore, they do not have defaults -->
+
+<!ELEMENT %omdocpres.omstyle.qname; 
+          (%omdocpres.xslt.qname;|%omdocpres.style.qname;)*>
+<!ATTLIST %omdocpres.omstyle.qname; 
+          %style.attrib;
+          for CDATA #IMPLIED
+          element CDATA #REQUIRED>
+
+<!ELEMENT %omdocpres.xslt.qname; (#PCDATA)>
+<!ATTLIST %omdocpres.xslt.qname; %format.attrib;>
+<!-- this element contains xslt in a CDATA section -->
+
+<!ELEMENT %omdocpres.style.qname; 
+          (%omdocpres.element.qname;|%omdocpres.text.qname;
+          |%omdocpres.recurse.qname;|%omdocpres.value-of.qname;)*>
+<!ATTLIST %omdocpres.style.qname; %format.attrib;>
+<!-- this element contains mock xslt expressed in the elements below -->
+
+<!ELEMENT %omdocpres.element.qname; 
+          (%omdocpres.attribute.qname;|%omdocpres.element.qname;
+          |%omdocpres.text.qname;|%omdocpres.recurse.qname;
+          |%omdocpres.value-of.qname;)*>
+<!ATTLIST %omdocpres.element.qname; name NMTOKEN #REQUIRED>
+
+<!ELEMENT %omdocpres.attribute.qname; 
+          (#PCDATA|%omdocpres.value-of.qname;|%omdocpres.text.qname;)*>
+<!ATTLIST %omdocpres.attribute.qname; name NMTOKEN #REQUIRED>
+
+<!ELEMENT %omdocpres.text.qname; (#PCDATA)>
+
+<!ELEMENT %omdocpres.value-of.qname; EMPTY>
+<!ATTLIST %omdocpres.value-of.qname; select CDATA #REQUIRED>
+
+<!ELEMENT %omdocpres.recurse.qname; EMPTY>
+<!ATTLIST %omdocpres.recurse.qname; select CDATA #IMPLIED>

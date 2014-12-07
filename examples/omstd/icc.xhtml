@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary icc.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary icc.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date">1999-06-01</div>
+<div class="description"> ICC Typing Attributes for OM </div></div>
+
+
+<div class="symbol" id="type">
+<div class="titlebox">
+<span class="titleword">Concept</span>type</div> Attribution tag to denote type-judgement</div>
+
+<div class="symbol" id="typecoerce">
+<div class="titlebox">
+<span class="titleword">Concept</span>typecoerce</div> Attribution tag to denote type-judgement with coercion
+</div>
+
+<div class="symbol" id="IndType">
+<div class="titlebox">
+<span class="titleword">Concept</span>IndType</div> Constructor for Inductive Types. 
+    Takes arguments the constructor functions for the
+    inhabitants of the type and their signatures.  
+</div>
+
+<div class="example" id="IndType-ex-1">
+<span class="titleword">Example</span>
+<p>This is the defining mathematical property for the 
+    symbolic type nat of the inductively defined 
+    natural numbers with 0 and succ as constructor
+    functions.            
+  </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid88642"><semantics><mrow id="MCRid88645"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#IndType" xlink:type="simple" id="id88647">IndType</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id88657" open="" close="" separators=""><msub id="MCRid88657"><mn id="MCRid88671"> 0 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid88664">ℕ</mo></msub></mfenced><mo separator="true">,</mo><mfenced id="id88045" open="" close="" separators=""><msub id="MCRid88045"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="indnat.xml#succ" xlink:type="simple" id="MCRid88075">s</mo><mfenced id="id88051" open="(" close=")" separators=""><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid88060">ℕ</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="lc.xml#mapsto" xlink:type="simple" id="MCRid88054">↦</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid88067">ℕ</mo></mfenced></msub></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid88642" xlink:type="simple"><OMA xlink:href="MCRid88645" xlink:type="simple"><OMS cd="icc" name="IndType" xlink:href="MCRid88647" xlink:type="simple"/><OMATTR xlink:href="MCRid88653" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid88655"><OMS cd="icc" name="type" xlink:href="MCRid88657" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid88664" xlink:type="simple"/></OMATP><OMI xlink:type="simple" xlink:href="MCRid88671"> 0 </OMI></OMATTR><OMATTR xlink:href="MCRid88675" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid88043"><OMS cd="icc" name="type" xlink:href="MCRid88045" xlink:type="simple"/><OMA xlink:href="MCRid88051" xlink:type="simple"><OMS cd="lc" name="mapsto" xlink:href="MCRid88054" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid88060" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid88067" xlink:type="simple"/></OMA></OMATP><OMS cd="indnat" name="succ" xlink:href="MCRid88075" xlink:type="simple"/></OMATTR></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

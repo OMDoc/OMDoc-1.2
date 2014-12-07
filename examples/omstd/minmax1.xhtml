@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary minmax1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary minmax1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD holds the definitions of min and max.
+  </div></div>
+
+
+<div class="symbol" id="min">
+<div class="titlebox">
+<span class="titleword">Concept</span>min</div> 
+    This symbol denotes the unary minimum function which takes a set as
+    its argument and returns the minimum element in that set.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid131268"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id131271" xlink:href="sts.xml#mapsto"><mrow id="MCRid131279"><mrow><mo fence="true">(</mo><mrow><mi id="MCRid131287">OrderedSet</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid131293">OrderedSet</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid131268" xlink:type="simple"><OMA xlink:href="MCRid131271" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid131273" xlink:type="simple"/><OMA xlink:href="MCRid131279" xlink:type="simple"><OMS cd="sts" name="structure" xlink:href="MCRid131281" xlink:type="simple"/><OMV name="OrderedSet" xlink:href="MCRid131287" xlink:type="simple"/></OMA><OMV name="OrderedSet" xlink:href="MCRid131293" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="min-ex-1">
+<span class="titleword">Example</span>
+<p>Representation of the equation minimum{1,9,5} = 1.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid103499"><semantics><mrow id="MCRid103510"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#min" xlink:type="simple" id="id103512">min</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id103518" open="{" close="}" separators=""><mn id="MCRid103526"> 1 </mn><mn id="MCRid103530"> 9 </mn><mn id="MCRid103533"> 5 </mn></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid103504">=</mo><mn id="MCRid103538"> 1 </mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid103499" xlink:type="simple"><OMA xlink:href="MCRid103502" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid103504" xlink:type="simple"/><OMA xlink:href="MCRid103510" xlink:type="simple"><OMS cd="minmax1" name="min" xlink:href="MCRid103512" xlink:type="simple"/><OMA xlink:href="MCRid103518" xlink:type="simple"><OMS cd="set1" name="set" xlink:href="MCRid103520" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid103526"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid103530"> 9 </OMI><OMI xlink:type="simple" xlink:href="MCRid103533"> 5 </OMI></OMA></OMA><OMI xlink:type="simple" xlink:href="MCRid103538"> 1 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="max">
+<div class="titlebox">
+<span class="titleword">Concept</span>max</div> 
+    This symbol denotes the unary maximum function which takes a set as
+    its argument and returns the maximum element in that set.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid102946"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id102949" xlink:href="sts.xml#mapsto"><mrow id="MCRid102957"><mrow><mo fence="true">(</mo><mrow><mi id="MCRid102965">OrderedSet</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid102970">OrderedSet</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid102946" xlink:type="simple"><OMA xlink:href="MCRid102949" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid102951" xlink:type="simple"/><OMA xlink:href="MCRid102957" xlink:type="simple"><OMS cd="sts" name="structure" xlink:href="MCRid102959" xlink:type="simple"/><OMV name="OrderedSet" xlink:href="MCRid102965" xlink:type="simple"/></OMA><OMV name="OrderedSet" xlink:href="MCRid102970" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="max-ex-1">
+<span class="titleword">Example</span>
+<p>Representation of the equation maximum{1,9,5} = 9.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid103002"><semantics><mrow id="MCRid127154"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#max" xlink:type="simple" id="id127156">max</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id127162" open="{" close="}" separators=""><mn id="MCRid127170"> 1 </mn><mn id="MCRid127173"> 9 </mn><mn id="MCRid127176"> 5 </mn></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid103007">=</mo><mn id="MCRid127182"> 9 </mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid103002" xlink:type="simple"><OMA xlink:href="MCRid103005" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid103007" xlink:type="simple"/><OMA xlink:href="MCRid127154" xlink:type="simple"><OMS cd="minmax1" name="max" xlink:href="MCRid127156" xlink:type="simple"/><OMA xlink:href="MCRid127162" xlink:type="simple"><OMS cd="set1" name="set" xlink:href="MCRid127164" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid127170"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid127173"> 9 </OMI><OMI xlink:type="simple" xlink:href="MCRid127176"> 5 </OMI></OMA></OMA><OMI xlink:type="simple" xlink:href="MCRid127182"> 9 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
+  <uri pattern="*.omdoc" typeId="OMDoc"/>
+  <namespace ns="http://www.mathweb.org/omdoc" typeId="OMDoc"/>
+  <documentElement localName="omdoc" typeId="OMDoc"/>
+  <typeId id="OMDoc" uri="omdoc.rnc"/>
+
+  <!-- mock soap -->
+  <uri pattern="*.soap" typeId="MockSoap"/>
+  <namespace ns="http://www.w3.org/2003/05/soap-envelope" typeId="MockSoap"/>
+  <documentElement localName="Envelope" typeId="MockSoap"/>
+  <typeId id="MockSoap" uri="mocksoap.rnc"/>
+</locatingRules>

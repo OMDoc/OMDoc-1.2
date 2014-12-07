@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG for Open Mathematical documents (OMDoc 1.2) Module DOC         
+  $Id: omdocdoc.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocdoc.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- extend the stuff that can go into a mathematical text -->
+  <define name="omdoc.mtext.class" combine="choice">
+    <choice>
+      <ref name="ignore"/>
+      <ref name="ref"/>
+    </choice>
+  </define>
+  <define name="ss">
+    <choice>
+      <ref name="ignore"/>
+      <ref name="ref"/>
+    </choice>
+  </define>
+  <define name="omdoc.class" combine="choice">
+    <choice>
+      <ref name="ss"/>
+      <ref name="omgroup"/>
+    </choice>
+  </define>
+  <define name="omdoc.meta.class" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="metadata">
+    <element name="metadata">
+      <ref name="id.attrib"/>
+      <optional>
+        <attribute name="inherits">
+          <ref name="omdocref"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="omdoc.meta.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="Anything">
+    <zeroOrMore>
+      <choice>
+        <ref name="AnyElement"/>
+        <text/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="AnyElement">
+    <element>
+      <anyName/>
+      <ref name="AnyAttribute"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="AnyElement"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="AnyAttribute">
+    <zeroOrMore>
+      <attribute>
+        <anyName/>
+      </attribute>
+    </zeroOrMore>
+  </define>
+  <!--
+    this element can be used in lieu of a comment, it is read 
+    by the style sheet, (comments are not) and can therefore 
+    be transformed by them
+  -->
+  <define name="ignore">
+    <element name="ignore">
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="comment">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="Anything"/>
+    </element>
+  </define>
+  <define name="ref">
+    <element name="ref">
+      <ref name="id.attrib"/>
+      <ref name="xref.attrib"/>
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <!--
+     the types supported (there may be more over time) are 
+     - 'include' (the default) for in-text replacement 
+     - 'cite' for a reference with a generated label
+  -->
+  <define name="group.attribs">
+    <optional>
+      <attribute name="type">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="modules">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="group.elts">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="omdoc.class"/>
+    </zeroOrMore>
+  </define>
+  <!-- grouping defines the structure of a document -->
+  <define name="omgroup">
+    <element name="omgroup">
+      <ref name="group.attribs"/>
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="group.elts"/>
+    </element>
+  </define>
+  <!-- finally the definition of the OMDoc root element -->
+  <define name="omdoc">
+    <element name="omdoc">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="group.attribs"/>
+      <optional>
+        <attribute name="version">
+          <data type="string">
+            <param name="pattern">1.2</param>
+          </data>
+        </attribute>
+      </optional>
+      <ref name="group.elts"/>
+    </element>
+  </define>
+</grammar>

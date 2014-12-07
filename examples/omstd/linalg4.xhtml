@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary linalg4.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary linalg4.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD defines symbols for basic linear algebra.
+
+Regardless of the way of forming vectors and matrices, this CD
+deals with eigenvalues, eigenvectors and related concepts.
+</div></div>
+
+
+<div class="symbol" id="eigenvalue">
+<div class="titlebox">
+<span class="titleword">Concept</span>eigenvalue</div>
+    This symbol represents the eigenvalue of a matrix. It takes two
+    arguments the first should be the matrix, the second should be an
+    index to specify the eigenvalue. The ordering imposed on the
+    eigenvalues is first on the modulus of the value, and second on the
+    argument of the value. A definition of eigenvalue is
+    given in Elementary Linear Algebra, Stanley I. Grossman in Definition 1 
+    of chapter 6, page 533.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid126575"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id126578" xlink:href="sts.xml#mapsto"><mi id="MCRid126586">Matrix</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid126590">Index</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid126595">NumericalValue</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid126575" xlink:type="simple"><OMA xlink:href="MCRid126578" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid126580" xlink:type="simple"/><OMV name="Matrix" xlink:href="MCRid126586" xlink:type="simple"/><OMV name="Index" xlink:href="MCRid126590" xlink:type="simple"/><OMV name="NumericalValue" xlink:href="MCRid126595" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="eigenvalue-prop-1">
+<span class="titleword">Lemma</span>
+<p> A*eigenvector(A,i) = eigenvalue(A,i)*eigenvector(A,i) </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid150246"><semantics><mi id="MCRid150266">A</mi><mo id="MCRid150259">⁢</mo><mrow id="MCRid150270"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eigenvector" xlink:type="simple" id="id150272">eigenvector</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid150278">A</mi><mo separator="true">,</mo><mi id="MCRid150283">i</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid150251">=</mo><mrow id="MCRid126297"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eigenvalue" xlink:type="simple" id="id126299">eigenvalue</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid126304">A</mi><mo separator="true">,</mo><mi id="MCRid126309">i</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo id="MCRid150291">⁢</mo><mrow id="MCRid126314"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eigenvector" xlink:type="simple" id="id126316">eigenvector</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid126323">A</mi><mo separator="true">,</mo><mi id="MCRid126327">i</mi></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid150246" xlink:type="simple"><OMA xlink:href="MCRid150249" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid150251" xlink:type="simple"/><OMA xlink:href="MCRid150257" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid150259" xlink:type="simple"/><OMV name="A" xlink:href="MCRid150266" xlink:type="simple"/><OMA xlink:href="MCRid150270" xlink:type="simple"><OMS cd="linalg4" name="eigenvector" xlink:href="MCRid150272" xlink:type="simple"/><OMV name="A" xlink:href="MCRid150278" xlink:type="simple"/><OMV name="i" xlink:href="MCRid150283" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid150289" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid150291" xlink:type="simple"/><OMA xlink:href="MCRid126297" xlink:type="simple"><OMS cd="linalg4" name="eigenvalue" xlink:href="MCRid126299" xlink:type="simple"/><OMV name="A" xlink:href="MCRid126304" xlink:type="simple"/><OMV name="i" xlink:href="MCRid126309" xlink:type="simple"/></OMA><OMA xlink:href="MCRid126314" xlink:type="simple"><OMS cd="linalg4" name="eigenvector" xlink:href="MCRid126316" xlink:type="simple"/><OMV name="A" xlink:href="MCRid126323" xlink:type="simple"/><OMV name="i" xlink:href="MCRid126327" xlink:type="simple"/></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="eigenvector">
+<div class="titlebox">
+<span class="titleword">Concept</span>eigenvector</div>
+    This symbol represents the eigenvector of a matrix. It takes two
+    arguments the first should be the matrix, the second should be an
+    index to specify which eigenvalue this eigenvector should be paired
+    with. The ordering is as given in the eigenvalue symbol. A definition
+    of eigenvector is given in Elementary Linear Algebra, Stanley
+    I. Grossman in Definition 1 of chapter 6, page 533.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid126379"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id126382" xlink:href="sts.xml#mapsto"><mi id="MCRid126390">Matrix</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid126395">Index</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid126399">NumericalValue</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid126379" xlink:type="simple"><OMA xlink:href="MCRid126382" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid126384" xlink:type="simple"/><OMV name="Matrix" xlink:href="MCRid126390" xlink:type="simple"/><OMV name="Index" xlink:href="MCRid126395" xlink:type="simple"/><OMV name="NumericalValue" xlink:href="MCRid126399" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="eigenvector-prop-1">
+<span class="titleword">Lemma</span>
+<p> A*eigenvector(A) = eigenvalue(A)*eigenvector(A) </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid125421"><semantics><mi id="MCRid125440">A</mi><mo id="MCRid125434">⁢</mo><mrow id="MCRid125445"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eigenvector" xlink:type="simple" id="id125447">eigenvector</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid125453">A</mi><mo separator="true">,</mo><mi id="MCRid125458">i</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid125426">=</mo><mrow id="MCRid125473"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eigenvalue" xlink:type="simple" id="id125475">eigenvalue</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid125481">A</mi><mo separator="true">,</mo><mi id="MCRid125486">i</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo id="MCRid125466">⁢</mo><mrow id="MCRid125491"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eigenvector" xlink:type="simple" id="id125493">eigenvector</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid125500">A</mi><mo separator="true">,</mo><mi id="MCRid125504">i</mi></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid125421" xlink:type="simple"><OMA xlink:href="MCRid125423" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid125426" xlink:type="simple"/><OMA xlink:href="MCRid125432" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid125434" xlink:type="simple"/><OMV name="A" xlink:href="MCRid125440" xlink:type="simple"/><OMA xlink:href="MCRid125445" xlink:type="simple"><OMS cd="linalg4" name="eigenvector" xlink:href="MCRid125447" xlink:type="simple"/><OMV name="A" xlink:href="MCRid125453" xlink:type="simple"/><OMV name="i" xlink:href="MCRid125458" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid125464" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid125466" xlink:type="simple"/><OMA xlink:href="MCRid125473" xlink:type="simple"><OMS cd="linalg4" name="eigenvalue" xlink:href="MCRid125475" xlink:type="simple"/><OMV name="A" xlink:href="MCRid125481" xlink:type="simple"/><OMV name="i" xlink:href="MCRid125486" xlink:type="simple"/></OMA><OMA xlink:href="MCRid125491" xlink:type="simple"><OMS cd="linalg4" name="eigenvector" xlink:href="MCRid125493" xlink:type="simple"/><OMV name="A" xlink:href="MCRid125500" xlink:type="simple"/><OMV name="i" xlink:href="MCRid125504" xlink:type="simple"/></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="characteristic_eqn">
+<div class="titlebox">
+<span class="titleword">Concept</span>characteristic_eqn</div>
+    This symbol represents the polynomial which appears in the left hand
+    side of the characteristic equation of a matrix. It
+    takes one argument which should be the matrix. A definition of the
+    characteristic equation is given in Elementary Linear Algebra, Stanley
+    I. Grossman in Definition 2 of chapter 6, page 535.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid125555"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id125558" xlink:href="sts.xml#mapsto"><mi id="MCRid125566">Matrix</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid125570">Polynomial</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid125555" xlink:type="simple"><OMA xlink:href="MCRid125558" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid125560" xlink:type="simple"/><OMV name="Matrix" xlink:href="MCRid125566" xlink:type="simple"/><OMV name="Polynomial" xlink:href="MCRid125570" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="characteristic_eqn-prop-1">
+<span class="titleword">Lemma</span>
+<p> 
+    p(eigenvalue(A,i)) = det(A-eigenvalue(A,i)I) = 0 
+    where p is the characteristic equation of A
+  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid125611"><semantics><mfenced id="id125622" open="(" close=")" separators=""><mrow id="MCRid125630"><mrow id="MCRid125632"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#characteristic_eqn" xlink:type="simple" id="id125635">characteristic_eqn</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid125641">A</mi></mrow><mo fence="true">)</mo></mrow></mrow><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid125646"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eigenvalue" xlink:type="simple" id="id125648">eigenvalue</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid125655">A</mi><mo separator="true">,</mo><mi id="MCRid125659">i</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid125624">=</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="alg1.xml#zero" xlink:type="simple" id="MCRid125665">0</mo></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="logic1.xml#and" xlink:type="simple" id="MCRid125616">∧</mo><mfenced id="id125673" open="(" close=")" separators=""><mfenced id="id125682" open="|" close="|" separators=""><mi id="MCRid125699">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="arith1.xml#minus" xlink:type="simple" id="MCRid125693">-</mo><mrow id="MCRid154568"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eigenvalue" xlink:type="simple" id="id154570">eigenvalue</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid154576">A</mi><mo separator="true">,</mo><mi id="MCRid154580">i</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo id="MCRid125706">⁢</mo><mrow id="MCRid154586"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity" xlink:type="simple" id="id154588">identity</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid154594"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rowcount" xlink:type="simple" id="id154596">rowcount</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid154602">A</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mfenced><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid125675">=</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="alg1.xml#zero" xlink:type="simple" id="MCRid154612">0</mo></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid125611" xlink:type="simple"><OMA xlink:href="MCRid125614" xlink:type="simple"><OMS cd="logic1" name="and" xlink:href="MCRid125616" xlink:type="simple"/><OMA xlink:href="MCRid125622" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid125624" xlink:type="simple"/><OMA xlink:href="MCRid125630" xlink:type="simple"><OMA xlink:href="MCRid125632" xlink:type="simple"><OMS cd="linalg4" name="characteristic_eqn" xlink:href="MCRid125635" xlink:type="simple"/><OMV name="A" xlink:href="MCRid125641" xlink:type="simple"/></OMA><OMA xlink:href="MCRid125646" xlink:type="simple"><OMS cd="linalg4" name="eigenvalue" xlink:href="MCRid125648" xlink:type="simple"/><OMV name="A" xlink:href="MCRid125655" xlink:type="simple"/><OMV name="i" xlink:href="MCRid125659" xlink:type="simple"/></OMA></OMA><OMS cd="alg1" name="zero" xlink:href="MCRid125665" xlink:type="simple"/></OMA><OMA xlink:href="MCRid125673" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid125675" xlink:type="simple"/><OMA xlink:href="MCRid125682" xlink:type="simple"><OMS cd="linalg1" name="determinant" xlink:href="MCRid125684" xlink:type="simple"/><OMA xlink:href="MCRid125690" xlink:type="simple"><OMS cd="arith1" name="minus" xlink:href="MCRid125693" xlink:type="simple"/><OMV name="A" xlink:href="MCRid125699" xlink:type="simple"/><OMA xlink:href="MCRid125703" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid125706" xlink:type="simple"/><OMA xlink:href="MCRid154568" xlink:type="simple"><OMS cd="linalg4" name="eigenvalue" xlink:href="MCRid154570" xlink:type="simple"/><OMV name="A" xlink:href="MCRid154576" xlink:type="simple"/><OMV name="i" xlink:href="MCRid154580" xlink:type="simple"/></OMA><OMA xlink:href="MCRid154586" xlink:type="simple"><OMS cd="linalg5" name="identity" xlink:href="MCRid154588" xlink:type="simple"/><OMA xlink:href="MCRid154594" xlink:type="simple"><OMS cd="linalg4" name="rowcount" xlink:href="MCRid154596" xlink:type="simple"/><OMV name="A" xlink:href="MCRid154602" xlink:type="simple"/></OMA></OMA></OMA></OMA></OMA><OMS cd="alg1" name="zero" xlink:href="MCRid154612" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="size">
+<div class="titlebox">
+<span class="titleword">Concept</span>size</div>
+    This symbol represents the function which takes one vector argument
+    and returns the length of that vector.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154663"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id154665" xlink:href="sts.xml#mapsto"><mi id="MCRid154674">Vector</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid154678">ℕ</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154663" xlink:type="simple"><OMA xlink:href="MCRid154665" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid154667" xlink:type="simple"/><OMV name="Vector" xlink:href="MCRid154674" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid154678" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="size-ex-1">
+<span class="titleword">Example</span>
+<p>the length of the vector [1,2,3] = 3</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154715"><semantics><mrow id="MCRid154726"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#size" xlink:type="simple" id="id154728">size</mo><mrow><mo fence="true">(</mo><mrow><mfenced id="id154734" open="[" close="]" separators=""><mrow><mn id="MCRid154743"> 1 </mn><mo separator="true">,</mo><mn id="MCRid154746"> 2 </mn><mo separator="true">,</mo><mn id="MCRid154749"> 3 </mn></mrow></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid154720">=</mo><mn id="MCRid154754"> 3 </mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154715" xlink:type="simple"><OMA xlink:href="MCRid154718" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid154720" xlink:type="simple"/><OMA xlink:href="MCRid154726" xlink:type="simple"><OMS cd="linalg4" name="size" xlink:href="MCRid154728" xlink:type="simple"/><OMA xlink:href="MCRid154734" xlink:type="simple"><OMS cd="linalg2" name="vector" xlink:href="MCRid154736" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid154743"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid154746"> 2 </OMI><OMI xlink:type="simple" xlink:href="MCRid154749"> 3 </OMI></OMA></OMA><OMI xlink:type="simple" xlink:href="MCRid154754"> 3 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="rank">
+<div class="titlebox">
+<span class="titleword">Concept</span>rank</div>
+    This symbol represents the function which takes one matrix argument
+    and returns the number of linearly independent rows (or columns) of
+    that matrix.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154801"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id154804" xlink:href="sts.xml#mapsto"><mi id="MCRid154812">Matrix</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid154816">ℕ</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154801" xlink:type="simple"><OMA xlink:href="MCRid154804" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid154806" xlink:type="simple"/><OMV name="Matrix" xlink:href="MCRid154812" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid154816" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="rank-prop-1">
+<span class="titleword">Lemma</span>
+<p> the rank of an nxn identity matrix is n  </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154858"><semantics><mrow id="MCRid154869"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rank" xlink:type="simple" id="id154871">rank</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid154877"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity" xlink:type="simple" id="id154879">identity</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid154886">n</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid154863">=</mo><mi id="MCRid154892">n</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154858" xlink:type="simple"><OMA xlink:href="MCRid154861" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid154863" xlink:type="simple"/><OMA xlink:href="MCRid154869" xlink:type="simple"><OMS cd="linalg4" name="rank" xlink:href="MCRid154871" xlink:type="simple"/><OMA xlink:href="MCRid154877" xlink:type="simple"><OMS cd="linalg5" name="identity" xlink:href="MCRid154879" xlink:type="simple"/><OMV name="n" xlink:href="MCRid154886" xlink:type="simple"/></OMA></OMA><OMV name="n" xlink:href="MCRid154892" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="rowcount">
+<div class="titlebox">
+<span class="titleword">Concept</span>rowcount</div>
+    This symbol represents the function which takes one matrix argument
+    and returns the number of rows in that matrix.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154941"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id154943" xlink:href="sts.xml#mapsto"><mi id="MCRid154951">Matrix</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid154956">ℕ</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154941" xlink:type="simple"><OMA xlink:href="MCRid154943" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid154945" xlink:type="simple"/><OMV name="Matrix" xlink:href="MCRid154951" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid154956" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="rowcount-ex-1">
+<span class="titleword">Example</span>
+<p>Specification of the number of rows in the matrix:
+    [[1 2]
+    [3 4]
+    [5 6]]</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154993"><semantics><mrow id="MCRid154997"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rowcount" xlink:type="simple" id="id154999">rowcount</mo><mrow><mo fence="true">(</mo><mrow><mfenced xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="linalg2.xml#matrix" open="(" close=")"><mtable xlink:href="linalg2.xml#matrix"><mfenced id="id155005" open="" close="" separators=""><mtr xlink:href="linalg2.xml#matrix"><mfenced id="id155014" open="" close="" separators=""><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155023">1</mn></mtd><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155026">2</mn></mtd></mfenced></mtr><mtr xlink:href="linalg2.xml#matrix"><mfenced id="id155030" open="" close="" separators=""><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155039">3</mn></mtd><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155042">4</mn></mtd></mfenced></mtr><mtr xlink:href="linalg2.xml#matrix"><mfenced id="id155047" open="" close="" separators=""><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155056">5</mn></mtd><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155059">6</mn></mtd></mfenced></mtr></mfenced></mtable></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154993" xlink:type="simple"><OMA xlink:href="MCRid154997" xlink:type="simple"><OMS cd="linalg4" name="rowcount" xlink:href="MCRid154999" xlink:type="simple"/><OMA xlink:href="MCRid155005" xlink:type="simple"><OMS cd="linalg2" name="matrix" xlink:href="MCRid155008" xlink:type="simple"/><OMA xlink:href="MCRid155014" xlink:type="simple"><OMS cd="linalg2" name="matrixrow" xlink:href="MCRid155016" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid155023">1</OMI><OMI xlink:type="simple" xlink:href="MCRid155026">2</OMI></OMA><OMA xlink:href="MCRid155030" xlink:type="simple"><OMS cd="linalg2" name="matrixrow" xlink:href="MCRid155032" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid155039">3</OMI><OMI xlink:type="simple" xlink:href="MCRid155042">4</OMI></OMA><OMA xlink:href="MCRid155047" xlink:type="simple"><OMS cd="linalg2" name="matrixrow" xlink:href="MCRid155049" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid155056">5</OMI><OMI xlink:type="simple" xlink:href="MCRid155059">6</OMI></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="columncount">
+<div class="titlebox">
+<span class="titleword">Concept</span>columncount</div>
+    This symbol represents the function which takes one matrix argument
+    and returns the number of columns in that matrix.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid155108"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id155110" xlink:href="sts.xml#mapsto"><mi id="MCRid155118">Matrix</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname1.xml#N" xlink:type="simple" id="MCRid155122">ℕ</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid155108" xlink:type="simple"><OMA xlink:href="MCRid155110" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid155112" xlink:type="simple"/><OMV name="Matrix" xlink:href="MCRid155118" xlink:type="simple"/><OMS cd="setname1" name="N" xlink:href="MCRid155122" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="columncount-ex-1">
+<span class="titleword">Example</span>
+<p>
+    Specification of the number of columns in the matrix:
+    [[1 2]
+    [3 4]
+    [5 6]]</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid155160"><semantics><mrow id="MCRid155164"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#columncount" xlink:type="simple" id="id155167">columncount</mo><mrow><mo fence="true">(</mo><mrow><mfenced xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="linalg2.xml#matrix" open="(" close=")"><mtable xlink:href="linalg2.xml#matrix"><mfenced id="id155173" open="" close="" separators=""><mtr xlink:href="linalg2.xml#matrix"><mfenced id="id155181" open="" close="" separators=""><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155190">1</mn></mtd><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155193">2</mn></mtd></mfenced></mtr><mtr xlink:href="linalg2.xml#matrix"><mfenced id="id155198" open="" close="" separators=""><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155206">3</mn></mtd><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155210">4</mn></mtd></mfenced></mtr><mtr xlink:href="linalg2.xml#matrix"><mfenced id="id155214" open="" close="" separators=""><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155223">5</mn></mtd><mtd xlink:href="linalg2.xml#matrix"><mn id="MCRid155226">6</mn></mtd></mfenced></mtr></mfenced></mtable></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid155160" xlink:type="simple"><OMA xlink:href="MCRid155164" xlink:type="simple"><OMS cd="linalg4" name="columncount" xlink:href="MCRid155167" xlink:type="simple"/><OMA xlink:href="MCRid155173" xlink:type="simple"><OMS cd="linalg2" name="matrix" xlink:href="MCRid155175" xlink:type="simple"/><OMA xlink:href="MCRid155181" xlink:type="simple"><OMS cd="linalg2" name="matrixrow" xlink:href="MCRid155183" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid155190">1</OMI><OMI xlink:type="simple" xlink:href="MCRid155193">2</OMI></OMA><OMA xlink:href="MCRid155198" xlink:type="simple"><OMS cd="linalg2" name="matrixrow" xlink:href="MCRid155200" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid155206">3</OMI><OMI xlink:type="simple" xlink:href="MCRid155210">4</OMI></OMA><OMA xlink:href="MCRid155214" xlink:type="simple"><OMS cd="linalg2" name="matrixrow" xlink:href="MCRid155216" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid155223">5</OMI><OMI xlink:type="simple" xlink:href="MCRid155226">6</OMI></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

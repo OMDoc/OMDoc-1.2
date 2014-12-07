@@ -1,0 +1,28 @@
+<!--
+   An XML Document Type Definition for Open Mathematical documents (OMDoc 1.2)
+   General OMDoc Entities
+     PUBLIC: -//OMDoc//ENTITIES OMDoc V1.2//EN
+     SYSTEM: http://www.mathweb.org/omdoc/dtd/omdoc.ent
+   See the documentation and examples at http://www.mathweb.org/omdoc 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdoc.intheory.class 
+           "%omdocdoc.class;
+            %omdocmtxt.class;
+            %omdocsth.intheory.class;
+            %omdocadt.class;
+            %omdocst.class;
+            %omdocpf.class;
+            %omdocpres.class;
+            %omdocext.class;
+            %omdocquiz.class;
+            %omdoc.extra.class;
+            %omdoccth.sth.extra;">
+
+<!ENTITY % omdoc.class "%omdoc.intheory.class;
+                        %omdocsth.class;
+                        %omdoccth.class;
+                        %omdoc.extra.class;">
+
+

@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for MathML2 Presentation Elements
+    SYSTEM http://www.mathweb.org/omdoc/rnc/mathml2-content.rnc	  		 
+  (c) 2005 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/1998/Math/MathML" xmlns:ns1="http://creativecommons.org/ns" xmlns:omdoc="http://www.mathweb.org/omdoc" xmlns:openmath="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mathml="http://www.w3.org/1998/Math/MathML" xmlns:elements="http://purl.org/dc/elements/1.1/">
+  <xs:import schemaLocation="omdocattribs.xsd"/>
+  <xs:import namespace="http://creativecommons.org/ns" schemaLocation="omdoccc.xsd"/>
+  <xs:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="omdocdc.xsd"/>
+  <xs:import namespace="http://www.mathweb.org/omdoc" schemaLocation="omdoc.xsd"/>
+  <xs:import namespace="http://www.openmath.org/OpenMath" schemaLocation="openmath2.xsd"/>
+  <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <!-- Simple sizes -->
+  <xs:simpleType name="simple-size">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="small"/>
+      <xs:enumeration value="normal"/>
+      <xs:enumeration value="big"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Centering values -->
+  <xs:simpleType name="centering.values">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="left"/>
+      <xs:enumeration value="center"/>
+      <xs:enumeration value="right"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--
+    The named spaces 
+    this is also used in the value of the "width" attribute on the "mpadded" element 
+  -->
+  <xs:simpleType name="named-space">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="veryverythinmathspace"/>
+      <xs:enumeration value="verythinmathspace"/>
+      <xs:enumeration value="thinmathspace"/>
+      <xs:enumeration value="mediummathspace"/>
+      <xs:enumeration value="thickmathspace"/>
+      <xs:enumeration value="verythickmathspace"/>
+      <xs:enumeration value="veryverythickmathspace"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Thickness -->
+  <xs:simpleType name="thickness">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="thin"/>
+      <xs:enumeration value="medium"/>
+      <xs:enumeration value="thick"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- number with units used to specified lengths -->
+  <xs:simpleType name="length-with-unit">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <!-- {pattern="(-?([0-9]+|[0-9]*\.[0-9]+)*(em|ex|px|in|cm|mm|pt|pc|%))|0"} -->
+  <xs:simpleType name="length-with-optional-unit">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <!-- {pattern="-?([0-9]+|[0-9]*\.[0-9]+)*(em|ex|px|in|cm|mm|pt|pc|%)?"} -->
+  <!-- This is just "infinity" that can be used as a length -->
+  <xs:simpleType name="infinity">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="infinity"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- colors defined as RGB -->
+  <xs:simpleType name="RGB-color">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="#(([0-9]|[a-f]){3}|([0-9]|[a-f]){6})"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--
+     This schema module defines sets of attributes common to several elements
+     of presentation MathML.
+  -->
+  <!--
+    The mathematics style attributes. These attributes are valid on all
+        presentation token elements except "mspace" and "mglyph", and on no
+        other elements except "mstyle". 
+  -->
+  <xs:attributeGroup name="Token-style.attrib">
+    <xs:attribute name="mathvariant">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="normal"/>
+          <xs:enumeration value="bold"/>
+          <xs:enumeration value="italic"/>
+          <xs:enumeration value="bold-italic"/>
+          <xs:enumeration value="double-struck"/>
+          <xs:enumeration value="bold-fraktur"/>
+          <xs:enumeration value="script"/>
+          <xs:enumeration value="bold-script"/>
+          <xs:enumeration value="fraktur"/>
+          <xs:enumeration value="sans-serif"/>
+          <xs:enumeration value="bold-sans-serif"/>
+          <xs:enumeration value="sans-serif-italic"/>
+          <xs:enumeration value="sans-serif-bold-italic"/>
+          <xs:enumeration value="monospace"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="mathsize">
+      <xs:simpleType>
+        <xs:union memberTypes="mathml:simple-size mathml:length-with-unit"/>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="mathcolor" type="xs:string"/>
+    <xs:attribute name="mathbackground" type="xs:string"/>
+  </xs:attributeGroup>
+  <!-- These operators are all related to operators. They are valid on "mo" and "mstyle". -->
+  <xs:attributeGroup name="Operator.attrib">
+    <xs:attribute name="form">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="prefix"/>
+          <xs:enumeration value="infix"/>
+          <xs:enumeration value="postfix"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="lspace">
+      <xs:simpleType>
+        <xs:union memberTypes="mathml:length-with-unit mathml:named-space"/>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="rspace">
+      <xs:simpleType>
+        <xs:union memberTypes="mathml:length-with-unit mathml:named-space"/>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="fence" type="xs:boolean"/>
+    <xs:attribute name="separator" type="xs:boolean"/>
+    <xs:attribute name="stretchy" type="xs:boolean"/>
+    <xs:attribute name="symmetric" type="xs:boolean"/>
+    <xs:attribute name="movablelimits" type="xs:boolean"/>
+    <xs:attribute name="accent" type="xs:boolean"/>
+    <xs:attribute name="largeop" type="xs:boolean"/>
+    <xs:attribute name="minsize">
+      <xs:simpleType>
+        <xs:union memberTypes="mathml:length-with-unit mathml:named-space"/>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="maxsize">
+      <xs:simpleType>
+        <xs:union memberTypes="mathml:length-with-unit mathml:named-space mathml:infinity xs:float"/>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="mglyph">
+    <xs:complexType>
+      <xs:attribute name="alt" type="xs:string"/>
+      <xs:attribute name="fontfamily" type="xs:string"/>
+      <xs:attribute name="index" type="xs:positiveInteger"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+     This is the XML schema module for the token elements of the 
+     presentation part of MathML.
+  -->
+  <xs:group name="Glyph-alignmark.class">
+    <xs:choice>
+      <xs:element ref="mathml:malignmark"/>
+      <xs:element ref="mathml:mglyph"/>
+    </xs:choice>
+  </xs:group>
+  <!-- "mi" is supposed to have a default value of its "mathvariant" attribute  set to "italic" -->
+  <xs:element name="mi" substitutionGroup="mathml:Presentation-token.class">
+    <xs:complexType mixed="true">
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Glyph-alignmark.class"/>
+      <xs:attributeGroup ref="mathml:Token-style.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mo" -->
+  <xs:element name="mo" substitutionGroup="mathml:Presentation-token.class">
+    <xs:complexType mixed="true">
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Glyph-alignmark.class"/>
+      <xs:attributeGroup ref="mathml:Operator.attrib"/>
+      <xs:attributeGroup ref="mathml:Token-style.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mn" -->
+  <xs:element name="mn" substitutionGroup="mathml:Presentation-token.class">
+    <xs:complexType mixed="true">
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Glyph-alignmark.class"/>
+      <xs:attributeGroup ref="mathml:Token-style.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mtext" -->
+  <!-- ms (the values of "lquote" or "rquote" are not restricted to be one character strings...) -->
+  <xs:element name="ms" substitutionGroup="mathml:Presentation-token.class">
+    <xs:complexType mixed="true">
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Glyph-alignmark.class"/>
+      <xs:attribute name="lquote" type="xs:string"/>
+      <xs:attribute name="rquote" type="xs:string"/>
+      <xs:attributeGroup ref="mathml:Token-style.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- And the group of any token -->
+  <xs:element name="Presentation-token.class" abstract="true"/>
+  <!--
+     This is an XML Schema module for the presentation elements of MathML
+     dealing with subscripts and superscripts.
+  -->
+  <!-- "msub" -->
+  <xs:element name="msub" substitutionGroup="mathml:Presentation-script.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+      </xs:sequence>
+      <xs:attribute name="subscriptshift" type="mathml:length-with-unit"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "msup" -->
+  <xs:element name="msup" substitutionGroup="mathml:Presentation-script.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+      </xs:sequence>
+      <xs:attribute name="supscriptshift" type="mathml:length-with-unit"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "msubsup" -->
+  <xs:element name="msubsup" substitutionGroup="mathml:Presentation-script.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+      <xs:attribute name="subscriptshift" type="mathml:length-with-unit"/>
+      <xs:attribute name="supscriptshift" type="mathml:length-with-unit"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "munder" -->
+  <xs:element name="munder" substitutionGroup="mathml:Presentation-script.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+      <xs:attribute name="accentunder" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mover" -->
+  <xs:element name="mover" substitutionGroup="mathml:Presentation-script.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+      <xs:attribute name="accent" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "munderover" -->
+  <xs:element name="munderover" substitutionGroup="mathml:Presentation-script.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+      <xs:attribute name="accentunder" type="xs:boolean"/>
+      <xs:attribute name="accent" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mmultiscripts", "mprescripts" and "none" -->
+  <xs:group name="Presentation-expr-or-none.class">
+    <xs:choice>
+      <xs:group ref="mathml:Presentation-expr.class"/>
+      <xs:element ref="mathml:none"/>
+    </xs:choice>
+  </xs:group>
+  <xs:element name="mmultiscripts" substitutionGroup="mathml:Presentation-script.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+          <xs:group ref="mathml:Presentation-expr-or-none.class"/>
+          <xs:group ref="mathml:Presentation-expr-or-none.class"/>
+        </xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="mathml:mprescripts"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="mathml:Presentation-expr-or-none.class"/>
+            <xs:group ref="mathml:Presentation-expr-or-none.class"/>
+          </xs:sequence>
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="none">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="mprescripts">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="Presentation-script.class" abstract="true"/>
+  <xs:element name="mspace">
+    <xs:complexType>
+      <xs:attribute name="width" default="0em">
+        <xs:simpleType>
+          <xs:union memberTypes="mathml:length-with-unit mathml:named-space"/>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="height" default="0ex" type="mathml:length-with-unit"/>
+      <xs:attribute name="depth" default="0ex" type="mathml:length-with-unit"/>
+      <xs:attribute name="linebreak" default="auto">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="auto"/>
+            <xs:enumeration value="newline"/>
+            <xs:enumeration value="indentingnewline"/>
+            <xs:enumeration value="nobreak"/>
+            <xs:enumeration value="goodbreak"/>
+            <xs:enumeration value="badbreak"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+     This is the XML schema module for the layout elements of the 
+     presentation part of MathML.
+  -->
+  <!-- "mrow" -->
+  <xs:element name="mrow" substitutionGroup="mathml:Presentation-layout.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mfrac" -->
+  <xs:element name="mfrac" substitutionGroup="mathml:Presentation-layout.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+      </xs:sequence>
+      <xs:attribute name="bevelled" type="xs:boolean"/>
+      <xs:attribute name="denomalign" default="center" type="mathml:centering.values"/>
+      <xs:attribute name="numalign" default="center" type="mathml:centering.values"/>
+      <xs:attribute name="linethickness" default="1">
+        <xs:simpleType>
+          <xs:union memberTypes="mathml:length-with-optional-unit mathml:thickness"/>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "msqrt" -->
+  <xs:element name="msqrt" substitutionGroup="mathml:Presentation-layout.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mroot" -->
+  <xs:element name="mroot" substitutionGroup="mathml:Presentation-layout.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mpadded" -->
+  <xs:simpleType name="mpadded-space">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?)*(width|lspace|height|depth))|(em|ex|px|in|cm|mm|pt|pc))"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--
+    MaxF: definition from spec seems wrong, 
+          fixing to ([+|-] unsigned-number (%[pseudo-unit]|pseudo-unit|h-unit)) | namedspace | 0 
+  -->
+  <xs:simpleType name="mpadded-width-space">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="((\+|-)?([0-9]+|[0-9]*\.[0-9]+)(((%?) *(width|lspace|height|depth)?)|(width|lspace|height|depth)|(em|ex|px|in|cm|mm|pt|pc)))|((veryverythin|verythin|thin|medium|thick|verythick|veryverythick)mathspace)|0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="mpadded" substitutionGroup="mathml:Presentation-layout.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attribute name="width" use="required" type="mathml:mpadded-width-space"/>
+      <xs:attribute name="lspace" type="mathml:mpadded-space"/>
+      <xs:attribute name="height" type="mathml:mpadded-space"/>
+      <xs:attribute name="depth" type="mathml:mpadded-space"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mphantom" -->
+  <xs:element name="mphantom.attlist" substitutionGroup="mathml:Presentation-layout.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mfenced" -->
+  <xs:element name="mfenced" substitutionGroup="mathml:Presentation-layout.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attribute name="open" default="(" type="xs:string"/>
+      <xs:attribute name="close" default=")" type="xs:string"/>
+      <xs:attribute name="separators" default="," type="xs:string"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "menclose" -->
+  <xs:element name="menclose" substitutionGroup="mathml:Presentation-layout.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attribute name="notation" default="longdiv">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="actuarial"/>
+            <xs:enumeration value="longdiv"/>
+            <xs:enumeration value="radical"/>
+            <xs:enumeration value="box"/>
+            <xs:enumeration value="roundedbox"/>
+            <xs:enumeration value="circle"/>
+            <xs:enumeration value="left"/>
+            <xs:enumeration value="right"/>
+            <xs:enumeration value="top"/>
+            <xs:enumeration value="bottom"/>
+            <xs:enumeration value="updiagonalstrike"/>
+            <xs:enumeration value="downdiagonalstrike"/>
+            <xs:enumeration value="verticalstrike"/>
+            <xs:enumeration value="horizontalstrike"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- And the group of everything -->
+  <xs:element name="Presentation-layout.class" abstract="true"/>
+  <!--  This is an XML Schema module for tables in MathML presentation. -->
+  <xs:attributeGroup name="Table-alignment.attrib">
+    <xs:attribute name="rowalign" default="baseline">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="(top|bottom|center|baseline|axis)(top|bottom|center|baseline|axis)*"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="columnalign" default="center">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="(left|center|right)(left|center|right)*"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="groupalign" type="xs:string"/>
+  </xs:attributeGroup>
+  <xs:element name="mtr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="mathml:mtd"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Table-alignment.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mlabeledtr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="mathml:mtd"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Table-alignment.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mtd" -->
+  <xs:element name="mtd">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attributeGroup ref="mathml:Table-alignment.attrib"/>
+      <xs:attribute name="columnspan" default="1" type="xs:positiveInteger"/>
+      <xs:attribute name="rowspan" default="1" type="xs:positiveInteger"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "mtable" -->
+  <xs:element name="mtable">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="mathml:mtr"/>
+        <xs:element ref="mathml:mlabeledtr"/>
+      </xs:choice>
+      <xs:attributeGroup ref="mathml:Table-alignment.attrib"/>
+      <xs:attribute name="align" default="axis" type="xs:string"/>
+      <xs:attribute name="alignmentscope" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="(true|false)( true| false)*"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="columnwidth" default="auto" type="xs:string"/>
+      <xs:attribute name="width" default="auto" type="xs:string"/>
+      <xs:attribute name="rowspacing" default="1.0ex" type="xs:string"/>
+      <xs:attribute name="columnspacing" default="0.8em" type="xs:string"/>
+      <xs:attribute name="rowlines" default="none" type="xs:string"/>
+      <xs:attribute name="columnlines" default="none" type="xs:string"/>
+      <xs:attribute name="frame" default="none">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="none"/>
+            <xs:enumeration value="solid"/>
+            <xs:enumeration value="dashed"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="framespacing" default="0.4em 0.5ex" type="xs:string"/>
+      <xs:attribute name="equalrows" default="false" type="xs:boolean"/>
+      <xs:attribute name="equalcolumns" default="false" type="xs:boolean"/>
+      <xs:attribute name="displaystyle" default="false" type="xs:boolean"/>
+      <xs:attribute name="side" default="right">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="left"/>
+            <xs:enumeration value="right"/>
+            <xs:enumeration value="leftoverlap"/>
+            <xs:enumeration value="rightoverlap"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="minlabelspacing" default="0.8em" type="mathml:length-with-unit"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "maligngroup" -->
+  <xs:element name="maligngroup">
+    <xs:complexType>
+      <xs:attribute name="groupalign">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="left"/>
+            <xs:enumeration value="center"/>
+            <xs:enumeration value="right"/>
+            <xs:enumeration value="decimalpoint"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "malignmark" -->
+  <xs:element name="malignmark">
+    <xs:complexType>
+      <xs:attribute name="edge" default="left">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="left"/>
+            <xs:enumeration value="right"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="Presentation-table.class">
+    <xs:choice>
+      <xs:element ref="mathml:mtable"/>
+      <xs:element ref="mathml:maligngroup"/>
+      <xs:element ref="mathml:malignmark"/>
+    </xs:choice>
+  </xs:group>
+  <!-- "mstyle" -->
+  <xs:element name="mstyle">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attribute name="scriptlevel" type="xs:integer"/>
+      <xs:attribute name="displaystyle" type="xs:boolean"/>
+      <xs:attribute name="scriptsizemultiplier" default="0.71" type="xs:decimal"/>
+      <xs:attribute name="scriptminsize" default="8pt" type="mathml:length-with-unit"/>
+      <xs:attribute name="color" type="xs:string"/>
+      <xs:attribute name="background" default="transparent" type="xs:string"/>
+      <xs:attribute name="veryverythinmathspace" default="0.0555556em" type="mathml:length-with-unit"/>
+      <xs:attribute name="verythinmathspace" default="0.111111em" type="mathml:length-with-unit"/>
+      <xs:attribute name="thinmathspace" default="0.166667em" type="mathml:length-with-unit"/>
+      <xs:attribute name="mediummathspace" default="0.222222em" type="mathml:length-with-unit"/>
+      <xs:attribute name="thickmathspace" default="0.277778em" type="mathml:length-with-unit"/>
+      <xs:attribute name="verythickmathspace" default="0.333333em" type="mathml:length-with-unit"/>
+      <xs:attribute name="veryverythickmathspace" default="0.388889em" type="mathml:length-with-unit"/>
+      <xs:attribute name="linethickness" default="1">
+        <xs:simpleType>
+          <xs:union memberTypes="mathml:length-with-optional-unit mathml:thickness"/>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="mathml:Operator.attrib"/>
+      <xs:attributeGroup ref="mathml:Token-style.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  This is the XML Schema module for the MathML "merror" element. -->
+  <xs:element name="merror">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  This is the XML Schema module for the MathML "maction" element. -->
+  <xs:element name="maction">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Presentation-expr.class"/>
+      <xs:attribute name="actiontype" type="xs:string"/>
+      <xs:attribute name="selection" default="1" type="xs:positiveInteger"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

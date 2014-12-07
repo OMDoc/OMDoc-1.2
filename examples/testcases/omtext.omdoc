@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_omtext.omdoc">
+
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>                                                                     
+
+<omtext xml:id="myomtext" style="mystyle" type="note" for="#something">
+  <metadata/>
+  <CMP xml:lang="en">testing</CMP>
+  <CMP xml:lang="de">testen</CMP>
+  <FMP/>
+</omtext>
+
+<theory xml:id="test_omtext">
+  <ignore>content not necessary</ignore>
+</theory>
+
+</omdoc>
+

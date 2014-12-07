@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary nums1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary nums1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD is intended to be `compatible' with the MathML view of
+    constructors for numbers (integers to an arbitrary base,
+    rationals) and symbols for some common numerical constants.
+
+This CD holds a set of symbols for creating numbers, including
+some defined constants (i.e. nullary constructors).
+</div></div>
+
+
+<div class="symbol" id="based_integer">
+<div class="titlebox">
+<span class="titleword">Concept</span>based_integer</div> 
+    This symbol represents the constructor function for integers,
+    specifying the base. It takes two arguments, the first is a positive 
+    integer to denote the base to which the number is represented, the
+    second argument is a string which contains an optional sign and the
+    digits of the integer, using 0-9a-z (as a consequence of this no radix
+    greater than 35 is supported). Base 16 and base 10 are already
+    covered in the encodings of integers.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid218231"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id218234" xlink:href="sts.xml#mapsto"><mi id="MCRid218242">PositiveInteger</mi><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid218246">DigitString</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid218250">BasedInteger</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid218231" xlink:type="simple"><OMA xlink:href="MCRid218234" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid218236" xlink:type="simple"/><OMV name="PositiveInteger" xlink:href="MCRid218242" xlink:type="simple"/><OMV name="DigitString" xlink:href="MCRid218246" xlink:type="simple"/><OMV name="BasedInteger" xlink:href="MCRid218250" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#based_integer-ex-1">#based_integer-ex-1</a>
+<div class="symbol" id="rational">
+<div class="titlebox">
+<span class="titleword">Concept</span>rational</div> 
+    This symbol represents the constructor function for rational numbers.
+    It takes two arguments, the first is an integer p to denote the
+    numerator and the second a nonzero integer q to denote the denominator
+    of the rational p/q.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid212821"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id212824" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid212832">ℤ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid212838">NonZeroInteger</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname1.xml#Q" xlink:type="simple" id="MCRid212842">ℚ</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid212821" xlink:type="simple"><OMA xlink:href="MCRid212824" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid212826" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid212832" xlink:type="simple"/><OMV name="NonZeroInteger" xlink:href="MCRid212838" xlink:type="simple"/><OMS cd="setname1" name="Q" xlink:href="MCRid212842" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#rational-ex-1">#rational-ex-1</a>
+<div class="symbol" id="infinity">
+<div class="titlebox">
+<span class="titleword">Concept</span>infinity</div>A symbol to represent the notion of infinity.
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid190400"><semantics><mi id="MCRid190402">Infinity</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid190400" xlink:type="simple"><OMV name="Infinity" xlink:href="MCRid190402" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#infinity-prop-1">#infinity-prop-1</a>
+<div class="symbol" id="e">
+<div class="titlebox">
+<span class="titleword">Concept</span>e</div> 
+    This symbol represents the base of the natural logarithm, approximately 2.718.
+    See Abramowitz and Stegun, Handbook of Mathematical Functions,
+    section 4.1.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid190497"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid190500">ℝ</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid190497" xlink:type="simple"><OMS cd="setname1" name="R" xlink:href="MCRid190500" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#e-prop-1">#e-prop-1</a><a href="#e-ex-3">#e-ex-3</a>
+<div class="symbol" id="i">
+<div class="titlebox">
+<span class="titleword">Concept</span>i</div> 
+    This symbol represents the square root of -1.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid189600"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#C" xlink:type="simple" id="MCRid189604">ℂ</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid189600" xlink:type="simple"><OMS cd="setname1" name="C" xlink:href="MCRid189604" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#i-prop-1">#i-prop-1</a>
+<div class="symbol" id="pi">
+<div class="titlebox">
+<span class="titleword">Concept</span>pi</div> A symbol to convey the notion of pi, approximately 3.142.
+    The ratio of the circumference of a circle to its diameter.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid189662"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid189666">ℝ</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid189662" xlink:type="simple"><OMS cd="setname1" name="R" xlink:href="MCRid189666" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#pi-prop-1">#pi-prop-1</a><a href="#pi-ex-3">#pi-ex-3</a>
+<div class="symbol" id="gamma">
+<div class="titlebox">
+<span class="titleword">Concept</span>gamma</div> 
+    A symbol to convey the notion of the gamma constant
+    as defined in Abramowitz and Stegun, Handbook of Mathematical
+    Functions, section 6.1.3. It is the limit of
+    1 + 1/2 + 1/3 + ... + 1/m - ln m
+    as m tends to infinity, this is approximately 0.5772 15664.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid189776"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid189779">ℝ</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid189776" xlink:type="simple"><OMS cd="setname1" name="R" xlink:href="MCRid189779" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#gamma-prop-1">#gamma-prop-1</a><a href="#gamma-ex-3">#gamma-ex-3</a>
+<div class="symbol" id="NaN">
+<div class="titlebox">
+<span class="titleword">Concept</span>NaN</div> 
+    A symbol to convey the notion of not-a-number.
+    The result of an ill-posed floating computation.
+    See IEEE standard for floating point representations.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid218464"><semantics><mi id="MCRid218466">IEEEFloat</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid218464" xlink:type="simple"><OMV name="IEEEFloat" xlink:href="MCRid218466" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#NaN-prop-1">#NaN-prop-1</a>
+<div class="example" id="based_integer-ex-1">
+<span class="titleword">Example</span>
+<p> A representation of 8 (radix 10) base 8</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid218691"><semantics><mn id="MCRid218702"> 8 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid218696">=</mo><mrow id="MCRid218705"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#based_integer" xlink:type="simple" id="id218707">based_integer</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid218713"> 8 </mn><mo separator="true">,</mo><mtext id="MCRid218716"> 10 </mtext></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid218691" xlink:type="simple"><OMA xlink:href="MCRid218694" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid218696" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid218702"> 8 </OMI><OMA xlink:href="MCRid218705" xlink:type="simple"><OMS cd="nums1" name="based_integer" xlink:href="MCRid218707" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid218713"> 8 </OMI><OMSTR xlink:type="simple" xlink:href="MCRid218716"> 10 </OMSTR></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="example" id="rational-ex-1">
+<span class="titleword">Example</span>
+<p>A representation of the rational number 1/2</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid218751"><semantics><mfrac id="MCRid218753"><mn id="MCRid218762"> 1 </mn><mn id="MCRid218765"> 2 </mn></mfrac><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid218751" xlink:type="simple"><OMA xlink:href="MCRid218753" xlink:type="simple"><OMS cd="nums1" name="rational" xlink:href="MCRid218756" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid218762"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid218765"> 2 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="lemma" id="infinity-prop-1">
+<span class="titleword">Lemma</span>
+<p> if x is a real number then x &lt; infinity </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid218803"><semantics><mfenced id="id218805" open="(" close=")" separators=""><mi id="MCRid218822">x</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="set1.xml#in" xlink:type="simple" id="MCRid218816">∈</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid218826">ℝ</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="logic1.xml#implies" xlink:type="simple" id="MCRid218807">⇒</mo><mi id="MCRid218842">x</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#lt" xlink:type="simple" id="MCRid218836">&lt;</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#infinity" xlink:type="simple" id="MCRid218846">∞</mo></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid218803" xlink:type="simple"><OMA xlink:href="MCRid218805" xlink:type="simple"><OMS cd="logic1" name="implies" xlink:href="MCRid218807" xlink:type="simple"/><OMA xlink:href="MCRid218814" xlink:type="simple"><OMS cd="set1" name="in" xlink:href="MCRid218816" xlink:type="simple"/><OMV name="x" xlink:href="MCRid218822" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid218826" xlink:type="simple"/></OMA><OMA xlink:href="MCRid218833" xlink:type="simple"><OMS cd="relation1" name="lt" xlink:href="MCRid218836" xlink:type="simple"/><OMV name="x" xlink:href="MCRid218842" xlink:type="simple"/><OMS cd="nums1" name="infinity" xlink:href="MCRid218846" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="lemma" id="e-prop-1">
+<span class="titleword">Lemma</span>
+<p> e = the sum as j ranges  from 0 to infinity of 1/(j!) </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid218890"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#e" xlink:type="simple" id="id218901">e</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid218895">=</mo><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id218907" xlink:href="arith1.xml#sum"><munderover xlink:href="arith1.xml#sum"><mo id="id218909" xlink:href="arith1.xml#sum">∑</mo><mrow xlink:href="arith1.xml#sum"><mi id="id218950" xlink:href="arith1.xml#sum">j</mi><mo xlink:href="arith1.xml#sum">=</mo><mo xlink:href="alg1.xml#zero" xlink:type="simple" id="MCRid218924">0</mo></mrow><mo xlink:href="#infinity" xlink:type="simple" id="MCRid218930">∞</mo></munderover><mfrac id="MCRid218955"><mo xlink:href="alg1.xml#one" xlink:type="simple" id="MCRid218964">1</mo><mrow><mi id="MCRid218982">j</mi><mo xlink:href="integer1.xml#factorial" xlink:type="simple" id="MCRid218973">!</mo></mrow></mfrac></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid218890" xlink:type="simple"><OMA xlink:href="MCRid218892" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid218895" xlink:type="simple"/><OMS cd="nums1" name="e" xlink:href="MCRid218901" xlink:type="simple"/><OMA xlink:href="MCRid218907" xlink:type="simple"><OMS cd="arith1" name="sum" xlink:href="MCRid218909" xlink:type="simple"/><OMA xlink:href="MCRid218915" xlink:type="simple"><OMS cd="interval1" name="integer_interval" xlink:href="MCRid218917" xlink:type="simple"/><OMS cd="alg1" name="zero" xlink:href="MCRid218924" xlink:type="simple"/><OMS cd="nums1" name="infinity" xlink:href="MCRid218930" xlink:type="simple"/></OMA><OMBIND xlink:href="MCRid218938" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid218940" xlink:type="simple"/><OMBVAR xlink:href="MCRid218947" xlink:type="simple"><OMV name="j" xlink:href="MCRid218950" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid218955" xlink:type="simple"><OMS cd="arith1" name="divide" xlink:href="MCRid218957" xlink:type="simple"/><OMS cd="alg1" name="one" xlink:href="MCRid218964" xlink:type="simple"/><OMA xlink:href="MCRid218970" xlink:type="simple"><OMS cd="integer1" name="factorial" xlink:href="MCRid218973" xlink:type="simple"/><OMV name="j" xlink:href="MCRid218982" xlink:type="simple"/></OMA></OMA></OMBIND></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="example" id="e-ex-3">
+<span class="titleword">Example</span>
+<p> 2.718 = The decimal approximation to 3 significant places of e</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid219020"><semantics><mn id="MCRid219030">2.718</mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#approx" xlink:type="simple" id="MCRid219024">∼</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#e" xlink:type="simple" id="id219035">e</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid219020" xlink:type="simple"><OMA xlink:href="MCRid219022" xlink:type="simple"><OMS cd="relation1" name="approx" xlink:href="MCRid219024" xlink:type="simple"/><OMF xlink:type="simple" xlink:href="MCRid219030" dec="2.718"/><OMS cd="nums1" name="e" xlink:href="MCRid219035" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="lemma" id="i-prop-1">
+<span class="titleword">Lemma</span>
+<p><span class="legacy">i^2 = -1</span></p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid219088"><semantics><msup id="MCRid219099"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#i" xlink:type="simple" id="id219108">i</mo><mn id="MCRid219114"> 2 </mn></msup><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid219093">=</mo><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="arith1.xml#unary_minus" xlink:type="simple" id="MCRid219120">-</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="alg1.xml#one" xlink:type="simple" id="MCRid219127">1</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid219088" xlink:type="simple"><OMA xlink:href="MCRid219091" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid219093" xlink:type="simple"/><OMA xlink:href="MCRid219099" xlink:type="simple"><OMS cd="arith1" name="power" xlink:href="MCRid219101" xlink:type="simple"/><OMS cd="nums1" name="i" xlink:href="MCRid219108" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid219114"> 2 </OMI></OMA><OMA xlink:href="MCRid219118" xlink:type="simple"><OMS cd="arith1" name="unary_minus" xlink:href="MCRid219120" xlink:type="simple"/><OMS cd="alg1" name="one" xlink:href="MCRid219127" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="lemma" id="pi-prop-1">
+<span class="titleword">Lemma</span>
+<p> pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3))) </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid219171"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#pi" xlink:type="simple" id="MCRid219182">π</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid219176">=</mo><mn id="MCRid219196"> 4 </mn><mo id="MCRid219190">⁢</mo><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id219200" xlink:href="arith1.xml#sum"><munderover xlink:href="arith1.xml#sum"><mo id="id219202" xlink:href="arith1.xml#sum">∑</mo><mrow xlink:href="arith1.xml#sum"><mi id="id219242" xlink:href="arith1.xml#sum">j</mi><mo xlink:href="arith1.xml#sum">=</mo><mo xlink:href="alg1.xml#zero" xlink:type="simple" id="MCRid219217">0</mo></mrow><mo xlink:href="#infinity" xlink:type="simple" id="MCRid219224">∞</mo></munderover><mfenced id="id219256" open="(" close=")" separators=""><mfrac id="MCRid219256"><mo xlink:href="alg1.xml#one" xlink:type="simple" id="MCRid219265">1</mo><mrow><mn id="MCRid219289"> 4 </mn><mo id="MCRid219282">⁢</mo><mi id="MCRid219292">j</mi><mo xlink:href="arith1.xml#plus" xlink:type="simple" id="MCRid219274">+</mo><mo xlink:href="alg1.xml#one" xlink:type="simple" id="MCRid219297">1</mo></mrow></mfrac></mfenced><mo xlink:href="arith1.xml#minus" xlink:type="simple" id="MCRid219250">-</mo><mfenced id="id219306" open="(" close=")" separators=""><mfrac id="MCRid219306"><mo xlink:href="alg1.xml#one" xlink:type="simple" id="MCRid219315">1</mo><mrow><mn id="MCRid219339"> 4 </mn><mo id="MCRid219332">⁢</mo><mi id="MCRid219342">j</mi><mo xlink:href="arith1.xml#plus" xlink:type="simple" id="MCRid219323">+</mo><mn id="MCRid219347"> 3 </mn></mrow></mfrac></mfenced></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid219171" xlink:type="simple"><OMA xlink:href="MCRid219174" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid219176" xlink:type="simple"/><OMS cd="nums1" name="pi" xlink:href="MCRid219182" xlink:type="simple"/><OMA xlink:href="MCRid219188" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid219190" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid219196"> 4 </OMI><OMA xlink:href="MCRid219200" xlink:type="simple"><OMS cd="arith1" name="sum" xlink:href="MCRid219202" xlink:type="simple"/><OMA xlink:href="MCRid219208" xlink:type="simple"><OMS cd="interval1" name="integer_interval" xlink:href="MCRid219210" xlink:type="simple"/><OMS cd="alg1" name="zero" xlink:href="MCRid219217" xlink:type="simple"/><OMS cd="nums1" name="infinity" xlink:href="MCRid219224" xlink:type="simple"/></OMA><OMBIND xlink:href="MCRid219231" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid219233" xlink:type="simple"/><OMBVAR xlink:href="MCRid219240" xlink:type="simple"><OMV name="j" xlink:href="MCRid219242" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid219247" xlink:type="simple"><OMS cd="arith1" name="minus" xlink:href="MCRid219250" xlink:type="simple"/><OMA xlink:href="MCRid219256" xlink:type="simple"><OMS cd="arith1" name="divide" xlink:href="MCRid219258" xlink:type="simple"/><OMS cd="alg1" name="one" xlink:href="MCRid219265" xlink:type="simple"/><OMA xlink:href="MCRid219271" xlink:type="simple"><OMS cd="arith1" name="plus" xlink:href="MCRid219274" xlink:type="simple"/><OMA xlink:href="MCRid219280" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid219282" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid219289"> 4 </OMI><OMV name="j" xlink:href="MCRid219292" xlink:type="simple"/></OMA><OMS cd="alg1" name="one" xlink:href="MCRid219297" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid219306" xlink:type="simple"><OMS cd="arith1" name="divide" xlink:href="MCRid219308" xlink:type="simple"/><OMS cd="alg1" name="one" xlink:href="MCRid219315" xlink:type="simple"/><OMA xlink:href="MCRid219321" xlink:type="simple"><OMS cd="arith1" name="plus" xlink:href="MCRid219323" xlink:type="simple"/><OMA xlink:href="MCRid219330" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid219332" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid219339"> 4 </OMI><OMV name="j" xlink:href="MCRid219342" xlink:type="simple"/></OMA><OMI xlink:type="simple" xlink:href="MCRid219347"> 3 </OMI></OMA></OMA></OMA></OMBIND></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="example" id="pi-ex-3">
+<span class="titleword">Example</span>
+<p> 3.142 = The decimal approximation to 3 significant places of
+    pi</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid219388"><semantics><mn id="MCRid219399">3.142</mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#approx" xlink:type="simple" id="MCRid219392">∼</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#pi" xlink:type="simple" id="MCRid219403">π</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid219388" xlink:type="simple"><OMA xlink:href="MCRid219390" xlink:type="simple"><OMS cd="relation1" name="approx" xlink:href="MCRid219392" xlink:type="simple"/><OMF xlink:type="simple" xlink:href="MCRid219399" dec="3.142"/><OMS cd="nums1" name="pi" xlink:href="MCRid219403" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="lemma" id="gamma-prop-1">
+<span class="titleword">Lemma</span>
+<p><span class="legacy">gamma = limit_(m -&gt; infinity)(sum_(j ranges from 1 to m)(1/j) - ln m)</span></p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid219453"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#gamma" xlink:type="simple" id="id219464">gamma</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid219458">=</mo><mrow><munder id="id219470"><mo>lim</mo><mrow><mi id="MCRid219503">m</mi><mo>↑</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#infinity" xlink:type="simple" id="MCRid219479">∞</mo></mrow></munder><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id219517" xlink:href="arith1.xml#sum"><munderover xlink:href="arith1.xml#sum"><mo id="id219519" xlink:href="arith1.xml#sum">∑</mo><mrow xlink:href="arith1.xml#sum"><mi id="id219557" xlink:href="arith1.xml#sum">j</mi><mo xlink:href="arith1.xml#sum">=</mo><mo xlink:href="alg1.xml#one" xlink:type="simple" id="MCRid219534">1</mo></mrow><mi id="MCRid219541">m</mi></munderover><mfrac id="MCRid219562"><mn id="MCRid219571"> 1 </mn><mi id="MCRid219574">j</mi></mfrac></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="arith1.xml#minus" xlink:type="simple" id="MCRid219510">-</mo><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="transc1.xml#ln" xlink:type="simple" id="MCRid219583">ln</mo><mfenced id="id219581" open="(" close=")" separators=""><mi id="MCRid219590">m</mi></mfenced></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid219453" xlink:type="simple"><OMA xlink:href="MCRid219456" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid219458" xlink:type="simple"/><OMS cd="nums1" name="gamma" xlink:href="MCRid219464" xlink:type="simple"/><OMA xlink:href="MCRid219470" xlink:type="simple"><OMS cd="limit1" name="limit" xlink:href="MCRid219472" xlink:type="simple"/><OMS cd="nums1" name="infinity" xlink:href="MCRid219479" xlink:type="simple"/><OMS cd="limit1" name="below" xlink:href="MCRid219485" xlink:type="simple"/><OMBIND xlink:href="MCRid219492" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid219494" xlink:type="simple"/><OMBVAR xlink:href="MCRid219501" xlink:type="simple"><OMV name="m" xlink:href="MCRid219503" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid219508" xlink:type="simple"><OMS cd="arith1" name="minus" xlink:href="MCRid219510" xlink:type="simple"/><OMA xlink:href="MCRid219517" xlink:type="simple"><OMS cd="arith1" name="sum" xlink:href="MCRid219519" xlink:type="simple"/><OMA xlink:href="MCRid219525" xlink:type="simple"><OMS cd="interval1" name="integer_interval" xlink:href="MCRid219528" xlink:type="simple"/><OMS cd="alg1" name="one" xlink:href="MCRid219534" xlink:type="simple"/><OMV name="m" xlink:href="MCRid219541" xlink:type="simple"/></OMA><OMBIND xlink:href="MCRid219546" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid219548" xlink:type="simple"/><OMBVAR xlink:href="MCRid219555" xlink:type="simple"><OMV name="j" xlink:href="MCRid219557" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid219562" xlink:type="simple"><OMS cd="arith1" name="divide" xlink:href="MCRid219564" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid219571"> 1 </OMI><OMV name="j" xlink:href="MCRid219574" xlink:type="simple"/></OMA></OMBIND></OMA><OMA xlink:href="MCRid219581" xlink:type="simple"><OMS cd="transc1" name="ln" xlink:href="MCRid219583" xlink:type="simple"/><OMV name="m" xlink:href="MCRid219590" xlink:type="simple"/></OMA></OMA></OMBIND></OMA></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="example" id="gamma-ex-3">
+<span class="titleword">Example</span>
+<p> 0.577 = The decimal approximation to 3 significant places of gamma</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid219630"><semantics><mn id="MCRid219640">0.577</mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#approx" xlink:type="simple" id="MCRid219634">∼</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#gamma" xlink:type="simple" id="id219644">gamma</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid219630" xlink:type="simple"><OMA xlink:href="MCRid219632" xlink:type="simple"><OMS cd="relation1" name="approx" xlink:href="MCRid219634" xlink:type="simple"/><OMF xlink:type="simple" xlink:href="MCRid219640" dec="0.577"/><OMS cd="nums1" name="gamma" xlink:href="MCRid219644" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="lemma" id="NaN-prop-1">
+<span class="titleword">Lemma</span>
+<p> NaN is not equal to NaN </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid219686"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#NaN" xlink:type="simple" id="id219697">NaN</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#neq" xlink:type="simple" id="MCRid219690">≠</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#NaN" xlink:type="simple" id="id219703">NaN</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid219686" xlink:type="simple"><OMA xlink:href="MCRid219688" xlink:type="simple"><OMS cd="relation1" name="neq" xlink:href="MCRid219690" xlink:type="simple"/><OMS cd="nums1" name="NaN" xlink:href="MCRid219697" xlink:type="simple"/><OMS cd="nums1" name="NaN" xlink:href="MCRid219703" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+
+
+</body>
+</html>

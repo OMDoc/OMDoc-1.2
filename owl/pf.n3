@@ -1,0 +1,83 @@
+# Note that namespace URIs must end with / or #
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odo:     <http://www.omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# These must be declared explicitly for OWL-DL conformity --Christoph Lange
+dc:creator
+	a	owl:AnnotationProperty .
+dc:description
+	a	owl:AnnotationProperty .
+dc:subject
+	a	owl:AnnotationProperty .
+dc:contributor
+	a	owl:AnnotationProperty .
+dc:title
+	a	owl:AnnotationProperty .
+
+<>
+      a       owl:Ontology ;
+      dc:title "OMDoc document ontology, module PF" ;
+      dc:description """OMDoc document ontology in OWL-DL, proof module.  See chapter 17 (Representing Proofs) of the OMDoc specification.
+This file is designed to be imported from the main module `omdoc'.""" ;
+      dc:creator "Christoph Lange <ch.lange@jacobs-university.de>" ;
+      dc:contributor "Normen Müller <n.mueller@jacobs-university.de>" , "Krzysztof Retel <retel@macs.hw.ac.uk>" ;
+      # Contributors, please add your name here, and in the main file omdoc.n3. --Christoph Lange
+      dc:subject "Semantic Mathematical Markup, Proofs" ;
+      owl:imports <file:st.n3> .
+
+odo:Proof
+      a       owl:Class ;
+      rdfs:subClassOf odo:NonconstitutiveStatement ;
+      dc:description """An OMDoc proof, as defined in the OMDoc specification, chapter 17.1 (Proof Structure).
+In OMDoc/XML, this is represented by the omdoc:proof element.""" ;
+      owl:disjointWith odo:Example , odo:TypeAssertion , odo:Alternative , odo:Assertion .
+
+# Adding disjointness with Proof to the classes defined by the ST module
+
+odo:Assertion
+      a       owl:Class ;
+      owl:disjointWith odo:Proof .
+
+odo:TypeAssertion
+      a       owl:Class ;
+      owl:disjointWith odo:Proof .
+
+odo:Example
+      a       owl:Class ;
+      owl:disjointWith odo:Proof .
+
+odo:Alternative
+      a       owl:Class ;
+      owl:disjointWith odo:Proof .
+
+odo:proves
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain odo:Proof ;
+      rdfs:range odo:Assertion ;
+      # Or should the range be "Theorem"? Please see the discussion on http://mathweb.org/wiki/Talk:OMDoc/document_ontology --Christoph Lange
+      # TODO Note that omdoc:proof/omdoc:derive elements can also be proved --Christoph Lange
+      rdfs:subPropertyOf odo:specifies ;
+      # Is this a kind of dependency? Please see the discussion on http://mathweb.org/wiki/Talk:OMDoc/document_ontology --Christoph Lange
+      dc:description """The statement (assertion or derivation; at most one) that is proven by this proof; see chapter 17.1 (Proof Structure) of the OMDoc specification.
+In OMDoc/XML, this is represented by the omdoc:proof/@for attribute.""" .
+
+# TODO complete this module. --Christoph Lange
+
+# Not yet fixed; see discussion on http://mathweb.org/wiki/Talk:OMDoc/document_ontology
+# 
+# <owl:ObjectProperty xml:base="&odo;" rdf:ID="uses">
+#   <dc:description>The theorem (assertion) is used by the particular proof.
+# There is no direct counterpart in the OMDoc XML schema.  It's not sure whether
+# introducing this property makes sense; see the discussion in the
+# comments.</dc:description>
+#   <rdfs:subPropertyOf rdf:resource="&odo;specifies"/>
+#   <rdfs:domain rdf:resource="&odo;Proof"/>
+#   <rdfs:range  rdf:resource="&odo;Assertion"/>
+# </owl:ObjectProperty>
+# 
+# TODO how does omdoc represent that?  I guess this property need to be replaced by a more fine-grained representation of proofs using theorems. --Christoph Lange
+# 
+# @Krzysztof Retel: I intended to describe omdoc:proof/omdoc:derive/omdoc:method/omdoc:premise[@xref="id-of-some-assertion"] --Christoph Lange

@@ -1,0 +1,46 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module DOC 
+# $Id: omdocrt.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocrt.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+
+omdoc.mtext.class |= ss|ul|ol|dl|p|note|link|table|idx
+
+omdocrt.common.attrib = id.attrib, fori.attrib, parallel.attribs
+
+ul = element ul {omdocrt.common.attrib, metadata?,li+}
+ol = element ol {omdocrt.common.attrib, metadata?,li+}
+dl = element dl {omdocrt.common.attrib, metadata?,di+}
+li = element li {omdocrt.common.attrib, metadata?,(omdoc.mtext.class)*}
+di = element di {omdocrt.common.attrib, metadata?,dt+,dd*}
+dt = element dt {omdocrt.common.attrib, metadata?,(omdoc.mtext.class)*}
+dd = element dd {omdocrt.common.attrib, metadata?,(omdoc.mtext.class)*}
+
+
+p = element p {omdocrt.common.attrib, (omdoc.mtext.class)*}
+note = element note {omdocrt.common.attrib, 
+	             attribute type {xsd:NMTOKEN}?,
+		     (omdoc.mtext.class)*}
+
+
+# a simplified html table
+table = element table {omdocrt.common.attrib, tr+}
+tr = (ss| element tr {omdocrt.common.attrib, (td|th)+})
+td = (ss| element td {omdocrt.common.attrib, (omdoc.mtext.class)*})
+th = (ss| element th {omdocrt.common.attrib, (omdoc.mtext.class)*})
+
+link = element link {omdocrt.common.attrib, 
+                     attribute href {xsd:anyURI},
+		     (omdoc.mtext.class)*}
+
+# index 
+index.att = attribute sort-by {text}?,
+	    attribute see {omdocrefs}?,
+	    attribute seealso {omdocrefs}?,
+	    attribute links {list {xsd:anyURI*}}?
+idx = element idx {(id.attrib|xref.attrib),idt?,ide+}
+ide = element ide {attribute index {xsd:NCName}?,index.att,idp*}
+idt = element idt {idrest.attribs,omdoc.mtext.class*}
+idp = element idp {index.att,omdoc.mtext.class*}

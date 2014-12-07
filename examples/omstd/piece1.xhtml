@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary piece1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary piece1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD is intended to be compatible with the corresponding
+    elements in Content MathML 2.
+
+In this CD we give a set of operators for piece-wise defined expressions.
+</div></div>
+
+
+<div class="symbol" id="piecewise">
+<div class="titlebox">
+<span class="titleword">Concept</span>piecewise</div> 
+    This operator heads an expression that is being defined piecewise. Its 
+    arguments are n objects built with the piece constructor, optionally
+    followed by one built with otherwise constructor.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid140783"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id140786" xlink:href="sts.xml#mapsto"><mfenced id="id140794" open="(" close=")" separators=""><msup id="MCRid140794"><mi id="MCRid140802">Piece</mi><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid140796">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#Object" xlink:type="simple" id="id112957">Object</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid140783" xlink:type="simple"><OMA xlink:href="MCRid140786" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid140788" xlink:type="simple"/><OMA xlink:href="MCRid140794" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid140796" xlink:type="simple"/><OMV name="Piece" xlink:href="MCRid140802" xlink:type="simple"/></OMA><OMS cd="sts" name="Object" xlink:href="MCRid112957" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="piece">
+<div class="titlebox">
+<span class="titleword">Concept</span>piece</div> 
+    This introduces an individual component of a piecewise definition. It has
+    precisely two arguments: the first is the value, and the second is a Boolean
+    (meant to be a predicate) which is true if and only if this piece is to
+    provide the value of the piecewise construct.
+    
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136658"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id136661" xlink:href="sts.xml#mapsto"><mo xlink:href="#Object" xlink:type="simple" id="id136669">Object</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname2.xml#Boolean" xlink:type="simple" id="MCRid136675">Bool</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#Object" xlink:type="simple" id="id136682">Object</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136658" xlink:type="simple"><OMA xlink:href="MCRid136661" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid136663" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid136669" xlink:type="simple"/><OMS cd="setname2" name="Boolean" xlink:href="MCRid136675" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid136682" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="otherwise">
+<div class="titlebox">
+<span class="titleword">Concept</span>otherwise</div>
+    This symbol introduces the 'default' value of a piecewise construct.
+    If none of the previous piece constructs can provide the value, this will.
+    It has a single child, the value.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid111952"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id111955" xlink:href="sts.xml#mapsto"><mo xlink:href="#Object" xlink:type="simple" id="id111963">Object</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#Object" xlink:type="simple" id="id111969">Object</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid111952" xlink:type="simple"><OMA xlink:href="MCRid111955" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid111957" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid111963" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid111969" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="otherwise-ex-1">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid112133"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id140998" xlink:href="arith1.xml#abs"><mo xlink:href="arith1.xml#abs">|</mo><mi id="MCRid141006">x</mi><mo xlink:href="arith1.xml#abs">|</mo></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid112138">=</mo><mfenced xmlns:xlink="http://www.w3.org/1999/xlink" id="id141012" xlink:href="#piecewise" open="{" close=""><mtable xlink:href="#piecewise"><mtr xlink:href="#piece"><mtd xlink:href="#piece"><mrow><mo xlink:href="arith1.xml#unary_minus" xlink:type="simple" id="MCRid141030">-</mo><mi id="MCRid141037">x</mi></mrow></mtd><mtd xlink:href="#piece"><mtext xlink:href="#piece">if</mtext></mtd><mtd xlink:href="#piece"><mi id="MCRid141051">x</mi><mo xlink:href="relation1.xml#lt" xlink:type="simple" id="MCRid141044">&lt;</mo><mn id="MCRid141055"> 0 </mn></mtd></mtr><mtr xlink:href="#piece"><mtd xlink:href="#piece"><mn id="MCRid141069"> 0 </mn></mtd><mtd xlink:href="#piece"><mtext xlink:href="#piece">if</mtext></mtd><mtd xlink:href="#piece"><mi id="MCRid141081">x</mi><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid141074">=</mo><mn id="MCRid141085"> 0 </mn></mtd></mtr><mtr id="id141090" xlink:href="#otherwise"><mtd id="" xlink:href="#otherwise"><mi id="MCRid141099">x</mi></mtd><mtd xlink:href="#otherwise" columnspan="2"><mtext xlink:href="#otherwise">otherwise</mtext></mtd></mtr></mtable></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid112133" xlink:type="simple"><OMA xlink:href="MCRid112136" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid112138" xlink:type="simple"/><OMA xlink:href="MCRid140998" xlink:type="simple"><OMS cd="arith1" name="abs" xlink:href="MCRid141000" xlink:type="simple"/><OMV name="x" xlink:href="MCRid141006" xlink:type="simple"/></OMA><OMA xlink:href="MCRid141012" xlink:type="simple"><OMS cd="piece1" name="piecewise" xlink:href="MCRid141014" xlink:type="simple"/><OMA xlink:href="MCRid141020" xlink:type="simple"><OMS cd="piece1" name="piece" xlink:href="MCRid141022" xlink:type="simple"/><OMA xlink:href="MCRid141028" xlink:type="simple"><OMS cd="arith1" name="unary_minus" xlink:href="MCRid141030" xlink:type="simple"/><OMV name="x" xlink:href="MCRid141037" xlink:type="simple"/></OMA><OMA xlink:href="MCRid141042" xlink:type="simple"><OMS cd="relation1" name="lt" xlink:href="MCRid141044" xlink:type="simple"/><OMV name="x" xlink:href="MCRid141051" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid141055"> 0 </OMI></OMA></OMA><OMA xlink:href="MCRid141060" xlink:type="simple"><OMS cd="piece1" name="piece" xlink:href="MCRid141062" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid141069"> 0 </OMI><OMA xlink:href="MCRid141072" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid141074" xlink:type="simple"/><OMV name="x" xlink:href="MCRid141081" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid141085"> 0 </OMI></OMA></OMA><OMA xlink:href="MCRid141090" xlink:type="simple"><OMS cd="piece1" name="otherwise" xlink:href="MCRid141092" xlink:type="simple"/><OMV name="x" xlink:href="MCRid141099" xlink:type="simple"/></OMA></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

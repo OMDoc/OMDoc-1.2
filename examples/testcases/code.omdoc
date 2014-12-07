@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_code.omdoc">
+
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>                                                                     
+
+<theory xml:id="test_code">
+
+<code xml:id="mycode" style="foo" for="#bar" theory="th"
+      requires="something">
+  <metadata>
+    <dc:title>metadata for code</dc:title>
+  </metadata>
+  <data pto="x" pto-version="y">some data</data>
+  <data  pto="x" pto-version="y">more data</data>
+  
+  <input>
+    <CMP>input</CMP>
+    <CMP xml:lang="zh">shuru</CMP>
+    <FMP/>
+    <FMP/>
+  </input>
+  
+  <output>
+    <CMP>output</CMP>
+    <CMP xml:lang="zh">shuchu</CMP>
+    <FMP/>
+    <FMP/>
+  </output>
+  
+  <effect>
+    <CMP>effect</CMP>
+    <CMP xml:lang="zh">chengxiao</CMP>
+    <FMP/>
+    <FMP/>
+  </effect>
+</code>      
+
+</theory>
+</omdoc>
+

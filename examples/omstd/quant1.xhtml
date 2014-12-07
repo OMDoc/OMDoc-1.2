@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary quant1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary quant1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD holds the definitions of the basic universal ("for all")
+    quantifier and existential ("there exists") quantifier. It is
+    intended to be `compatible' with the MathML elements representing
+    these quantifiers. 
+  </div></div>
+
+
+<div class="symbol" id="forall">
+<div class="titlebox">
+<span class="titleword">Concept</span>forall</div> 
+    This symbol represents the universal ("for all") quantifier which takes two
+    arguments. It must be placed within an OMBIND element. The first argument is the
+    bound variables (placed within an OMBVAR element), and the second is an expression. 
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid182621"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#binder" xlink:type="simple" id="id182623">binder</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid182621" xlink:type="simple"><OMS cd="sts" name="binder" xlink:href="MCRid182623" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="exists">
+<div class="titlebox">
+<span class="titleword">Concept</span>exists</div> 
+    This symbol represents the existential ("there exists") quantifier
+    which takes two arguments. It must be placed within an OMBIND element. The first
+    argument is the bound variables (placed within an OMBVAR element), and the second
+    is an expression.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154759"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#binder" xlink:type="simple" id="id154761">binder</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154759" xlink:type="simple"><OMS cd="sts" name="binder" xlink:href="MCRid154761" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="forall-ex-1">
+<span class="titleword">Example</span>
+<p>An example to represent the statement that 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154295"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id154331" xlink:href="arith1.xml#abs"><mo xlink:href="arith1.xml#abs">|</mo><mrow><mo xlink:href="transc1.xml#sin" xlink:type="simple" id="MCRid154297id154342">sin</mo><mfenced id="id154297id154340" open="(" close=")" separators=""><mi id="MCRid154297id154348">x</mi></mfenced></mrow><mo xlink:href="arith1.xml#abs">|</mo></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#leq" xlink:type="simple" id="MCRid154297id154325">≤</mo><mn id="MCRid154297id154355">1.0</mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154295" xlink:type="simple"/></annotation-xml></semantics></math> for all x.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154303"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#forall"><mo xlink:href="#forall">∀</mo><mrow id="MCRid154314"><mi id="MCRid154315">x</mi></mrow><mo xlink:href="#forall" separator="true">.</mo><mrow id="id154331" xlink:href="arith1.xml#abs"><mo xlink:href="arith1.xml#abs">|</mo><mrow><mo xlink:href="transc1.xml#sin" xlink:type="simple" id="MCRid154342">sin</mo><mfenced id="id154340" open="(" close=")" separators=""><mi id="MCRid154348">x</mi></mfenced></mrow><mo xlink:href="arith1.xml#abs">|</mo></mrow><mo xlink:href="relation1.xml#leq" xlink:type="simple" id="MCRid154325">≤</mo><mn id="MCRid154355">1.0</mn></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154303" xlink:type="simple"><OMBIND xlink:href="MCRid154306" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid154308" xlink:type="simple"/><OMBVAR xlink:href="MCRid154314" xlink:type="simple"><OMV name="x" xlink:href="MCRid154315" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid154319" xlink:type="simple"><OMS cd="relation1" name="leq" xlink:href="MCRid154325" xlink:type="simple"/><OMA xlink:href="MCRid154331" xlink:type="simple"><OMS cd="arith1" name="abs" xlink:href="MCRid154333" xlink:type="simple"/><OMA xlink:href="MCRid154340" xlink:type="simple"><OMS cd="transc1" name="sin" xlink:href="MCRid154342" xlink:type="simple"/><OMV name="x" xlink:href="MCRid154348" xlink:type="simple"/></OMA></OMA><OMF xlink:type="simple" xlink:href="MCRid154355" dec="1.0"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="example" id="exists-ex-1">
+<span class="titleword">Example</span>
+<p>
+    An example which represents the statement that there is no solution to
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154388"><semantics><msup id="MCRid154390id182931"><mi id="MCRid154390id182942">x</mi><mi id="MCRid154390id182946">n</mi></msup><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="arith1.xml#plus" xlink:type="simple" id="MCRid154390id182924">+</mo><msup id="MCRid154390id182951"><mi id="MCRid154390id182959">y</mi><mi id="MCRid154390id182964">n</mi></msup><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid154390id182915">=</mo><msup id="MCRid154390id182970"><mi id="MCRid154390id182978">z</mi><mi id="MCRid154390id182982">n</mi></msup><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154388" xlink:type="simple"/></annotation-xml></semantics></math> for 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154395"><semantics><mi id="MCRid154397id182901">n</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#gt" xlink:type="simple" id="MCRid154397id182895">&gt;</mo><mn id="MCRid154397id182905"> 2 </mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154395" xlink:type="simple"/></annotation-xml></semantics></math> that is: it is not true that there are
+    x,y,z,n with  <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154402"><semantics><mi id="MCRid154404id182901">n</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#gt" xlink:type="simple" id="MCRid154404id182895">&gt;</mo><mn id="MCRid154404id182905"> 2 </mn><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154402" xlink:type="simple"/></annotation-xml></semantics></math> and 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154409"><semantics><msup id="MCRid154411id182931"><mi id="MCRid154411id182942">x</mi><mi id="MCRid154411id182946">n</mi></msup><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="arith1.xml#plus" xlink:type="simple" id="MCRid154411id182924">+</mo><msup id="MCRid154411id182951"><mi id="MCRid154411id182959">y</mi><mi id="MCRid154411id182964">n</mi></msup><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid154411id182915">=</mo><msup id="MCRid154411id182970"><mi id="MCRid154411id182978">z</mi><mi id="MCRid154411id182982">n</mi></msup><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154409" xlink:type="simple"/></annotation-xml></semantics></math></p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154416"><semantics><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="logic1.xml#not" xlink:type="simple" id="MCRid154421">¬</mo><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#exists"><mo xlink:href="#exists">∃</mo><mrow id="MCRid154436"><mi id="MCRid154438">x</mi><mo separator="true">,</mo><mi id="MCRid154442">y</mi><mo separator="true">,</mo><mi id="MCRid154446">z</mi><mo separator="true">,</mo><mi id="MCRid182876">n</mi></mrow><mo xlink:href="#exists" separator="true">.</mo><mfenced id="id182889" open="(" close=")" separators=""><mi id="MCRid182901">n</mi><mo xlink:href="relation1.xml#gt" xlink:type="simple" id="MCRid182895">&gt;</mo><mn id="MCRid182905"> 2 </mn></mfenced><mo xlink:href="logic1.xml#and" xlink:type="simple" id="MCRid182883">∧</mo><mfenced id="id182909" open="(" close=")" separators=""><msup id="MCRid182931"><mi id="MCRid182942">x</mi><mi id="MCRid182946">n</mi></msup><mo xlink:href="arith1.xml#plus" xlink:type="simple" id="MCRid182924">+</mo><msup id="MCRid182951"><mi id="MCRid182959">y</mi><mi id="MCRid182964">n</mi></msup><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid182915">=</mo><msup id="MCRid182970"><mi id="MCRid182978">z</mi><mi id="MCRid182982">n</mi></msup></mfenced></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154416" xlink:type="simple"><OMA xlink:href="MCRid154419" xlink:type="simple"><OMS cd="logic1" name="not" xlink:href="MCRid154421" xlink:type="simple"/><OMBIND xlink:href="MCRid154428" xlink:type="simple"><OMS cd="quant1" name="exists" xlink:href="MCRid154430" xlink:type="simple"/><OMBVAR xlink:href="MCRid154436" xlink:type="simple"><OMV name="x" xlink:href="MCRid154438" xlink:type="simple"/><OMV name="y" xlink:href="MCRid154442" xlink:type="simple"/><OMV name="z" xlink:href="MCRid154446" xlink:type="simple"/><OMV name="n" xlink:href="MCRid182876" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid182881" xlink:type="simple"><OMS cd="logic1" name="and" xlink:href="MCRid182883" xlink:type="simple"/><OMA xlink:href="MCRid182889" xlink:type="simple"><OMS cd="relation1" name="gt" xlink:href="MCRid182895" xlink:type="simple"/><OMV name="n" xlink:href="MCRid182901" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid182905"> 2 </OMI></OMA><OMA xlink:href="MCRid182909" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid182915" xlink:type="simple"/><OMA xlink:href="MCRid182921" xlink:type="simple"><OMS cd="arith1" name="plus" xlink:href="MCRid182924" xlink:type="simple"/><OMA xlink:href="MCRid182931" xlink:type="simple"><OMS cd="arith1" name="power" xlink:href="MCRid182933" xlink:type="simple"/><OMV name="x" xlink:href="MCRid182942" xlink:type="simple"/><OMV name="n" xlink:href="MCRid182946" xlink:type="simple"/></OMA><OMA xlink:href="MCRid182951" xlink:type="simple"><OMS cd="arith1" name="power" xlink:href="MCRid182953" xlink:type="simple"/><OMV name="y" xlink:href="MCRid182959" xlink:type="simple"/><OMV name="n" xlink:href="MCRid182964" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid182970" xlink:type="simple"><OMS cd="arith1" name="power" xlink:href="MCRid182972" xlink:type="simple"/><OMV name="z" xlink:href="MCRid182978" xlink:type="simple"/><OMV name="n" xlink:href="MCRid182982" xlink:type="simple"/></OMA></OMA></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

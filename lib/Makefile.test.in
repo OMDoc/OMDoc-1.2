@@ -1,0 +1,41 @@
+########################################################################
+# This make library supplies the targets for the UNIX make-based validation
+# of OMDoc documents wrt. various Schemata
+# Copyright Michael Kohlhase (c) 2007 released under the Lesser Gnu Public License (LGPL)
+# $Id: Makefile.test.in 6824 2007-09-17 06:44:46Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/lib/Makefile.test.in $
+########################################################################
+
+test:		test-dtd #test-undef
+
+test-dtd:	$(OMDOCS_DTD_TESTED) 
+test-rnc:	$(OMDOCS_RNC_TESTED) 
+test-rng:	$(OMDOCS_RNG_TESTED) 
+
+test-undef:	$(OMDOCS_UNDEF_TESTED) 
+
+test-result:	$(PMML_DTD_TESTED) $(HTML_DTD_TESTED) 
+
+.%.rnc-tested:	%.$(OMDocExt) $(RNC)
+		$(RNCPARSE) $(RNCDIR)/omdoc.rnc $< > $@ && touch $@
+
+.%.rng-tested:	%.$(OMDocExt) $(RNG)
+		$(RNGPARSE) $< > $@ && touch $@
+
+.%.dtd-tested:	%.$(OMDocExt) $(DTD)
+		$(XMLPARSE) $< > $@ && touch $@
+
+.%.html-dtd-tested: %.html 
+		$(XMLPARSE) $< > $@ && touch $@
+
+.%.pmml-dtd-tested: %.xml
+		$(XMLPARSE) $< > $@ && touch $@
+
+.%.undef-tested: %.$(OMDocExt) $(OOXSLDIR)/varia/undefined-OMS.xsl
+		$(XSLT) -o $@  $(TERMINATE) $(OOXSLDIR)/varia/undefined-OMS.xsl $(firstword $<)
+
+test-clean:	
+		rm -f .*.*-tested .*.tested 
+
+test-all:	test-clean test
+

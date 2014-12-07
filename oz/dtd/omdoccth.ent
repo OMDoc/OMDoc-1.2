@@ -1,0 +1,23 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2): Module CTH Entities
+     PUBLIC: -//OMDoc//ENTITIES OMDoc CTH V1.2//EN
+     SYSTEM: http://www.mathweb.org/omdoc/dtd/omdoccth.ent
+   See the documentation and examples at http://www.mathweb.org/omdoc 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdoccth.morphism.qname "%omdoc.pfx;morphism">
+<!ENTITY % omdoccth.inclusion.qname "%omdoc.pfx;inclusion">
+<!ENTITY % omdoccth.theory-inclusion.qname "%omdoc.pfx;theory-inclusion">
+<!ENTITY % omdoccth.decomposition.qname "%omdoc.pfx;decomposition">
+<!ENTITY % omdoccth.axiom-inclusion.qname "%omdoc.pfx;axiom-inclusion">
+
+<!-- set the following three entities to the empty string, when not including
+     module CTH -->
+<!ENTITY % omdoccth.sth.extra "|%omdoccth.inclusion.qname;">
+<!ENTITY % omdoccth.imports.mix ",(%omdoccth.morphism.qname;)?">
+<!ENTITY % omdoccth.class "|%omdoccth.theory-inclusion.qname;
+                           |%omdoccth.decomposition.qname;
+                           |%omdoccth.axiom-inclusion.qname;">
+
+

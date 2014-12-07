@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+       xml:id="limit1-omdoc" 
+       >
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary limit1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/limit1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds the basic notion of the limits of unary functions
+    whilst its variable tend (either from above, below or both
+    sides) to a particular value.
+  </dc:description>
+</metadata>
+
+<theory xml:id="limit1">
+
+<imports xml:id="limit1-imports-sts" from="sts.omdoc#sts"/>
+
+<symbol name="limit" xml:id="limit">
+<metadata>
+<dc:description>
+    This symbol is used to denote the limit of a unary function. It
+    takes 3 arguments: the limiting value of the argument, the method of
+    approach (either null, above, below or both-sides) and the function.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/>
+	<OMV name="TendsTo"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMS name="NumericalValue" cd="sts"/>
+	  <OMS name="NumericalValue" cd="sts"/>
+	</OMA>
+	<OMS name="NumericalValue" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<presentation for="#limit" role="applied">
+  <xslt format="html" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:text>lim</xsl:text>
+  <xsl:element name="sub" namespace="http://www.w3.org/1999/xhtml">
+    <xsl:value-of select="*[4]/*[2]/*[1]/@name"/>
+    <xsl:choose>
+      <xsl:when test="*[3]/@name='both_sides'"><xsl:text>&#8594;</xsl:text></xsl:when>
+      <xsl:when test="*[3]/@name='above'"><xsl:text>&#8595;</xsl:text></xsl:when>
+      <xsl:when test="*[3]/@name='below'"><xsl:text>&#8593;</xsl:text></xsl:when>
+    </xsl:choose>
+    <xsl:apply-templates select="*[2]"/>
+  </xsl:element>
+  <xsl:apply-templates select="*[4]/*[3]"/>
+</xslt>
+<xslt format="TeX" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:text>\lim_{</xsl:text>
+<xsl:value-of select="*[4]/*[2]/*[1]/@name"/>
+<xsl:choose>
+  <xsl:when test="*[3]/@name='both_sides'"><xsl:text>\rightarrow</xsl:text></xsl:when>
+  <xsl:when test="*[3]/@name='above'"><xsl:text>\downarrow</xsl:text></xsl:when>
+  <xsl:when test="*[3]/@name='below'"><xsl:text>\uparrow</xsl:text></xsl:when>
+</xsl:choose>
+<xsl:apply-templates select="*[2]"/>
+<xsl:text>}</xsl:text>
+<xsl:apply-templates select="*[4]/*[3]"/>
+</xslt>
+<xslt format="pmml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:element name="mrow" xmlns="http://www.w3.org/1998/Math/MathML">
+    <xsl:element name="munder">
+      <xsl:attribute name="id"><xsl:value-of select="concat($prefix,generate-id())"/></xsl:attribute>
+      <xsl:element name="mo"><xsl:text>lim</xsl:text></xsl:element>
+      <xsl:element name="mrow">
+	<xsl:apply-templates select="*[4]/*[2]/*[1]">
+	  <xsl:with-param name="prefix" select="$prefix"/>
+	</xsl:apply-templates>
+	<xsl:choose>
+	  <xsl:when test="*[3]/@name='both_sides'"><xsl:element name="mo">&#8594;</xsl:element></xsl:when>
+	  <xsl:when test="*[3]/@name='above'"><xsl:element name="mo">&#8595;</xsl:element></xsl:when>
+	  <xsl:when test="*[3]/@name='below'"><xsl:element name="mo">&#8593;</xsl:element></xsl:when>
+	</xsl:choose>
+	<xsl:apply-templates select="*[2]">
+	  <xsl:with-param name="prefix" select="$prefix"/>
+	</xsl:apply-templates>
+      </xsl:element>
+    </xsl:element>
+    <xsl:apply-templates select="*[4]/*[3]">
+      <xsl:with-param name="prefix" select="$prefix"/>
+    </xsl:apply-templates>
+  </xsl:element>
+</xslt>
+</presentation>
+
+<presentation for="#limit">
+  <use format="cmml" element="sum"/>
+  <use  format="default">lim</use>
+</presentation>
+
+<ref type="cite" xref="#limit-ex-1"/>
+
+<symbol name="both_sides" xml:id="both_sides">
+<metadata>
+<dc:description> 
+    This symbol is used within a limit construct to show the limit is
+    being approached from both sides. It takes no arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="TendsTo"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<ref type="cite" xref="#both_sides-ex-1"/>
+
+<symbol name="above" xml:id="above">
+<metadata>
+<dc:description> 
+    This symbol is used within a limit construct to show the limit is
+    being approached from above. It takes no arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="TendsTo"/></OMOBJ>
+  </type>
+</symbol>
+<ref type="cite" xref="#above-ex-1"/>
+
+<symbol name="below" xml:id="below">
+<metadata>
+<dc:description>
+    This symbol is used within a limit construct to show the limit is
+    being approached from below. It takes no arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="TendsTo"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<ref type="cite" xref="#below-ex-1"/>
+<symbol name="null" xml:id="null">
+<metadata>
+<dc:description>
+    This symbol is used within a limit construct to avoid specifying the method of
+    approach to the limit. It takes no arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="TendsTo"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<ref type="cite" xref="#null-ex-1"/>
+</theory>
+
+<!-- rolled out to avoid circular imports -->
+<theory xml:id="limit1-nonconstitutive">
+<imports xml:id="limit1-nonconstitutive-imports-limit1" from="#limit1"/>
+<imports xml:id="limit1-nonconstitutive-imports-fns1" from="fns1.omdoc#fns1"/>
+<imports xml:id="limit1-nonconstitutive-imports-transc1" from="transc1.omdoc#transc1"/>
+
+<example xml:id="limit-ex-1" type="for" for="#limit">
+  <CMP>The limit of sin(x) as x tends to 0</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="both_sides"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR> <OMV name="x"/> </OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+<example xml:id="both_sides-ex-1" type="for" for="#both_sides">
+  <CMP>The limit of sin(x) as x tends to 0 from either direction</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="both_sides"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+<example xml:id="above-ex-1" type="for" for="#above">
+  <CMP>The limit of sin(x) as x tends to 0 from above</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="above"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+<example xml:id="below-ex-1" type="for" for="#below">
+  <CMP>The limit of sin(x) as x tends to 0 from below</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="below"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+<example xml:id="null-ex-1" type="for" for="#null">
+  <CMP>The limit of sin(x) as x tends to 0</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="null"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>

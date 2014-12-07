@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module ADT 
+  $Id: omdocadt.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocadt.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="omdoc.class" combine="choice">
+    <ref name="adt"/>
+  </define>
+  <define name="omdocadt.sym.attrib">
+    <ref name="id.attrib"/>
+    <ref name="omdocst.scope.attrib"/>
+    <attribute name="name">
+      <data type="NCName"/>
+    </attribute>
+  </define>
+  <!--
+    adts are abstract data types, they are short forms for groups of symbols 
+    and their definitions, therefore, they have much the same attributes.
+  -->
+  <define name="adt">
+    <element name="adt">
+      <ref name="omdoc.toplevel.attribs"/>
+      <optional>
+        <attribute name="parameters">
+          <list>
+            <zeroOrMore>
+              <data type="NCName"/>
+            </zeroOrMore>
+          </list>
+        </attribute>
+      </optional>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <oneOrMore>
+        <ref name="sortdef"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="adttype">
+    <choice>
+      <value>loose</value>
+      <value>generated</value>
+      <value>free</value>
+    </choice>
+  </define>
+  <define name="sortdef">
+    <choice>
+      <ref name="ss"/>
+      <element name="sortdef">
+        <ref name="omdocadt.sym.attrib"/>
+        <optional>
+          <attribute name="role">
+            <value>sort</value>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="type">
+            <ref name="adttype"/>
+          </attribute>
+        </optional>
+        <optional>
+          <ref name="metadata"/>
+        </optional>
+        <zeroOrMore>
+          <choice>
+            <ref name="constructor"/>
+            <ref name="insort"/>
+          </choice>
+        </zeroOrMore>
+        <optional>
+          <ref name="recognizer"/>
+        </optional>
+      </element>
+    </choice>
+  </define>
+  <define name="insort">
+    <choice>
+      <ref name="ss"/>
+      <element name="insort">
+        <attribute name="for">
+          <ref name="omdocref"/>
+        </attribute>
+      </element>
+    </choice>
+  </define>
+  <!-- for is a reference to a sort symbol element -->
+  <define name="constructor">
+    <choice>
+      <ref name="ss"/>
+      <element name="constructor">
+        <ref name="omdocadt.sym.attrib"/>
+        <optional>
+          <ref name="sym.role.attrib"/>
+        </optional>
+        <optional>
+          <ref name="metadata"/>
+        </optional>
+        <zeroOrMore>
+          <ref name="argument"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="recognizer">
+    <choice>
+      <ref name="ss"/>
+      <element name="recognizer">
+        <ref name="omdocadt.sym.attrib"/>
+        <optional>
+          <ref name="sym.role.attrib"/>
+        </optional>
+        <optional>
+          <ref name="metadata"/>
+        </optional>
+      </element>
+    </choice>
+  </define>
+  <define name="argument">
+    <choice>
+      <ref name="ss"/>
+      <element name="argument">
+        <ref name="type"/>
+        <optional>
+          <ref name="selector"/>
+        </optional>
+      </element>
+    </choice>
+  </define>
+  <!-- sort is a reference to a sort symbol element p -->
+  <define name="selector">
+    <choice>
+      <ref name="ss"/>
+      <element name="selector">
+        <ref name="omdocadt.sym.attrib"/>
+        <optional>
+          <ref name="sym.role.attrib"/>
+        </optional>
+        <optional>
+          <attribute name="total">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <ref name="metadata"/>
+        </optional>
+      </element>
+    </choice>
+  </define>
+</grammar>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary lc.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary lc.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, Olga Caprotti</div>
+<div class="date"/>
+<div class="description">Lambda Calculus </div></div>
+
+
+<div class="symbol" id="type">
+<div class="titlebox">
+<span class="titleword">Concept</span>type</div> Attribution tag to denote type-judgement
+  </div>
+
+<div class="symbol" id="typecoerce">
+<div class="titlebox">
+<span class="titleword">Concept</span>typecoerce</div> Attribution tag to denote type-judgement with coercion
+  </div>
+
+<div class="symbol" id="PiType">
+<div class="titlebox">
+<span class="titleword">Concept</span>PiType</div> The type constructor of dependant function space.
+      It binds the (type-attributed) variables in the body, that is 
+      an OpenMath object.
+  </div>
+
+<div class="symbol" id="mapsto">
+<div class="titlebox">
+<span class="titleword">Concept</span>mapsto</div> The type constructor of non-dependant function space.
+      The first n-1 children denote the types of the arguments, 
+      the last denotes the return type. Contrary to sts:mapsto, arguments
+      cannot be variables but have to be OpenMath objects that map to ground
+      OpenMath terms (they contain no variables).	
+  </div>
+
+<div class="symbol" id="Lambda">
+<div class="titlebox">
+<span class="titleword">Concept</span>Lambda</div> The abstraction constructor. It is 
+      followed by a list of  variables
+      and an OpenMath object.
+  </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for MathML2 Content Elements
+    SYSTEM http://www.mathweb.org/omdoc/rnc/mathml2-content.rnc	  		 
+  (c) 2005 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/1998/Math/MathML" xmlns:ns1="http://creativecommons.org/ns" xmlns:omdoc="http://www.mathweb.org/omdoc" xmlns:openmath="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mathml="http://www.w3.org/1998/Math/MathML" xmlns:elements="http://purl.org/dc/elements/1.1/">
+  <xs:import schemaLocation="omdocattribs.xsd"/>
+  <xs:import namespace="http://creativecommons.org/ns" schemaLocation="omdoccc.xsd"/>
+  <xs:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="omdocdc.xsd"/>
+  <xs:import namespace="http://www.mathweb.org/omdoc" schemaLocation="omdoc.xsd"/>
+  <xs:import namespace="http://www.openmath.org/OpenMath" schemaLocation="openmath2.xsd"/>
+  <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:attributeGroup name="Definition.attrib">
+    <xs:attribute name="encoding" type="xs:string"/>
+    <xs:attribute name="definitionURL" type="xs:anyURI"/>
+  </xs:attributeGroup>
+  <!--  This is the XML schema module for the token elements of the content part of MathML. -->
+  <xs:complexType name="Content-token.content" mixed="true">
+    <xs:group minOccurs="0" ref="mathml:Presentation-expr.class"/>
+  </xs:complexType>
+  <!-- the content of "cn" may have <sep> elements in it -->
+  <xs:element name="sep">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="cn" substitutionGroup="mathml:Content-tokens.class">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="mathml:sep"/>
+        <xs:group ref="mathml:Presentation-expr.class"/>
+      </xs:choice>
+      <xs:attribute name="type">
+        <xs:annotation>
+          <xs:documentation>attribute base {xsd:positiveInteger [1,...,36]},</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="e-notation"/>
+            <xs:enumeration value="integer"/>
+            <xs:enumeration value="rational"/>
+            <xs:enumeration value="real"/>
+            <xs:enumeration value="complex-cartesian"/>
+            <xs:enumeration value="complex-polar"/>
+            <xs:enumeration value="constant"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "ci" -->
+  <xs:element name="ci" substitutionGroup="mathml:Content-tokens.class">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="mathml:Content-token.content">
+          <xs:attribute name="type" type="xs:string"/>
+          <xs:attributeGroup ref="mathml:Definition.attrib"/>
+          <xs:attributeGroup ref="mathml:Common.attrib"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <!-- "csymbol" -->
+  <xs:element name="csymbol" substitutionGroup="mathml:Content-tokens.class">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="mathml:Content-token.content">
+          <xs:attributeGroup ref="mathml:Definition.attrib"/>
+          <xs:attributeGroup ref="mathml:Common.attrib"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <!-- And the group of everything -->
+  <xs:element name="Content-tokens.class" abstract="true" substitutionGroup="mathml:ContExpr.class"/>
+  <!--  This is an XML Schema module for the "arithmetic" operators of content  MathML. -->
+  <xs:attributeGroup name="Arith.type">
+    <xs:attributeGroup ref="mathml:Definition.attrib"/>
+    <xs:attributeGroup ref="mathml:Common.attrib"/>
+  </xs:attributeGroup>
+  <xs:element name="abs" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="conjugate" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="arg" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="real" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="imaginary" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="floor" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="power" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="root" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="minus" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="plus" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="sum" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="times" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="product" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="max" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="min" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="factorial" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="quotient" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="divide" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="rem" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="gcd" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="lcm" substitutionGroup="mathml:Content-arith.class"/>
+  <xs:element name="Content-arith.class" abstract="true" substitutionGroup="mathml:ContExpr.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Arith.type"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  This is an XML Schema module for operators dealing with functions in content MathML. -->
+  <xs:attributeGroup name="Functions.type">
+    <xs:attributeGroup ref="mathml:Definition.attrib"/>
+    <xs:attributeGroup ref="mathml:Common.attrib"/>
+  </xs:attributeGroup>
+  <!-- "compose" -->
+  <xs:element name="compose" substitutionGroup="mathml:Content-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Domain, codomain and image -->
+  <xs:element name="domain" substitutionGroup="mathml:Content-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="codomain" substitutionGroup="mathml:Content-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="image" substitutionGroup="mathml:Content-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "domainofapplication" -->
+  <xs:element name="domainofapplication" substitutionGroup="mathml:Content-functions.class">
+    <xs:complexType>
+      <xs:group ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- identity -->
+  <xs:element name="ident" substitutionGroup="mathml:Content-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Content-functions.class" abstract="true" substitutionGroup="mathml:ContExpr.class"/>
+  <!--  This is an XML Schema module for the logic operators of content MathML. -->
+  <xs:attributeGroup name="Logic.type">
+    <xs:attributeGroup ref="mathml:Definition.attrib"/>
+    <xs:attributeGroup ref="mathml:Common.attrib"/>
+  </xs:attributeGroup>
+  <xs:element name="and" substitutionGroup="mathml:Content-logic.class"/>
+  <xs:element name="or" substitutionGroup="mathml:Content-logic.class"/>
+  <xs:element name="xor" substitutionGroup="mathml:Content-logic.class"/>
+  <xs:element name="not" substitutionGroup="mathml:Content-logic.class"/>
+  <xs:element name="exists" substitutionGroup="mathml:Content-logic.class"/>
+  <xs:element name="forall" substitutionGroup="mathml:Content-logic.class"/>
+  <xs:element name="implies" substitutionGroup="mathml:Content-logic.class"/>
+  <xs:element name="Content-logic.class" abstract="true" substitutionGroup="mathml:ContExpr.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Logic.type"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  This is an XML Schema module for the basic constructs of content MathML. -->
+  <xs:element name="apply" substitutionGroup="mathml:Content-constructs.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interval" substitutionGroup="mathml:Content-constructs.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Content-expr.class"/>
+        <xs:group ref="mathml:Content-expr.class"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+      <xs:attribute name="closure">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="closed"/>
+            <xs:enumeration value="open"/>
+            <xs:enumeration value="open-closed"/>
+            <xs:enumeration value="closed-open"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inverse" substitutionGroup="mathml:Content-constructs.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="condition" substitutionGroup="mathml:Content-constructs.class">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="declare" substitutionGroup="mathml:Content-constructs.class">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attribute name="type" type="xs:string"/>
+      <xs:attribute name="scope" type="xs:string"/>
+      <xs:attribute name="nargs" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="occurrence">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="prefix"/>
+            <xs:enumeration value="infix"/>
+            <xs:enumeration value="function-model"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lambda" substitutionGroup="mathml:Content-constructs.class">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "piecewise" and its inner elements -->
+  <xs:element name="otherwise">
+    <xs:complexType>
+      <xs:group ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="piece">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="piecewise" substitutionGroup="mathml:Content-constructs.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="mathml:piece"/>
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="mathml:otherwise"/>
+          <xs:element ref="mathml:piece"/>
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bvar" substitutionGroup="mathml:Content-constructs.class">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="degree" substitutionGroup="mathml:Content-constructs.class">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Content-constructs.class" abstract="true" substitutionGroup="mathml:ContExpr.class"/>
+  <!--  This is the XML Schema module for the basic constants of MathML content. -->
+  <xs:attributeGroup name="Constant.type">
+    <xs:attributeGroup ref="mathml:Definition.attrib"/>
+    <xs:attributeGroup ref="mathml:Common.attrib"/>
+  </xs:attributeGroup>
+  <!-- Basic sets -->
+  <xs:element name="naturalnumbers" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="primes" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="integers" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="rationals" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="reals" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="complexes" substitutionGroup="mathml:Content-constants.class"/>
+  <!-- Empty set -->
+  <xs:element name="emptyset" substitutionGroup="mathml:Content-constants.class"/>
+  <!-- Basic constants -->
+  <xs:element name="exponentiale" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="imaginaryi" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="pi" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="eulergamma" substitutionGroup="mathml:Content-constants.class"/>
+  <!-- Boolean constants -->
+  <xs:element name="true" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="false" substitutionGroup="mathml:Content-constants.class"/>
+  <!-- Infinty -->
+  <xs:element name="infinity" substitutionGroup="mathml:Content-constants.class"/>
+  <!-- NotANumber -->
+  <xs:element name="notanumber" substitutionGroup="mathml:Content-constants.class"/>
+  <xs:element name="Content-constants.class" abstract="true" substitutionGroup="mathml:ContExpr.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Constant.type"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  This is an XML Schema module for the elementary functions in content MathML. -->
+  <xs:attributeGroup name="Elementary-functions.type">
+    <xs:attributeGroup ref="mathml:Definition.attrib"/>
+    <xs:attributeGroup ref="mathml:Common.attrib"/>
+  </xs:attributeGroup>
+  <!-- Exp and logs -->
+  <xs:element name="exp" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ln" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="log" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- special element of the base of logarithms -->
+  <xs:element name="logbase" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:group ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Trigonometric functions -->
+  <xs:element name="sin" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cos" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tan" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sec" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="csc" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cot" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arcsin" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arccos" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arctan" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arccot" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arccsc" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arcsec" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Hyperbolic trigonometric functions -->
+  <xs:element name="sinh" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cosh" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tanh" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sech" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="csch" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="coth" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arccosh" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arccoth" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arccsch" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arcsech" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arcsinh" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arctanh" substitutionGroup="mathml:Content-elementary-functions.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Elementary-functions.type"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- And the group of everything -->
+  <xs:element name="Content-elementary-functions.class" abstract="true" substitutionGroup="mathml:ContExpr.class"/>
+  <!--  This is an XML Schema module for the relational operators of content MathML. -->
+  <!-- a common type for all this -->
+  <xs:attributeGroup name="Relations.type">
+    <xs:attributeGroup ref="mathml:Definition.attrib"/>
+    <xs:attributeGroup ref="mathml:Common.attrib"/>
+  </xs:attributeGroup>
+  <xs:element name="eq" substitutionGroup="mathml:Content-relations.class"/>
+  <xs:element name="neq" substitutionGroup="mathml:Content-relations.class"/>
+  <xs:element name="leq" substitutionGroup="mathml:Content-relations.class"/>
+  <xs:element name="lt" substitutionGroup="mathml:Content-relations.class"/>
+  <xs:element name="geq" substitutionGroup="mathml:Content-relations.class"/>
+  <xs:element name="gt" substitutionGroup="mathml:Content-relations.class"/>
+  <xs:element name="equivalent" substitutionGroup="mathml:Content-relations.class"/>
+  <xs:element name="approx" substitutionGroup="mathml:Content-relations.class"/>
+  <xs:element name="factorof" substitutionGroup="mathml:Content-relations.class"/>
+  <!-- And the group of everything -->
+  <xs:element name="Content-relations.class" abstract="true" substitutionGroup="mathml:ContExpr.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Relations.type"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "annotation" -->
+  <xs:element name="annotation">
+    <xs:complexType mixed="true">
+      <xs:attribute name="encoding" type="xs:string"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "annotation-xml" -->
+  <xs:complexType name="anyElement">
+    <xs:sequence>
+      <xs:any processContents="skip"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="annotation-xml">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="mathml:anyElement">
+          <xs:attributeGroup ref="mathml:Definition.attrib"/>
+          <xs:attributeGroup ref="mathml:Common.attrib"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <!-- "semantics" -->
+  <xs:element name="semantics" substitutionGroup="mathml:ContExpr.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="mathml:Content-expr.class"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="mathml:annotation"/>
+          <xs:element ref="mathml:annotation-xml"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="encoding" type="xs:string"/>
+      <xs:attribute name="definitionURL" type="xs:anyURI"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  This is an XML Schema module for the part of content MathML dealing with sets and lists. -->
+  <!-- "set" ("type" could be "multiset" or "normal" or anything else) -->
+  <xs:element name="set" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attribute name="type" type="xs:string"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "list" -->
+  <xs:element name="list" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attribute name="order">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="lexicographic"/>
+            <xs:enumeration value="numeric"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- "union" -->
+  <xs:element name="union" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="intersect" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="in" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notin" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="subset" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="prsubset" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notsubset" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notprsubset" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setdiff" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="card" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cartesianproduct" substitutionGroup="mathml:Content-sets.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- And the group of everything -->
+  <xs:element name="Content-sets.class" abstract="true" substitutionGroup="mathml:ContExpr.class"/>
+  <!--  This is an XML Schema module for the linear algebra part of content MathML. -->
+  <!-- "vector" -->
+  <xs:element name="vector" substitutionGroup="mathml:Content-linear-algebra.class">
+    <xs:complexType>
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="matrix" substitutionGroup="mathml:Content-linear-algebra.class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="mathml:matrixrow"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="matrixrow">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="determinant" substitutionGroup="mathml:Content-linear-algebra.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transpose" substitutionGroup="mathml:Content-linear-algebra.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selector" substitutionGroup="mathml:Content-linear-algebra.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="vectorproduct" substitutionGroup="mathml:Content-linear-algebra.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="scalarproduct" substitutionGroup="mathml:Content-linear-algebra.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="outerproduct" substitutionGroup="mathml:Content-linear-algebra.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Content-linear-algebra.class" abstract="true" substitutionGroup="mathml:ContExpr.class"/>
+  <!--  This is an XML Schema module for the calculus operators of content  MathML. -->
+  <xs:attributeGroup name="calculus.type">
+    <xs:attributeGroup ref="mathml:Definition.attrib"/>
+    <xs:attributeGroup ref="mathml:Common.attrib"/>
+  </xs:attributeGroup>
+  <xs:element name="int" substitutionGroup="mathml:Content-calculus.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:calculus.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="diff" substitutionGroup="mathml:Content-calculus.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:calculus.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="partialdiff" substitutionGroup="mathml:Content-calculus.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:calculus.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="limit" substitutionGroup="mathml:Content-calculus.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:calculus.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lowlimit" substitutionGroup="mathml:Content-calculus.class">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:calculus.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="uplimit" substitutionGroup="mathml:Content-calculus.class">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:calculus.type"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tendsto" substitutionGroup="mathml:Content-calculus.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:calculus.type"/>
+      <xs:attribute name="type" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Content-calculus.class" abstract="true" substitutionGroup="mathml:ContExpr.class"/>
+  <!--  This is an XML Schema module for the vector calculus operators of content MathML. -->
+  <xs:element name="divergence" substitutionGroup="mathml:Content-vector-calculus.class"/>
+  <xs:element name="grad" substitutionGroup="mathml:Content-vector-calculus.class"/>
+  <xs:element name="curl" substitutionGroup="mathml:Content-vector-calculus.class"/>
+  <xs:element name="laplacian" substitutionGroup="mathml:Content-vector-calculus.class"/>
+  <!-- And the group of everything -->
+  <xs:element name="Content-vector-calculus.class" abstract="true" substitutionGroup="mathml:ContExpr.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  This is an XML Schema module for the statistical operators of content MathML. -->
+  <xs:element name="mean" substitutionGroup="mathml:Content-statistics.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sdev" substitutionGroup="mathml:Content-statistics.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="variance" substitutionGroup="mathml:Content-statistics.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="median" substitutionGroup="mathml:Content-statistics.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mode" substitutionGroup="mathml:Content-statistics.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="moment" substitutionGroup="mathml:Content-statistics.class">
+    <xs:complexType>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="momentabout" substitutionGroup="mathml:Content-statistics.class">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="mathml:Content-expr.class"/>
+      <xs:attributeGroup ref="mathml:Definition.attrib"/>
+      <xs:attributeGroup ref="mathml:Common.attrib"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Content-statistics.class" abstract="true" substitutionGroup="mathml:ContExpr.class"/>
+</xs:schema>

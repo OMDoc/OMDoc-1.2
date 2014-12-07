@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary linalg3.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary linalg3.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD  treats matrices and vectors in a column oriented fashion
+    (using matrixcolumn's).
+  </div></div>
+
+
+<div class="symbol" id="vector">
+<div class="titlebox">
+<span class="titleword">Concept</span>vector</div>
+    This symbol represents an n-ary function used to construct (or describe)
+    vectors.  Vectors in this CD are considered to be column vectors, and must 
+    therefore be transposed to be considered as row vectors.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid117725"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id117727" xlink:href="sts.xml#mapsto"><mfenced id="id117736" open="(" close=")" separators=""><msup id="MCRid117736"><mi id="MCRid117744">AbelianGroupMult</mi><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid117738">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid117749">Vector</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid117725" xlink:type="simple"><OMA xlink:href="MCRid117727" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid117729" xlink:type="simple"/><OMA xlink:href="MCRid117736" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid117738" xlink:type="simple"/><OMV name="AbelianGroupMult" xlink:href="MCRid117744" xlink:type="simple"/></OMA><OMV name="Vector" xlink:href="MCRid117749" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="vector-ex-1">
+<span class="titleword">Example</span>
+<p>An example of vector using n arguments. 
+    The specific vector constructed in this example is transpose of [3,6,9].
+  </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid89817"><semantics><mrow id="MCRid89819"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#vector" xlink:type="simple" id="id89822">vector</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid89828"> 3 </mn><mo separator="true">,</mo><mn id="MCRid89831"> 6 </mn><mo separator="true">,</mo><mn id="MCRid89834"> 9 </mn></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid89817" xlink:type="simple"><OMA xlink:href="MCRid89819" xlink:type="simple"><OMS cd="linalg3" name="vector" xlink:href="MCRid89822" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid89828"> 3 </OMI><OMI xlink:type="simple" xlink:href="MCRid89831"> 6 </OMI><OMI xlink:type="simple" xlink:href="MCRid89834"> 9 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="matrixcolumn">
+<div class="titlebox">
+<span class="titleword">Concept</span>matrixcolumn</div> 
+    This symbol is an n-ary constructor used to represent columns of
+    matrices. Its arguments should be members of a ring.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid89875"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id89878" xlink:href="sts.xml#mapsto"><mfenced id="id89886" open="(" close=")" separators=""><msup id="MCRid89886"><mi id="MCRid89259">Ring</mi><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid89888">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="mathmltypes.xml#vector_type" xlink:type="simple" id="MCRid89264">Vectors</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid89875" xlink:type="simple"><OMA xlink:href="MCRid89878" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid89880" xlink:type="simple"/><OMA xlink:href="MCRid89886" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid89888" xlink:type="simple"/><OMV name="Ring" xlink:href="MCRid89259" xlink:type="simple"/></OMA><OMS cd="mathmltypes" name="vector_type" xlink:href="MCRid89264" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="matrixcolumn-ex-1">
+<span class="titleword">Example</span>
+<p>
+    Representation of a column of a matrix of length two containing the integers
+    [1,0]</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid89299"><semantics><mrow id="MCRid89301"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#matrixcolumn" xlink:type="simple" id="id89304">matrixcolumn</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid89310"> 1 </mn><mo separator="true">,</mo><mn id="MCRid89313"> 0 </mn></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid89299" xlink:type="simple"><OMA xlink:href="MCRid89301" xlink:type="simple"><OMS cd="linalg3" name="matrixcolumn" xlink:href="MCRid89304" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid89310"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid89313"> 0 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="matrix">
+<div class="titlebox">
+<span class="titleword">Concept</span>matrix</div>
+    This symbol is an n-ary matrix constructor which requires matrixcolumn's
+    as arguments. It is used to represent matrices.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid113638"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id113641" xlink:href="sts.xml#mapsto"><mfenced id="id113650" open="(" close=")" separators=""><msup id="MCRid113650"><mi id="MCRid113658">MatrixRow</mi><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid113652">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid113663">Matrix</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid113638" xlink:type="simple"><OMA xlink:href="MCRid113641" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid113643" xlink:type="simple"/><OMA xlink:href="MCRid113650" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid113652" xlink:type="simple"/><OMV name="MatrixRow" xlink:href="MCRid113658" xlink:type="simple"/></OMA><OMV name="Matrix" xlink:href="MCRid113663" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="matrix-ex-1">
+<span class="titleword">Example</span>
+<p>Representation of a 2x2 identity matrix</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid113698"><semantics><mrow id="MCRid113701"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#matrix" xlink:type="simple" id="id113703">matrix</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid113710"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#matrixcolumn" xlink:type="simple" id="id113712">matrixcolumn</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid113718"> 1 </mn><mo separator="true">,</mo><mn id="MCRid113721"> 0 </mn></mrow><mo fence="true">)</mo></mrow></mrow><mo separator="true">,</mo><mrow id="MCRid113726"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#matrixcolumn" xlink:type="simple" id="id113728">matrixcolumn</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid113734"> 0 </mn><mo separator="true">,</mo><mn id="MCRid113738"> 1 </mn></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid113698" xlink:type="simple"><OMA xlink:href="MCRid113701" xlink:type="simple"><OMS cd="linalg3" name="matrix" xlink:href="MCRid113703" xlink:type="simple"/><OMA xlink:href="MCRid113710" xlink:type="simple"><OMS cd="linalg3" name="matrixcolumn" xlink:href="MCRid113712" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid113718"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid113721"> 0 </OMI></OMA><OMA xlink:href="MCRid113726" xlink:type="simple"><OMS cd="linalg3" name="matrixcolumn" xlink:href="MCRid113728" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid113734"> 0 </OMI><OMI xlink:type="simple" xlink:href="MCRid113738"> 1 </OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

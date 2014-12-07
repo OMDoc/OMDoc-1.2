@@ -1,0 +1,9 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2): Module MATH Entities
+     PUBLIC: -//OMDoc//ENTITIES OMDoc MOBJ V1.2//EN
+     SYSTEM: http://www.mathweb.org/omdoc/dtd/omdocmobj.ent
+   See the documentation and examples at http://www.mathweb.org/omdoc 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocmtext.omtext.qname "%omdoc.pfx;omtext">

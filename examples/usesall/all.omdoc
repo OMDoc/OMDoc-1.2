@@ -1,0 +1,508 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" 
+	        [<!ENTITY % other.nsp.decl "xmlns:mbase CDATA #IMPLIED">
+		 <!ENTITY % other.attribs "mbase:mid CDATA #IMPLIED">]>
+<!--  An example of OMDoc, that uses everything, this  is intended as an 
+      example of proper usage and as a torture test for OMDoc tools.
+
+      Initial Version: Michael Kohlhase 2000-07-02
+     $Id: all.omdoc 8024 2008-09-09 16:51:59Z kohlhase $
+     $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/dtd/omdoc-ST-model.mod $
+      Comments are welcome! (send mail to users@omdoc.org or developers@omdoc.org)
+      See the documentation and examples at http://www.omdoc.org
+      (c) 2000, 2001 Michael Kohlhase, released under the GNU Public License -->
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://www.mathweb.org/omdoc"
+       xmlns:mbase="http://www.mathweb.org/mbase"
+       xml:id="usesall" 
+       mbase:mid="1111111" 
+       >
+ <metadata>
+  <dc:title>A Feature-Complete OM Document</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator> 
+  <dc:contributor role="clb">Andreas Franke</dc:contributor>
+  <dc:subject>OM Documents</dc:subject>
+  <dc:description>
+  An example of OMDoc, that uses everything, to be used for debugging of OMDoc
+  tools
+  </dc:description>
+  <dc:publisher>MathWeb.org</dc:publisher>
+  <dc:date action="initial">2000-07-02T00:00:00</dc:date>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:identifier scheme="other">SR-00-02-usesall</dc:identifier>
+  <dc:source xmlns="http://purl.org/dc/elements/1.1/">
+   This document does not have a prior source, from which it is derived</dc:source>
+  <dc:language>en-us</dc:language>
+  <dc:rights>
+   Copyright (c) 2000 by Michael Kohlhase, 
+   This Document is released under the Gnu Public Licencse.
+  </dc:rights>
+ </metadata>
+
+ <omtext xml:id="usesall-intro" type="introduction">
+  <CMP xml:lang="en">
+   In this document, we use all OMDoc elements as a reference document,
+   to test OMDoc tools, such as parsers and for didactic purposes
+  </CMP>
+  <CMP xml:lang="de">
+   In diesem Referenzdokument benutzen wir alle OMDoc Elemente zum Testen von
+   OMDoc Tools, z. B. Parsern und fuer didaktische Zwecke</CMP>
+</omtext>
+
+ <omtext xml:id="useall-t1">
+  <CMP xml:lang="en">We will take the theory of monoids, rings  and
+  natural numbers as a first example.</CMP>
+ </omtext>
+
+<theory xml:id="monoids">
+  <metadata>
+    <dc:subject>The theory of monoids</dc:subject>
+  </metadata>
+
+  <imports from="poset.omdoc#posets"/>
+  <imports from="../logics/simpletypes.omdoc#simpletypes" />
+  <imports from="../logics/pl0.omdoc#pl0"/>
+  <imports from="../logics/ind.omdoc#ind"/>
+
+  <symbol name="monoid">
+    <metadata>
+      <dc:subject xml:lang="en">monoid</dc:subject>
+      <dc:subject xml:lang="de">Monoid</dc:subject>
+      <dc:subject xml:lang="it">monoide</dc:subject>
+    </metadata>
+    <type system="simply-typed"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> (any -> any -> any) -> any -> bool</OMSTR></OMOBJ>
+    </type>
+  </symbol>
+
+  <definition xml:id="mon-d1" for="#monoid" type="informal">
+   <CMP> 
+    A structure (M,*,e), in which (M,*) is a semi-group 
+    with unit e is called a monoid.
+   </CMP>
+  </definition>
+ </theory>
+
+ <example xml:id="nat-monoid-ex" for="#mon-d1" type="for">
+  <CMP xml:lang="en">The natural numbers with addition form a monoid</CMP>
+ </example>
+
+<theory xml:id="group">
+  <imports xml:id="group-import" from="#monoids" type="global"/>
+  <axiom xml:id="group-ax"><CMP> Every object in 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoids" name="set"/></OMOBJ> has an inverse. 
+  </CMP></axiom>
+</theory>
+ 
+
+
+<theory xml:id="ring">
+  <symbol name="ring.set"/> 
+  <symbol name="ring.plus"/> 
+  <symbol name="ring.times"/> 
+  <symbol name="ring.zero"/> 
+  <symbol name="ring.one"/> 
+  <symbol name="ring.setstar"/> 
+  <imports xml:id="ring.add.import" from="#group" type="global">
+    <morphism xml:id="ring.add.import-morph"> 
+      <requation xml:id="ring.add.import-morph-set"> 
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="group" name="set"/></OMOBJ>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="ring.set"/></OMOBJ>
+      </requation> 
+      <requation xml:id="ring.add.import-morph-op">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="group" name="op"/></OMOBJ>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="ring.plus"/></OMOBJ>
+      </requation> 
+      <requation  xml:id="ring.add.import-morph-neut"> 
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="group" name="neut"/></OMOBJ>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="ring.zero"/></OMOBJ>
+      </requation> 
+    </morphism> 
+  </imports> 
+  <imports xml:id="ring.mult.import" from="#monoids" type="global"> 
+    <morphism xml:id="ring.mult.import-morph"> 
+      <requation  xml:id="ring.mult.import-morph-set"> 
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoids" name="set"/></OMOBJ>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="ring.setstar"/></OMOBJ>
+      </requation> 
+      <requation  xml:id="ring.mult.import-morph-op"> 
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoids" name="op"/></OMOBJ>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="ring.times"/></OMOBJ>
+      </requation> 
+      <requation  xml:id="ring.mult.import-morph-neut">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoids" name="neut"/></OMOBJ>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="ring.one"/></OMOBJ>
+      </requation> 
+    </morphism> 
+  </imports> 
+  <definition xml:id="Ring.setstar.def" for="#ring.setstar" type="informal"> 
+    <CMP> <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="ring.setstar"/></OMOBJ> is 
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="ring.set"/></OMOBJ> without 
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring"  name="ring.zero"/></OMOBJ>.  
+    </CMP> 
+  </definition> 
+  <axiom xml:id="Ring.distribution"> 
+    <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoids" name="plus"/></OMOBJ> distributes over 
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoids" name="times"/></OMOBJ> 
+    </CMP> 
+  </axiom>
+</theory>
+
+ <theory xml:id="nats">
+  <metadata>
+    <dc:subject>natural number theory</dc:subject>
+    <dc:description>The Peano Axiomatization of Natural Numbers</dc:description>
+  </metadata>
+  <adt xml:id="nat-adt">
+   <sortdef name="pos-nat" type="free">
+     <metadata><dc:subject>the set of positive natural numbers</dc:subject></metadata>
+    <constructor name="succ">
+      <metadata><dc:subject>The successor function</dc:subject></metadata>
+     <argument>
+	<type><OMOBJ><OMS cd="nats" name="nat"/></OMOBJ></type>
+	<selector total="yes" name="pred">
+	  <metadata><dc:subject>The predecessor function</dc:subject></metadata>
+	</selector>
+     </argument>
+    </constructor>
+   </sortdef>
+   <sortdef name="nat"  type="free">
+     <metadata><dc:subject>the set of natural numbers</dc:subject></metadata>
+    <constructor name="zero"/>
+    <insort for="#pos-nat"/>
+   </sortdef>
+  </adt>
+  <symbol name="plus">
+    <metadata><dc:subject>plus</dc:subject></metadata>
+  </symbol>
+  <definition xml:id="plus-def" for="#plus" type="inductive">
+   <CMP>The recursive definition of plus</CMP>
+   <requation xml:id="nat-plus-base">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="nats" name="plus"/>
+	<OMV name="X"/>
+	<OMS cd="nats" name="zero"/>
+      </OMA>
+    </OMOBJ>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>
+   </requation>
+   <requation xml:id="nat-plus-step">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS cd="nats" name="plus"/>
+      <OMA><OMS cd="nats" name="succ"/><OMV name="X"/></OMA>
+      <OMV name="Y"/>
+     </OMA>
+    </OMOBJ>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+       <OMS cd="nats" name="succ"/>
+      <OMA>
+	<OMS cd="nats" name="plus"/>
+	<OMV name="X"/>
+	<OMV name="Y"/>
+       </OMA>
+      </OMA></OMOBJ>
+   </requation>
+  </definition>
+  <symbol name="times">
+    <metadata><dc:subject>times</dc:subject></metadata>
+  </symbol>
+  <symbol name="unary-minus-nat">
+    <metadata><dc:subject>minus</dc:subject></metadata>
+  </symbol>
+  <presentation xml:id="umn" for="#unary-minus-nat" role="applied" 
+                fixity="prefix" precedence="5">
+      <use format="html">-</use>
+  </presentation>
+  <presentation xml:id="pl" for="#plus" role="applied" fixity="assoc" precedence="20">
+      <use format="html">+</use>
+  </presentation>
+  <presentation xml:id="ti" for="#times" role="applied" fixity="assoc" precedence="10">
+      <use format="html">*</use>
+  </presentation>
+  <presentation xml:id="ze" for="#zero">
+      <use format="html">0</use>
+  </presentation>
+  <presentation xml:id="su" for="#succ" role="applied" >
+      <use format="html">s</use>
+  </presentation>
+  <assertion xml:id="prec-test">
+   <CMP>
+    We will use an arithmetical expression to test the precedence:
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+     <OMS cd="relation1" name="eq"/>
+     <OMA>
+      <OMS cd="nats" name="plus"/>
+      <OMA>
+       <OMS cd="nats" name="times"/>
+       <OMI>3</OMI>
+       <OMI>4</OMI>
+      </OMA>
+     <OMI>7</OMI>
+    </OMA>
+    <OMA>
+     <OMS cd="nats" name="unary-minus-nat"/>
+     <OMV name="X"/>
+    </OMA>
+   </OMA>
+   </OMOBJ>
+ this one should not contain any brackets. The next one is a variant of the
+ left-hand side, it needs brackets around the sum. 
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"> 
+  <OMA>
+      <OMS cd="nats" name="times"/>
+      <OMA>
+       <OMS cd="nats" name="plus"/>
+       <OMI>3</OMI>
+       <OMI>4</OMI>
+      </OMA>
+     <OMI>7</OMI>
+    </OMA>
+</OMOBJ>, since in our example, multiplication binds stronger than addition.
+   </CMP>
+ </assertion>
+
+ </theory>
+
+  <alternative xml:id="nat-plus-def-2" for="#plus"
+		   type="inductive" theory="nats" 
+		   entailed-by="plus-def" entails="plus-def"
+		   entailed-by-thm="dummy1" entails-thm="dummy2">
+  <CMP>The recursive definition of plus on the second argument</CMP>
+  <requation xml:id="nat-plus-2-base">
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+       <OMS cd="nats" name="plus"/>
+       <OMS cd="nats" name="zero"/>
+       <OMV name="X"/>
+     </OMA>
+   </OMOBJ>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>
+  </requation>
+  <requation xml:id="nat-plus-2-step">
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+     <OMS cd="nats" name="plus"/>
+     <OMV name="Y"/>
+     <OMA><OMS cd="nats" name="succ"/><OMV name="X"/></OMA>
+    </OMA></OMOBJ>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS cd="nats" name="succ"/>
+     <OMA>
+       <OMS cd="nats" name="plus"/>
+       <OMV name="X"/>
+       <OMV name="Y"/>
+      </OMA>
+     </OMA></OMOBJ>
+  </requation>
+ </alternative>
+ 
+
+ <theory xml:id="Param">                   
+  <imports xml:id="Param-imp" from="poset.omdoc#poset" type="global"/>
+  <symbol name="Elem" role="sort"/>       
+  <symbol name="ord"/>
+  <axiom xml:id="po-ax">
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA><OMS cd="posets" name="partial-order"/><OMS cd="Param" name="ord"/></OMA>
+    </OMOBJ>
+   </FMP>
+  </axiom>
+
+  <assertion xml:id="po-ass">
+      <CMP> we try to format 3+3 for Mathematica</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA><OMS cd="arith1" name="plus"/><OMI>3</OMI><OMI>3</OMI></OMA>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+ </theory>
+                                       
+<assertion xml:id="geq-ord" theory="nats"> 
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="geq" cd="nats"/></OMOBJ> is a
+    partial order on <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="nat" cd="nats"/></OMOBJ>
+  </CMP>
+</assertion>
+
+<theory xml:id="List">
+  <imports xml:id="list.im" type="global" from="#Param"/>
+  <symbol name="list-sort" role="sort"/>
+  <symbol name="cons"/>
+  <symbol name="nil"/>
+  <symbol name="ordered"/>
+</theory>
+
+<theory xml:id="nat-list">
+  <imports xml:id="nat-list.im-nat" type="global" from="#nats"/>
+  <imports xml:id="nat-list.im-Element" type="local"  from="#List">
+    <morphism xml:id="elem-nat">
+      <requation xml:id="elem-nat-eq">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="Param" name="Elem"/></OMOBJ>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="nats" name="Nat"/></OMOBJ>
+      </requation>
+    </morphism>
+  </imports>
+  <inclusion via="elem-nat-incl"/>
+</theory>
+
+<axiom-inclusion xml:id="elem-nat-incl" from="#nat.thy" to="#Param">
+  <morphism xml:id="elem-nat-incl-morph" base="elem-nat"/>
+  <path-just local="dummy1" globals="dummy2 dummy3"/>
+</axiom-inclusion>
+
+
+<!-- now, we test the presentation elements and its use -->
+
+<theory xml:id="tpres">
+
+<symbol name="nullary"/>
+<presentation xml:id="nullary-pres" for="#nullary">
+  <use format="TeX">N</use>
+  <use format="html">N</use>
+</presentation>
+  
+
+<symbol name="prefix-lisp"/>
+<presentation for="#prefix-lisp" xml:id="prefix-lisp-pres" 
+              role="applied" fixity="prefix" lbrack="["
+              rbrack="]" bracket-style="lisp">
+ <use  format="TeX">PL</use>
+ <use  format="html">pl</use>
+</presentation>
+
+<symbol name="prefix-math"/>
+<presentation for="#prefix-math" xml:id="prefix-math-pres" 
+   role="applied" fixity="prefix" lbrack="[" rbrack="]">
+ <use  format="TeX" requires="texdefs">PM</use>
+ <use  format="html">pm</use>
+</presentation>
+
+<symbol name="infix"/>
+<presentation xml:id="infix-pres" for="#infix" 
+              fixity="infix" role="applied" lbrack="\{" rbrack="\}">
+ <use format="TeX"  requires="texdefs">IN</use>
+ <use format="html">in</use>
+</presentation>
+
+<symbol name="assoc"/>
+<presentation xml:id="assoc-pres" for="#assoc" 
+              fixity="assoc" role="applied" lbrack="!" rbrack="!">
+ <use format="TeX">{:}</use>
+ <use format="html">:</use>
+</presentation>
+  
+<symbol name="postfix"/>
+<presentation xml:id="postfix-pres" for="#postfix" fixity="postfix" role="applied">
+ <use format="TeX" requires="texdefs">PM</use>
+ <use format="TeX">pm</use>
+</presentation>
+
+<symbol name="mixfix"/>
+<presentation xml:id="mixfix-pres" for="#mixfix" role="applied" lbrack="(" rbrack=")">
+ <use format="html">
+  <![CDATA[<xsl:apply-templates select="*[2]" mode="html"/>
+           |-<xsl:apply-templates select="*[3]" mode="html"/>
+           :<xsl:apply-templates select="*[4]" mode="html"/>]]>
+</use>
+ <use format="TeX">
+  <![CDATA[<xsl:apply-templates select="*[2]" mode="html"/>
+           \vdash<xsl:apply-templates select="*[3]" mode="html"/>
+           :<xsl:apply-templates select="*[4]" mode="html"/>]]>
+</use>
+</presentation>
+
+</theory>
+
+<omtext xml:id="test">
+  <CMP> Now, that we have set up everything, let us test it.</CMP>
+</omtext>
+
+<omtext xml:id="test1">
+  <CMP> 
+    We first test a nullary constant: 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="tpres" name="nullary"/></OMOBJ>
+    for which we have defined custom markup, and one for which we did not:
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="tpres" name="generic"/></OMOBJ>
+    and then a prefix (math brackets):     
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="tpres" name="prefix-math"/>
+	<OMV  name="X"/>
+	<OMV  name="Y"/>
+      </OMA>
+    </OMOBJ>
+    then a prefix with lisp brackets:  
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="tpres" name="prefix-lisp"/>
+	<OMV  name="X"/>
+	<OMV  name="Y"/>
+      </OMA>
+    </OMOBJ>
+    an infix operator, (note that this is only defined for binary operators, it
+    disregards all other arguments):
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="tpres" name="infix"/>
+	<OMV name="X"/>
+	<OMV name="Y"/>
+      </OMA>
+    </OMOBJ>.
+
+    and an associative operator (this should duplicate the function between any two arguments):
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="tpres" name="assoc"/>
+	<OMV name="X"/>
+	<OMV name="Y"/>
+	<OMV name="Z"/>
+	<OMV name="U"/>
+	<OMV name="V"/>
+      </OMA>
+</OMOBJ>.
+
+    finally, we test a mixfix operator for which we have defined custom markup
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="tpres" name="mixfix"/>
+	<OMV name="G"/>
+	<OMV name="A"/>
+	<OMV name="alpha"/>
+      </OMA>
+    </OMOBJ>.
+
+    Of course, we can also have presentation for attributes, for instance for the
+    type attribute: 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMS cd="pl0" name="bool"/>
+		<OMS cd="ind" name="ind"/>
+		<OMV name="alpha"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="X"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMS cd="logic1" name="true"/>
+      </OMBIND>
+    </OMOBJ>
+  </CMP>
+</omtext>
+
+</omdoc>
+

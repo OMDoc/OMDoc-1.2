@@ -1,0 +1,6 @@
+This directory holds synatctic test documents for variaous top-level OMDoc elements. When
+they were first produced they were relatively systematic, but they have been
+poorly maintained in the last years. 
+
+However, sometimes, they still catch errors in the validation schemata, so we keep
+them around.

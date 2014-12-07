@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A Mock RelaxNG schema for MathML for use in (OMDoc 1.2)
+  $Id: mockmml2.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/mockmml2.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="math.AnyElement">
+    <element>
+      <nsName ns="http://www.w3.org/1998/Math/MathML"/>
+      <zeroOrMore>
+        <attribute>
+          <anyName/>
+        </attribute>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="AnyElement"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="math">
+    <ref name="math.AnyElement"/>
+  </define>
+</grammar>

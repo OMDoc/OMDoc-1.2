@@ -1,0 +1,26 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module QUIZ 
+# $Id: omdocquiz.rnc 8373 2009-06-07 04:19:16Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocquiz.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+omdoc.class |=  exercise | hint | mc | solution
+
+exercise = element exercise {id.attrib, fori.attrib, 
+	                     omdocmtxt.MCF.content,
+			     hint*, 
+			     (solution*|mc*)}
+
+omdocpf.opt.content = notAllowed
+
+hint = element hint {omdoc.toplevel.attribs,fori.attrib, omdocmtxt.MCF.content}
+solution = element solution {omdoc.toplevel.attribs,fori.attrib,metadata?,(omdoc.class | omgroup)*}
+mc = element mc {omdoc.toplevel.attribs,fori.attrib,choice,hint?,answer}
+
+choice = (ss| element choice {id.attrib,omdocmtxt.MCF.content})
+
+answer = (ss| element answer {id.attrib, 
+                      attribute verdict {"true" | "false"}?, 
+                      omdocmtxt.MCF.content})
+

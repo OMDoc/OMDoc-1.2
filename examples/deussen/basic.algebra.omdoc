@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+       xml:id="basic.algebra.omdoc" >
+
+  <metadata>
+   <dc:title xml:lang="en">Basic Notions of Algebra</dc:title>
+   <dc:title xml:lang="de">Grundlegende Begriffe der Algebra</dc:title>
+   <dc:creator role="ant">Barbara Schuett Kerber</dc:creator>
+   <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:source>Deussen: Halbgruppen und Automaten, Teil I, Springer Verlag, 
+          Heidleberger Taschenbuecher, Sammlung Informatik Nr. 99, 1971.
+  </dc:source>
+  </metadata>
+
+<theory xml:id="basic.algebra">
+
+<symbol name="notequal" role="object" scope="global">
+  <metadata><dc:subject  xml:lang="de">ungleich</dc:subject><dc:subject>not equal</dc:subject></metadata>
+</symbol>
+
+<definition xml:id="notequal.def" for="#notequal" type="simple">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+   <OMBIND>
+     <OMS cd="fns1" name="lambda"/>
+       <OMBVAR>
+         <OMV name="X"/>
+         <OMV name="Y"/>
+       </OMBVAR>
+       <OMA>
+         <OMS cd="logic1" name="not"/>
+         <OMA>
+           <OMS cd="relation1" name="eq"/>
+           <OMV name="X"/>
+           <OMV name="Y"/>
+         </OMA>
+       </OMA>
+    </OMBIND>
+  </OMOBJ>
+</definition>
+
+<symbol name="associative" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">assoziativ</dc:subject><dc:subject>associative</dc:subject></metadata>
+</symbol>
+
+<definition xml:id="associative.def" for="#associative" type="simple">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"> 
+ <OMBIND>
+<OMS cd="fns1" name="lambda"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="G"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMV name="G"/>
+</OMA>
+</OMA>
+</OMATP>
+<OMV name="F"/>
+</OMATTR>
+</OMBVAR>
+<OMBIND>
+<OMS cd="quant1" name="forall"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="Y"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="Z"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="relation1" name="eq"/>
+<OMA>
+<OMV name="F"/>
+<OMA>
+<OMV name="F"/>
+<OMV name="X"/>
+<OMV name="Y"/>
+</OMA>
+<OMV name="Z"/>
+</OMA>
+<OMA>
+<OMV name="F"/>
+<OMV name="X"/>
+<OMA>
+<OMV name="F"/>
+<OMV name="Y"/>
+<OMV name="Z"/>
+</OMA>
+</OMA>
+</OMA>
+</OMBIND>
+</OMBIND>
+  </OMOBJ>
+</definition>
+
+<symbol name="commutative" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">kommutativ</dc:subject><dc:subject>commutative</dc:subject></metadata>
+</symbol>
+
+<definition xml:id="commutative.def" for="#commutative" type="simple">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath"> 
+   
+<OMBIND>
+<OMS cd="fns1" name="lambda"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="G"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMV name="G"/>
+</OMA>
+</OMA>
+</OMATP>
+<OMV name="F"/>
+</OMATTR>
+</OMBVAR>
+<OMBIND>
+<OMS cd="quant1" name="forall"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="Y"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="relation1" name="eq"/>
+<OMA>
+<OMV name="F"/>
+<OMV name="X"/>
+<OMV name="Y"/>
+</OMA>
+<OMA>
+<OMV name="F"/>
+<OMV name="Y"/>
+<OMV name="X"/>
+</OMA>
+</OMA>
+</OMBIND>
+</OMBIND>
+  </OMOBJ>
+</definition>
+
+<symbol name="subset" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">Teilmenge</dc:subject><dc:subject>subset</dc:subject></metadata>
+</symbol>
+
+<definition xml:id="subset.def" for="#subset" type="simple">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+<OMBIND>
+<OMS cd="fns1" name="lambda"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="U"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="G"/>
+</OMATTR>
+</OMBVAR>
+<OMBIND>
+<OMS cd="quant1" name="forall"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="A"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="logic1" name="implies"/>
+<OMA>
+<OMV name="U"/>
+<OMV name="X"/>
+</OMA>
+<OMA>
+<OMV name="G"/>
+<OMV name="X"/>
+</OMA>
+</OMA>
+</OMBIND>
+</OMBIND>
+  </OMOBJ>
+</definition>
+
+<symbol name="left-distributive" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">linksdistributiv</dc:subject><dc:subject> left distributive</dc:subject></metadata>
+</symbol>
+
+<definition xml:id="left-distributive.def" for="#left-distributive" type="simple">
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+<OMBIND>
+<OMS cd="fns1" name="lambda"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="G"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMV name="G"/>
+</OMA>
+</OMA>
+</OMATP>
+<OMV name="F"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMV name="G"/>
+</OMA>
+</OMA>
+</OMATP>
+<OMV name="H"/>
+</OMATTR>
+</OMBVAR>
+<OMBIND>
+<OMS cd="quant1" name="forall"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="Y"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="Z"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="relation1" name="eq"/>
+<OMA>
+<OMV name="H"/>
+<OMV name="X"/>
+<OMA>
+<OMV name="F"/>
+<OMV name="Y"/>
+<OMV name="Z"/>
+</OMA>
+</OMA>
+<OMA>
+<OMV name="F"/>
+<OMA>
+<OMV name="H"/>
+<OMV name="X"/>
+<OMV name="Y"/>
+</OMA>
+<OMA>
+<OMV name="H"/>
+<OMV name="X"/>
+<OMV name="Z"/>
+</OMA>
+</OMA>
+</OMA>
+</OMBIND>
+</OMBIND>
+  </OMOBJ>
+</definition>
+
+<symbol name="right-distributive" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">rechtsdistributiv</dc:subject><dc:subject> right distributive</dc:subject></metadata>
+</symbol>
+
+<definition xml:id="right-distributive.def" for="#right-distributive" type="simple">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+<OMBIND>
+<OMS cd="fns1" name="lambda"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="G"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMV name="G"/>
+</OMA>
+</OMA>
+</OMATP>
+<OMV name="F"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="G"/>
+<OMV name="G"/>
+</OMA>
+</OMA>
+</OMATP>
+<OMV name="H"/>
+</OMATTR>
+</OMBVAR>
+<OMBIND>
+<OMS cd="quant1" name="forall"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="Y"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="G"/>
+</OMATP>
+<OMV name="Z"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="relation1" name="eq"/>
+<OMA>
+<OMV name="H"/>
+<OMA>
+<OMV name="F"/>
+<OMV name="X"/>
+<OMV name="Y"/>
+</OMA>
+<OMV name="Z"/>
+</OMA>
+<OMA>
+<OMV name="F"/>
+<OMA>
+<OMV name="H"/>
+<OMV name="X"/>
+<OMV name="Z"/>
+</OMA>
+<OMA>
+<OMV name="H"/>
+<OMV name="Y"/>
+<OMV name="Z"/>
+</OMA>
+</OMA>
+</OMA>
+</OMBIND>
+</OMBIND>
+  </OMOBJ>
+</definition>
+
+<symbol name="empty-set" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">leere Menge</dc:subject><dc:subject>empty set</dc:subject></metadata>
+</symbol>
+<definition xml:id="empty-set.def" for="#empty-set" type="implicit">
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+
+<OMBIND>
+<OMS cd="quant1" name="forall"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="A"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="logic1" name="not"/>
+<OMS cd="basic.algebra" name="empty-set"/>
+<OMV name="A"/>
+</OMA>
+</OMBIND>
+ </OMOBJ></FMP>
+</definition>
+
+<symbol name="non-empty" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">nicht-leer</dc:subject><dc:subject>non-empty</dc:subject></metadata>
+</symbol>
+<definition xml:id="non-empty.def" for="#non-empty" type="simple">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+
+<OMBIND>
+<OMS cd="fns1" name="lambda"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="U"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="basic.algebra" name="notequal"/>
+<OMV name="U"/>
+<OMS cd="basic.algebra" name="empty-set"/>
+</OMA>
+</OMBIND>
+ </OMOBJ>
+</definition>
+
+<symbol name="empty" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">leer</dc:subject><dc:subject>empty</dc:subject></metadata>
+</symbol>
+<definition xml:id="empty.def" for="#empty" type="simple">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+
+<OMBIND>
+<OMS cd="fns1" name="lambda"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="U"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="relation1" name="eq"/>
+<OMV name="U"/>
+<OMS cd="basic.algebra" name="empty-set"/>
+</OMA>
+</OMBIND>
+ </OMOBJ>
+</definition>
+
+<symbol name="singleton" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">einelementige Menge</dc:subject><dc:subject>singleton</dc:subject></metadata>
+</symbol>
+<definition xml:id="singleton.def" for="#singleton" type="simple">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+
+<OMBIND>
+<OMS cd="fns1" name="lambda"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="U"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="logic1" name="and"/>
+<OMBIND>
+<OMS cd="quant1" name="exists"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="A"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMV name="U"/>
+<OMV name="X"/>
+</OMA>
+</OMBIND>
+<OMBIND>
+<OMS cd="quant1" name="forall"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="U"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="U"/>
+</OMATP>
+<OMV name="Y"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="relation1" name="eq"/>
+<OMV name="X"/>
+<OMV name="Y"/>
+</OMA>
+</OMBIND>
+</OMA>
+</OMBIND>
+ </OMOBJ>
+</definition>
+
+
+<symbol name="comp" role="object" scope="global">
+<metadata><dc:subject  xml:lang="de">Komposition von Funktionen</dc:subject><dc:subject>Composition of functions</dc:subject></metadata>
+</symbol>
+<definition xml:id="comp.def" for="#comp" type="implicit">
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+<OMBIND>
+<OMS cd="quant1" name="forall"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="B"/>
+<OMV name="A"/>
+</OMA>
+</OMATP>
+<OMV name="G"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="C"/>
+<OMV name="B"/>
+</OMA>
+</OMATP>
+<OMV name="F"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="A"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="relation1" name="eq"/>
+<OMA>
+<OMA>
+<OMS cd="basic.algebra" name="comp"/>
+<OMV name="F"/>
+<OMV name="G"/>
+</OMA>
+<OMV name="X"/>
+</OMA>
+<OMA>
+<OMV name="F"/>
+<OMA>
+<OMV name="G"/>
+<OMV name="X"/>
+</OMA>
+</OMA>
+</OMA>
+</OMBIND>
+ </OMOBJ></FMP>
+</definition>
+
+<symbol name="set-difference" role="object" scope="global">
+<metadata>
+  <dc:subject  xml:lang="de">einelementige Menge</dc:subject>
+  <dc:subject>comp</dc:subject>
+</metadata>
+</symbol>
+<definition xml:id="set-difference.def" for="#set-difference" type="implicit">
+<FMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+
+<OMBIND>
+<OMS cd="quant1" name="forall"/>
+<OMBVAR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMA>
+<OMS cd="simpletypes" name="funtype"/>
+<OMV name="A"/>
+<OMS cd="truthval" name="bool"/>
+</OMA>
+</OMATP>
+<OMV name="G"/>
+</OMATTR>
+<OMATTR>
+<OMATP>
+<OMS cd="simpletypes" name="type"/>
+<OMV name="A"/>
+</OMATP>
+<OMV name="X"/>
+</OMATTR>
+</OMBVAR>
+<OMA>
+<OMS cd="logic1" name="equivalent"/>
+<OMA>
+<OMS cd="basic.algebra" name="set-difference"/>
+<OMV name="G"/>
+<OMV name="H"/>
+<OMV name="X"/>
+</OMA>
+<OMA>
+<OMS cd="logic1" name="and"/>
+<OMA>
+<OMV name="G"/>
+<OMV name="X"/>
+</OMA>
+<OMA>
+<OMS cd="logic1" name="not"/>
+<OMA>
+<OMV name="H"/>
+<OMV name="X"/>
+</OMA>
+</OMA>
+</OMA>
+</OMA>
+</OMBIND>
+ </OMOBJ></FMP>
+</definition>
+
+</theory>
+</omdoc>

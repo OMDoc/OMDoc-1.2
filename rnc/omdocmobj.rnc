@@ -1,0 +1,23 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module MOBJ  
+# $Id: omdocmobj.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocmobj.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+
+namespace om = "http://www.openmath.org/OpenMath"
+
+# we include the OpenMath 2 schema, but we also allow CSS attributes, etc.
+include "openmath2.rnc" {common.attributes = attribute id {xsd:ID}?,idrest.attribs}
+
+# we include the MathML2 schema
+include "mathml2/mathml2.rnc"
+
+# the legacy element, it can encapsulate the non-migrated formats
+legacy = (ss| element legacy {id.attrib, 
+                      attribute formalism {xsd:anyURI}?,
+                      attribute format {xsd:anyURI},
+	              Anything})  # to allow everything
+
+omdocmobj.class = legacy | OMOBJ | math

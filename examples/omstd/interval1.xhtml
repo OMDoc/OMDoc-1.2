@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary interval1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary interval1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD holds symbols which describe both discrete and continuous
+    1-dimensional intervals (with open/closed end points).
+  </div></div>
+
+
+<div class="symbol" id="integer_interval">
+<div class="titlebox">
+<span class="titleword">Concept</span>integer_interval</div> 
+    A symbol to denote a discrete 1 dimensional interval from the first
+    argument to the second (inclusive), where the discretisation occurs at unit 
+    intervals. The arguments are the start and the end points of the interval
+    in that order.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid122253"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id122256" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid122264">ℤ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid122270">ℤ</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid122276">IntegerInterval</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid122253" xlink:type="simple"><OMA xlink:href="MCRid122256" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid122258" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid122264" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid122270" xlink:type="simple"/><OMV name="IntegerInterval" xlink:href="MCRid122276" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="integer_interval-ex-1">
+<span class="titleword">Example</span>
+<p>The integer interval 1, 2, ..., 10.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118138"><semantics><mfenced id="id118141" open="{" close="}" separators=""><mn id="MCRid118149"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#integer_interval" xlink:type="simple" id="MCRid118143">,…,</mo><mn id="MCRid118153"> 10 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118138" xlink:type="simple"><OMA xlink:href="MCRid118141" xlink:type="simple"><OMS cd="interval1" name="integer_interval" xlink:href="MCRid118143" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid118149"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid118153"> 10 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="interval">
+<div class="titlebox">
+<span class="titleword">Concept</span>interval</div> 
+    A symbol to denote a continuous 1-dimensional interval without any
+    information about the character of the end points (e.g. used in definite 
+    integration). The arguments are the start and the end points of the interval
+    in that order.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118197"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id118200" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid118208">ℝ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid118214">ℝ</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid118220">RealInterval</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118197" xlink:type="simple"><OMA xlink:href="MCRid118200" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid118202" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid118208" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid118214" xlink:type="simple"/><OMV name="RealInterval" xlink:href="MCRid118220" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="interval-ex-1">
+<span class="titleword">Example</span>
+<p>The interval 1.0, ..., 10.0.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid94194"><semantics><mfenced id="id94197" open="[" close="]" separators=""><mn id="MCRid94205">1.0</mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#interval" xlink:type="simple" id="MCRid94199">,</mo><mn id="MCRid94209">10.0</mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid94194" xlink:type="simple"><OMA xlink:href="MCRid94197" xlink:type="simple"><OMS cd="interval1" name="interval" xlink:href="MCRid94199" xlink:type="simple"/><OMF xlink:type="simple" xlink:href="MCRid94205" dec="1.0"/><OMF xlink:type="simple" xlink:href="MCRid94209" dec="10.0"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="interval_oo">
+<div class="titlebox">
+<span class="titleword">Concept</span>interval_oo</div> 
+    A symbol to denote a continuous 1-dimensional interval with both end
+    points excluded from the interval. The arguments are the start and the end 
+    points of the interval in that order.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid94256"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id94260" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid93250">ℝ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid93256">ℝ</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid93262">RealInterval</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid94256" xlink:type="simple"><OMA xlink:href="MCRid94260" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid94262" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid93250" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid93256" xlink:type="simple"/><OMV name="RealInterval" xlink:href="MCRid93262" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="interval_oo-ex-1">
+<span class="titleword">Example</span>
+<p>The continuous open interval (1,10).</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid93363"><semantics><mfenced id="id93366" open="]" close="[" separators=""><mn id="MCRid93374"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#interval_oo" xlink:type="simple" id="MCRid93368">,</mo><mn id="MCRid93378"> 10 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid93363" xlink:type="simple"><OMA xlink:href="MCRid93366" xlink:type="simple"><OMS cd="interval1" name="interval_oo" xlink:href="MCRid93368" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid93374"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid93378"> 10 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="interval_cc">
+<div class="titlebox">
+<span class="titleword">Concept</span>interval_cc</div> 
+    A symbol to denote a continuous 1-dimensional interval with both end
+    points included in the interval. The arguments are the start and the
+    end points of the interval in that order.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid93424"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id93427" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid93435">ℝ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid93441">ℝ</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid93448">RealInterval</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid93424" xlink:type="simple"><OMA xlink:href="MCRid93427" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid93429" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid93435" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid93441" xlink:type="simple"/><OMV name="RealInterval" xlink:href="MCRid93448" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="interval_cc-ex-1">
+<span class="titleword">Example</span>
+<p>The continuous closed interval [1,10].</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid122496"><semantics><mfenced id="id122498" open="[" close="]" separators=""><mn id="MCRid122506"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#interval_cc" xlink:type="simple" id="MCRid122500">,</mo><mn id="MCRid122510"> 10 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid122496" xlink:type="simple"><OMA xlink:href="MCRid122498" xlink:type="simple"><OMS cd="interval1" name="interval_cc" xlink:href="MCRid122500" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid122506"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid122510"> 10 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="interval_oc">
+<div class="titlebox">
+<span class="titleword">Concept</span>interval_oc</div> 
+    A symbol to denote a continuous 1-dimensional interval with the first
+    point excluded from the interval, but the last included. The arguments
+    are the start and the end points of the interval in that order.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid122556"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id122559" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid122567">ℝ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid122573">ℝ</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid122580">RealInterval</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid122556" xlink:type="simple"><OMA xlink:href="MCRid122559" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid122561" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid122567" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid122573" xlink:type="simple"/><OMV name="RealInterval" xlink:href="MCRid122580" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="interval_oc-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The continuous interval open at the lower bound and closed at the higher 
+    bound (1,10].</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid122681"><semantics><mfenced id="id122683" open="]" close="]" separators=""><mn id="MCRid122692"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#interval_oc" xlink:type="simple" id="MCRid122685">,</mo><mn id="MCRid122695"> 10 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid122681" xlink:type="simple"><OMA xlink:href="MCRid122683" xlink:type="simple"><OMS cd="interval1" name="interval_oc" xlink:href="MCRid122685" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid122692"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid122695"> 10 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="interval_co">
+<div class="titlebox">
+<span class="titleword">Concept</span>interval_co</div> 
+    A symbol to denote a continuous 1-dimensional interval with the first
+    point included in the interval, but the last excluded. The arguments
+    are the start and the end points of the interval in that order.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid122742"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id122744" xlink:href="sts.xml#mapsto"><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid122753">ℝ</mo><mo xlink:href="sts.xml#mapsto">,</mo><mo xlink:href="setname1.xml#R" xlink:type="simple" id="MCRid122759">ℝ</mo><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid122765">RealInterval</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid122742" xlink:type="simple"><OMA xlink:href="MCRid122744" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid122747" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid122753" xlink:type="simple"/><OMS cd="setname1" name="R" xlink:href="MCRid122759" xlink:type="simple"/><OMV name="RealInterval" xlink:href="MCRid122765" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="interval_co-ex-1">
+<span class="titleword">Example</span>
+<p>The continuous interval closed at the lower bound and open at the higher 
+    bound [1,10).</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid122866"><semantics><mfenced id="id122869" open="[" close="[" separators=""><mn id="MCRid122877"> 1 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#interval_co" xlink:type="simple" id="MCRid122871">,</mo><mn id="MCRid122880"> 10 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid122866" xlink:type="simple"><OMA xlink:href="MCRid122869" xlink:type="simple"><OMS cd="interval1" name="interval_co" xlink:href="MCRid122871" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid122877"> 1 </OMI><OMI xlink:type="simple" xlink:href="MCRid122880"> 10 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

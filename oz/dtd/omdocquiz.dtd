@@ -1,0 +1,48 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module QUIZ
+     SYSTEM http://www.mathweb.org/omdoc/dtd/omdocquiz.dtd
+     PUBLIC -//OMDoc//ELEMENTS OMDoc QUIZ V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocquiz.choice.qname "%omdoc.pfx;choice">
+<!ENTITY % omdocquiz.answer.qname "%omdoc.pfx;answer">
+
+<!ELEMENT %omdocquiz.exercise.qname; 
+          (%cfm;,(%omdocquiz.hint.qname;)*,
+            ((%omdocquiz.solution.qname;)*|(%omdocquiz.mc.qname;)*))>
+<!ATTLIST %omdocquiz.exercise.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %id.attrib; for CDATA #IMPLIED>
+
+<!ELEMENT %omdocquiz.hint.qname; %cfm;>
+<!ATTLIST %omdocquiz.hint.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idi.attrib; %fori.attrib;>
+
+<!ELEMENT %omdocquiz.solution.qname; (%cfm;%omdocpf.opt.content;)>
+<!ATTLIST %omdocquiz.solution.qname; 
+          %omdoc.xmlns.theory.attrib;
+          for CDATA #IMPLIED
+          %idi.attrib;>
+
+<!ELEMENT %omdocquiz.mc.qname; 
+          ((%omdocst.symbol.qname;)*,%omdocquiz.choice.qname;,
+           (%omdocquiz.hint.qname;)?,%omdocquiz.answer.qname;)>
+<!ATTLIST %omdocquiz.mc.qname; 
+          %omdoc.xmlns.theory.attrib;
+          for CDATA #IMPLIED
+          %idi.attrib;>
+
+<!ELEMENT %omdocquiz.choice.qname; %cfm;>
+<!ATTLIST %omdocquiz.choice.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idi.attrib;>
+
+<!ELEMENT %omdocquiz.answer.qname; %cfm;>
+<!ATTLIST %omdocquiz.answer.qname; 
+          %omdoc.xmlns.theory.attrib;
+          verdict (true|false) #REQUIRED
+          %idi.attrib;>
+

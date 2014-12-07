@@ -1,0 +1,62 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module ADT
+     SYSTEM http://www.mathweb.org/omdoc/dtd/omdocadt.dtd
+     PUBLIC -//OMDoc//ELEMENTS OMDoc ADT V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdocadt.sortdef.qname "%omdoc.pfx;sortdef">
+<!ENTITY % omdocadt.insort.qname "%omdoc.pfx;insort">
+<!ENTITY % omdocadt.constructor.qname "%omdoc.pfx;constructor">
+<!ENTITY % omdocadt.recognizer.qname "%omdoc.pfx;recognizer">
+<!ENTITY % omdocadt.argument.qname "%omdoc.pfx;argument">
+<!ENTITY % omdocadt.selector.qname "%omdoc.pfx;selector">
+
+
+<!-- adts are abstract data types, they are short forms for 
+      groups of symbols and their definitions, therefore, 
+      they have much the same attributes. -->
+
+<!ELEMENT %omdocadt.adt.qname; 
+          (%omdocdoc.meta.content;(%omdocst.commonname.qname;)*,
+           (%omdocmtxt.CMP.qname;)*,(%omdocadt.sortdef.qname;)+)>
+<!ATTLIST %omdocadt.adt.qname; 
+          %omdoc.xmlns.theory.attrib;
+          type (loose|generated|free) "loose"
+          %id.attrib;>
+
+<!ELEMENT %omdocadt.sortdef.qname; 
+          ((%omdocst.commonname.qname;)*,
+           (%omdocadt.constructor.qname;|%omdocadt.insort.qname;)*,
+           (%omdocadt.recognizer.qname;)?)>
+<!ATTLIST %omdocadt.sortdef.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idc.attrib;
+          kind NMTOKEN #FIXED "sort"
+          scope (global|local) "global">
+
+<!ELEMENT %omdocadt.insort.qname; EMPTY>
+<!ATTLIST %omdocadt.insort.qname; 
+          %omdoc.xmlns.theory.attrib;
+          for CDATA #REQUIRED>
+<!-- for is a reference to a sort symbol element  -->
+
+<!ELEMENT %omdocadt.constructor.qname; 
+    ((%omdocst.commonname.qname;)*,(%omdocadt.argument.qname;)*)>
+<!ATTLIST %omdocadt.constructor.qname; %omdocst.symbol.attrib;>
+
+<!ELEMENT %omdocadt.recognizer.qname; (%omdocst.commonname.qname;)*>
+<!ATTLIST %omdocadt.recognizer.qname; %omdocst.symbol.attrib;>
+
+<!ELEMENT %omdocadt.argument.qname; (%omdocadt.selector.qname;)?>
+<!ATTLIST %omdocadt.argument.qname; 
+          %omdoc.xmlns.theory.attrib;
+          sort CDATA #REQUIRED>
+<!-- sort is a reference to a sort symbol element  -->
+
+<!ELEMENT %omdocadt.selector.qname; (%omdocst.commonname.qname;)*>
+<!ATTLIST %omdocadt.selector.qname; 
+          %omdocst.symbol.attrib;
+          total (yes|no) "no">
+

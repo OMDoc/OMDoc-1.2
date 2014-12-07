@@ -1,0 +1,25 @@
+########################################################################
+# This make library supplies the targets for the UNIX make-based transformation
+# of OMDoc documents to XHTML+MathML using XSLT processors
+# Copyright Michael Kohlhase (c) 2007 released under the Lesser Gnu Public License (LGPL)
+# $Id: Makefile.html.in 7692 2008-06-10 14:30:27Z clange $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/lib/Makefile.html.in $
+########################################################################
+
+prephtml:	4 i 
+		@for d in $(NEEDSFROMDIRS); do (cd $$d && $(MAKE) -$(MAKEFLAGS) html) done
+
+html:            prephtml  $(PMMLFILES)
+
+$(2PXSLFILES):	$(OBINDIR)/make2files
+		$(OBINDIR)/make2files '$(PMMLXSL)' '$(patsubst %2pmml.xsl,%-incl.xsl,$@)' > $@
+
+$(PMMLFILES): %.xhtml: %.$(OMDocExt) %-incl.xsl %2pmml.xsl %-tmpl.xsl $(PMMLXSL.dep)
+	$(XSLT) -o $@ $(MDTD) $(CSSP) $(OTHERPARAM) $(basename $(firstword $<))2pmml.xsl $(firstword $<)
+
+$(CSSFILES): %.css:   
+		cp $(OLIBDIR)/$@ .
+
+.htaccess:	$(OLIBDIR)/.htaccess
+		ln -s $(OLIBDIR)/.htaccess .
+

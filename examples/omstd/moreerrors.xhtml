@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary error.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary error.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/></div>
+
+
+<div class="symbol" id="encodingError">
+<div class="titlebox">
+<span class="titleword">Concept</span>encodingError</div>
+      This symbol represents the error which is returned when an application
+      detects a lexical or syntactic error. It should have one argument
+      which is a string, which should explain the error that occurred.
+  </div>
+
+<div class="symbol" id="algorithm">
+<div class="titlebox">
+<span class="titleword">Concept</span>algorithm</div>
+      This symbol represents the error which is returned when an application
+      raises an error due to algorithmic restrictions of the
+      implementations. This includes operations not implemented or partially
+      implemented, divisions by zero and other domain errors. It will have
+      at least one argument, which is a string describing the problem. It
+      may have a second argument which is relevant to the error.
+  </div>
+
+<div class="symbol" id="limitation">
+<div class="titlebox">
+<span class="titleword">Concept</span>limitation</div>
+      This symbol represents the error which is returned when an application
+      reads an error caused by the limitations of an implementation when
+      dealing with OpenMath objects such as limits on the size of objects or
+      on the kind of objects manipulated. This can include limits on the
+      size of a bytearray or integer, a limit on the number of arguments of
+      an application or the inability to deal with Unicode characters
+      outside ISO latin 1. It will have at least one argument, which is a
+      string describing the problem. It may have a second argument which is
+      relevant to the error.
+  </div>
+
+<div class="symbol" id="unexpected">
+<div class="titlebox">
+<span class="titleword">Concept</span>unexpected</div>
+      This symbol represents the error which is returned when an application
+      reads an error caused by an unexpected problem. It will have
+      at least one argument, which is a string describing the problem. It
+      may have a second argument which is relevant to the error.
+  </div>
+
+<div class="symbol" id="asynchronousError">
+<div class="titlebox">
+<span class="titleword">Concept</span>asynchronousError</div>
+      This symbol represents the error which is returned when an application
+      encounters some asynchronous error, for example if a limit in memory
+      has been reached, or an error has occurred in some system call (I/O
+      error, disk full, machine down). It should have one argument, which is
+      a string describing the problem.
+  </div>
+
+
+
+</body>
+</html>

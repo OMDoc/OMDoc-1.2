@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_method.omdoc">
+
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>                                                                     
+
+<theory xml:id="test_method">
+
+<proof xml:id="myproof" theory="foo" for="#bar" style="la">
+  <derive xml:id="concl" style="foo">
+    <method xref="reference">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> (any -> any -> any) -> any -> bool</OMSTR></OMOBJ> 
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> bool</OMSTR></OMOBJ> 
+    <proof xml:id="subproof" theory="theo" for="#something">
+      <derive xml:id="xyz"/>
+    </proof>
+    </method>
+  </derive>
+</proof>
+
+</theory>
+</omdoc>
+

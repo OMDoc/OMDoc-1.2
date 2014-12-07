@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary arith2.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary arith2.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    Further to the basic arithmetic functions, we define some more common
+    arithmetic operations. This includes a commutative times which
+    exhibits the use of inheritance within the CD's.
+  </div></div>
+
+
+<div class="symbol" id="times">
+<div class="titlebox">
+<span class="titleword">Concept</span>times</div>
+    The symbol representing an n-ary multiplication function inheriting
+    from the times in arith1, but with the extra property that here it must
+    be commutative.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid112476"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id112478" xlink:href="sts.xml#mapsto"><mfenced id="id112487" open="(" close=")" separators=""><msup id="MCRid112487"><mi id="MCRid112978">AbelianSemiGroup</mi><mo xlink:href="sts.xml#nassoc" xlink:type="simple" id="MCRid112972">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid112983">AbelianSemiGroup</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid112476" xlink:type="simple"><OMA xlink:href="MCRid112478" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid112480" xlink:type="simple"/><OMA xlink:href="MCRid112487" xlink:type="simple"><OMS cd="sts" name="nassoc" xlink:href="MCRid112972" xlink:type="simple"/><OMV name="AbelianSemiGroup" xlink:href="MCRid112978" xlink:type="simple"/></OMA><OMV name="AbelianSemiGroup" xlink:href="MCRid112983" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="times-prop-1">
+<span class="titleword">Lemma</span>
+<p> for all a,b | a * b = b * a </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid140906"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid140917"><mi id="MCRid140919">a</mi><mo separator="true">,</mo><mi id="MCRid140924">b</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><mi id="MCRid136648">a</mi><mo id="MCRid136641">⁢</mo><mi id="MCRid136652">b</mi><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid140931">=</mo><mi id="MCRid136666">b</mi><mo id="MCRid136659">⁢</mo><mi id="MCRid136670">a</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid140906" xlink:type="simple"><OMBIND xlink:href="MCRid140908" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid140911" xlink:type="simple"/><OMBVAR xlink:href="MCRid140917" xlink:type="simple"><OMV name="a" xlink:href="MCRid140919" xlink:type="simple"/><OMV name="b" xlink:href="MCRid140924" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid140929" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid140931" xlink:type="simple"/><OMA xlink:href="MCRid140938" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid136641" xlink:type="simple"/><OMV name="a" xlink:href="MCRid136648" xlink:type="simple"/><OMV name="b" xlink:href="MCRid136652" xlink:type="simple"/></OMA><OMA xlink:href="MCRid136657" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid136659" xlink:type="simple"/><OMV name="b" xlink:href="MCRid136666" xlink:type="simple"/><OMV name="a" xlink:href="MCRid136670" xlink:type="simple"/></OMA></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="inverse">
+<div class="titlebox">
+<span class="titleword">Concept</span>inverse</div>
+    A unary operator which represents the inverse of an element of a set. This
+    symbol could be used to represent additive or multiplicative inverses.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136723"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id136725" xlink:href="sts.xml#mapsto"><mi id="MCRid136733">Group</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid136738">Group</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136723" xlink:type="simple"><OMA xlink:href="MCRid136725" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid136727" xlink:type="simple"/><OMV name="Group" xlink:href="MCRid136733" xlink:type="simple"/><OMV name="Group" xlink:href="MCRid136738" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="lemma" id="inverse-prop-1">
+<span class="titleword">Lemma</span>
+<p> inverse(inverse(a))=a </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid111984"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="quant1.xml#forall"><mo xlink:href="quant1.xml#forall">∀</mo><mrow id="MCRid111995"><mi id="MCRid111997">a</mi></mrow><mo xlink:href="quant1.xml#forall" separator="true">.</mo><msup id="MCRid112011"><mfenced id="id112020" open="(" close=")" separators=""><msup id="MCRid112020"><mi id="MCRid112029">a</mi><mo xlink:href="#inverse" xlink:type="simple" id="MCRid112023">-1</mo></msup></mfenced><mo xlink:href="#inverse" xlink:type="simple" id="MCRid112013">-1</mo></msup><mo xlink:href="relation1.xml#eq" xlink:type="simple" id="MCRid112004">=</mo><mi id="MCRid112036">a</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid111984" xlink:type="simple"><OMBIND xlink:href="MCRid111986" xlink:type="simple"><OMS cd="quant1" name="forall" xlink:href="MCRid111988" xlink:type="simple"/><OMBVAR xlink:href="MCRid111995" xlink:type="simple"><OMV name="a" xlink:href="MCRid111997" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid112002" xlink:type="simple"><OMS cd="relation1" name="eq" xlink:href="MCRid112004" xlink:type="simple"/><OMA xlink:href="MCRid112011" xlink:type="simple"><OMS cd="arith2" name="inverse" xlink:href="MCRid112013" xlink:type="simple"/><OMA xlink:href="MCRid112020" xlink:type="simple"><OMS cd="arith2" name="inverse" xlink:href="MCRid112023" xlink:type="simple"/><OMV name="a" xlink:href="MCRid112029" xlink:type="simple"/></OMA></OMA><OMV name="a" xlink:href="MCRid112036" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+
+
+</body>
+</html>

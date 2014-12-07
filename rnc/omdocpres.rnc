@@ -1,0 +1,89 @@
+# A RelaxNG for Open Mathematical documents (OMDoc 1.2) Module PRES       
+# $Id: omdocpres.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocpres.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+
+# we include the XSLT 2 schema
+include "xslt10.rnc" 
+
+#xslt10 = external "xslt10.rnc"
+
+omdoc.class |=  presentation |omstyle
+
+crossref.attrib = attribute crossref-symbol 
+		    {"no" | "yes" | "brackets" | "separator" | "lbrack" | "rbrack" | "all"}
+fixity.attrib = attribute fixity {"prefix" | "infix" | "postfix" | "assoc" | "infixl" | "infixr"}
+format.attrib = attribute format {xsd:string}, attribute requires {omdocref}?, xml.lang.attrib
+bracket-style.attrib = attribute bracket-style {"lisp" | "math"}
+lbrack.attrib = attribute lbrack {xsd:string}
+rbrack.attrib = attribute rbrack {xsd:string}
+separator.attrib = attribute separator {xsd:string}
+precedence.attrib = attribute precedence {xsd:nonNegativeInteger}
+role.attrib = attribute role {"applied" | "binding" | "key"}
+
+presentation = element presentation {omdoc.toplevel.attribs,
+                       	       	     attribute for {omdocref},
+                       	       	     role.attrib?,
+	                             (xref.attrib?|
+                       	       	     (fixity.attrib?,
+                       	       	     lbrack.attrib?,
+                       	       	     rbrack.attrib?,
+                       	       	     separator.attrib?,
+                       	       	     bracket-style.attrib?,
+		       	       	     precedence.attrib?,
+		       	       	     crossref.attrib?,
+				     CMP*,
+                                     (use | xslt | style)*))}
+
+omdocpres.use.mix = elt | txt | recurse | value-of | map
+
+use = (ss| element use {format.attrib,
+   bracket-style.attrib?,
+   precedence.attrib?,
+   fixity.attrib?,
+   lbrack.attrib?,rbrack.attrib?,separator.attrib?,
+   attribute element {xsd:string}?,
+   attribute attributes {xsd:string}?,
+   crossref.attrib?,
+   (text | omdocpres.use.mix)*})
+# the attributes in the <use> element overwrite those in the 
+# <presentation> element, therefore, they do not have defaults
+
+omstyle = element omstyle {omdoc.toplevel.attribs,
+   attribute for {omdocref}?,
+   attribute element {xsd:string}?,
+   (xslt|style)*}
+
+xslt = (ss| element xslt {format.attrib,xref.attrib?,template.model})
+
+style = (ss| element style {format.attrib, (omdocpres.use.mix)*})
+# this element contains mock xslt expressed in the elements below
+
+elt = (ss| element element {attribute name {xsd:NMTOKEN},
+                       attribute crid {xsd:string}?,
+                       attribute cr {"yes" |"no"}?,
+                       attribute ns {xsd:anyURI}?,
+                       (attrb | omdocpres.use.mix)*})
+
+map = (ss| element map {attribute select {xsd:string}?,
+                        attribute lbrack {xsd:string}?,
+                        attribute rbrack {xsd:string}?,
+                        attribute precedence {xsd:string}?,
+		   separator?,
+                   (omdocpres.use.mix)*})
+
+separator = (ss| element separator {(omdocpres.use.mix)*})
+
+attrb = (ss| element attribute {attribute name {xsd:NMTOKEN}, 
+                                attribute ns {xsd:anyURI}?,
+                                (attribute select {xsd:string} | 
+                                 (txt | value-of)*)})
+
+txt = (ss| element text {text})
+
+value-of = (ss| element value-of {attribute select {xsd:string}})
+recurse = (ss| element recurse {attribute select {xsd:string}?})
+

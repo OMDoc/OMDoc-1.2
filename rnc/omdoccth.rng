@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module CTH 
+  $Id: omdoccth.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdoccth.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns:omdoc="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="omdocst.constitutive.class" combine="choice">
+    <ref name="inclusion"/>
+  </define>
+  <define name="omdocsth.imports.model" combine="interleave">
+    <optional>
+      <ref name="morphism"/>
+    </optional>
+    <optional>
+      <attribute name="type">
+        <choice>
+          <value>local</value>
+          <value>global</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="conservativity">
+        <choice>
+          <value>conservative</value>
+          <value>monomorphism</value>
+          <value>definitional</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="conservativity-just">
+        <ref name="omdocref"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="omdoc.toplevel.attribs" combine="interleave">
+    <optional>
+      <attribute name="generated-via">
+        <ref name="omdocref"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="omdocst.constitutive.attribs" combine="interleave">
+    <optional>
+      <attribute name="generated-via">
+        <ref name="omdocref"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="omdoc.class" combine="choice">
+    <choice>
+      <ref name="theory-inclusion"/>
+      <ref name="axiom-inclusion"/>
+    </choice>
+  </define>
+  <define name="omdoccth.theory-inclusion.justification">
+    <zeroOrMore>
+      <ref name="obligation"/>
+    </zeroOrMore>
+  </define>
+  <define name="omdoccth.axiom-inclusion.justification">
+    <zeroOrMore>
+      <ref name="obligation"/>
+    </zeroOrMore>
+  </define>
+  <define name="fromto.attrib">
+    <ref name="from.attrib"/>
+    <attribute name="to">
+      <ref name="omdocref"/>
+    </attribute>
+  </define>
+  <!-- attributes 'to' and 'from' are URIref -->
+  <define name="morphism">
+    <choice>
+      <ref name="ss"/>
+      <element name="morphism">
+        <ref name="id.attrib"/>
+        <optional>
+          <attribute name="hiding">
+            <ref name="omdocrefs"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="base">
+            <ref name="omdocrefs"/>
+          </attribute>
+        </optional>
+        <optional>
+          <ref name="def.eq"/>
+        </optional>
+      </element>
+    </choice>
+  </define>
+  <!-- base points to some other morphism it extends -->
+  <define name="inclusion">
+    <element name="inclusion">
+      <ref name="id.attrib"/>
+      <attribute name="via">
+        <ref name="omdocref"/>
+      </attribute>
+    </element>
+  </define>
+  <!-- via points to a theory-inclusion -->
+  <define name="theory-inclusion">
+    <element name="theory-inclusion">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fromto.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <optional>
+        <ref name="morphism"/>
+      </optional>
+      <ref name="omdoccth.theory-inclusion.justification"/>
+    </element>
+  </define>
+  <define name="axiom-inclusion">
+    <element name="axiom-inclusion">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fromto.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <optional>
+        <ref name="morphism"/>
+      </optional>
+      <ref name="omdoccth.axiom-inclusion.justification"/>
+    </element>
+  </define>
+  <define name="obligation">
+    <choice>
+      <ref name="ss"/>
+      <element name="obligation">
+        <ref name="id.attrib"/>
+        <attribute name="induced-by">
+          <ref name="omdocref"/>
+        </attribute>
+        <attribute name="assertion">
+          <ref name="omdocref"/>
+        </attribute>
+      </element>
+    </choice>
+  </define>
+</grammar>
+<!--
+  attribute 'assertion' is a URIref, points to  an assertion
+  that is the proof obligation induced by the axiom or definition 
+  specified by 'induced-by'.
+-->

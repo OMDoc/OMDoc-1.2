@@ -1,0 +1,46 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module CTH 
+# $Id: omdoccth.rnc 8009 2008-09-07 19:02:21Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdoccth.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc" 
+
+omdocst.constitutive.class |= inclusion
+omdocsth.imports.model  &= morphism?,
+			  attribute type { "local" | "global"}?,
+			  attribute conservativity {"conservative" | "monomorphism" | "definitional"}?,
+			  attribute conservativity-just {omdocref}?
+
+omdoc.toplevel.attribs       &= attribute generated-via {omdocref}?
+omdocst.constitutive.attribs &= attribute generated-via {omdocref}?
+
+omdoc.class |= theory-inclusion | axiom-inclusion
+omdoccth.theory-inclusion.justification = obligation*
+omdoccth.axiom-inclusion.justification = obligation*
+
+fromto.attrib = from.attrib, attribute to {omdocref}
+# attributes 'to' and 'from' are URIref
+
+morphism = (ss| element morphism {id.attrib,attribute hiding {omdocrefs}?, attribute base {omdocrefs}?,def.eq?})
+# base points to some other morphism it extends
+
+inclusion = element inclusion {id.attrib,attribute via {omdocref}}
+# via points to a theory-inclusion
+
+theory-inclusion = element theory-inclusion {omdoc.toplevel.attribs,fromto.attrib,	
+		   	   		     metadata?,morphism?,
+					    (omdoccth.theory-inclusion.justification)}
+
+axiom-inclusion = element axiom-inclusion {omdoc.toplevel.attribs,fromto.attrib,
+                                           metadata?,morphism?,
+           				   (omdoccth.axiom-inclusion.justification)}
+
+obligation = (ss| element obligation {id.attrib,
+	     	     		 attribute induced-by {omdocref},
+          			 attribute assertion {omdocref}})
+
+# attribute 'assertion' is a URIref, points to  an assertion
+# that is the proof obligation induced by the axiom or definition 
+# specified by 'induced-by'.
+

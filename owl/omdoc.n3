@@ -1,0 +1,38 @@
+# Note that namespace URIs must end with / or #
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odo:     <http://www.omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# These must be declared explicitly for OWL-DL conformity --Christoph Lange
+dc:creator
+	a	owl:AnnotationProperty .
+dc:description
+	a	owl:AnnotationProperty .
+dc:subject
+	a	owl:AnnotationProperty .
+dc:contributor
+	a	owl:AnnotationProperty .
+dc:title
+	a	owl:AnnotationProperty .
+
+odo:  a       owl:Ontology ;
+	dc:title "OMDoc document ontology" ;
+	dc:description """OMDoc document ontology in OWL-DL.
+The homepage of this project can be found at http://mathweb.org/wiki/OMDoc/document_ontology.
+Note: SWOOP and the WonderWeb OWL validator say it's OWL-DL, but Protégé says it's OWL-Full :-( Cf. the following quote from a paper about the Pellet reasoner: “Ensuring that an RDF/XML document meets all the restrictions is a relatively difﬁcult task for authors, and many existing OWL documents are nominally OWL-Full, even though their authors intend for them to be OWL-DL.”""" ;
+	dc:creator "Christoph Lange <ch.lange@jacobs-university.de>" ;
+	dc:contributor "Normen Müller <n.mueller@jacobs-university.de>" , "Krzysztof Retel <retel@macs.hw.ac.uk>" , "Achim Mahnke <achim.mahnke@dfki.de>" ;
+	# Contributors (to this file or to any other), please add your name here. --Christoph Lange
+	dc:subject "Semantic Mathematical Markup" ;
+	owl:versionInfo "0.4.3" ;
+	# As with other software projects:
+	# * leave version as is for very small changes (typo corrections) that do not change the semantics
+	# * increase minor version number for small changes and contributions that change or extend the semantics
+	# * increase major version number for really big changes. This should be discussed beforehand!
+	# Thanks! --Christoph Lange
+	owl:imports <file:pf.n3> , <file:st.n3> , <file:var.n3> .
+	# Note: the base classes are imported by every module.
+	# TODO: add other OMDoc modules
+

@@ -1,0 +1,128 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module ST 
+# $Id: omdocst.rnc 8713 2010-09-22 05:49:27Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocst.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+
+omdocst.scope.attrib = attribute scope {"global" | "local"}?
+
+omdocst.constitutive.class    = symbol | axiom | definition | imports
+omdocst.nonconstitutive.class = assertion | type | alternative | example | theory
+
+theory-unique  = xsd:NCName
+just-by.attrib = attribute just-by {omdocref}
+
+omdoc.class |= omdocst.nonconstitutive.class 
+
+omdocst.constitutive.attribs = id.attrib, attribute generated-from {omdocref}?
+
+sym.role.attrib = attribute role {"type" | "sort" | "object" |
+		                  "binder" | "attribution" | "application" | "constant" |
+		                  "semantic-attribution" | "error"}
+
+symbol = element symbol {omdocst.scope.attrib,
+                         attribute name {theory-unique}?, 
+	  		 omdocst.constitutive.attribs,
+          	         sym.role.attrib?, 
+                         metadata?,type*}
+
+forname.attrib = attribute for {list {xsd:NCName+}}
+axiom = element axiom {omdocst.constitutive.attribs, 
+                       forname.attrib?,
+                       attribute type {xsd:string}?,
+		       omdocmtxt.MCF.content}
+
+#informal definitions
+def.informal = attribute type {"informal"}?
+
+#simple definitions
+def.simple = (attribute type {"simple"},(omdocmobj.class))
+
+#implicit definitions
+exists.attrib = attribute existence {omdocref} 
+unique.attrib = attribute uniqueness {omdocref}
+def.implicit = (attribute type {"implicit"}, exists.attrib?, unique.attrib?, FMP*)
+
+#definitions by (recursive) equations
+exhaust.attrib = attribute exhaustivity {omdocref}
+consist.attrib = attribute consistency {omdocref}
+def.pattern = attribute type {"pattern"}? & exhaust.attrib? & consist.attrib? & requation+
+def.inductive = attribute type {"inductive"}? & exhaust.attrib? & consist.attrib? &
+	  requation+ & measure? & ordering?
+
+def.eq = def.pattern | def.inductive
+
+#all definition forms, add more by extending this.
+defs.all = def.informal | def.simple | def.implicit | def.eq
+
+# Definitions contain CMPs,  FMPs and concept specifications. 
+# The latter define the set of concepts defined in this element. 
+# They can be reached under this name in the content dictionary 
+# of the name specified in the theory attribute of the definition.
+definition = element definition {omdocst.constitutive.attribs, 
+	   forname.attrib,
+	   omdocmtxt.MC.content,(defs.all)}
+
+requation = (ss| element requation {id.attrib,omdocmobj.class,omdocmobj.class})
+measure = (ss| element measure {id.attrib,omdocmobj.class})
+ordering = (ss| element ordering {id.attrib,attribute terminating {omdocref}?,omdocmobj.class})
+
+# the non-constitutive statements, they need a theory attribute
+omdoc.toplevel.attribs &= attribute theory {omdocref}?
+
+ded.status.class = "satisfiable" | "counter-satisfiable" | "no-consequence" |
+		   "theorem" | "conter-theorem" | "contradictory-axioms" | 
+		   "tautologous-conclusion" | " tautology" | "equivalent" | 
+		   "conunter-equivalent" | "unsatisfiable-conclusion" |  "unsatisfiable"
+
+assertion = element assertion {omdoc.toplevel.attribs,
+                                    attribute type {assertiontype}?,
+     				    attribute status {ded.status.class}?,
+     				    attribute just-by {omdocrefs}?,
+			            omdocmtxt.MCF.content}
+# the assertiontype has no formal meaning yet, it is solely for human consumption. 
+# 'just-by' is a list of URIRefs that point to proof objects, etc that justifies the status.
+
+type = element type {omdoc.toplevel.attribs, just-by.attrib?,
+		     attribute system {omdocref}?,
+		     attribute for {omdocref}?,
+		     omdocmtxt.MC.content,
+	  	     (omdocmobj.class),
+		     (omdocmobj.class)?}
+
+alternative = element alternative {omdoc.toplevel.attribs, for.attrib,
+                                   omdocmtxt.MC.content,(defs.all),
+                                   attribute entailed-by {omdocref},
+                                   attribute entails {omdocref},
+                                   attribute entailed-by-thm {omdocref},
+                                   attribute entails-thm {omdocref}}
+# just-by, points to the theorem justifying well-definedness
+# entailed-by, entails, point to other (equivalent definitions
+# entailed-by-thm, entails-thm point to the theorems justifying
+# the entailment relation)
+
+example = element example {omdoc.toplevel.attribs, for.attrib,
+	  	  	   attribute type {"for" | "against" }?,
+			   attribute assertion {omdocref}?,
+          		   omdocmtxt.MC.content,
+			   (omdocmobj.class)*}
+theory = element theory {id.attrib,
+			 attribute cdurl {xsd:anyURI}?,
+	                 attribute cdbase {xsd:anyURI}?,
+			 attribute cdreviewdate {xsd:date}?,
+			 attribute cdversion {xsd:nonNegativeInteger}?,
+			 attribute cdrevision {xsd:nonNegativeInteger}?,
+			 attribute cdstatus {"official" | "experimental" 
+			                    |"private" |  "obsolete"}?,
+                         metadata?,
+			 (omdoc.class | omdocst.constitutive.class | tgroup)*}
+
+omdocsth.imports.model = id.attrib,from.attrib,metadata?
+imports = (ss| element imports {omdocsth.imports.model})
+
+tgroup = element tgroup {omdocst.constitutive.attribs,group.attribs,
+                                         metadata?,
+					 (omdoc.class | omdocst.constitutive.class | tgroup)*}
+

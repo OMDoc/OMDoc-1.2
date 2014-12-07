@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary mathmltypes.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary mathmltypes.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD holds symbols denoting various types of numbers, vectors
+    and similar constructs. Principally these are required for
+    compatibility with MathML.
+  </div></div>
+
+
+<div class="symbol" id="type">
+<div class="titlebox">
+<span class="titleword">Concept</span>type</div>A symbol to be used within an OpenMath attribute to specify the type of
+    the object.
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid117683"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#attribution" xlink:type="simple" id="id117685">attribution</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid117683" xlink:type="simple"><OMS cd="sts" name="attribution" xlink:href="MCRid117685" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="type-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The variable z is attributed with a type for complex numbers, to be
+    represented in polar notation.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid117722"><semantics><mi id="MCRid117742">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid117722" xlink:type="simple"><OMATTR xlink:href="MCRid117724" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid117726"><OMS cd="mathmltypes" name="type" xlink:href="MCRid117729" xlink:type="simple"/><OMS cd="mathmltypes" name="complex_polar_type" xlink:href="MCRid117735" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid117742" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="integer_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>integer_type</div> 
+    A symbol to be used as the argument of the type symbol to convey the
+    type of an integer.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid89843"><semantics><mi id="MCRid89846">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid89843" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid89846" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="integer_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable z is attributed with a type for integers.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid89273"><semantics><mi id="MCRid89294">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid89273" xlink:type="simple"><OMATTR xlink:href="MCRid89276" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid89278"><OMS cd="mathmltypes" name="type" xlink:href="MCRid89280" xlink:type="simple"/><OMS cd="mathmltypes" name="integer_type" xlink:href="MCRid89286" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid89294" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="real_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>real_type</div> 
+    A symbol to be used as the argument of the type symbol to convey the
+    type of a real number.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid113597"><semantics><mi id="MCRid113600">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid113597" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid113600" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="real_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable z is attributed with a type for real numbers.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid113669"><semantics><mi id="MCRid113690">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid113669" xlink:type="simple"><OMATTR xlink:href="MCRid113672" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid113674"><OMS cd="mathmltypes" name="type" xlink:href="MCRid113676" xlink:type="simple"/><OMS cd="mathmltypes" name="real_type" xlink:href="MCRid113682" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid113690" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="rational_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>rational_type</div> 
+    A symbol to be used as the argument of the type symbol to convey the
+    type of a rational number.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid88726"><semantics><mi id="MCRid88729">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid88726" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid88729" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="rational_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable z is attributed with a type for rational numbers.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid88797"><semantics><mi id="MCRid88818">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid88797" xlink:type="simple"><OMATTR xlink:href="MCRid88800" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid88802"><OMS cd="mathmltypes" name="type" xlink:href="MCRid88805" xlink:type="simple"/><OMS cd="mathmltypes" name="rational_type" xlink:href="MCRid88811" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid88818" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="complex_cartesian_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>complex_cartesian_type</div> 
+    A symbol to be used as the argument of the type symbol to convey the
+    type of a complex number specified in terms of its real and imaginary
+    parts.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid88865"><semantics><mi id="MCRid88868">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid88865" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid88868" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="complex_cartesian_type-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The variable z is attributed with a type for complex numbers represented in 
+    their Cartesian form.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid88938"><semantics><mi id="MCRid88959">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid88938" xlink:type="simple"><OMATTR xlink:href="MCRid88941" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid88943"><OMS cd="mathmltypes" name="type" xlink:href="MCRid88945" xlink:type="simple"/><OMS cd="mathmltypes" name="complex_cartesian_type" xlink:href="MCRid88951" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid88959" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="complex_polar_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>complex_polar_type</div> 
+    A symbol to be used as the argument of the type symbol to convey the
+    type of a complex number specified in terms of its modulus and argument.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid117939"><semantics><mi id="MCRid117941">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid117939" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid117941" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="complex_polar_type-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The variable z is attributed with a type for complex numbers represented in 
+    their polar form.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118011"><semantics><mi id="MCRid118031">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118011" xlink:type="simple"><OMATTR xlink:href="MCRid118013" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid118015"><OMS cd="mathmltypes" name="type" xlink:href="MCRid118018" xlink:type="simple"/><OMS cd="mathmltypes" name="complex_polar_type" xlink:href="MCRid118024" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid118031" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="constant_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>constant_type</div> 
+    A symbol to be used as the argument of the type symbol to convey a
+    type for the common constants, pi ~= 3.1415, e ~= 2.718, i = square
+    root of -1, gamma ~= .5772, NaN, infinity (all in the nums cd), true
+    and false (in the logic cd). Also for MathML variables declared to
+    have type constant, as in &lt;ci type="constant"&gt;x&lt;/ci&gt;.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118083"><semantics><mi id="MCRid118085">MathMLNumericType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118083" xlink:type="simple"><OMV name="MathMLNumericType" xlink:href="MCRid118085" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="constant_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable z is attributed with a type for constants.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118142"><semantics><mi id="MCRid118162">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118142" xlink:type="simple"><OMATTR xlink:href="MCRid118145" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid118147"><OMS cd="mathmltypes" name="type" xlink:href="MCRid118149" xlink:type="simple"/><OMS cd="mathmltypes" name="constant_type" xlink:href="MCRid118155" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid118162" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="vector_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>vector_type</div> 
+    A symbol to be used as the argument of the type symbol to convey the
+    type of a (column) vector, an n-tuple of entries.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118210"><semantics><mi id="MCRid118213">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118210" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid118213" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="vector_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable z is attributed with a type for vectors.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118269"><semantics><mi id="MCRid118289">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118269" xlink:type="simple"><OMATTR xlink:href="MCRid118272" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid118274"><OMS cd="mathmltypes" name="type" xlink:href="MCRid118276" xlink:type="simple"/><OMS cd="mathmltypes" name="vector_type" xlink:href="MCRid118282" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid118289" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="list_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>list_type</div> 
+    A symbol to be used as the argument of the type symbol to convey the
+    type for a list.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118337"><semantics><mi id="MCRid118340">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118337" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid118340" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="list_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable z is attributed with a type for lists.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118396"><semantics><mi id="MCRid118416">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118396" xlink:type="simple"><OMATTR xlink:href="MCRid118399" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid118401"><OMS cd="mathmltypes" name="type" xlink:href="MCRid118403" xlink:type="simple"/><OMS cd="mathmltypes" name="list_type" xlink:href="MCRid118409" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid118416" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="set_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>set_type</div>A symbol to be used as the argument of the type symbol to convey the
+    type for a set.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118464"><semantics><mi id="MCRid118466">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118464" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid118466" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="set_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable z is attributed with a type for sets.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118523"><semantics><mi id="MCRid118543">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118523" xlink:type="simple"><OMATTR xlink:href="MCRid118525" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid118527"><OMS cd="mathmltypes" name="type" xlink:href="MCRid118530" xlink:type="simple"/><OMS cd="mathmltypes" name="set_type" xlink:href="MCRid118536" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid118543" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="matrix_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>matrix_type</div>
+    A symbol to be used as the argument of the type symbol to convey the
+    type for a matrix (n tuple of rows, where each row is an m tuple for
+    some m, it should be noted that each row must be the same length).
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118591"><semantics><mi id="MCRid118594">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118591" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid118594" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="matrix_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable z is attributed with a type for matrices.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118650"><semantics><mi id="MCRid118670">z</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118650" xlink:type="simple"><OMATTR xlink:href="MCRid118653" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid118655"><OMS cd="mathmltypes" name="type" xlink:href="MCRid118657" xlink:type="simple"/><OMS cd="mathmltypes" name="matrix_type" xlink:href="MCRid118663" xlink:type="simple"/></OMATP><OMV name="z" xlink:href="MCRid118670" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="fn_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>fn_type</div> 
+    A symbol to be used as the argument of the type symbol to convey the
+    type for a function name.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118718"><semantics><mi id="MCRid118720">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118718" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid118720" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="fn_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable f is attributed to say it represents a function.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118777"><semantics><mi id="MCRid118798">f</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118777" xlink:type="simple"><OMATTR xlink:href="MCRid118780" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid118782"><OMS cd="mathmltypes" name="type" xlink:href="MCRid118784" xlink:type="simple"/><OMS cd="mathmltypes" name="fn_type" xlink:href="MCRid118790" xlink:type="simple"/></OMATP><OMV name="f" xlink:href="MCRid118798" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="logical_type">
+<div class="titlebox">
+<span class="titleword">Concept</span>logical_type</div> 
+    A symbol to be used as the argument of the type symbol to convey the
+    type for a logical proposition.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118848"><semantics><mi id="MCRid118850">MathMLType</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118848" xlink:type="simple"><OMV name="MathMLType" xlink:href="MCRid118850" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="logical_type-ex-1">
+<span class="titleword">Example</span>
+<p>The variable P is attributed to say it represents a proposition.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid118907"><semantics><mi id="MCRid118927">P</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid118907" xlink:type="simple"><OMATTR xlink:href="MCRid118909" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid118912"><OMS cd="mathmltypes" name="type" xlink:href="MCRid118914" xlink:type="simple"/><OMS cd="mathmltypes" name="logical_type" xlink:href="MCRid118920" xlink:type="simple"/></OMATP><OMV name="P" xlink:href="MCRid118927" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

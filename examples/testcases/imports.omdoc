@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_imports.omdoc">
+
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>                                                                     
+<theory xml:id="test_imports">
+
+  <imports xml:id="myimports" style="foo" from="proof.omdoc#test_proof" type="local">
+    <metadata>
+      <dc:description>first</dc:description>
+      <dc:description> xml:lang="zh">shouxian</dc:description>
+    </metadata>
+    <morphism xml:id="mymorphism" style="foobar" base="bla"  hiding="something">
+      <requation xml:id="req1">
+	  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> (any -> any -> any) -> any -> bool</OMSTR></OMOBJ>
+	  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> (any -> any -> any) -> any -> bool</OMSTR></OMOBJ>
+      </requation>
+
+      <requation xml:id="req2">
+	  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> bool</OMSTR></OMOBJ>
+	  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>set[any] -> bool</OMSTR></OMOBJ>
+      </requation>                                                                    
+    </morphism>
+  </imports>
+
+</theory>
+</omdoc>
+

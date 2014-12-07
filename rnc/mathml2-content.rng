@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for MathML2 Content Elements
+  $Id: mathml2-content.rnc 8008 2008-09-07 19:01:01Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdoc.rnc $
+  (c) 2005 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" ns="http://www.w3.org/1998/Math/MathML" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="Definition.attrib">
+    <optional>
+      <attribute name="encoding">
+        <data type="string"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="definitionURL">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+  </define>
+  <!--  This is the XML schema module for the token elements of the content part of MathML. -->
+  <define name="Content-token.content">
+    <choice>
+      <text/>
+      <ref name="Presentation-expr.class"/>
+    </choice>
+  </define>
+  <!-- the content of "cn" may have <sep> elements in it -->
+  <define name="sep">
+    <element name="sep">
+      <empty/>
+    </element>
+  </define>
+  <define name="cn">
+    <element name="cn">
+      <optional>
+        <attribute name="type">
+          <a:documentation>attribute base {xsd:positiveInteger [1,...,36]},</a:documentation>
+          <choice>
+            <value>e-notation</value>
+            <value>integer</value>
+            <value>rational</value>
+            <value>real</value>
+            <value>complex-cartesian</value>
+            <value>complex-polar</value>
+            <value>constant</value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="sep"/>
+          <ref name="Presentation-expr.class"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "ci" -->
+  <define name="ci">
+    <element name="ci">
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Content-token.content"/>
+    </element>
+  </define>
+  <!-- "csymbol" -->
+  <define name="csymbol">
+    <element name="csymbol">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Content-token.content"/>
+    </element>
+  </define>
+  <!-- And the group of everything -->
+  <define name="Content-tokens.class">
+    <choice>
+      <ref name="cn"/>
+      <ref name="ci"/>
+      <ref name="csymbol"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for the "arithmetic" operators of content  MathML. -->
+  <define name="Arith.type">
+    <ref name="Definition.attrib"/>
+    <ref name="MathML.Common.attrib"/>
+  </define>
+  <define name="abs">
+    <element name="abs">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="conjugate">
+    <element name="conjugate">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="arg">
+    <element name="arg">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="real">
+    <element name="real">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="imaginary">
+    <element name="imaginary">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="floor">
+    <element name="floor">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="ceiling">
+    <element name="ceiling">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="power">
+    <element name="power">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="root">
+    <element name="root">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="minus">
+    <element name="minus">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="plus">
+    <element name="plus">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="sum">
+    <element name="sum">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="times">
+    <element name="times">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="product">
+    <element name="product">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="max">
+    <element name="max">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="min">
+    <element name="min">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="factorial">
+    <element name="factorial">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="quotient">
+    <element name="quotient">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="divide">
+    <element name="divide">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="rem">
+    <element name="rem">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="gcd">
+    <element name="gcd">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="lcm">
+    <element name="lcm">
+      <ref name="Arith.type"/>
+    </element>
+  </define>
+  <define name="Content-arith.class">
+    <choice>
+      <ref name="abs"/>
+      <ref name="conjugate"/>
+      <ref name="factorial"/>
+      <ref name="arg"/>
+      <ref name="real"/>
+      <ref name="imaginary"/>
+      <ref name="floor"/>
+      <ref name="ceiling"/>
+      <ref name="quotient"/>
+      <ref name="divide"/>
+      <ref name="rem"/>
+      <ref name="minus"/>
+      <ref name="plus"/>
+      <ref name="times"/>
+      <ref name="power"/>
+      <ref name="root"/>
+      <ref name="max"/>
+      <ref name="min"/>
+      <ref name="gcd"/>
+      <ref name="lcm"/>
+      <ref name="sum"/>
+      <ref name="product"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for operators dealing with functions in content MathML. -->
+  <define name="Functions.type">
+    <ref name="Definition.attrib"/>
+    <ref name="MathML.Common.attrib"/>
+  </define>
+  <!-- "compose" -->
+  <define name="compose">
+    <element name="compose">
+      <ref name="Functions.type"/>
+    </element>
+  </define>
+  <!-- Domain, codomain and image -->
+  <define name="domain">
+    <element name="domain">
+      <ref name="Functions.type"/>
+    </element>
+  </define>
+  <define name="codomain">
+    <element name="codomain">
+      <ref name="Functions.type"/>
+    </element>
+  </define>
+  <define name="image">
+    <element name="image">
+      <ref name="Functions.type"/>
+    </element>
+  </define>
+  <!-- "domainofapplication" -->
+  <define name="domainofapplication">
+    <element name="domainofapplication">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Content-expr.class"/>
+    </element>
+  </define>
+  <!-- identity -->
+  <define name="ident">
+    <element name="ident">
+      <ref name="Functions.type"/>
+    </element>
+  </define>
+  <define name="Content-functions.class">
+    <choice>
+      <ref name="compose"/>
+      <ref name="domain"/>
+      <ref name="codomain"/>
+      <ref name="image"/>
+      <ref name="domainofapplication"/>
+      <ref name="ident"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for the logic operators of content MathML. -->
+  <define name="Logic.type">
+    <ref name="Definition.attrib"/>
+    <ref name="MathML.Common.attrib"/>
+  </define>
+  <define name="and">
+    <element name="and">
+      <ref name="Logic.type"/>
+    </element>
+  </define>
+  <define name="or">
+    <element name="or">
+      <ref name="Logic.type"/>
+    </element>
+  </define>
+  <define name="xor">
+    <element name="xor">
+      <ref name="Logic.type"/>
+    </element>
+  </define>
+  <define name="not">
+    <element name="not">
+      <ref name="Logic.type"/>
+    </element>
+  </define>
+  <define name="exists">
+    <element name="exists">
+      <ref name="Logic.type"/>
+    </element>
+  </define>
+  <define name="forall">
+    <element name="forall">
+      <ref name="Logic.type"/>
+    </element>
+  </define>
+  <define name="implies">
+    <element name="implies">
+      <ref name="Logic.type"/>
+    </element>
+  </define>
+  <define name="Content-logic.class">
+    <choice>
+      <ref name="and"/>
+      <ref name="or"/>
+      <ref name="xor"/>
+      <ref name="not"/>
+      <ref name="exists"/>
+      <ref name="forall"/>
+      <ref name="implies"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for the basic constructs of content MathML. -->
+  <define name="apply">
+    <element name="apply">
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Content-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="interval">
+    <element name="interval">
+      <ref name="MathML.Common.attrib"/>
+      <optional>
+        <attribute name="closure" a:defaultvalue="closed">
+          <choice>
+            <value>closed</value>
+            <value>open</value>
+            <value>open-closed</value>
+            <value>closed-open</value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="Content-expr.class"/>
+      <ref name="Content-expr.class"/>
+    </element>
+  </define>
+  <define name="inverse">
+    <element name="inverse">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="condition">
+    <element name="condition">
+      <ref name="Definition.attrib"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="declare">
+    <element name="declare">
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="scope">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="nargs">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="occurrence">
+          <choice>
+            <value>prefix</value>
+            <value>infix</value>
+            <value>function-model</value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="Definition.attrib"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="lambda">
+    <element name="lambda">
+      <ref name="MathML.Common.attrib"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <!-- "piecewise" and its inner elements -->
+  <define name="otherwise">
+    <element name="otherwise">
+      <ref name="Content-expr.class"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="piece">
+    <element name="piece">
+      <ref name="MathML.Common.attrib"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="piecewise">
+    <element name="piecewise">
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="piece"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="otherwise"/>
+        <ref name="piece"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="bvar">
+    <element name="bvar">
+      <ref name="MathML.Common.attrib"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="degree">
+    <element name="degree">
+      <ref name="MathML.Common.attrib"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="Content-constructs.class">
+    <choice>
+      <ref name="apply"/>
+      <ref name="interval"/>
+      <ref name="inverse"/>
+      <ref name="condition"/>
+      <ref name="declare"/>
+      <ref name="lambda"/>
+      <ref name="piecewise"/>
+      <ref name="bvar"/>
+      <ref name="degree"/>
+    </choice>
+  </define>
+  <!--  This is the XML Schema module for the basic constants of MathML content. -->
+  <define name="Constant.type">
+    <ref name="Definition.attrib"/>
+    <ref name="MathML.Common.attrib"/>
+  </define>
+  <!-- Basic sets -->
+  <define name="naturalnumbers">
+    <element name="naturalnumbers">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="primes">
+    <element name="primes">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="integers">
+    <element name="integers">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="rationals">
+    <element name="rationals">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="reals">
+    <element name="reals">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="complexes">
+    <element name="complexes">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <!-- Empty set -->
+  <define name="emptyset">
+    <element name="emptyset">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <!-- Basic constants -->
+  <define name="exponentiale">
+    <element name="exponentiale">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="imaginaryi">
+    <element name="imaginaryi">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="pi">
+    <element name="pi">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="eulergamma">
+    <element name="eulergamma">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <!-- Boolean constants -->
+  <define name="true">
+    <element name="true">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="false">
+    <element name="false">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <!-- Infinty -->
+  <define name="infinit">
+    <element name="infinity">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <!-- NotANumber -->
+  <define name="notanumber">
+    <element name="notanumber">
+      <ref name="Constant.type"/>
+    </element>
+  </define>
+  <define name="Content-constants.class">
+    <choice>
+      <ref name="naturalnumbers"/>
+      <ref name="primes"/>
+      <ref name="integers"/>
+      <ref name="rationals"/>
+      <ref name="reals"/>
+      <ref name="complexes"/>
+      <ref name="emptyset"/>
+      <ref name="exponentiale"/>
+      <ref name="imaginaryi"/>
+      <ref name="pi"/>
+      <ref name="eulergamma"/>
+      <ref name="true"/>
+      <ref name="false"/>
+      <ref name="infinit"/>
+      <ref name="notanumber"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for the elementary functions in content MathML. -->
+  <define name="Elementary-functions.type">
+    <ref name="Definition.attrib"/>
+    <ref name="MathML.Common.attrib"/>
+  </define>
+  <!-- Exp and logs -->
+  <define name="exp">
+    <element name="exp">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="ln">
+    <element name="ln">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="log">
+    <element name="log">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <!-- special element of the base of logarithms -->
+  <define name="logbase">
+    <element name="logbase">
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Content-expr.class"/>
+    </element>
+  </define>
+  <!-- Trigonometric functions -->
+  <define name="sin">
+    <element name="sin">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="cos">
+    <element name="cos">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="tan">
+    <element name="tan">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="sec">
+    <element name="sec">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="csc">
+    <element name="csc">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="cot">
+    <element name="cot">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arcsin">
+    <element name="arcsin">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arccos">
+    <element name="arccos">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arctan">
+    <element name="arctan">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arccot">
+    <element name="arccot">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arccsc">
+    <element name="arccsc">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arcsec">
+    <element name="arcsec">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <!-- Hyperbolic trigonometric functions -->
+  <define name="sinh">
+    <element name="sinh">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="cosh">
+    <element name="cosh">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="tanh">
+    <element name="tanh">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="sech">
+    <element name="sech">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="csch">
+    <element name="csch">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="coth">
+    <element name="coth">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arccosh">
+    <element name="arccosh">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arccoth">
+    <element name="arccoth">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arccsch">
+    <element name="arccsch">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arcsech">
+    <element name="arcsech">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arcsinh">
+    <element name="arcsinh">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <define name="arctanh">
+    <element name="arctanh">
+      <ref name="Elementary-functions.type"/>
+    </element>
+  </define>
+  <!-- And the group of everything -->
+  <define name="Content-elementary-functions.class">
+    <choice>
+      <ref name="exp"/>
+      <ref name="ln"/>
+      <ref name="log"/>
+      <ref name="logbase"/>
+      <ref name="sin"/>
+      <ref name="cos"/>
+      <ref name="tan"/>
+      <ref name="sec"/>
+      <ref name="csc"/>
+      <ref name="cot"/>
+      <ref name="arcsin"/>
+      <ref name="arccos"/>
+      <ref name="arctan"/>
+      <ref name="arcsec"/>
+      <ref name="arccsc"/>
+      <ref name="arccot"/>
+      <ref name="sinh"/>
+      <ref name="cosh"/>
+      <ref name="tanh"/>
+      <ref name="sech"/>
+      <ref name="csch"/>
+      <ref name="coth"/>
+      <ref name="arccosh"/>
+      <ref name="arccoth"/>
+      <ref name="arccsch"/>
+      <ref name="arcsech"/>
+      <ref name="arcsinh"/>
+      <ref name="arctanh"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for the relational operators of content MathML. -->
+  <!-- a common type for all this -->
+  <define name="Relations.type">
+    <ref name="Definition.attrib"/>
+    <ref name="MathML.Common.attrib"/>
+  </define>
+  <define name="eq">
+    <element name="eq">
+      <ref name="Relations.type"/>
+    </element>
+  </define>
+  <define name="neq">
+    <element name="neq">
+      <ref name="Relations.type"/>
+    </element>
+  </define>
+  <define name="leq">
+    <element name="leq">
+      <ref name="Relations.type"/>
+    </element>
+  </define>
+  <define name="lt">
+    <element name="lt">
+      <ref name="Relations.type"/>
+    </element>
+  </define>
+  <define name="geq">
+    <element name="geq">
+      <ref name="Relations.type"/>
+    </element>
+  </define>
+  <define name="gt">
+    <element name="gt">
+      <ref name="Relations.type"/>
+    </element>
+  </define>
+  <define name="equivalent">
+    <element name="equivalent">
+      <ref name="Relations.type"/>
+    </element>
+  </define>
+  <define name="approx">
+    <element name="approx">
+      <ref name="Relations.type"/>
+    </element>
+  </define>
+  <define name="factorof">
+    <element name="factorof">
+      <ref name="Relations.type"/>
+    </element>
+  </define>
+  <!-- And the group of everything -->
+  <define name="Content-relations.class">
+    <choice>
+      <ref name="eq"/>
+      <ref name="neq"/>
+      <ref name="leq"/>
+      <ref name="lt"/>
+      <ref name="geq"/>
+      <ref name="gt"/>
+      <ref name="equivalent"/>
+      <ref name="approx"/>
+      <ref name="factorof"/>
+    </choice>
+  </define>
+  <!-- "annotation" -->
+  <define name="annotation">
+    <element name="annotation">
+      <optional>
+        <attribute name="encoding">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <!-- "annotation-xml" -->
+  <define name="anyElement">
+    <element>
+      <anyName/>
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <text/>
+          <ref name="anyElement"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="annotation-xml">
+    <element name="annotation-xml">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <ref name="anyElement"/>
+    </element>
+  </define>
+  <!-- "semantics" -->
+  <define name="semantics">
+    <element name="semantics">
+      <optional>
+        <attribute name="encoding">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="definitionURL">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <ref name="Content-expr.class"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="annotation"/>
+          <ref name="annotation-xml"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!--  This is an XML Schema module for the part of content MathML dealing with sets and lists. -->
+  <!-- "set" ("type" could be "multiset" or "normal" or anything else) -->
+  <define name="set">
+    <element name="set">
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Content-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "list" -->
+  <define name="lst">
+    <element name="list">
+      <optional>
+        <attribute name="order">
+          <choice>
+            <value>lexicographic</value>
+            <value>numeric</value>
+          </choice>
+        </attribute>
+      </optional>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Content-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- "union" -->
+  <define name="union">
+    <element name="union">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Content-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="intersect">
+    <element name="intersect">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Content-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="in">
+    <element name="in">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="notin">
+    <element name="notin">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="subset">
+    <element name="subset">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="prsubset">
+    <element name="prsubset">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="notsubset">
+    <element name="notsubset">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="notprsubset">
+    <element name="notprsubset">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="setdiff">
+    <element name="setdiff">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="card">
+    <element name="card">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="cartesianproduct">
+    <element name="cartesianproduct">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <!-- And the group of everything -->
+  <define name="Content-sets.class">
+    <choice>
+      <ref name="set"/>
+      <ref name="lst"/>
+      <ref name="union"/>
+      <ref name="intersect"/>
+      <ref name="in"/>
+      <ref name="notin"/>
+      <ref name="subset"/>
+      <ref name="prsubset"/>
+      <ref name="notsubset"/>
+      <ref name="notprsubset"/>
+      <ref name="setdiff"/>
+      <ref name="card"/>
+      <ref name="cartesianproduct"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for the linear algebra part of content MathML. -->
+  <!-- "vector" -->
+  <define name="vector">
+    <element name="vector">
+      <ref name="MathML.Common.attrib"/>
+      <zeroOrMore>
+        <ref name="Content-expr.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="matrix">
+    <element name="matrix">
+      <ref name="MathML.Common.attrib"/>
+      <oneOrMore>
+        <ref name="matrixrow"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="matrixrow">
+    <element name="matrixrow">
+      <ref name="MathML.Common.attrib"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="determinant">
+    <element name="determinant">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="transpose">
+    <element name="transpose">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="mselector">
+    <element name="selector">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="vectorproduct">
+    <element name="vectorproduct">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="scalarproduct">
+    <element name="scalarproduct">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="outerproduct">
+    <element name="outerproduct">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="Content-linear-algebra.class">
+    <choice>
+      <ref name="vector"/>
+      <ref name="matrix"/>
+      <ref name="determinant"/>
+      <ref name="transpose"/>
+      <ref name="mselector"/>
+      <ref name="vectorproduct"/>
+      <ref name="scalarproduct"/>
+      <ref name="outerproduct"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for the calculus operators of content  MathML. -->
+  <define name="calculus.type">
+    <ref name="Definition.attrib"/>
+    <ref name="MathML.Common.attrib"/>
+  </define>
+  <define name="int">
+    <element name="int">
+      <ref name="calculus.type"/>
+    </element>
+  </define>
+  <define name="diff">
+    <element name="diff">
+      <ref name="calculus.type"/>
+    </element>
+  </define>
+  <define name="partialdiff">
+    <element name="partialdiff">
+      <ref name="calculus.type"/>
+    </element>
+  </define>
+  <define name="limit">
+    <element name="limit">
+      <ref name="calculus.type"/>
+    </element>
+  </define>
+  <define name="lowlimit">
+    <element name="lowlimit">
+      <ref name="calculus.type"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="uplimit">
+    <element name="uplimit">
+      <ref name="calculus.type"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="tendsto">
+    <element name="tendsto">
+      <ref name="calculus.type"/>
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="Content-calculus.class">
+    <choice>
+      <ref name="int"/>
+      <ref name="diff"/>
+      <ref name="partialdiff"/>
+      <ref name="limit"/>
+      <ref name="lowlimit"/>
+      <ref name="uplimit"/>
+      <ref name="tendsto"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for the vector calculus operators of content MathML. -->
+  <define name="divergence">
+    <element name="divergence">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="grad">
+    <element name="grad">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="curl">
+    <element name="curl">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="laplacian">
+    <element name="laplacian">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <!-- And the group of everything -->
+  <define name="Content-vector-calculus.class">
+    <choice>
+      <ref name="divergence"/>
+      <ref name="grad"/>
+      <ref name="curl"/>
+      <ref name="laplacian"/>
+    </choice>
+  </define>
+  <!--  This is an XML Schema module for the statistical operators of content MathML. -->
+  <define name="mean">
+    <element name="mean">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="sdev">
+    <element name="sdev">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="variance">
+    <element name="variance">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="median">
+    <element name="median">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="mode">
+    <element name="mode">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="moment">
+    <element name="moment">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+    </element>
+  </define>
+  <define name="momentabout">
+    <element name="momentabout">
+      <ref name="Definition.attrib"/>
+      <ref name="MathML.Common.attrib"/>
+      <oneOrMore>
+        <ref name="Content-expr.class"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="Content-statistics.class">
+    <choice>
+      <ref name="mean"/>
+      <ref name="sdev"/>
+      <ref name="variance"/>
+      <ref name="median"/>
+      <ref name="mode"/>
+      <ref name="moment"/>
+      <ref name="momentabout"/>
+    </choice>
+  </define>
+</grammar>

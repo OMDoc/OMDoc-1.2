@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module MOBJ  
+  $Id: omdocmobj.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocmobj.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- we include the OpenMath 2 schema, but we also allow CSS attributes, etc. -->
+  <include href="openmath2.rng">
+    <define name="common.attributes">
+      <optional>
+        <attribute name="id">
+          <data type="ID"/>
+        </attribute>
+      </optional>
+      <ref name="idrest.attribs"/>
+    </define>
+  </include>
+  <!-- we include the MathML2 schema -->
+  <include href="mathml2.rng"/>
+  <!-- the legacy element, it can encapsulate the non-migrated formats -->
+  <define name="legacy">
+    <choice>
+      <ref name="ss"/>
+      <element name="legacy">
+        <ref name="id.attrib"/>
+        <optional>
+          <attribute name="formalism">
+            <data type="anyURI"/>
+          </attribute>
+        </optional>
+        <attribute name="format">
+          <data type="anyURI"/>
+        </attribute>
+        <ref name="Anything"/>
+      </element>
+    </choice>
+  </define>
+  <!-- to allow everything -->
+  <define name="omdocmobj.class">
+    <choice>
+      <ref name="legacy"/>
+      <ref name="OMOBJ"/>
+      <ref name="math"/>
+    </choice>
+  </define>
+</grammar>

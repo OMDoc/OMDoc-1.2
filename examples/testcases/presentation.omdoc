@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_presentation.omdoc">
+
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>                                                                     
+<theory xml:id="test_presentation">
+
+<presentation xml:id="mypre" style="foo" for="#bla" role="key"
+              fixity="infix" lbrack="[" rbrack="]" separator=";"
+              bracket-style="lisp" precedence="2" crossref-symbol="all">
+<use format="bla" requires="foo" xml:lang="de" bracket-style="lisp"
+            fixity="postfix" lbrack="{" rbrack="}"
+            separator="/" element="el" attributes="att='val'"
+            crossref-symbol="separator">string for use</use>
+<use format="foobar"/>
+
+<xslt format="myform" requires="something" xml:lang="en">string for xslt</xslt>
+<xslt format="another"/>
+
+<style format="myform2" requires="required" xml:lang="de">
+  <element name="el1"/>
+  <element name="el2"/>
+  <text>testing text</text>
+  <text>more testing text</text>
+  <recurse select="abc"/>
+  <recurse select="def"/>
+  <value-of select="ghi"/>
+  <value-of select="jkl"/>
+</style>
+<style format="none"/>
+</presentation>              
+
+</theory>
+</omdoc>
+

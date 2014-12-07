@@ -1,0 +1,65 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.2) Module CTH
+      SYSTEM http://www.mathweb.org/omdoc/dtd/omdoccth.dtd
+      PUBLIC -//OMDoc//ELEMENTS OMDoc CTH V1.2//EN
+   See the documentation and examples at http://www.omdoc.org 
+   (c) 1999-2003 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!ENTITY % omdoccth.path-just.qname "%omdoc.pfx;path-just">
+<!ENTITY % omdoccth.obligation.qname "%omdoc.pfx;obligation">
+
+<!ENTITY % fromto.attrib	 "%from.attrib; to CDATA #REQUIRED">  
+<!-- attributes 'to' and 'from' are URIref -->
+
+<!ELEMENT %omdoccth.morphism.qname; (%omdocst.requation.qname;)*>
+<!ATTLIST %omdoccth.morphism.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %idic.attrib;
+          base CDATA #IMPLIED> 
+<!-- base points to some other morphism it extends -->
+
+<!ELEMENT %omdoccth.inclusion.qname; EMPTY>
+<!ATTLIST %omdoccth.inclusion.qname; 
+          via CDATA #REQUIRED 
+          %mid.attrib;>
+<!-- via points to a theory-inclusion -->
+
+<!ELEMENT %omdoccth.theory-inclusion.qname; 
+          (%cfm;,(%omdoccth.morphism.qname;)?)>
+<!ATTLIST %omdoccth.theory-inclusion.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %fromto.attrib;>
+<!-- attribute by is a whitespace-separated  list of URIref -->
+
+<!ELEMENT %omdoccth.decomposition.qname; EMPTY>
+<!ATTLIST %omdoccth.decomposition.qname; 
+          %id.attrib; %for.attrib;
+          links CDATA #REQUIRED>            
+<!-- attribute 'for' points to a 'theory-inclusion', which this 
+     element justifies; attribute 'links' is an URIrefs, points to a 
+     list of axiom-inlcusions and theory-inclusions -->
+
+<!ELEMENT %omdoccth.axiom-inclusion.qname; 
+          (%cfm;,(%omdoccth.morphism.qname;)?,
+           (%omdoccth.path-just.qname;|(%omdoccth.obligation.qname;)*))>
+<!ATTLIST %omdoccth.axiom-inclusion.qname; 
+          %omdoc.xmlns.theory.attrib;
+          %fromto.attrib;>
+
+<!ELEMENT %omdoccth.path-just.qname; EMPTY>
+<!ATTLIST %omdoccth.path-just.qname; local CDATA #REQUIRED     
+          globals CDATA #REQUIRED  
+          %mid.attrib;>              
+<!-- attribute 'local' is an URIref, points to axiom-inclusion
+               'globals' is an URIrefs, points to a list of 
+                         theory-inclusions -->
+
+<!ELEMENT %omdoccth.obligation.qname; EMPTY>
+<!ATTLIST %omdoccth.obligation.qname; induced-by CDATA #REQUIRED
+          assertion CDATA #REQUIRED  
+          %mid.attrib;>
+<!-- attribute 'assertion' is a URIref, points to  an assertion
+     that is the proof obligation induced by the axiom or definition 
+     specified by 'induced-by. -->
+

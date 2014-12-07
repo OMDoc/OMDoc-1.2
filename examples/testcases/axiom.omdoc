@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_axiom.omdoc">
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2002-02-03T00:00:00</dc:date>
+</metadata>                                                                     
+
+<theory xml:id="test_axiom">
+
+  <axiom xml:id="bar" style="foo" generated-from="hf">
+    <metadata>
+      <dc:title>bla</dc:title>
+    </metadata>
+    <CMP>axiomatic</CMP>
+    <CMP xml:lang="de">axiomatisch</CMP>
+    <FMP/>
+  </axiom>
+
+</theory>
+</omdoc>
+

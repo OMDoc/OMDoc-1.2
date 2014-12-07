@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG for Open Mathematical documents (OMDoc 1.2) Module PRES       
+  $Id: omdocpres.rnc 6466 2007-06-13 08:44:22Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocpres.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- we include the XSLT 2 schema -->
+  <include href="xslt10.rng"/>
+  <!-- xslt10 = external "xslt10.rnc" -->
+  <define name="omdoc.class" combine="choice">
+    <choice>
+      <ref name="presentation"/>
+      <ref name="omstyle"/>
+    </choice>
+  </define>
+  <define name="crossref.attrib">
+    <attribute name="crossref-symbol">
+      <choice>
+        <value>no</value>
+        <value>yes</value>
+        <value>brackets</value>
+        <value>separator</value>
+        <value>lbrack</value>
+        <value>rbrack</value>
+        <value>all</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="fixity.attrib">
+    <attribute name="fixity">
+      <choice>
+        <value>prefix</value>
+        <value>infix</value>
+        <value>postfix</value>
+        <value>assoc</value>
+        <value>infixl</value>
+        <value>infixr</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="format.attrib">
+    <attribute name="format">
+      <data type="string"/>
+    </attribute>
+    <optional>
+      <attribute name="requires">
+        <ref name="omdocref"/>
+      </attribute>
+    </optional>
+    <ref name="xml.lang.attrib"/>
+  </define>
+  <define name="bracket-style.attrib">
+    <attribute name="bracket-style">
+      <choice>
+        <value>lisp</value>
+        <value>math</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="lbrack.attrib">
+    <attribute name="lbrack">
+      <data type="string"/>
+    </attribute>
+  </define>
+  <define name="rbrack.attrib">
+    <attribute name="rbrack">
+      <data type="string"/>
+    </attribute>
+  </define>
+  <define name="separator.attrib">
+    <attribute name="separator">
+      <data type="string"/>
+    </attribute>
+  </define>
+  <define name="precedence.attrib">
+    <attribute name="precedence">
+      <data type="string">
+        <param name="pattern">0|[1-9][0-9]*</param>
+      </data>
+    </attribute>
+  </define>
+  <define name="role.attrib">
+    <attribute name="role">
+      <choice>
+        <value>applied</value>
+        <value>binding</value>
+        <value>key</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="presentation">
+    <element name="presentation">
+      <ref name="omdoc.toplevel.attribs"/>
+      <attribute name="for">
+        <ref name="omdocref"/>
+      </attribute>
+      <optional>
+        <ref name="role.attrib"/>
+      </optional>
+      <choice>
+        <optional>
+          <ref name="xref.attrib"/>
+        </optional>
+        <group>
+          <optional>
+            <ref name="fixity.attrib"/>
+          </optional>
+          <optional>
+            <ref name="lbrack.attrib"/>
+          </optional>
+          <optional>
+            <ref name="rbrack.attrib"/>
+          </optional>
+          <optional>
+            <ref name="separator.attrib"/>
+          </optional>
+          <optional>
+            <ref name="bracket-style.attrib"/>
+          </optional>
+          <optional>
+            <ref name="precedence.attrib"/>
+          </optional>
+          <optional>
+            <ref name="crossref.attrib"/>
+          </optional>
+          <zeroOrMore>
+            <ref name="CMP"/>
+          </zeroOrMore>
+          <zeroOrMore>
+            <choice>
+              <ref name="use"/>
+              <ref name="xslt"/>
+              <ref name="style"/>
+            </choice>
+          </zeroOrMore>
+        </group>
+      </choice>
+    </element>
+  </define>
+  <define name="omdocpres.use.mix">
+    <choice>
+      <ref name="elt"/>
+      <ref name="txt"/>
+      <ref name="recurse"/>
+      <ref name="value-of"/>
+      <ref name="map"/>
+    </choice>
+  </define>
+  <define name="use">
+    <choice>
+      <ref name="ss"/>
+      <element name="use">
+        <ref name="format.attrib"/>
+        <optional>
+          <ref name="bracket-style.attrib"/>
+        </optional>
+        <optional>
+          <ref name="fixity.attrib"/>
+        </optional>
+        <optional>
+          <ref name="lbrack.attrib"/>
+        </optional>
+        <optional>
+          <ref name="rbrack.attrib"/>
+        </optional>
+        <optional>
+          <ref name="separator.attrib"/>
+        </optional>
+        <optional>
+          <attribute name="element">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="attributes">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <optional>
+          <ref name="crossref.attrib"/>
+        </optional>
+        <zeroOrMore>
+          <choice>
+            <text/>
+            <ref name="omdocpres.use.mix"/>
+          </choice>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <!--
+    the attributes in the <use> element overwrite those in the 
+    <presentation> element, therefore, they do not have defaults
+  -->
+  <define name="omstyle">
+    <element name="omstyle">
+      <ref name="omdoc.toplevel.attribs"/>
+      <optional>
+        <attribute name="for">
+          <ref name="omdocref"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="element">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="xslt"/>
+          <ref name="style"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="xslt">
+    <choice>
+      <ref name="ss"/>
+      <element name="xslt">
+        <ref name="format.attrib"/>
+        <optional>
+          <ref name="xref.attrib"/>
+        </optional>
+        <ref name="template.model"/>
+      </element>
+    </choice>
+  </define>
+  <define name="style">
+    <choice>
+      <ref name="ss"/>
+      <element name="style">
+        <ref name="format.attrib"/>
+        <zeroOrMore>
+          <ref name="omdocpres.use.mix"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <!-- this element contains mock xslt expressed in the elements below -->
+  <define name="elt">
+    <choice>
+      <ref name="ss"/>
+      <element name="element">
+        <attribute name="name">
+          <data type="NMTOKEN"/>
+        </attribute>
+        <optional>
+          <attribute name="crid">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="cr">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="ns">
+            <data type="anyURI"/>
+          </attribute>
+        </optional>
+        <zeroOrMore>
+          <choice>
+            <ref name="attrb"/>
+            <ref name="omdocpres.use.mix"/>
+          </choice>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="map">
+    <choice>
+      <ref name="ss"/>
+      <element name="map">
+        <optional>
+          <attribute name="select">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="lbrack">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="rbrack">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="precedence">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <optional>
+          <ref name="separator"/>
+        </optional>
+        <zeroOrMore>
+          <ref name="omdocpres.use.mix"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="separator">
+    <choice>
+      <ref name="ss"/>
+      <element name="separator">
+        <zeroOrMore>
+          <ref name="omdocpres.use.mix"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="attrb">
+    <choice>
+      <ref name="ss"/>
+      <element name="attribute">
+        <attribute name="name">
+          <data type="NMTOKEN"/>
+        </attribute>
+        <optional>
+          <attribute name="ns">
+            <data type="anyURI"/>
+          </attribute>
+        </optional>
+        <choice>
+          <attribute name="select">
+            <data type="string"/>
+          </attribute>
+          <zeroOrMore>
+            <choice>
+              <ref name="txt"/>
+              <ref name="value-of"/>
+            </choice>
+          </zeroOrMore>
+        </choice>
+      </element>
+    </choice>
+  </define>
+  <define name="txt">
+    <choice>
+      <ref name="ss"/>
+      <element name="text">
+        <text/>
+      </element>
+    </choice>
+  </define>
+  <define name="value-of">
+    <choice>
+      <ref name="ss"/>
+      <element name="value-of">
+        <attribute name="select">
+          <data type="string"/>
+        </attribute>
+      </element>
+    </choice>
+  </define>
+  <define name="recurse">
+    <choice>
+      <ref name="ss"/>
+      <element name="recurse">
+        <optional>
+          <attribute name="select">
+            <data type="string"/>
+          </attribute>
+        </optional>
+      </element>
+    </choice>
+  </define>
+</grammar>

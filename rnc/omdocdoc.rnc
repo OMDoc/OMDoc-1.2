@@ -1,0 +1,49 @@
+# A RelaxNG for Open Mathematical documents (OMDoc 1.2) Module DOC         
+# $Id: omdocdoc.rnc 8373 2009-06-07 04:19:16Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocdoc.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://www.mathweb.org/omdoc"
+# extend the stuff that can go into a mathematical text
+omdoc.mtext.class |= ignore | ref
+ 
+ss = ignore | ref 
+omdoc.class |= ss 
+omdoc.meta.class |= notAllowed
+
+metadata = element metadata {id.attrib,
+	                     attribute inherits {omdocref}?,
+	                     (omdoc.meta.class)*}
+
+Anything = (AnyElement|text)*
+AnyElement = element * {AnyAttribute,(text|AnyElement)*}
+AnyAttribute = attribute * { text }*
+
+# this element can be used in lieu of a comment, it is read 
+# by the style sheet, (comments are not) and can therefore 
+# be transformed by them
+ 
+ignore = element ignore {attribute type {xsd:string}?,
+                         attribute comment {xsd:string}?,
+			 Anything}
+
+ref = element ref {id.attrib,
+                   xref.attrib,
+                   attribute type {xsd:string}?}
+
+#  the types supported (there may be more over time) are 
+#  - 'include' (the default) for in-text replacement 
+#  - 'cite' for a reference with a generated label
+
+group.attribs = attribute type {xsd:anyURI}?, attribute modules {xsd:anyURI}?
+
+group.elts = metadata?,(omdoc.class | omgroup)*
+
+# grouping defines the structure of a document
+omgroup = element omgroup {group.attribs,omdoc.toplevel.attribs,group.elts}
+
+# finally the definition of the OMDoc root element
+omdoc = element omdoc {omdoc.toplevel.attribs,group.attribs,
+                       attribute version {xsd:string {pattern = "1.2"}}?,
+		       group.elts}

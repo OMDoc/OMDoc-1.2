@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <!--
+    A RelaxNG for Open Mathematical documents (OMDoc 1.2: OMDoc Education) 
+    $Id: omdoc-education.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+    $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdoc-education.rnc $
+    See the documentation and examples at http://www.omdoc.org
+    Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+  -->
+  <include href="omdoc-mathweb.rng"/>
+  <include href="omdocquiz.rng"/>
+</grammar>

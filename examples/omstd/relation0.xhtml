@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary relation0.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary relation0.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, Olga Caprotti</div>
+<div class="date">1999-06-01</div>
+<div class="description"> 
+    Binary relations properties, equivalence relation, orders, up
+    to the definition of a setoid as a set with an equivalence relations
+    defined on its elements.		
+  </div></div>
+
+
+<div class="symbol" id="relation">
+<div class="titlebox">
+<span class="titleword">Concept</span>relation</div> Type constructor; returns the type of binary relations on a set.
+</div>
+
+<div class="lemma" id="relation-prop-1">
+<span class="titleword">Lemma</span>
+<p>Is defined as "[A:Set] A -&gt; A -&gt; Prop" </p>
+</div>
+
+<div class="symbol" id="reflexive">
+<div class="titlebox">
+<span class="titleword">Concept</span>reflexive</div> Proposition; the type of reflexive binary relations.
+</div>
+
+<div class="lemma" id="reflexive-prop-1">
+<span class="titleword">Lemma</span>
+<p>Defined as [A:symtype][R: (relation A)](x:A)(R x x)</p>
+</div>
+
+<div class="symbol" id="irreflexive">
+<div class="titlebox">
+<span class="titleword">Concept</span>irreflexive</div> Proposition; the type of irreflexive binary relations.
+</div>
+
+<div class="lemma" id="irreflexive-prop-1">
+<span class="titleword">Lemma</span>
+<p>Defined as  [A:symtype][R: (relation A)](x:A) ~(R x x)</p>
+</div>
+
+<div class="symbol" id="transitive">
+<div class="titlebox">
+<span class="titleword">Concept</span>transitive</div> Proposition; the type of transitive binary relations.
+</div>
+
+<div class="lemma" id="transitive-prop-1">
+<span class="titleword">Lemma</span>
+<p>Defined as [A:symtype][R: (relation A)](x,y,z:A)(R x y) -&gt; (R y z) -&gt; (R x z)</p>
+</div>
+
+<div class="symbol" id="symmetric">
+<div class="titlebox">
+<span class="titleword">Concept</span>symmetric</div> Proposition; the type of symmetric binary relations.
+</div>
+
+<div class="lemma" id="symmetric-prop-1">
+<span class="titleword">Lemma</span>
+<p>Defined as [A:symtype][R: (relation A)](x,y:A)(R x y) -&gt; (R y x)</p>
+</div>
+
+<div class="symbol" id="antisymmetric">
+<div class="titlebox">
+<span class="titleword">Concept</span>antisymmetric</div> Proposition; the type of antisymmetric binary relations.
+</div>
+
+<div class="lemma" id="antisymmetric-prop-1">
+<span class="titleword">Lemma</span>
+<p> Defined as [A:symtype][R: (relation A)](x,y:A)(R x y) -&gt; (R y x) -&gt; (relation1::eq x y)</p>
+</div>
+
+<div class="symbol" id="partial_equivalence">
+<div class="titlebox">
+<span class="titleword">Concept</span>partial_equivalence</div> Proposition; the type of partia equivalence relations, 
+    namely relations that are symmetric, and transitive.
+</div>
+
+<div class="lemma" id="partial_equivalence-prop-1">
+<span class="titleword">Lemma</span>
+<p>Defined as [A:symtype][R: (relation A)] (symmetric R) /\ (transitive R)</p>
+</div>
+
+<div class="symbol" id="equivalence">
+<div class="titlebox">
+<span class="titleword">Concept</span>equivalence</div> Proposition; the type of equivalence relations, 
+    namely relations that are reflexive, symmetric and transitive.
+</div>
+
+<div class="lemma" id="equivalence-prop-1">
+<span class="titleword">Lemma</span>
+<p>Defined as [A:symtype][R: (relation A)] (reflexive R) /\ (symmetric R) /\ (transitive R)</p>
+</div>
+
+<div class="symbol" id="order">
+<div class="titlebox">
+<span class="titleword">Concept</span>order</div> Proposition; the type of order relations, 
+    namely relations that are reflexive, antisymmetric and transitive.
+</div>
+
+<div class="lemma" id="order-prop-1">
+<span class="titleword">Lemma</span>
+<p>Defined as [A:symtype][R: (relation A)] (reflexive R) /\ (antisymmetric R) /\ (transitive R)</p>
+</div>
+
+<div class="symbol" id="strict_order">
+<div class="titlebox">
+<span class="titleword">Concept</span>strict_order</div> Proposition; the type of strict order relations, 
+    namely relations that are irreflexive, antisymmetric and transitive.
+</div>
+
+<div class="lemma" id="strict_order-prop-1">
+<span class="titleword">Lemma</span>
+<p>Defined as  [A:symtype][R: (relation A)] (irreflexive R) /\ (antisymmetric R) /\ (transitive R)</p>
+</div>
+
+<div class="symbol" id="pre_order">
+<div class="titlebox">
+<span class="titleword">Concept</span>pre_order</div> Proposition; the type of preorder relations, 
+    namely relations that are reflexive and transitive.
+</div>
+
+<div class="lemma" id="pre_order-prop-1">
+<span class="titleword">Lemma</span>
+<p>Defined as  [A:symtype][R: (relation A)] (reflexive R) /\ (transitive R)</p>
+</div>
+
+
+
+</body>
+</html>

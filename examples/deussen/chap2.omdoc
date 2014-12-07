@@ -1,0 +1,2216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN" "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="deussen.chap2.omdoc" >
+
+<metadata>
+  <dc:title xml:lang="en">Chapter 2: Semigroup Homomorphisms</dc:title>
+  <dc:title xml:lang="de">Kapitel 2: Homomorphismen van Halbgruppen</dc:title>
+  <dc:creator role="ant">Barbara Schuett Kerber</dc:creator>
+  <dc:source>Deussen: Halbgruppen und Automaten, Springer Verlag, Heidleberger Taschenbuecher, Sammlung Informatik Nr. 99, 1971.</dc:source>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+</metadata>
+
+<theory xml:id="deussen.chap2">
+
+  <symbol name="semi-group-homomorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Halbgruppenhomomorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> semigroup-homomorphism</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="semi-group-homomorphism.def" for="#semi-group-homomorphism" type="simple">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Seien $F$ und $H$ Halbgruppen (oder Gruppen). Eine Abbildung $\varphi : F \rightarrow H$ hei"st  Homomorphismus (von $F$ in $H$), wenn gilt $\varphi (fg) = \varphi (f) \varphi (g)$ $(f,g \in F)$. </legacy>
+    </CMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="PHI"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="deussen.chap1" name="semi-group"/>
+		<OMV name="G"/>
+		<OMV name="G"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="deussen.chap1" name="semi-group"/>
+		<OMV name="H"/>
+		<OMV name="H"/>
+	      </OMA>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMV name="G"/>
+		  </OMATP>
+		  <OMV name="X"/>
+		</OMATTR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMV name="G"/>
+		  </OMATP>
+		  <OMV name="Y"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMA>
+		  <OMV name="PHI"/>
+		  <OMA>
+		    <OMV name="G"/>
+		    <OMV name="X"/>
+		    <OMV name="Y"/>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMV name="H"/>
+		  <OMA>
+		    <OMV name="PHI"/>
+		    <OMV name="X"/>
+		  </OMA>
+		  <OMA>
+		    <OMV name="PHI"/>
+		    <OMV name="Y"/>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="group-homomorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Gruppenhomomorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> group-homomorphism</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="group-homomorphism.def" for="#group-homomorphism" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMA>
+		    <OMS cd="simpletypes" name="funtype"/>
+		    <OMV name="G"/>
+		    <OMV name="G"/>
+		  </OMA>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="PHI"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="deussen.chap1" name="group"/>
+		<OMV name="G"/>
+		<OMV name="G"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="deussen.chap1" name="group"/>
+		<OMV name="H"/>
+		<OMV name="H"/>
+	      </OMA>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMV name="G"/>
+		  </OMATP>
+		  <OMV name="X"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMA>
+		  <OMV name="PHI"/>
+		  <OMA>
+		    <OMV name="G"/>
+		    <OMV name="X"/>
+		    <OMV name="Y"/>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMV name="H"/>
+		  <OMA>
+		    <OMV name="PHI"/>
+		    <OMV name="X"/>
+		  </OMA>
+		  <OMA>
+		    <OMV name="PHI"/>
+		    <OMV name="Y"/>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="semi-group-endomorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Halbgruppenendomorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> semigroup-endomorphism</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="semi-group-endomorphism.def" for="#semi-group-endomorphism" type="simple">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Spezielle Homomorphismen: Ist $F = H$, so hei"st $\varphi $  Endomorphismus. </legacy>
+    </CMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="G"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="PHI"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="group-endomorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Gruppenendomorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> group-endomorphism</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="group-endomorphism.def" for="#group-endomorphism" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="semi-group-monomorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Halbgruppenmonomorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> semigroup-monomorphism</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="semi-group-monomorphism.def" for="#semi-group-monomorphism" type="simple">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Ist $\varphi $ injektiv, so hei"st $\varphi $  Monomorphismus. </legacy>
+    </CMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="PHI"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="group-monomorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Gruppenmonomorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> group-monomorphism</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="group-monomorphism.def" for="#group-monomorphism" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="PHI"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="semi-group-epimorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Halbgruppenepimorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> semigroup-epimorphism</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="semi-group-epimorphism.def" for="#semi-group-epimorphism" type="simple">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Ist $\varphi $ surjektiv, so hei"st $\varphi $  Epimorphismus und $H$ ein  homomorphes Bild von $F$. </legacy>
+    </CMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="PHI"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="group-epimorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Gruppenepimorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> group-epimorphism</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="group-epimorphism.def" for="#group-epimorphism" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="PHI"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="semi-group-isomorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Halbgruppenisomorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> semigroup-isomorphism</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="semi-group-isomorphism.def" for="#semi-group-isomorphism" type="simple">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Ist $\varphi $ bijektiv, so hei"st $\varphi $  Isomorphismus und $F$ und $H$ sind  isomorph ($F \simeq H$). </legacy>
+    </CMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="PHI"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="group-isomorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Gruppenisomorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> group-isomorphism</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="group-isomorphism.def" for="#group-isomorphism" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="PHI"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="semi-group-automorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Halbgruppenautomorphismus $f : G \rightarrow G$</dc:subject>
+<dc:subject> semigroup-automorphism</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="semi-group-automorphism.def" for="#semi-group-automorphism" type="simple">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Ist $F = H$ und $\varphi $ bijektiv, so hei"st $\varphi $  Automorphismus. </legacy>
+    </CMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="G"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="F"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="group-automorphism" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Gruppenhomomorphismus $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> group-automorphism</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="group-automorphism.def" for="#group-automorphism" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="G"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="F"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="set-of-semi-group-hom" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Menge der Halbgruppenhomomorphismen</dc:subject>
+<dc:subject>set of semi-group homomorphism</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="set-of-semi-group-hom.def" for="#set-of-semi-group-hom" type="implicit">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> $Hom(F,H)$ bezeichnet die Menge aller Homomorphismen $\varphi : F \rightarrow H$. </legacy>
+    </CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="H"/>
+		  <OMA>
+		    <OMS cd="simpletypes" name="funtype"/>
+		    <OMV name="H"/>
+		    <OMV name="H"/>
+		  </OMA>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMA>
+		    <OMS cd="simpletypes" name="funtype"/>
+		    <OMV name="G"/>
+		    <OMV name="G"/>
+		  </OMA>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="deussen.chap1" name="semi-group"/>
+		<OMV name="G"/>
+		<OMV name="G"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="deussen.chap1" name="semi-group"/>
+		<OMV name="H"/>
+		<OMV name="H"/>
+	      </OMA>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMV name="G"/>
+		      <OMV name="H"/>
+		    </OMA>
+		  </OMATP>
+		  <OMV name="F"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="equivalent"/>
+		<OMA>
+		  <OMA>
+		    <OMS cd="deussen.chap2" name="set-of-semi-group-hom"/>
+		    <OMV name="G"/>
+		    <OMV name="G"/>
+		    <OMV name="H"/>
+		    <OMV name="H"/>
+		  </OMA>
+		  <OMV name="F"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="deussen.chap2" name="semi-group-homomorphism"/>
+		  <OMV name="G"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		  <OMV name="H"/>
+		  <OMV name="F"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ></FMP>
+  </definition>
+
+  <symbol name="set-of-group-hom" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Menge aller Gruppen-Hom. $\varphi : G \rightarrow H$</dc:subject>
+<dc:subject> set of group-homomorphisms</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="set-of-group-hom.def" for="#set-of-group-hom" type="implicit">
+
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="H"/>
+		  <OMA>
+		    <OMS cd="simpletypes" name="funtype"/>
+		    <OMV name="H"/>
+		    <OMV name="H"/>
+		  </OMA>
+		</OMA>
+	      </OMATP>
+	      <OMV name="H"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMA>
+		    <OMS cd="simpletypes" name="funtype"/>
+		    <OMV name="G"/>
+		    <OMV name="G"/>
+		  </OMA>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="deussen.chap1" name="group"/>
+		<OMV name="G"/>
+		<OMV name="G"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="deussen.chap1" name="group"/>
+		<OMV name="H"/>
+		<OMV name="H"/>
+	      </OMA>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMV name="G"/>
+		      <OMV name="H"/>
+		    </OMA>
+		  </OMATP>
+		  <OMV name="F"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="equivalent"/>
+		<OMA>
+		  <OMA>
+		    <OMS cd="deussen.chap2" name="set-of-group-hom"/>
+		    <OMV name="G"/>
+		    <OMV name="G"/>
+		    <OMV name="H"/>
+		    <OMV name="H"/>
+		  </OMA>
+		  <OMV name="F"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="deussen.chap2" name="group-homomorphism"/>
+		  <OMV name="G"/>
+		  <OMV name="G"/>
+		  <OMV name="H"/>
+		  <OMV name="H"/>
+		  <OMV name="F"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ></FMP>
+  </definition>
+
+  <symbol name="free-generating-system" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">$E$ ist freies Erzeugendensystem</dc:subject>
+<dc:subject> $E$ is a free generating system over $G$.</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="free-generating-system.def" for="#free-generating-system" type="simple">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Eine Teilmenge $E \subset F$ hei"st  freies Erzeugendensystem, wenn gilt: 1. $E^{\ast } = F$ und 2. Zu jeder Halbgruppe $H$ und jeder Abbildung $\varphi _0 : E \rightarrow H$ gibt es ein $\varphi \in Hom(F;H)$, so da"s $\varphi \mid E = \varphi _0$, und in diesem Fall hei"st $F$  frei ("uber E). </legacy>
+    </CMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="E"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="basic.algebra" name="subset"/>
+		<OMV name="E"/>
+		<OMV name="G"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="deussen.chap1" name="semi-group"/>
+		<OMV name="G"/>
+		<OMV name="G"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMA>
+		  <OMS cd="deussen.chap1" name="generated-sub-semi-group"/>
+		  <OMV name="G"/>
+		  <OMV name="E"/>
+		  <OMV name="G"/>
+		</OMA>
+		<OMV name="G"/>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="free-over" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">$G$ ist frei ("uber $E$)</dc:subject>
+<dc:subject> G is free over E</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="free-over.def" for="#free-over" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="G"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="E"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMV name="T"/>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="n-same-cart-prod1" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">n-faches Kartesisches Produkt</dc:subject>
+<dc:subject>n-fold cartesian product</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="n-same-cart-prod1.def" for="#n-same-cart-prod1" type="implicit">
+    <CMP xml:lang="de">
+      Wir bilden mit einer nichtleeren Menge <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMV name="x"/>
+	</OMOBJ>, dem  Alphabet, induktiv die kartesischen Produkte <legacy format="TeX">$X_1 := X$ , $X_{n+1} := X \times X_n$. </legacy>
+    </CMP>
+    <CMP>
+      Here we will define the cartesian product of only one set <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMV name="x"/>
+	</OMOBJ> with itself, that is <legacy format="TeX">$X \times X
+	  \times\mathinner {\cdotp \cdotp \cdotp }\times X$ (n-times). </legacy> 
+    </CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="X"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMS cd="nat.numbers" name="nat"/>
+	      </OMATP>
+	      <OMV name="N"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMV name="A"/>
+	      </OMATP>
+	      <OMV name="A"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="equivalent"/>
+	    <OMA>
+	      <OMA>
+		<OMS cd="set.theory" name="n-same-cart-prod"/>
+		<OMV name="N"/>
+		<OMV name="X"/>
+	      </OMA>
+	      <OMV name="A"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="exists"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMA>
+			<OMS cd="simpletypes" name="funtype"/>
+			<OMS cd="set.theory" name="first-n-nats"/>
+			<OMV name="N"/>
+		      </OMA>
+		      <OMV name="A"/>
+		    </OMA>
+		  </OMATP>
+		  <OMV name="X"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="and"/>
+		<OMA>
+		  <OMV name="X"/>
+		  <OMA>
+		    <OMV name="X"/>
+		    <OMS cd="ind" name="ind"/>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMS cd="relation1" name="eq"/>
+		  <OMV name="A"/>
+		  <OMA>
+		    <OMS cd="set.theory" name="n-tuple"/>
+		    <OMV name="N"/>
+		    <OMV name="X"/>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND> 
+      </OMOBJ></FMP>
+  </definition>
+
+  <symbol name="set-of-all-words-over" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Menge aller Worte </dc:subject>
+<dc:subject> the set of all words</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="set-of-all-words-over.def" for="#set-of-all-words-over" type="implicit">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Die Vereinigung $W(X) := \bigcup \limits _{n \in Nat} X_n$ </legacy> hei"st dann die Menge aller  Worte "uber <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMV name="x"/>
+	</OMOBJ>.
+    </CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="X"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="equivalent"/>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMS cd="nat.numbers" name="nat"/>
+		      <OMV name="A"/>
+		    </OMA>
+		  </OMATP>
+		  <OMV name="W"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMA>
+		  <OMS cd="deussen.chap2" name="set-of-all-words-over"/>
+		  <OMV name="X"/>
+		</OMA>
+		<OMV name="W"/>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ></FMP>
+  </definition>
+
+  <symbol name="word-over" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Wort</dc:subject>
+<dc:subject> w is word over X</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="word-over.def" for="#word-over" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="X"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMS cd="nat.numbers" name="nat"/>
+		  <OMV name="A"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="W"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMA>
+	      <OMS cd="deussen.chap2" name="set-of-all-words-over"/>
+	      <OMV name="X"/>
+	    </OMA>
+	    <OMV name="W"/>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="length-of-word" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">L"ange des Wortes $w$</dc:subject>
+<dc:subject> length of a word</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="length-of-word.def" for="#length-of-word" type="implicit">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Zur Vereinfachung der Schreibweise wollen wir f"ur ein Wort $u \in W(X)$ auch $u = x_1x_2 ...x_n := (x_1,x_2, ...,x_n)$ schreiben und nennen dabei $\mid u \mid := n$ die  L"ange von $u$. </legacy>
+    </CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMS cd="nat.numbers" name="nat"/>
+		  <OMV name="A"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="W"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="X"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="deussen.chap2" name="word-over"/>
+		<OMV name="X"/>
+		<OMV name="W"/>
+	      </OMA>
+	      <OMBIND>
+		<OMS cd="quant1" name="exists"/>
+		<OMBVAR>
+		  <OMATTR>
+		    <OMATP>
+		      <OMS cd="simpletypes" name="type"/>
+		      <OMS cd="nat.numbers" name="nat"/>
+		    </OMATP>
+		    <OMV name="N"/>
+		  </OMATTR>
+		</OMBVAR>
+		<OMA>
+		  <OMA>
+		    <OMS cd="set.theory" name="n-same-cart-prod"/>
+		    <OMV name="N"/>
+		    <OMV name="X"/>
+		  </OMA>
+		  <OMV name="W"/>
+		</OMA>
+	      </OMBIND>
+	    </OMA>
+	    <OMV name="N"/>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ></FMP>
+  </definition>
+
+  <symbol name="concatenation" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Konkatenation von $u$ und $v$</dc:subject>
+<dc:subject>concatenation</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="concatenation.def" for="#concatenation" type="implicit">
+
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMS cd="nat.numbers" name="nat"/>
+	      </OMATP>
+	      <OMV name="M"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMS cd="nat.numbers" name="nat"/>
+	      </OMATP>
+	      <OMV name="N"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMS cd="nat.numbers" name="nat"/>
+		  <OMV name="A"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="V"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMS cd="nat.numbers" name="nat"/>
+		  <OMV name="A"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="U"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="X"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMV name="N"/>
+		<OMA>
+		  <OMS cd="deussen.chap2" name="length-of-word"/>
+		  <OMV name="X"/>
+		  <OMV name="U"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMV name="M"/>
+		<OMA>
+		  <OMS cd="deussen.chap2" name="length-of-word"/>
+		  <OMV name="X"/>
+		  <OMV name="V"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMS cd="nat.numbers" name="nat"/>
+		      <OMV name="A"/>
+		    </OMA>
+		  </OMATP>
+		  <OMV name="W"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="equivalent"/>
+		<OMA>
+		  <OMS cd="relation1" name="eq"/>
+		  <OMA>
+		    <OMS cd="deussen.chap2" name="concatenation"/>
+		    <OMV name="X"/>
+		    <OMV name="U"/>
+		    <OMV name="V"/>
+		    <OMV name="N"/>
+		    <OMV name="M"/>
+		  </OMA>
+		  <OMV name="W"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="logic1" name="and"/>
+		  <OMA>
+		    <OMS cd="logic1" name="and"/>
+		    <OMA>
+		      <OMS cd="relation1" name="eq"/>
+		      <OMA>
+			<OMS cd="deussen.chap2" name="length-of-word"/>
+			<OMV name="X"/>
+			<OMV name="W"/>
+		      </OMA>
+		      <OMA>
+			<OMS cd="nat.numbers" name="plus"/>
+			<OMV name="N"/>
+			<OMV name="M"/>
+		      </OMA>
+		    </OMA>
+		    <OMBIND>
+		      <OMS cd="quant1" name="forall"/>
+		      <OMBVAR>
+			<OMATTR>
+			  <OMATP>
+			    <OMS cd="simpletypes" name="type"/>
+			    <OMA>
+			      <OMS cd="simpletypes" name="funtype"/>
+			      <OMV name="N"/>
+			      <OMS cd="set.theory" name="first-n-nats"/>
+			    </OMA>
+			  </OMATP>
+			  <OMV name="I"/>
+			</OMATTR>
+		      </OMBVAR>
+		      <OMA>
+			<OMS cd="relation1" name="eq"/>
+			<OMA>
+			  <OMV name="W"/>
+			  <OMS cd="ind" name="ind"/>
+			</OMA>
+			<OMA>
+			  <OMV name="U"/>
+			  <OMS cd="ind" name="ind"/>
+			</OMA>
+		      </OMA>
+		    </OMBIND>
+		  </OMA>
+		  <OMBIND>
+		    <OMS cd="quant1" name="forall"/>
+		    <OMBVAR>
+		      <OMATTR>
+			<OMATP>
+			  <OMS cd="simpletypes" name="type"/>
+			  <OMA>
+			    <OMS cd="simpletypes" name="funtype"/>
+			    <OMV name="M"/>
+			    <OMS cd="set.theory" name="first-n-nats"/>
+			  </OMA>
+			</OMATP>
+			<OMV name="K"/>
+		      </OMATTR>
+		    </OMBVAR>
+		    <OMA>
+		      <OMS cd="relation1" name="eq"/>
+		      <OMA>
+			<OMV name="W"/>
+			<OMA>
+			  <OMS cd="nat.numbers" name="plus"/>
+			  <OMV name="N"/>
+			  <OMV name="K"/>
+			</OMA>
+		      </OMA>
+		      <OMA>
+			<OMV name="V"/>
+			<OMV name="K"/>
+		      </OMA>
+		    </OMA>
+		  </OMBIND>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ></FMP>
+  </definition>
+
+  <symbol name="rank-of-word-semi-group-over" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">Rang der Worthalbgruppe </dc:subject>
+<dc:subject> the rank of the word semigroup</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="rank-of-word-semi-group-over.def" for="#rank-of-word-semi-group-over" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="A"/>
+		  <OMS cd="truthval" name="bool"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="X"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="set.theory" name="card"/>
+	    <OMV name="X"/>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+  </definition>
+
+  <symbol name="comp-direct-product" role="object" scope="global">
+    <metadata><dc:subject  xml:lang="de">$\times _{i = 1}^n F_i$</dc:subject></metadata>
+  </symbol>
+
+
+  <definition xml:id="comp-direct-product.def" for="#comp-direct-product" type="implicit">
+    <CMP xml:lang="de">
+      <legacy format="TeX"> Sei $set(F_i : i = 1, ..., n)$ eine endliche Familie von Halbgruppen. Das  direkte Produkt $\mathop \times _{i=1}^n F_i$ ist diejenige Halbgruppe, deren zugrunde liegende Menge das kartesische Produkt $F_1 \times F_2 \times ...\times F_n$ ist, mit der Verkn"upfung $(f_1,f_2, ...,f_n)(g_1,g_2, ...,g_n) :=(f_1g_1,f_2g_2, ...,f_ng_n)$, wobei $f_i,g_i \in F_i$ ist. </legacy>
+    </CMP>
+    <CMP>
+      <legacy format="TeX"> The direct product $\varphi $ is a composition $\varphi : \mathop \times
+	\limits _{i=1}^n F_i \times \mathop \times \limits _{i=1}^n F_i \rightarrow
+	\mathop \times \limits _{i=1}^n F_i$ It can be defined componentwise within every
+	semigroup by: $f_i : F_i \times F_i \rightarrow F_i$ f"ur $i = 1, ..., n$ If
+	$(x_1, ..., x_n), (y_1, ..., y_n) \in \mathop \times \limits _{i=1}^n F_i$, then is $\varphi ((x_1, ..., x_n), (y_1, ..., y_n)) = = (f_1(x_1,y_1), ..., f_n(x_n,y_n)) = (z_1, ..., z_n)$ That means $\forall i \in set(1, ..., n)$: we have $z_i = f_i (x_i, y_i)$. </legacy>
+    </CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+	<OMBIND>
+	  <OMS cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMA>
+		    <OMS cd="simpletypes" name="funtype"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMS cd="truthval" name="bool"/>
+		      <OMV name="A"/>
+		    </OMA>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMS cd="set.theory" name="first-n-nats"/>
+		      <OMV name="N"/>
+		    </OMA>
+		  </OMA>
+		  <OMA>
+		    <OMS cd="simpletypes" name="funtype"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMA>
+			<OMS cd="simpletypes" name="funtype"/>
+			<OMS cd="truthval" name="bool"/>
+			<OMV name="A"/>
+		      </OMA>
+		      <OMA>
+			<OMS cd="simpletypes" name="funtype"/>
+			<OMS cd="set.theory" name="first-n-nats"/>
+			<OMV name="N"/>
+		      </OMA>
+		    </OMA>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMA>
+			<OMS cd="simpletypes" name="funtype"/>
+			<OMS cd="truthval" name="bool"/>
+			<OMV name="A"/>
+		      </OMA>
+		      <OMA>
+			<OMS cd="simpletypes" name="funtype"/>
+			<OMS cd="set.theory" name="first-n-nats"/>
+			<OMV name="N"/>
+		      </OMA>
+		    </OMA>
+		  </OMA>
+		</OMA>
+	      </OMATP>
+	      <OMV name="F"/>
+	    </OMATTR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMS cd="nat.numbers" name="nat"/>
+	      </OMATP>
+	      <OMV name="N"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMV name="N"/>
+		      <OMS cd="set.theory" name="first-n-nats"/>
+		    </OMA>
+		  </OMATP>
+		  <OMV name="I"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="and"/>
+		<OMA>
+		  <OMS cd="logic1" name="and"/>
+		  <OMA>
+		    <OMA>
+		      <OMV name="F"/>
+		      <OMS cd="ind" name="ind"/>
+		    </OMA>
+		    <OMA>
+		      <OMV name="X"/>
+		      <OMS cd="ind" name="ind"/>
+		    </OMA>
+		  </OMA>
+		  <OMA>
+		    <OMA>
+		      <OMV name="F"/>
+		      <OMS cd="ind" name="ind"/>
+		    </OMA>
+		    <OMA>
+		      <OMV name="Y"/>
+		      <OMS cd="ind" name="ind"/>
+		    </OMA>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMS cd="deussen.chap1" name="semi-group"/>
+		  <OMA>
+		    <OMV name="F"/>
+		    <OMS cd="ind" name="ind"/>
+		  </OMA>
+		  <OMA>
+		    <OMV name="F"/>
+		    <OMS cd="ind" name="ind"/>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMA>
+			<OMS cd="simpletypes" name="funtype"/>
+			<OMS cd="set.theory" name="first-n-nats"/>
+			<OMV name="N"/>
+		      </OMA>
+		      <OMV name="A"/>
+		    </OMA>
+		  </OMATP>
+		  <OMV name="X"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="set.theory" name="n-tuple"/>
+		<OMV name="N"/>
+		<OMV name="X"/>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ></FMP>
+  </definition>
+
+</theory>
+<assertion xml:id="schker93.2.3" theory="deussen.chap2" type="conjecture">
+  <CMP xml:lang="de">
+    <legacy format="TeX"> Um nun $W(X)$ zu einer Halbgruppe zu machen, wird eine Verkn"upfung f"ur je zwei Worte $u =x_1x_2 ...x_n$ und $v = y_1y_2 ...y_m$ $(x_i,y_k \in X)$, die  Konkatenation von $u$ und $v$, durch $u^{\cap }v := x_1x_2 ...x_ny_1y_2 ...y_m$ definiert, und auch hier k"urzen wir, wenn keine Verwechslungen zu bef"urchten sind, ab: $uv := u^{\cap }v$. </legacy>
+  </CMP>
+  <CMP>
+    <legacy format="TeX">every word of length n is an n-tuple. </legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMV name="A"/>
+		<OMS cd="truthval" name="bool"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="X"/>
+	  </OMATTR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMS cd="nat.numbers" name="nat"/>
+		<OMV name="A"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="W"/>
+	  </OMATTR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMS cd="nat.numbers" name="nat"/>
+	    </OMATP>
+	    <OMV name="N"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMV name="N"/>
+	    <OMA>
+	      <OMS cd="deussen.chap2" name="length-of-word"/>
+	      <OMV name="X"/>
+	      <OMV name="W"/>
+	    </OMA>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="quant1" name="exists"/>
+	    <OMBVAR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMA>
+		    <OMS cd="simpletypes" name="funtype"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMS cd="set.theory" name="first-n-nats"/>
+		      <OMV name="N"/>
+		    </OMA>
+		    <OMV name="A"/>
+		  </OMA>
+		</OMATP>
+		<OMV name="X"/>
+	      </OMATTR>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMV name="W"/>
+	      <OMA>
+		<OMS cd="set.theory" name="n-tuple"/>
+		<OMV name="N"/>
+		<OMV name="X"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMBIND>
+    </OMOBJ></FMP>
+</assertion>
+
+<assertion xml:id="schker93.2.4" theory="deussen.chap2" type="conjecture">
+  <CMP xml:lang="de">
+     Die Menge <legacy format="TeX"> $W(X)$ versehen mit der Verkn"upfung $(2.3)$</legacy> als Halbgruppenverkn"upfung hei"st die  Worthalbgruppe "uber <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMV name="x"/>
+      </OMOBJ>. Der  Rang von <legacy format='TeX'>$W(X)$ ist $card(X)$. </legacy>
+  </CMP>
+  <CMP>
+    If <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMV name="x"/>
+      </OMOBJ> is not empty, then the set of all words over X forms a semigroup together with the concatenation.
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMV name="A"/>
+		<OMS cd="truthval" name="bool"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="X"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="basic.algebra" name="notequal"/>
+	    <OMV name="X"/>
+	    <OMS cd="basic.algebra" name="empty-set"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="deussen.chap1" name="semi-group"/>
+	    <OMA>
+	      <OMS cd="deussen.chap2" name="set-of-all-words-over"/>
+	      <OMV name="X"/>
+	    </OMA>
+	    <OMS cd="deussen.chap2" name="concatenation"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ></FMP>
+</assertion>
+
+<assertion xml:id="schker93.2.5a" theory="deussen.chap2" type="conjecture">
+  <CMP xml:lang="de">
+    <legacy format="TeX"> Jedes $u \in W(X)$ ist eindeutig als Produkt von Elementen $x \in X$ darstellbar. </legacy>
+  </CMP>
+  <CMP>
+    <legacy format="TeX">Every element $u \in W(X)$ is uniquely writeable as a product of elements $x \in X$. </legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMV name="A"/>
+		<OMS cd="truthval" name="bool"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="X"/>
+	  </OMATTR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMS cd="nat.numbers" name="nat"/>
+		<OMV name="A"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="W"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMBIND>
+	  <OMS cd="quant1" name="exists"/>
+	  <OMBVAR>
+	    <OMATTR>
+	      <OMATP>
+		<OMS cd="simpletypes" name="type"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMA>
+		    <OMS cd="simpletypes" name="funtype"/>
+		    <OMS cd="set.theory" name="first-n-nats"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMS cd="deussen.chap2" name="length-of-word"/>
+		      <OMA>
+			<OMS cd="simpletypes" name="funtype"/>
+			<OMV name="X"/>
+			<OMV name="W"/>
+		      </OMA>
+		    </OMA>
+		  </OMA>
+		  <OMV name="A"/>
+		</OMA>
+	      </OMATP>
+	      <OMV name="X"/>
+	    </OMATTR>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="logic1" name="and"/>
+		<OMA>
+		  <OMS cd="deussen.chap2" name="word-over"/>
+		  <OMV name="X"/>
+		  <OMV name="W"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="relation1" name="eq"/>
+		  <OMV name="W"/>
+		  <OMA>
+		    <OMS cd="set.theory" name="n-tuple"/>
+		    <OMA>
+		      <OMS cd="deussen.chap2" name="length-of-word"/>
+		      <OMV name="X"/>
+		      <OMV name="W"/>
+		    </OMA>
+		    <OMV name="X"/>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMV name="W"/>
+		<OMA>
+		  <OMS cd="set.theory" name="n-tuple"/>
+		  <OMA>
+		    <OMS cd="deussen.chap2" name="length-of-word"/>
+		    <OMV name="X"/>
+		    <OMV name="W"/>
+		  </OMA>
+		  <OMV name="Y"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMA>
+			<OMS cd="simpletypes" name="funtype"/>
+			<OMS cd="deussen.chap2" name="length-of-word"/>
+			<OMA>
+			  <OMS cd="simpletypes" name="funtype"/>
+			  <OMV name="X"/>
+			  <OMV name="W"/>
+			</OMA>
+		      </OMA>
+		      <OMS cd="set.theory" name="first-n-nats"/>
+		    </OMA>
+		  </OMATP>
+		  <OMV name="I"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMA>
+		  <OMV name="X"/>
+		  <OMS cd="ind" name="ind"/>
+		</OMA>
+		<OMA>
+		  <OMV name="Y"/>
+		  <OMS cd="ind" name="ind"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMBIND>
+    </OMOBJ></FMP>
+</assertion>
+
+<assertion xml:id="schker93.2.5b" theory="deussen.chap2" type="conjecture">
+  <CMP xml:lang="de">
+    <legacy format="TeX"> $W(X)$ ist sowohl links- wie rechtsk"urzbar. </legacy>
+  </CMP>
+  <CMP>
+    <legacy format="TeX">$W(X)$ is left cancellable. </legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMV name="A"/>
+		<OMS cd="truthval" name="bool"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="X"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="deussen.chap1" name="left-cancellable"/>
+	  <OMA>
+	    <OMS cd="deussen.chap2" name="set-of-all-words-over"/>
+	    <OMV name="X"/>
+	  </OMA>
+	  <OMS cd="deussen.chap2" name="concatenation"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ></FMP>
+</assertion>
+
+<assertion xml:id="schker93.2.5b2" theory="deussen.chap2" type="conjecture">
+  <CMP xml:lang="de">
+    <legacy format="TeX">$W(X)$ is right cancellable. </legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMV name="A"/>
+		<OMS cd="truthval" name="bool"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="X"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="deussen.chap1" name="right-cancellable"/>
+	  <OMA>
+	    <OMS cd="deussen.chap2" name="set-of-all-words-over"/>
+	    <OMV name="X"/>
+	  </OMA>
+	  <OMS cd="deussen.chap2" name="concatenation"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ></FMP>
+</assertion>
+
+<assertion xml:id="schker93.2.6" theory="deussen.chap2" type="conjecture">
+  <CMP xml:lang="de">
+    <legacy format="TeX"> $W(X) \simeq W(Y)$ genau dann, wenn $card(X) = card(Y)$. </legacy>
+  </CMP>
+  <CMP>
+    <legacy format="TeX">$W(X) \simeq W(Y) \Leftrightarrow card(X) = card(Y)$. </legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMV name="A"/>
+		<OMS cd="truthval" name="bool"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="X"/>
+	  </OMATTR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMV name="A"/>
+		<OMS cd="truthval" name="bool"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="Y"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="equivalent"/>
+	  <OMA>
+	    <OMS cd="deussen.chap2" name="semi-group-isomorphism"/>
+	    <OMA>
+	      <OMS cd="deussen.chap2" name="set-of-all-words-over"/>
+	      <OMV name="X"/>
+	    </OMA>
+	    <OMS cd="deussen.chap2" name="concatenation"/>
+	    <OMA>
+	      <OMS cd="deussen.chap2" name="set-of-all-words-over"/>
+	      <OMV name="Y"/>
+	    </OMA>
+	    <OMS cd="deussen.chap2" name="concatenation"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMA>
+	      <OMS cd="set.theory" name="card"/>
+	      <OMV name="X"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set.theory" name="card"/>
+	      <OMV name="Y"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ></FMP>
+</assertion>
+
+<assertion xml:id="schker93.2.7" theory="deussen.chap2" type="conjecture">
+  <CMP xml:lang="de">
+     Die Halbgruppe <legacy format="TeX">$F$</legacy> ist genau dann frei, wenn es eine Menge <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMV name="x"/>
+      </OMOBJ> gibt, so da"s <legacy format="TeX">$F \simeq W(X)$. </legacy>
+  </CMP>
+  <CMP>
+    The semigroup <legacy format="TeX">$G$</legacy> is free iff there is a set <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMV name="x"/>
+      </OMOBJ> with <legacy format="TeX">$F \simeq W(X)$. </legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMV name="A"/>
+		<OMS cd="truthval" name="bool"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="G"/>
+	  </OMATTR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMV name="G"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMV name="G"/>
+		  <OMV name="G"/>
+		</OMA>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="G"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="deussen.chap1" name="semi-group"/>
+	    <OMV name="G"/>
+	    <OMV name="G"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="logic1" name="equivalent"/>
+	    <OMA>
+	      <OMS cd="deussen.chap2" name="free-over"/>
+	      <OMV name="G"/>
+	      <OMV name="G"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="exists"/>
+	      <OMBVAR>
+		<OMATTR>
+		  <OMATP>
+		    <OMS cd="simpletypes" name="type"/>
+		    <OMA>
+		      <OMS cd="simpletypes" name="funtype"/>
+		      <OMV name="A"/>
+		      <OMS cd="truthval" name="bool"/>
+		    </OMA>
+		  </OMATP>
+		  <OMV name="X"/>
+		</OMATTR>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="deussen.chap2" name="semi-group-isomorphism"/>
+		<OMV name="G"/>
+		<OMV name="G"/>
+		<OMA>
+		  <OMS cd="deussen.chap2" name="set-of-all-words-over"/>
+		  <OMV name="X"/>
+		</OMA>
+		<OMS cd="deussen.chap2" name="concatenation"/>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ></FMP>
+</assertion>
+
+<assertion xml:id="schker93.2.8" theory="deussen.chap2" type="conjecture">
+  <CMP xml:lang="de">
+    <legacy format="TeX">The n-cartesian product of $F$ forms a semigroup together with the direct product. </legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">  
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMS cd="nat.numbers" name="nat"/>
+	    </OMATP>
+	    <OMV name="N"/>
+	  </OMATTR>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="simpletypes" name="type"/>
+	      <OMA>
+		<OMS cd="simpletypes" name="funtype"/>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMS cd="set.theory" name="first-n-nats"/>
+		  <OMV name="N"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="simpletypes" name="funtype"/>
+		  <OMS cd="truthval" name="bool"/>
+		  <OMS cd="ind" name="ind"/>
+		</OMA>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="F"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="deussen.chap1" name="semi-group"/>
+	  <OMA>
+	    <OMS cd="set.theory" name="n-cart-prod"/>
+	    <OMV name="N"/>
+	    <OMV name="F"/>
+	  </OMA>
+	  <OMS cd="deussen.chap2" name="comp-direct-product"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ></FMP>
+</assertion>
+
+</omdoc>

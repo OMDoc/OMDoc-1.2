@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module QUIZ 
+  $Id: omdocquiz.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocquiz.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://www.mathweb.org/omdoc" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="omdoc.class" combine="choice">
+    <choice>
+      <ref name="exercise"/>
+      <ref name="hint"/>
+      <ref name="mc"/>
+      <ref name="solution"/>
+    </choice>
+  </define>
+  <define name="exercise">
+    <element name="exercise">
+      <ref name="id.attrib"/>
+      <ref name="fori.attrib"/>
+      <ref name="omdocmtxt.MCF.content"/>
+      <zeroOrMore>
+        <ref name="hint"/>
+      </zeroOrMore>
+      <choice>
+        <zeroOrMore>
+          <ref name="solution"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="mc"/>
+        </zeroOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="omdocpf.opt.content">
+    <notAllowed/>
+  </define>
+  <define name="hint">
+    <element name="hint">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+      <ref name="omdocmtxt.MCF.content"/>
+    </element>
+  </define>
+  <define name="solution">
+    <element name="solution">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+      <optional>
+        <ref name="metadata"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="omdoc.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="mc">
+    <element name="mc">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+      <ref name="choice"/>
+      <optional>
+        <ref name="hint"/>
+      </optional>
+      <ref name="answer"/>
+    </element>
+  </define>
+  <define name="choice">
+    <choice>
+      <ref name="ss"/>
+      <element name="choice">
+        <ref name="id.attrib"/>
+        <ref name="omdocmtxt.MCF.content"/>
+      </element>
+    </choice>
+  </define>
+  <define name="answer">
+    <choice>
+      <ref name="ss"/>
+      <element name="answer">
+        <ref name="id.attrib"/>
+        <optional>
+          <attribute name="verdict">
+            <choice>
+              <value>true</value>
+              <value>false</value>
+            </choice>
+          </attribute>
+        </optional>
+        <ref name="omdocmtxt.MCF.content"/>
+      </element>
+    </choice>
+  </define>
+</grammar>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary limit1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary limit1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD holds the basic notion of the limits of unary functions
+    whilst its variable tend (either from above, below or both
+    sides) to a particular value.
+  </div></div>
+
+
+<div class="symbol" id="limit">
+<div class="titlebox">
+<span class="titleword">Concept</span>limit</div>
+    This symbol is used to denote the limit of a unary function. It
+    takes 3 arguments: the limiting value of the argument, the method of
+    approach (either null, above, below or both-sides) and the function.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid159565"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id159567" xlink:href="sts.xml#mapsto"><mo xlink:href="sts.xml#NumericalValue" xlink:type="simple" id="MCRid159576">Num</mo><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid159582">TendsTo</mi><mo xlink:href="sts.xml#mapsto">,</mo><mrow id="id159586" xlink:href="sts.xml#mapsto"><mfenced id="id159586" open="(" close=")" separators=""><mo xlink:href="sts.xml#NumericalValue" xlink:type="simple" id="MCRid159595">Num</mo></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="sts.xml#NumericalValue" xlink:type="simple" id="MCRid159601">Num</mo></mrow><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="sts.xml#NumericalValue" xlink:type="simple" id="MCRid159609">Num</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid159565" xlink:type="simple"><OMA xlink:href="MCRid159567" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid159570" xlink:type="simple"/><OMS cd="sts" name="NumericalValue" xlink:href="MCRid159576" xlink:type="simple"/><OMV name="TendsTo" xlink:href="MCRid159582" xlink:type="simple"/><OMA xlink:href="MCRid159586" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid159588" xlink:type="simple"/><OMS cd="sts" name="NumericalValue" xlink:href="MCRid159595" xlink:type="simple"/><OMS cd="sts" name="NumericalValue" xlink:href="MCRid159601" xlink:type="simple"/></OMA><OMS cd="sts" name="NumericalValue" xlink:href="MCRid159609" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#limit-ex-1">#limit-ex-1</a>
+<div class="symbol" id="both_sides">
+<div class="titlebox">
+<span class="titleword">Concept</span>both_sides</div> 
+    This symbol is used within a limit construct to show the limit is
+    being approached from both sides. It takes no arguments.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid131104"><semantics><mi id="MCRid131106">TendsTo</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid131104" xlink:type="simple"><OMV name="TendsTo" xlink:href="MCRid131106" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#both_sides-ex-1">#both_sides-ex-1</a>
+<div class="symbol" id="above">
+<div class="titlebox">
+<span class="titleword">Concept</span>above</div> 
+    This symbol is used within a limit construct to show the limit is
+    being approached from above. It takes no arguments.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid131163"><semantics><mi id="MCRid131165">TendsTo</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid131163" xlink:type="simple"><OMV name="TendsTo" xlink:href="MCRid131165" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#above-ex-1">#above-ex-1</a>
+<div class="symbol" id="below">
+<div class="titlebox">
+<span class="titleword">Concept</span>below</div>
+    This symbol is used within a limit construct to show the limit is
+    being approached from below. It takes no arguments.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid131222"><semantics><mi id="MCRid131225">TendsTo</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid131222" xlink:type="simple"><OMV name="TendsTo" xlink:href="MCRid131225" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#below-ex-1">#below-ex-1</a>
+<div class="symbol" id="null">
+<div class="titlebox">
+<span class="titleword">Concept</span>null</div>
+    This symbol is used within a limit construct to avoid specifying the method of
+    approach to the limit. It takes no arguments.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid131282"><semantics><mi id="MCRid131286">TendsTo</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid131282" xlink:type="simple"><OMV name="TendsTo" xlink:href="MCRid131286" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+<a href="#null-ex-1">#null-ex-1</a>
+<div class="example" id="limit-ex-1">
+<span class="titleword">Example</span>
+<p>The limit of sin(x) as x tends to 0</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid159848"><semantics><mrow><munder id="id159850"><mo>lim</mo><mrow><mi id="MCRid159879">x</mi><mo>→</mo><mn id="MCRid159858"> 0 </mn></mrow></munder><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="transc1.xml#sin" xlink:type="simple" id="MCRid159886">sin</mo><mfenced id="id159884" open="(" close=")" separators=""><mi id="MCRid159893">x</mi></mfenced></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid159848" xlink:type="simple"><OMA xlink:href="MCRid159850" xlink:type="simple"><OMS cd="limit1" name="limit" xlink:href="MCRid159852" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid159858"> 0 </OMI><OMS cd="limit1" name="both_sides" xlink:href="MCRid159862" xlink:type="simple"/><OMBIND xlink:href="MCRid159868" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid159870" xlink:type="simple"/><OMBVAR xlink:href="MCRid159877" xlink:type="simple"><OMV name="x" xlink:href="MCRid159879" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid159884" xlink:type="simple"><OMS cd="transc1" name="sin" xlink:href="MCRid159886" xlink:type="simple"/><OMV name="x" xlink:href="MCRid159893" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="example" id="both_sides-ex-1">
+<span class="titleword">Example</span>
+<p>The limit of sin(x) as x tends to 0 from either direction</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid159930"><semantics><mrow><munder id="id159932"><mo>lim</mo><mrow><mi id="MCRid159961">x</mi><mo>→</mo><mn id="MCRid159941"> 0 </mn></mrow></munder><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="transc1.xml#sin" xlink:type="simple" id="MCRid159968">sin</mo><mfenced id="id159966" open="(" close=")" separators=""><mi id="MCRid159975">x</mi></mfenced></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid159930" xlink:type="simple"><OMA xlink:href="MCRid159932" xlink:type="simple"><OMS cd="limit1" name="limit" xlink:href="MCRid159934" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid159941"> 0 </OMI><OMS cd="limit1" name="both_sides" xlink:href="MCRid159944" xlink:type="simple"/><OMBIND xlink:href="MCRid159950" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid159952" xlink:type="simple"/><OMBVAR xlink:href="MCRid159959" xlink:type="simple"><OMV name="x" xlink:href="MCRid159961" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid159966" xlink:type="simple"><OMS cd="transc1" name="sin" xlink:href="MCRid159968" xlink:type="simple"/><OMV name="x" xlink:href="MCRid159975" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="example" id="above-ex-1">
+<span class="titleword">Example</span>
+<p>The limit of sin(x) as x tends to 0 from above</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid160011"><semantics><mrow><munder id="id160014"><mo>lim</mo><mrow><mi id="MCRid160042">x</mi><mo>↓</mo><mn id="MCRid160022"> 0 </mn></mrow></munder><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="transc1.xml#sin" xlink:type="simple" id="MCRid160049">sin</mo><mfenced id="id160047" open="(" close=")" separators=""><mi id="MCRid160056">x</mi></mfenced></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid160011" xlink:type="simple"><OMA xlink:href="MCRid160014" xlink:type="simple"><OMS cd="limit1" name="limit" xlink:href="MCRid160016" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid160022"> 0 </OMI><OMS cd="limit1" name="above" xlink:href="MCRid160025" xlink:type="simple"/><OMBIND xlink:href="MCRid160031" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid160033" xlink:type="simple"/><OMBVAR xlink:href="MCRid160040" xlink:type="simple"><OMV name="x" xlink:href="MCRid160042" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid160047" xlink:type="simple"><OMS cd="transc1" name="sin" xlink:href="MCRid160049" xlink:type="simple"/><OMV name="x" xlink:href="MCRid160056" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="example" id="below-ex-1">
+<span class="titleword">Example</span>
+<p>The limit of sin(x) as x tends to 0 from below</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid160092"><semantics><mrow><munder id="id160095"><mo>lim</mo><mrow><mi id="MCRid160123">x</mi><mo>↑</mo><mn id="MCRid160103"> 0 </mn></mrow></munder><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="transc1.xml#sin" xlink:type="simple" id="MCRid160131">sin</mo><mfenced id="id160128" open="(" close=")" separators=""><mi id="MCRid160137">x</mi></mfenced></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid160092" xlink:type="simple"><OMA xlink:href="MCRid160095" xlink:type="simple"><OMS cd="limit1" name="limit" xlink:href="MCRid160097" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid160103"> 0 </OMI><OMS cd="limit1" name="below" xlink:href="MCRid160106" xlink:type="simple"/><OMBIND xlink:href="MCRid160112" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid160114" xlink:type="simple"/><OMBVAR xlink:href="MCRid160121" xlink:type="simple"><OMV name="x" xlink:href="MCRid160123" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid160128" xlink:type="simple"><OMS cd="transc1" name="sin" xlink:href="MCRid160131" xlink:type="simple"/><OMV name="x" xlink:href="MCRid160137" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="example" id="null-ex-1">
+<span class="titleword">Example</span>
+<p>The limit of sin(x) as x tends to 0</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid160173"><semantics><mrow><munder id="id160176"><mo>lim</mo><mrow><mi id="MCRid160204">x</mi><mn id="MCRid160184"> 0 </mn></mrow></munder><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="transc1.xml#sin" xlink:type="simple" id="MCRid160212">sin</mo><mfenced id="id160210" open="(" close=")" separators=""><mi id="MCRid160218">x</mi></mfenced></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid160173" xlink:type="simple"><OMA xlink:href="MCRid160176" xlink:type="simple"><OMS cd="limit1" name="limit" xlink:href="MCRid160178" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid160184"> 0 </OMI><OMS cd="limit1" name="null" xlink:href="MCRid160187" xlink:type="simple"/><OMBIND xlink:href="MCRid160193" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid160196" xlink:type="simple"/><OMBVAR xlink:href="MCRid160202" xlink:type="simple"><OMV name="x" xlink:href="MCRid160204" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid160210" xlink:type="simple"><OMS cd="transc1" name="sin" xlink:href="MCRid160212" xlink:type="simple"/><OMV name="x" xlink:href="MCRid160218" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

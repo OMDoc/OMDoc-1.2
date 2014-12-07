@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.2) Module DC  
+  $Id: omdocdc.rnc 6399 2007-05-25 15:07:45Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/rnc/omdocdc.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://purl.org/dc/elements/1.1/" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- Persons in Dublin Core Metadata -->
+  <define name="omdocdc.person.content">
+    <text/>
+  </define>
+  <!-- the rest of Dublin Core content -->
+  <define name="omdocdc.rest.content">
+    <zeroOrMore>
+      <choice>
+        <text/>
+        <ref name="AnyElement"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="omdoc.meta.class" combine="choice">
+    <choice>
+      <ref name="ss"/>
+      <ref name="dc.contributor"/>
+      <ref name="dc.creator"/>
+      <ref name="dc.rights"/>
+      <ref name="dc.subject"/>
+      <ref name="dc.title"/>
+      <ref name="dc.description"/>
+      <ref name="dc.publisher"/>
+      <ref name="dc.date"/>
+      <ref name="dc.type"/>
+      <ref name="dc.format"/>
+      <ref name="dc.identifier"/>
+      <ref name="dc.source"/>
+      <ref name="dc.language"/>
+      <ref name="dc.relation"/>
+    </choice>
+  </define>
+  <!-- the MARC relator set; see http://www.loc.gov/marc/relators -->
+  <define name="dcrole">
+    <optional>
+      <attribute name="role">
+        <choice>
+          <value>act</value>
+          <value>adp</value>
+          <value>aft</value>
+          <value>ann</value>
+          <value>ant</value>
+          <value>app</value>
+          <value>aqt</value>
+          <value>arc</value>
+          <value>arr</value>
+          <value>art</value>
+          <value>asg</value>
+          <value>asn</value>
+          <value>att</value>
+          <value>auc</value>
+          <value>aud</value>
+          <value>aui</value>
+          <value>aus</value>
+          <value>aut</value>
+          <value>bdd</value>
+          <value>bjd</value>
+          <value>bkd</value>
+          <value>bkp</value>
+          <value>bnd</value>
+          <value>bpd</value>
+          <value>bsl</value>
+          <value>ccp</value>
+          <value>chr</value>
+          <value>clb</value>
+          <value>cli</value>
+          <value>cll</value>
+          <value>clt</value>
+          <value>cmm</value>
+          <value>cmp</value>
+          <value>cmt</value>
+          <value>cnd</value>
+          <value>cns</value>
+          <value>coe</value>
+          <value>col</value>
+          <value>com</value>
+          <value>cos</value>
+          <value>cot</value>
+          <value>cov</value>
+          <value>cpc</value>
+          <value>cpe</value>
+          <value>cph</value>
+          <value>cpl</value>
+          <value>cpt</value>
+          <value>cre</value>
+          <value>crp</value>
+          <value>crr</value>
+          <value>csl</value>
+          <value>csp</value>
+          <value>cst</value>
+          <value>ctb</value>
+          <value>cte</value>
+          <value>ctg</value>
+          <value>ctr</value>
+          <value>cts</value>
+          <value>ctt</value>
+          <value>cur</value>
+          <value>cwt</value>
+          <value>dfd</value>
+          <value>dfe</value>
+          <value>dft</value>
+          <value>dgg</value>
+          <value>dis</value>
+          <value>dln</value>
+          <value>dnc</value>
+          <value>dnr</value>
+          <value>dpc</value>
+          <value>dpt</value>
+          <value>drm</value>
+          <value>drt</value>
+          <value>dsr</value>
+          <value>dst</value>
+          <value>dte</value>
+          <value>dto</value>
+          <value>dub</value>
+          <value>edt</value>
+          <value>egr</value>
+          <value>elt</value>
+          <value>eng</value>
+          <value>etr</value>
+          <value>exp</value>
+          <value>fac</value>
+          <value>flm</value>
+          <value>fmo</value>
+          <value>fnd</value>
+          <value>fpy</value>
+          <value>frg</value>
+          <value>hnr</value>
+          <value>hst</value>
+          <value>ill</value>
+          <value>ilu</value>
+          <value>ins</value>
+          <value>inv</value>
+          <value>itr</value>
+          <value>ive</value>
+          <value>ivr</value>
+          <value>lbt</value>
+          <value>lee</value>
+          <value>lel</value>
+          <value>len</value>
+          <value>let</value>
+          <value>lie</value>
+          <value>lil</value>
+          <value>lit</value>
+          <value>lsa</value>
+          <value>lse</value>
+          <value>lso</value>
+          <value>ltg</value>
+          <value>lyr</value>
+          <value>mdc</value>
+          <value>mod</value>
+          <value>mon</value>
+          <value>mrk</value>
+          <value>mte</value>
+          <value>mus</value>
+          <value>nrt</value>
+          <value>opn</value>
+          <value>org</value>
+          <value>orm</value>
+          <value>oth</value>
+          <value>own</value>
+          <value>pat</value>
+          <value>pbd</value>
+          <value>pbl</value>
+          <value>pfr</value>
+          <value>pht</value>
+          <value>plt</value>
+          <value>pop</value>
+          <value>ppm</value>
+          <value>prc</value>
+          <value>prd</value>
+          <value>prf</value>
+          <value>prg</value>
+          <value>prm</value>
+          <value>pro</value>
+          <value>prt</value>
+          <value>pta</value>
+          <value>pte</value>
+          <value>ptf</value>
+          <value>pth</value>
+          <value>ptt</value>
+          <value>rbr</value>
+          <value>rce</value>
+          <value>rcp</value>
+          <value>red</value>
+          <value>ren</value>
+          <value>res</value>
+          <value>rev</value>
+          <value>rpt</value>
+          <value>rpy</value>
+          <value>rse</value>
+          <value>rsp</value>
+          <value>rst</value>
+          <value>rth</value>
+          <value>rtm</value>
+          <value>sad</value>
+          <value>sce</value>
+          <value>scl</value>
+          <value>scr</value>
+          <value>sec</value>
+          <value>sgn</value>
+          <value>sng</value>
+          <value>spk</value>
+          <value>spn</value>
+          <value>spy</value>
+          <value>srv</value>
+          <value>stl</value>
+          <value>stn</value>
+          <value>str</value>
+          <value>ths</value>
+          <value>trc</value>
+          <value>trl</value>
+          <value>tyd</value>
+          <value>tyg</value>
+          <value>voc</value>
+          <value>wam</value>
+          <value>wdc</value>
+          <value>wde</value>
+          <value>wit</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="dclang">
+    <ref name="id.attrib"/>
+    <ref name="xml.lang.attrib"/>
+  </define>
+  <!--
+    first the Dublin Core Metadata model of the
+    Dublin Metadata initiative (http://purl.org/dc)
+  -->
+  <define name="dc.contributor">
+    <element name="contributor">
+      <ref name="dclang"/>
+      <ref name="dcrole"/>
+      <ref name="omdocdc.person.content"/>
+    </element>
+  </define>
+  <define name="dc.creator">
+    <element name="creator">
+      <ref name="dclang"/>
+      <ref name="dcrole"/>
+      <ref name="omdocdc.person.content"/>
+    </element>
+  </define>
+  <define name="dc.title">
+    <element name="title">
+      <ref name="dclang"/>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="dc.subject">
+    <element name="subject">
+      <ref name="dclang"/>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="dc.description">
+    <element name="description">
+      <ref name="dclang"/>
+      <zeroOrMore>
+        <ref name="omdoc.mtext.class"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="dc.publisher">
+    <element name="publisher">
+      <ref name="id.attrib"/>
+      <ref name="omdocdc.rest.content"/>
+    </element>
+  </define>
+  <define name="dc.type">
+    <element name="type">
+      <choice>
+        <value>Dataset</value>
+        <value>Text</value>
+        <value>Collection</value>
+      </choice>
+    </element>
+  </define>
+  <define name="dc.format">
+    <element name="format">
+      <value>application/omdoc+xml</value>
+    </element>
+  </define>
+  <define name="dc.source">
+    <element name="source">
+      <ref name="omdocdc.rest.content"/>
+    </element>
+  </define>
+  <define name="dc.language">
+    <element name="language">
+      <ref name="omdocdc.rest.content"/>
+    </element>
+  </define>
+  <define name="dc.relation">
+    <element name="relation">
+      <ref name="omdocdc.rest.content"/>
+    </element>
+  </define>
+  <define name="dc.rights">
+    <element name="rights">
+      <ref name="omdocdc.rest.content"/>
+    </element>
+  </define>
+  <define name="dc.date">
+    <element name="date">
+      <optional>
+        <attribute name="action">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="who">
+          <ref name="omdocref"/>
+        </attribute>
+      </optional>
+      <data type="dateTime"/>
+    </element>
+  </define>
+  <define name="dc.identifier">
+    <element name="identifier">
+      <attribute name="scheme">
+        <data type="NMTOKEN"/>
+      </attribute>
+      <text/>
+    </element>
+  </define>
+</grammar>

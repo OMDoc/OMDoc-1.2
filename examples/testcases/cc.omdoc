@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.2//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://www.mathweb.org/omdoc"
+xml:id="test_metadata.omdoc">
+
+<metadata>
+  <dc:title>test</dc:title>
+  <dc:creator role="aut">hf</dc:creator>
+  <dc:date>2001-12-12T00:00:00</dc:date>
+  <dc:rights>
+    Copyright (c) 2004 Michael Kohlhase
+  </dc:rights>
+  <cc:license jurisdiction="de" xmlns:cc="http://creativecommons.org/ns">
+    <cc:permissions reproduction="permitted" distribution="permitted" 
+	derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>                                                                     
+</omdoc>
+

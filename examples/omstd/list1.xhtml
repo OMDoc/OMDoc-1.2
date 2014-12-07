@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The OpenMath Content Dictionary list1.ocd  in OMDoc form</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The OpenMath Content Dictionary list1.ocd  in OMDoc form</div>
+<div class="authors">Michael Kohlhase, The OpenMath Society</div>
+<div class="date"/>
+<div class="description">
+    This CD is intended to be `compatible' with MathML list
+    constructs.
+  </div></div>
+
+
+<div class="symbol" id="map">
+<div class="titlebox">
+<span class="titleword">Concept</span>map</div>
+    This symbol represents a mapping function which may be used to
+    construct lists, it takes as arguments a function from X to Y and a
+    list over X in that order. The value that is returned is a list of
+    values in Y. The argument list may be a set or an <span class="legacy">integer_interval</span>
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid154504"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id154507" xlink:href="sts.xml#mapsto"><mrow id="id153883" xlink:href="sts.xml#mapsto"><mfenced id="id153883" open="(" close=")" separators=""><mo xlink:href="#Object" xlink:type="simple" id="id153891">Object</mo></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#Object" xlink:type="simple" id="id153898">Object</mo></mrow><mo xlink:href="sts.xml#mapsto">,</mo><mi id="MCRid153905">List</mi><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid153909">List</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid154504" xlink:type="simple"><OMA xlink:href="MCRid154507" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid154509" xlink:type="simple"/><OMA xlink:href="MCRid153883" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid153885" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid153891" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid153898" xlink:type="simple"/></OMA><OMV name="List" xlink:href="MCRid153905" xlink:type="simple"/><OMV name="List" xlink:href="MCRid153909" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="map-ex-1">
+<span class="titleword">Example</span>
+<p>
+    The list of even values between 0 and 20 in ascending order, that is
+    the values 2x in ascending order, where x ranges over the integral
+    interval [0,10]. </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153945"><semantics><mrow id="MCRid153948"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#map" xlink:type="simple" id="id153950">map</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid153956"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="fns1.xml#lambda" xlink:type="simple" id="MCRid153958">λ</mo><mrow id="MCRid178072"><mi id="MCRid178074">x</mi></mrow><mn id="MCRid178088"> 2 </mn><mo id="MCRid178081">⁢</mo><mi id="MCRid178091">x</mi></mrow><mo separator="true">,</mo><mfenced id="id178098" open="{" close="}" separators=""><mn id="MCRid178106"> 0 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="interval1.xml#integer_interval" xlink:type="simple" id="MCRid178100">,…,</mo><mn id="MCRid178110"> 10 </mn></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153945" xlink:type="simple"><OMA xlink:href="MCRid153948" xlink:type="simple"><OMS cd="list1" name="map" xlink:href="MCRid153950" xlink:type="simple"/><OMBIND xlink:href="MCRid153956" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid153958" xlink:type="simple"/><OMBVAR xlink:href="MCRid178072" xlink:type="simple"><OMV name="x" xlink:href="MCRid178074" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid178079" xlink:type="simple"><OMS cd="arith1" name="times" xlink:href="MCRid178081" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid178088"> 2 </OMI><OMV name="x" xlink:href="MCRid178091" xlink:type="simple"/></OMA></OMBIND><OMA xlink:href="MCRid178098" xlink:type="simple"><OMS cd="interval1" name="integer_interval" xlink:href="MCRid178100" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid178106"> 0 </OMI><OMI xlink:type="simple" xlink:href="MCRid178110"> 10 </OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="suchthat">
+<div class="titlebox">
+<span class="titleword">Concept</span>suchthat</div>
+    This symbol represents the suchthat function which may be used to
+    construct lists, it takes two arguments. The first argument should be the
+    set which contains the elements of the list, the second argument should
+    be a predicate, that is a function from the set to the booleans which
+    describes if an element is to be in the list returned.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid178158"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id178161" xlink:href="sts.xml#mapsto"><mrow id="MCRid178170"><mrow><mo fence="true">(</mo><mrow><mi id="MCRid178178">Set</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="sts.xml#mapsto">,</mo><mrow id="id178183" xlink:href="sts.xml#mapsto"><mfenced id="id178183" open="(" close=")" separators=""><mi id="MCRid178191">Set</mi></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="setname2.xml#Boolean" xlink:type="simple" id="MCRid178196">Bool</mo></mrow><mo xlink:href="sts.xml#mapsto">↦</mo><mi id="MCRid178203">List</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid178158" xlink:type="simple"><OMA xlink:href="MCRid178161" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid178164" xlink:type="simple"/><OMA xlink:href="MCRid178170" xlink:type="simple"><OMS cd="sts" name="structure" xlink:href="MCRid178172" xlink:type="simple"/><OMV name="Set" xlink:href="MCRid178178" xlink:type="simple"/></OMA><OMA xlink:href="MCRid178183" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid178185" xlink:type="simple"/><OMV name="Set" xlink:href="MCRid178191" xlink:type="simple"/><OMS cd="setname2" name="Boolean" xlink:href="MCRid178196" xlink:type="simple"/></OMA><OMV name="List" xlink:href="MCRid178203" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="suchthat-ex-1">
+<span class="titleword">Example</span>
+<p>
+    This example shows how to construct the list of even positive integers less
+    than 100, using the suchthat constructor.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid153577"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id153580" xlink:href="#suchthat"><mo xlink:href="#suchthat" fence="true">[</mo><mi id="MCRid153606">x</mi><mo xlink:href="#suchthat">∈</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid153588">ℤ</mo><mo xlink:href="#suchthat">|</mo><mfenced id="id153619" open="(" close=")" separators=""><mi id="MCRid182418">x</mi><mo xlink:href="relation1.xml#geq" xlink:type="simple" id="MCRid153621">≥</mo><mo xlink:href="alg1.xml#zero" xlink:type="simple" id="MCRid182423">0</mo></mfenced><mo xlink:href="logic1.xml#and" xlink:type="simple" id="MCRid153613">∧</mo><mfenced id="id182430" open="(" close=")" separators=""><mi id="MCRid182438">x</mi><mo xlink:href="relation1.xml#lt" xlink:type="simple" id="MCRid182432">&lt;</mo><mn id="MCRid182442"> 100 </mn></mfenced><mo xlink:href="logic1.xml#and" xlink:type="simple">∧</mo><mfenced id="id182446" open="(" close=")" separators=""><mfenced id="id182455" open="(" close=")" separators=""><mfrac id="MCRid182455"><mi id="MCRid182464">x</mi><mn id="MCRid182468"> 2 </mn></mfrac></mfenced><mo xlink:href="set1.xml#in" xlink:type="simple" id="MCRid182449">∈</mo><mo xlink:href="setname1.xml#Z" xlink:type="simple" id="MCRid182473">ℤ</mo></mfenced><mo xlink:href="#suchthat" fence="true">]</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid153577" xlink:type="simple"><OMA xlink:href="MCRid153580" xlink:type="simple"><OMS cd="list1" name="suchthat" xlink:href="MCRid153582" xlink:type="simple"/><OMS cd="setname1" name="Z" xlink:href="MCRid153588" xlink:type="simple"/><OMBIND xlink:href="MCRid153595" xlink:type="simple"><OMS cd="fns1" name="lambda" xlink:href="MCRid153597" xlink:type="simple"/><OMBVAR xlink:href="MCRid153603" xlink:type="simple"><OMV name="x" xlink:href="MCRid153606" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid153611" xlink:type="simple"><OMS cd="logic1" name="and" xlink:href="MCRid153613" xlink:type="simple"/><OMA xlink:href="MCRid153619" xlink:type="simple"><OMS cd="relation1" name="geq" xlink:href="MCRid153621" xlink:type="simple"/><OMV name="x" xlink:href="MCRid182418" xlink:type="simple"/><OMS cd="alg1" name="zero" xlink:href="MCRid182423" xlink:type="simple"/></OMA><OMA xlink:href="MCRid182430" xlink:type="simple"><OMS cd="relation1" name="lt" xlink:href="MCRid182432" xlink:type="simple"/><OMV name="x" xlink:href="MCRid182438" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid182442"> 100 </OMI></OMA><OMA xlink:href="MCRid182446" xlink:type="simple"><OMS cd="set1" name="in" xlink:href="MCRid182449" xlink:type="simple"/><OMA xlink:href="MCRid182455" xlink:type="simple"><OMS cd="arith1" name="divide" xlink:href="MCRid182458" xlink:type="simple"/><OMV name="x" xlink:href="MCRid182464" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid182468"> 2 </OMI></OMA><OMS cd="setname1" name="Z" xlink:href="MCRid182473" xlink:type="simple"/></OMA></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="list">
+<div class="titlebox">
+<span class="titleword">Concept</span>list</div> 
+    This symbol denotes the list construct which is an n-ary function. The
+    list entries must be given explicitly.
+
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(sts.omdoc#sts)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid182525"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id182528" xlink:href="sts.xml#mapsto"><mfenced id="id182536" open="(" close=")" separators=""><msup id="MCRid182536"><mo xlink:href="#Object" xlink:type="simple" id="id182544">Object</mo><mo xlink:href="sts.xml#nary" xlink:type="simple" id="MCRid182538">*</mo></msup></mfenced><mo xlink:href="sts.xml#mapsto">↦</mo><mo xlink:href="#Object" xlink:type="simple" id="id182551">Object</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid182525" xlink:type="simple"><OMA xlink:href="MCRid182528" xlink:type="simple"><OMS cd="sts" name="mapsto" xlink:href="MCRid182530" xlink:type="simple"/><OMA xlink:href="MCRid182536" xlink:type="simple"><OMS cd="sts" name="nary" xlink:href="MCRid182538" xlink:type="simple"/><OMS cd="sts" name="Object" xlink:href="MCRid182544" xlink:type="simple"/></OMA><OMS cd="sts" name="Object" xlink:href="MCRid182551" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="example" id="list-ex-1">
+<span class="titleword">Example</span>
+<p>The list 3, 6, 9.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid182625"><semantics><mfenced id="id182628" open="[" close="]" separators=""><mn id="MCRid182636"> 3 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#list" xlink:type="simple" id="MCRid182630">,</mo><mn id="MCRid182639"> 6 </mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#list" xlink:type="simple">,</mo><mn id="MCRid182643"> 9 </mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid182625" xlink:type="simple"><OMA xlink:href="MCRid182628" xlink:type="simple"><OMS cd="list1" name="list" xlink:href="MCRid182630" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid182636"> 3 </OMI><OMI xlink:type="simple" xlink:href="MCRid182639"> 6 </OMI><OMI xlink:type="simple" xlink:href="MCRid182643"> 9 </OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>
