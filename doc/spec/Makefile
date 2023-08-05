@@ -9,7 +9,7 @@ TARGET		= spec
 OSTY.base	= #listings lstpatch lstomdoc ed draftstamp acronyms ded myref myindex 
 
 BIB 		= kwarc.bib
-RawTEXSRC	= $(shell ls *.tex)  $(shell ls projects/*/*.tex) macros.sty
+	RawTEXSRC	= $(shell ls *.tex)  $(shell ls projects/*/*.tex) macros.sty
 TEXSRC 		= $(filter-out spec-errata.tex,$(RawTEXSRC))
 IMG 		= $(shell ls figures/*.*)
 
